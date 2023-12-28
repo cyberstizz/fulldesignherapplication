@@ -5,14 +5,16 @@ const app = express();
 const port = process.env.PORT || 3000; // Change this to the desired port
 
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build')); // Replace 'path_to_your_index_html_file' with the actual path to your HTML file
-  });
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'client/build')); // Replace 'path_to_your_index_html_file' with the actual path to your HTML file
+//   });
 
 
 
 // Serve static files from the client directory
-// app.use(express.static(path.join(__dirname, '/client/public/index.html')));
+if (process.env.NODE_ENV === 'production') {
+app.use(express.static(path.join(__dirname, 'client/build')));
+}
 
 // Start the server
 app.listen(port, () => {
