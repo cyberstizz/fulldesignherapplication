@@ -135,12 +135,12 @@ const slideShow = [crocsOne,
   Your browser does not support the video tag
 </video> */}
 
-<video className="homeVideo" width="95%" height="50%" loop="true" controls>
+<video className="homeVideoTwo" width="95%" height="50%" loop="true" controls>
   <source src="/newVideoTwo.mp4" type="video/mp4"/>
   Your browser does not support the video tag
 </video>
 
-<video className="homeVideo" width="95%" height="50%" loop="true" controls>
+<video className="homeVideoThree" width="95%" height="50%" loop="true" controls>
   <source src="/newVideoOne.mp4" type="video/mp4"/>
   Your browser does not support the video tag
 </video>

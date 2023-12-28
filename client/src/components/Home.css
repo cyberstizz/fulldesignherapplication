@@ -104,7 +104,28 @@
     padding: 0;
     border: solid 2px black;
     margin-left: 2vw;
+}
+
+
+.homeVideoTwo{
+    object-fit: cover;
+    height: 30vh;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    border: solid 2px black;
+    margin-left: 2vw;
     margin-bottom: 6vh;
+}
+
+.homeVideoThree{
+    object-fit: cover;
+    height: 30vh;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    border: solid 2px black;
+    margin-left: 2vw;
 }
 
 .slideShowSection{
