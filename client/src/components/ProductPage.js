@@ -7,7 +7,7 @@ import './ProductPage.scss';
 
 const  ProductPage = () => {
   return (
-    <div>this is the Privacy policy page</div>
+    <div>this is the Product page</div>
   );
 }
 
