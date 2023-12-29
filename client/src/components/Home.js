@@ -1,6 +1,5 @@
 import './Home.css';
 import React from 'react';
-import { Link } from 'react-router-dom';\
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookSquare, faInstagram, faTiktok } from '@fortawesome/free-brands-svg-icons';
