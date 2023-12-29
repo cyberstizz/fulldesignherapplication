@@ -2,6 +2,15 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
+import Crocs from '/components/Crocs';
+import Boots from '/components/Boots';
+import Checkout from '/components/Checkout';
+import Jackets from '/components/Jackets';
+import PrivacyPolicy from '/components/PrivacyPolicy';
+import Checkout from '/components/Checkout';
+import Search from '/components/Search';
+import Sneakers from '/components/Sneakers';
+
 
 
 
