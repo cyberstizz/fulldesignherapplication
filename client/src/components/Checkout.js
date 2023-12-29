@@ -7,7 +7,7 @@ import './Checkout.scss';
 
 const  Checkout = () => {
   return (
-    <div>this is the boots page</div>
+    <div>this is the checkout page</div>
   );
 }
 
