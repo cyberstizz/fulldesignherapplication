@@ -1,6 +1,7 @@
 import './Home.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookSquare, faInstagram, faTiktok } from '@fortawesome/free-brands-svg-icons';
 import crocsOne from '../crocsOne.webp';
@@ -77,15 +78,15 @@ const slideShow = [crocsOne,
     <input type='search' className='searchBar'></input>
     <div className='navigationBar'>
       <ul className='navUlTag'>
-        <li className='firstNavItem'>Jackets</li>
-        <li className='navItem'>Crocs</li>
+       <Link to="/jackets"><li className='firstNavItem'>Jackets</li></Link>
+       <Link to="/crocs"><li className='navItem'>Crocs</li></Link>
       </ul>
     </div>
 
     <div className='navigationBarTwo'>
        <ul className='navUlTag'> 
-        <li className='firstNavItem'>Sneakers</li>
-        <li className='navItem'>Boots</li>
+        <Link to='/sneakers'><li className='firstNavItem'>Sneakers</li></Link>
+        <Link to='/boots'><li className='navItem'>Boots</li></Link>
       </ul>
     </div>
 </form>
@@ -117,9 +118,10 @@ const slideShow = [crocsOne,
 <section className='categoriesSection'>
 <h1 className='categoriesHeader'>Categories</h1>
 
-<div className='imageCard'></div>
-<div className='imageCardTwo'></div>
-<div className='imageCardThree'></div>
+<Link to='/crocs'><div className='imageCard'></div></Link>
+<Link to='/jackets'><div className='imageCardTwo'></div></Link>
+<Link to='/sneakers'><div className='imageCardThree'></div></Link>
+<Link to='/boots'><div className='imageCardThree'></div></Link>
 
 
 </section>
