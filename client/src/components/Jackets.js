@@ -11,4 +11,4 @@ const  Jackets = () => {
   );
 }
 
-export default Jacketsss;
+export default Jackets;
