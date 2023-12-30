@@ -7,7 +7,7 @@ import './SignIn.scss';
 
 const  SignIn = () => {
   return (
-    <div>this is the boots page</div>
+    <div>this is the Sign in page</div>
   );
 }
 
