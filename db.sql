@@ -111,16 +111,14 @@ VALUES
 -- For Boots
 INSERT INTO boots (name, image_path, description, product_type, product_price)
 VALUES
-  ('diamond_girl', 'https://designherbucket.s3.amazonaws.com/diamondGirl.jpg', 'No description details', 'boots', 200.00),
-  ;
+  ('diamond_girl', 'https://designherbucket.s3.amazonaws.com/diamondGirl.jpg', 'No description details', 'boots', 200.00);
 
 -- For Jackets
 INSERT INTO jackets (name, image_path, description, product_type, product_price)
 VALUES
-  ('the_diva', 'https://designherbucket.s3.amazonaws.com/theDiva.jpeg', 'No description details', 'jackets', 200.00),
-  ;
+  ('the_diva', 'https://designherbucket.s3.amazonaws.com/theDiva.jpeg', 'No description details', 'jackets', 200.00);
 
 -- For Sneakers
 INSERT INTO sneakers (name, image_path, description, product_type, product_price)
 VALUES
-  ('unicorn_sneaker', 'https://designherbucket.s3.amazonaws.com/unicornSneaker.jpg', 'No description details', 'sneakers', 100.00),  ;
+  ('unicorn_sneaker', 'https://designherbucket.s3.amazonaws.com/unicornSneaker.jpg', 'No description details', 'sneakers', 100.00);
