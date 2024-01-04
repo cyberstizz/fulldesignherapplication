@@ -100,7 +100,7 @@ const slideShow = [crocsOne,
 <section className='slideShowSection'>
   <h1 className='slideShowText'>As seen on </h1>
 
-  <a className='customIcon' href="https://www.facebook.com/DesignHerInc" target="_blank" rel="noopener noreferrer" style={iconStyle}>
+  <a className='customIcon' href="https://m.facebook.com/DesignHerInc" target="_blank" rel="noopener noreferrer" style={iconStyle}>
         <FontAwesomeIcon icon={faFacebookSquare} style={{ fontSize: '100px' }} />
       </a>
 
