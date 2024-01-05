@@ -1,5 +1,9 @@
 import React from 'react';
 import './Crocs.scss';
+import { useState, useEffect } from 'react';
+import Axios from 'axios';
+import SubMenuComponent from './SubmenuComponent';
+
 
 
 
@@ -43,15 +47,15 @@ useEffect(() => {
             {/* {!imagesLoaded && <Loader />} */}
 
     
-            <main className='submenuBody'>
-                  {AllCrocs.map(croc => (
-                    <Link key={croc._id} to={`/products/${dress.category}/${dress._id}`}>
-                        <SubMenuComponent onImageLoad={handleImageLoaded} name={dress.title} path={dress.imagePath} />
+            <div className='submenuBody'>
+                  {allCrocs.map(croc => (
+                    <Link key={croc._id} to={`/product/${croc.product_type}/${croc.product_id}`}>
+                        <SubMenuComponent onImageLoad={handleImageLoaded} name={croc.name} path={croc.image_path} />
                     </Link>
                 ))}
            
             
-            </main>
+            </div>
            
         </React.Fragment>
     );

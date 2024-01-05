@@ -1,0 +1,33 @@
+$mainBlue: #3FA396;
+$mainRed: #E63C23;
+$complimentaryGray: #D9D9D9;
+
+*{
+    text-decoration: none !important;
+    list-style: none;
+    overflow: hidden;
+}
+
+.fullSubMenuComponent{
+    height: 20vh;
+    width: 90vw;
+    background-color: #27665e;
+    margin-top: 3vh;
+    margin-left: 5vw;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    border-radius: 30px;
+}
+
+.submenuTitle{
+    text-decoration: none !important;
+    color: white;
+    height: 10vh;
+    width: 35vw;
+    font-size: 30px;
+    margin-top: 6vh;
+    margin-left: 6vw;
+    text-align: center;
+    display: flex;
+}
