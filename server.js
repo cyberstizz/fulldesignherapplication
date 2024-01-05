@@ -29,19 +29,39 @@ app.get('/allProducts', (req, res) => {
 })
 
 // all customers
+app.get('/allCustomers', (req, res) => {
+
+})
 
 // all crocs
+app.get('/allCrocs', (req, res) => {
+
+})
 
 // all jackets
+app.get('/allJackets', (req, res) => {
+
+})
 
 // all sneakers
+app.get('/allSneakers', (req, res) => {
+
+})
 
 // all boots
+app.get('/allBoots', (req, res) => {
+
+})
 
 // get item
+app.get('/item/{$item_number}', (req, res) => {
+
+})
 
 //get order
+app.get('/order/{$order_number}', (req, res) => {
 
+})
 
 // Start the server
 app.listen(port, () => {
