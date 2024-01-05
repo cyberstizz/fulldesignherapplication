@@ -13,9 +13,10 @@ const Crocs = () => {
     const [loadedImagesCount, setLoadedImagesCount] = useState(0);
     const [allCrocs, setAllCrocs] = useState([]);
 
+    const baseUrl = window.location.origin;
 
     const apiUrl = process.env.NODE_ENV === 'production'
-    ? 'https://designhercustomekreations-c288e9799350.herokuapp.com/'
+    ? '`${baseUrl}/allCrocs`;'
     : 'http://localhost:3000';
 
     useEffect(() => {
