@@ -8,7 +8,7 @@ import SubMenuComponent from './SubmenuComponent';
 
 
 
-const  Crocs = () => {
+const Crocs = () => {
     const [imagesLoaded, setImagesLoaded] = useState(false);
     const [loadedImagesCount, setLoadedImagesCount] = useState(0);
     const [allCrocs, setAllCrocs] = useState([]);
