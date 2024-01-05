@@ -19,6 +19,30 @@ if (process.env.NODE_ENV === 'production') {
 app.use(express.static(path.join(__dirname, 'client/build')));
 }
 
+
+// the routes will inlcude
+
+
+//all products
+app.get('/allProducts', (req, res) => {
+
+})
+
+// all customers
+
+// all crocs
+
+// all jackets
+
+// all sneakers
+
+// all boots
+
+// get item
+
+//get order
+
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
