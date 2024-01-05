@@ -1,6 +1,7 @@
 import React from 'react';
 import './Crocs.scss';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import SubMenuComponent from './SubmenuComponent';
 
@@ -15,12 +16,13 @@ const  Crocs = () => {
 
     const apiUrl = process.env.NODE_ENV === 'production'
     ? 'https://designhercustomekreations-c288e9799350.herokuapp.com/'
-    : 'http://localhost:4000';
+    : 'http://localhost:3000';
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await Axios.get(`${apiUrl}/allCrocs`);
+                console.log(response.data)
                 setAllCrocs(response.data);
             } catch (error) {
                 console.error("Error fetching crocs data: ", error);
@@ -37,7 +39,7 @@ const  Crocs = () => {
 };
 
 useEffect(() => {
-  if (loadedImagesCount === AllCrocs.length) {
+  if (loadedImagesCount === allCrocs.length) {
     setImagesLoaded(true);
   }
 }, [loadedImagesCount]);
