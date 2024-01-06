@@ -9,14 +9,14 @@ import SubMenuComponent from './SubmenuComponent';
 
 
 const Crocs = () => {
-    const [imagesLoaded, setImagesLoaded] = useState(false);
-    const [loadedImagesCount, setLoadedImagesCount] = useState(0);
+    // const [imagesLoaded, setImagesLoaded] = useState(false);
+    // const [loadedImagesCount, setLoadedImagesCount] = useState(0);
     const [allCrocs, setAllCrocs] = useState([]);
 
     const baseUrl = window.location.origin;
 
     const apiUrl = process.env.NODE_ENV === 'production'
-    ? '`${baseUrl}/allCrocs`;'
+    ? `${baseUrl}/allCrocs`
     : 'http://localhost:3000';
 
     useEffect(() => {
@@ -36,14 +36,14 @@ const Crocs = () => {
 
 
     const handleImageLoaded = () => {
-        setLoadedImagesCount(prevCount => prevCount + 1);
+        // setLoadedImagesCount(prevCount => prevCount + 1);
 };
 
-useEffect(() => {
-  if (loadedImagesCount === allCrocs.length) {
-    setImagesLoaded(true);
-  }
-}, [loadedImagesCount]);
+// useEffect(() => {
+//   if (loadedImagesCount === allCrocs.length) {
+//     setImagesLoaded(true);
+//   }
+// }, [loadedImagesCount]);
 
     return(
         <React.Fragment>
