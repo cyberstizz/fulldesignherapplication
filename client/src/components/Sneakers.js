@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import SubMenuComponent from './SubmenuComponent';
+import Header from './Header';
 
 
 
@@ -49,8 +50,12 @@ const Sneakers = () => {
         <React.Fragment>
             {/* {!imagesLoaded && <Loader />} */}
 
-    
-            <div className='submenuBody'>
+            <Header />
+            <br/>
+
+            <h1 className='categoryHeader'>Sneakers</h1>
+
+            <div className='submenuBody'>   
                   {allSneakers.map(sneaker => (
                     <Link key={sneaker.product_id} to={`/product/${sneaker.product_type}/${sneaker.product_id}`}>
                         <SubMenuComponent onImageLoad={handleImageLoaded} name={sneaker.name} path={sneaker.image_path} />

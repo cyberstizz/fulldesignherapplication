@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookSquare, faInstagram, faTiktok } from '@fortawesome/free-brands-svg-icons';
+import Header from './Header';
 import crocsOne from '../crocsOne.webp';
 import crocsTwo from '../crocsTwo.webp';
 import crocsFour from '../crocsFour.webp';
@@ -71,7 +72,8 @@ const slideShow = [crocsOne,
 
   return (
     <React.Fragment>
-<header className="mainHeader">
+      <Header />
+{/* <header className="mainHeader">
 
 <div className='mainLogo' alt="designHerLogo" src="../public/Designher.jpg" > </div>
 <form className='headerRightSide'>
@@ -90,7 +92,7 @@ const slideShow = [crocsOne,
       </ul>
     </div>
 </form>
-</header>
+</header> */}
 
 <video className="homeVideo" width="100%" height="50%" loop="true" autoPlay muted>
   <source src="/output_video.mp4" type="video/mp4"/>

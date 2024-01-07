@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import SubMenuComponent from './SubmenuComponent';
+import Header from './Header';
 
 
 
@@ -49,7 +50,10 @@ const Crocs = () => {
         <React.Fragment>
             {/* {!imagesLoaded && <Loader />} */}
 
-    
+            <Header />
+            <br/>
+
+            <h1 className='categoryHeader'>Crocs</h1>
             <div className='submenuBody'>
                   {allCrocs.map(croc => (
                     <Link key={croc.product_id} to={`/product/${croc.product_type}/${croc.product_id}`}>

@@ -7,6 +7,17 @@
     overflow-x: scroll;
 
 }
+
+a {
+    text-decoration: none; /* Removes underline */
+    color: rgb(230, 230, 230);
+    outline: none; /* or background-color: transparent; or any other style */
+  }
+  
+  /* Removes the blue highlight on link click */
+  a:focus, a:hover {
+    outline: none; /* or background-color: transparent; or any other style */
+  }
     
 
 .mainHeader{
@@ -48,32 +59,32 @@
 
 .navigationBar{
     height: 80%;
-    width: 100%;
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    color: rgb(230, 230, 230);
-    margin: 0 auto;
-    margin-top: 10%;
-    align-content: flex-start;
-    overflow: hidden;
-}
-
-.navigationBarTwo{
-    height: 80%;
     width: 90%;
     list-style: none;
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
+    color: rgb(230, 230, 230);
+    margin-top: 5%;
+    margin-left: 5%;
+    align-content: flex-start;
+    overflow: visible;
+}
+
+.navigationBarTwo{
+    height: 80%;
+    width: 95%;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
     margin: 0 auto;
-    margin-left: 10px;
     color: rgb(230, 230, 230);
     align-content: flex-start;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .navUlTag{
-    width: 95%;
+    width: 100%;
     height: 90%;
     margin-left: 0;
     margin-top: 0;
@@ -84,16 +95,15 @@
 
 
 .firstNavItem{
-    width: 70%;
+    width: 100%;
     height: 90%;
-    margin-left: -22%;
+    /* margin-left: -22%; */
     align-self: flex-start;
     justify-self: flex-start;
 }
 
 .navItem{
-    margin-left: 2%;
-    width: 40%;
+    width: 100%;
 }
 
 
@@ -181,7 +191,7 @@
 .imageCard{
     height: 30vh;
     width: 80%;
-    background-image: url('women.png');
+    background-image: url('crocThumbnail.jpeg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -192,13 +202,13 @@
 }
 
 .imageCard:hover{
-    background-image: url('womanHover.png');
+    background-image: url('crocThumbnail.jpeg');
 }
 
 .imageCardTwo{
     height: 30vh;
     width: 80%;
-    background-image: url('children.png');
+    background-image: url('jacketThumbnail.jpeg');
     background-position: center;
     background-size: cover;
     margin: 0 auto;
@@ -209,7 +219,7 @@
 .imageCardTwo:hover{
     height: 30vh;
     width: 80%;
-    background-image: url('childrenHover.png');
+    background-image: url('jacketThumbnail.jpeg');
     background-position: center;
     background-size: cover;
     margin: 0 auto;
@@ -220,7 +230,7 @@
 .imageCardThree{
     height: 30vh;
     width: 80%;
-    background-image: url('blackMan.png');
+    background-image: url('bootThumbnail.jpg');
     background-position: center;
     background-size: cover;
     margin: 0 auto;
@@ -231,7 +241,7 @@
 .imageCardThree:hover{
     height: 30vh;
     width: 80%;
-    background-image: url('menHover.png');
+    background-image: url('bootThumbnail.jpg');
     background-position: center;
     background-size: cover;
     margin: 0 auto;

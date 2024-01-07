@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import SubMenuComponent from './SubmenuComponent';
+import Header from './Header';
 
 
 
@@ -49,7 +50,10 @@ const Jackets = () => {
         <React.Fragment>
             {/* {!imagesLoaded && <Loader />} */}
 
-    
+            <Header />
+            <br/>
+            <h1 className='categoryHeader'>Jackets</h1>
+
             <div className='submenuBody'>
                   {allJackets.map(Jacket => (
                     <Link key={Jacket.product_id} to={`/product/${Jacket.product_type}/${Jacket.product_id}`}>
