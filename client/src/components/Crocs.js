@@ -17,14 +17,14 @@ const Crocs = () => {
 
     const apiUrl = process.env.NODE_ENV === 'production'
     ? `${baseUrl}/allCrocs`
-    : 'http://localhost:3000';
+    : 'http://localhost:3001';
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await Axios.get(`${apiUrl}/allCrocs`);
-                console.log(response.data)
-                setAllCrocs(response.data);
+                console.log(response.data.crocs)
+                setAllCrocs(response.data.crocs);
             } catch (error) {
                 console.error("Error fetching crocs data: ", error);
             }
@@ -52,7 +52,7 @@ const Crocs = () => {
     
             <div className='submenuBody'>
                   {allCrocs.map(croc => (
-                    <Link key={croc._id} to={`/product/${croc.product_type}/${croc.product_id}`}>
+                    <Link key={croc.product_id} to={`/product/${croc.product_type}/${croc.product_id}`}>
                         <SubMenuComponent onImageLoad={handleImageLoaded} name={croc.name} path={croc.image_path} />
                     </Link>
                 ))}

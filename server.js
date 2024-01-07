@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-const port = process.env.PORT || 3000; // Change this to the desired port
+const port = process.env.PORT || 3001; // Change this to the desired port
 // const { Pool } = require('pg');
 const pool = require('./db');
 const cors = require('cors');
