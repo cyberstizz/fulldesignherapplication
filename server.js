@@ -3,10 +3,13 @@ const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 3000; // Change this to the desired port
-const { Pool } = require('pg');
+// const { Pool } = require('pg');
 const pool = require('./db');
+const cors = require('cors');
 
 
+
+app.use(cors());
 
 // app.get('/', (req, res) => {
 //     res.sendFile(path.join(__dirname, 'client/build')); // Replace 'path_to_your_index_html_file' with the actual path to your HTML file
