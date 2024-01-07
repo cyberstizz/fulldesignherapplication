@@ -16,7 +16,7 @@ const Crocs = () => {
     const baseUrl = window.location.origin;
 
     const apiUrl = process.env.NODE_ENV === 'production'
-    ? `${baseUrl}/allCrocs`
+    ? `${baseUrl}`
     : 'http://localhost:3001';
 
     useEffect(() => {
