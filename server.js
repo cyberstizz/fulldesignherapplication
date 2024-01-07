@@ -6,6 +6,10 @@ const port = process.env.PORT || 3001; // Change this to the desired port
 // const { Pool } = require('pg');
 const pool = require('./db');
 const cors = require('cors');
+const crocsRouter = require('./routes/crocs/crocsRouter')
+const jacketsRouter = require('./routes/jackets/jacketsRouter')
+const bootsRouter = require('./routes/boots/bootsRouter')
+const sneakersRouter = require('./routes/sneakers/sneakersRouter')
 
 
 
@@ -21,6 +25,20 @@ app.use(cors());
 if (process.env.NODE_ENV === 'production') {
 app.use(express.static(path.join(__dirname, 'client/build')));
 }
+
+
+
+
+///////////////////////////////////////////////
+app.use('/crocs', crocsRouter)
+
+app.use('/jackets', jacketsRouter)
+
+app.use('/boots', bootsRouter)
+
+app.use('/sneakers', sneakersRouter);
+
+///////////////////////////////////////////////
 
 
 // the routes will inlcude
@@ -50,29 +68,19 @@ app.get('/allCustomers', async(req, res) => {
   }
 })
 
-// all crocs
-app.get('/allCrocs', async(req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM crocs'); // Replace 'customers' with your table name
-    const crocs = result.rows;
-    res.json({ crocs });
-  } catch (error) {
-    console.error('Error fetching customers:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-})
+
 
 // all jackets
-app.get('/allJackets', async(req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM jackets'); // Replace 'customers' with your table name
-    const jackets = result.rows;
-    res.json({ jackets });
-  } catch (error) {
-    console.error('Error fetching customers:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-})
+// app.get('/allJackets', async(req, res) => {
+//   try {
+//     const result = await pool.query('SELECT * FROM jackets'); // Replace 'customers' with your table name
+//     const jackets = result.rows;
+//     res.json({ jackets });
+//   } catch (error) {
+//     console.error('Error fetching customers:', error);
+//     res.status(500).json({ error: 'Internal server error' });
+//   }
+// })
 
 // all sneakers
 app.get('/allSneakers', async(req, res) => {

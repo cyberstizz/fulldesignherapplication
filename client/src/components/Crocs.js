@@ -23,7 +23,7 @@ const Crocs = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await Axios.get(`${apiUrl}/allCrocs`);
+                const response = await Axios.get(`${apiUrl}/crocs/allCrocs`);
                 console.log(response.data.crocs)
                 setAllCrocs(response.data.crocs);
             } catch (error) {

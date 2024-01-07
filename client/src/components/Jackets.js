@@ -23,7 +23,7 @@ const Jackets = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await Axios.get(`${apiUrl}/allJackets`);
+                const response = await Axios.get(`${apiUrl}/jackets/allJackets`);
                 console.log(response.data.jackets)
                 setAllJackets(response.data.jackets);
             } catch (error) {
