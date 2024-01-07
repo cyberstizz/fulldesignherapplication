@@ -5,7 +5,8 @@ $complimentaryGray: #D9D9D9;
 *{
     text-decoration: none !important;
     list-style: none;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .fullSubMenuComponent{
