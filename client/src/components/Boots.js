@@ -23,8 +23,8 @@ const Boots = () => {
         const fetchData = async () => {
             try {
                 const response = await Axios.get(`${apiUrl}/allBoots`);
-                console.log(response.data.crocs)
-                setAllBoots(response.data.crocs);
+                console.log(response.data.boots)
+                setAllBoots(response.data.boots);
             } catch (error) {
                 console.error("Error fetching crocs data: ", error);
             }
