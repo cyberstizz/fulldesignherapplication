@@ -56,6 +56,28 @@ app.get('/allProducts', async(req, res) => {
   }
 })
 
+app.get('/products/:productId', async(req, res) => {
+  
+    const { productId } = req.params;
+    console.log(productId)
+
+    console.log(`this is the user ${req.user}`)
+
+    try{
+      const myTest = await pool.query(`select * from pictestertwo where name = $1`, [`${productId}`]);
+   console.log(myTest.rows[0])
+   console.log(myTest.rows[0].name)
+   console.log(myTest.rows[0].price)
+   console.log(myTest.rows[0].description)
+   
+     res.status(200).json({"theName": `${myTest.rows[0].name}`, "thePrice": myTest.rows[0].price, "theDescription": `${myTest.rows[0].description}`, "theSneakerPath": `${myTest.rows[0].sneakerpath}` });
+   
+     //  console.log(myTest.rows[0])
+    } catch(err){
+      console.log(err.message);
+    }
+})
+
 // all customers
 app.get('/allCustomers', async(req, res) => {
   try {
