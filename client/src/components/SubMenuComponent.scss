@@ -12,22 +12,22 @@ $complimentaryGray: #D9D9D9;
 .fullSubMenuComponent{
     height: 20vh;
     width: 90vw;
-    background-color: $mainRed;
+    background: linear-gradient(to right, #FFA07A, #E63C23);
     margin-top: 3vh;
     margin-left: 5vw;
     color: white;
     display: flex;
     flex-direction: row;
-    border-radius: 30px;
+    border-radius: 10px;
 }
 
 .submenuTitle{
     text-decoration: none !important;
-    color: black;
+    color: rgb(206, 184, 184);
     height: 10vh;
     width: 35vw;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 30px;
+    font-family: fantasy;
+    font-size: 40px;
     margin-top: 6vh;
     margin-left: 6vw;
     text-align: center;

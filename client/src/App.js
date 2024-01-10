@@ -25,7 +25,7 @@ function App() {
       <Route path='/checkout' element={<Checkout />} />
       <Route path='/jackets' element={<Jackets />} />
       <Route path='/privacyPolicy' element={<PrivacyPolicy />} />
-      <Route path='/productPage' element={<ProductPage />} />
+      <Route path='/products/:productId' element={<ProductPage />} />
       <Route path='/search' element={<Search />} />
       <Route path='/sneakers' element={<Sneakers />} />
       </Routes>
