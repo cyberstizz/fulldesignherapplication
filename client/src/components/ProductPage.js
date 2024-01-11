@@ -7,7 +7,10 @@ import './ProductPage.scss';
 
 const  ProductPage = () => {
   return (
-    <div>this is the Product page</div>
+    <React.Fragment>
+    <img src='../crocsEigtht.webp' className='productPageImage' />
+    <div className='underImageSection'>this is the Product page</div>
+    </React.Fragment>
   );
 }
 
