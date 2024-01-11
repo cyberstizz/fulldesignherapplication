@@ -1,6 +1,7 @@
 .submenuBody{
     overflow-x: hidden;
     overflow-y: scroll;
+    background: linear-gradient(to bottom right, rgb(136, 129, 129), #f0f0f0);
 }
 
 .categoryHeader{
@@ -8,4 +9,5 @@
     margin: 0; /* Reset any default margins */
     font-size: 75px;
     letter-spacing: 2.5px;
+    background: linear-gradient(to bottom right, rgb(136, 129, 129), #f0f0f0);
 }

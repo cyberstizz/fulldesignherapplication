@@ -51,7 +51,6 @@ const Jackets = () => {
             {/* {!imagesLoaded && <Loader />} */}
 
             <Header />
-            <br/>
             <h1 className='categoryHeader'>Jackets</h1>
 
             <div className='submenuBody'>

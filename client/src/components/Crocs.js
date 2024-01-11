@@ -36,6 +36,10 @@ const Crocs = () => {
 
 
 
+    const properLettering = (string) => {
+        
+    }
+
     const handleImageLoaded = () => {
         // setLoadedImagesCount(prevCount => prevCount + 1);
 };
@@ -51,13 +55,11 @@ const Crocs = () => {
             {/* {!imagesLoaded && <Loader />} */}
 
             <Header />
-            <br/>
-
             <h1 className='categoryHeader'>Crocs</h1>
             <div className='submenuBody'>
                   {allCrocs.map(croc => (
                     <Link key={croc.product_id} to={`/products/${croc.product_id}`}>
-                        <SubMenuComponent onImageLoad={handleImageLoaded} name={croc.name} path={croc.image_path} />
+                        <SubMenuComponent onImageLoad={handleImageLoaded} name={croc.name} path={croc.image_path} product_price={croc.product_price} />
                     </Link>
                 ))}
            
