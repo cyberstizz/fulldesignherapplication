@@ -36,8 +36,31 @@ const Crocs = () => {
 
 
 
-    const properLettering = (string) => {
+    const properLettering = (word) => {
+        //this function will parse a string and remove
+        //any _ characters
+
+        //create a new variable that will be returned
+        //this variable will be an array
+        let newString = [];
+
+
+        for(let i = 0; i < word.length; i++){
+
         
+        //loop through the string, and for every element
+        //check to see if it is an underscore and if it is
+        //push a blank space into the array '', if it is not
+        if(word[i] !== '_'){
+        //push the letter into the array
+            newString.push(word[i]);
+        } else{
+            newString.push(' ');
+        }
+        }
+        return newString.join('');
+        //after getting out of the array join the array
+        //into a string, and return the string
     }
 
     const handleImageLoaded = () => {
@@ -59,7 +82,7 @@ const Crocs = () => {
             <div className='submenuBody'>
                   {allCrocs.map(croc => (
                     <Link key={croc.product_id} to={`/products/${croc.product_id}`}>
-                        <SubMenuComponent onImageLoad={handleImageLoaded} name={croc.name} path={croc.image_path} product_price={croc.product_price} />
+                        <SubMenuComponent onImageLoad={handleImageLoaded} name={properLettering(croc.name)} path={croc.image_path} product_price={croc.product_price} />
                     </Link>
                 ))}
            
