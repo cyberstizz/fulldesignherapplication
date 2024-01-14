@@ -6,7 +6,7 @@ import Crocs from './components/Crocs';
 import Boots from './components/Boots';
 import Jackets from './components/Jackets';
 import PrivacyPolicy from './components/PrivacyPolicy';
-import ProductPage from './components/ProductPage';
+import ProductDescription from './components/ProductDescription';
 import Checkout from './components/Checkout';
 import Search from './components/Search';
 import Sneakers from './components/Sneakers';
@@ -25,7 +25,7 @@ function App() {
       <Route path='/checkout' element={<Checkout />} />
       <Route path='/jackets' element={<Jackets />} />
       <Route path='/privacyPolicy' element={<PrivacyPolicy />} />
-      <Route path='/products/:productId' element={<ProductPage />} />
+      <Route path='/products/:productId' element={<ProductDescription />} />
       <Route path='/search' element={<Search />} />
       <Route path='/sneakers' element={<Sneakers />} />
       </Routes>

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Header.scss';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 import SubMenuComponent from './SubmenuComponent';
 
@@ -9,28 +9,32 @@ import SubMenuComponent from './SubmenuComponent';
 
 
 const Header = () => {
+
+
+    const navigate = useNavigate();
+
+  const handleLogoClick = () => {
+    // Navigate to the home page when the logo is clicked
+    navigate('/');
+  };
      
     return(
         
  <header className="mainHeader">
 
-<div className='mainLogo'></div>
-<form className='headerRightSide'>
+<div className='mainLogo' onClick={handleLogoClick}> </div>
+<div className='headerRightSide'>
     <input type='search' className='searchBar'></input>
     <div className='navigationBar'>
-      <ul className='navUlTag'>
-       <Link to="/jackets"><li className='firstNavItem'>Jackets</li></Link>
-       <Link to="/crocs"><li className='navItem'>Crocs</li></Link>
-      </ul>
+       <Link to="/jackets"><div className='firstNavItem'>Jackets</div></Link>
+       <Link to="/crocs"><div className='navItem'>Crocs</div></Link>
     </div>
 
     <div className='navigationBarTwo'>
-       <ul className='navUlTag'> 
-        <Link to='/sneakers'><li className='firstNavItem'>Sneakers</li></Link>
-        <Link to='/boots'><li className='navItem'>Boots</li></Link>
-      </ul>
+        <Link to='/sneakers'><div className='firstNavItem'>Sneakers</div></Link>
+        <Link to='/boots'><div className='navItem'>Boots</div></Link>
     </div>
-</form>
+</div>
 </header> 
                 
     );

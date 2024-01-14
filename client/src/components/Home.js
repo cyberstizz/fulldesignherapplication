@@ -20,6 +20,8 @@ import crocsFourteen from '../crocsFourteen.heic';
 import crocsFifteen from '../crocsFifteen.heic';
 import crocsSixteen from '../crocsSixteen.heic';
 import crocsSeventeen from '../crocsSeventeen.heic';
+import { Route } from 'react-router-dom';
+import ProductDescription from './ProductDescription';
 
 
 
@@ -124,6 +126,7 @@ const slideShow = [crocsOne,
 <Link to='/jackets'><div className='imageCardTwo'></div></Link>
 <Link to='/sneakers'><div className='imageCardThree'></div></Link>
 <Link to='/boots'><div className='imageCardThree'></div></Link>
+
 
 
 </section>

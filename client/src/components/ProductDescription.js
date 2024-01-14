@@ -3,11 +3,11 @@ import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 // import { Link } from 'react-router-dom';
 import Header from './Header';
-import './ProductDescription.css';
-// import axios from 'axios';
-import { addToCart } from './reducers/AddToCart';
+import './ProductDescription.scss';
+import axios from 'axios';
+// import { addToCart } from './reducers/AddToCart';
 import StripeCheckout from 'react-stripe-checkout';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // creating the two functions that will be needed to connect this component to the store
 
@@ -143,120 +143,18 @@ const dispatch = useDispatch();
     }, [])
 
     // now a function to be called when a user clicks add to cart
-    const handleClick = (item) => {
-            //  props.addToTheCart(item)
-            dispatch(addToCart(item))
-    }
+    // const handleClick = (item) => {
+    //         //  props.addToTheCart(item)
+    //         dispatch(addToCart(item))
+    // }
 
 // and now below is the jsx of the actual component
 
     return (
-        <React.Fragment>
-            <Header />
-        <main id="fullPageBlock">
+        <div>
 
-        <section className="topBlock">
-            {/*this is the picture*/}
-            <img className="productPic" src={SneakerPath} />
-            {/* this is the entire product purchase sections */}
-            <section className="productPurchaseSection">
-            {/* this block represents the right side with the buttons and details */}
-            <div className="rightSectionBlock">
-                {/* this section is for the title of the product */}
-                <div className="purchaseSections" id="headline" style={{color: '#B48B22'}}>{Name}</div>
-                {/* this section is for the price */}
-                <div className="purchaseSections" id="price"><div style={{color: 'white', marginLeft: '5vw', "font-family": "'Permanent Marker', cursive"}}>Price:</div> <span style={{marginLeft: '1vw', "font-family": "'Permanent Marker', cursive"}}>${Price}</span></div>
-                {/* this is the quantity section where the user can select their quantity via a dropdown */}
-                <div className="purchaseSections" style={{marginLeft: '9vw', borderBottom: 'solid 3px #B48B22', width: '25vw', paddingBottom: '4px'}}> Quantity:
-                      <select onChange={selectChangeHandler}  id='quantitySelector'>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-
-                      </select>
-                </div>
-                {/* this section diplays the price */}
-                <div className="purchaseSections" id="price"><div style={{color: 'green', marginLeft: '5vw', "font-family": "'Permanent Marker', cursive"}}><span style={{color: 'white', marginLeft: '-1.2vw'}}>Total:  </span>${!Quantity ? Price : (Price * Quantity)}</div> <span style={{marginTop: '1vh', marginLeft: '1vw'}}></span></div>
-                {/* this div is for the estimated delivery */}
-                 {/* and the two buttons are below */}
-                <div className="buttonsDiv"><button id="purchaseButtonCart" onClick={() => handleClick(item)}>Add to cart</button> 
-                <StripeCheckout 
-                   stripeKey={'pk_test_51KD0MTBGolAm0YdrCJ4QlFJf3Bdv4WckkNGl6tKyrBvXE5GvP9WCWpOQEzyNT1wQD6zCKZQNj7AmDF1dRfWiZ7Y400CfbKGLoM'}
-                   token={handleToken}
-                   name={Name}
-                   amount={Price * 100}
-                > 
-                <button id="purchaseButtonBuy">Buy now</button>
-                </StripeCheckout>
-                </div>
-            </div>
-
-            </section>
-        </section>
-
-
-        <section className="middleBlock"></section>
-        <section className="bottomBlock"></section>
-
-
-        </main>
-
-
-        <main id="mobilefullPageBlock">
-
-        <section className="mobiletopBlock">
-            {/*this is the picture*/}
-            <img className="mobileproductPic" src={SneakerPath} />
-            {/* this is the entire product purchase sections */}
-            <section className="mobileproductPurchaseSection">
-            {/* this block represents the right side with the buttons and details */}
-            <div className="mobilerightSectionBlock">
-                {/* this section is for the title of the product */}
-                <div className="mobilepurchaseSections" id="mobileheadline" style={{color: '#B48B22'}}>{Name}</div>
-                {/* this section is for the price */}
-                <div className="mobilepurchaseSections" id="mobileprice"><div style={{color: 'white', marginLeft: '1vw', "font-family": "'Permanent Marker', cursive"}}>Price:</div> <span style={{marginLeft: '1vw', "font-family": "'Permanent Marker', cursive"}}>${Price}</span></div>
-                {/* this is the quantity section where the user can select their quantity via a dropdown */}
-                <div className="mobilepurchaseSections" style={{marginLeft: '9vw', borderBottom: 'solid 3px #B48B22', width: '25vw', paddingBottom: '4px'}}> Quantity:
-                      <select onChange={selectChangeHandler}  id='mobilequantitySelector'>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-
-                      </select>
-                </div>
-                {/* this section diplays the price */}
-                <div className="mobilepurchaseSections" id="mobileprice"><div style={{color: 'green', marginLeft: '5vw', "font-family": "'Permanent Marker', cursive"}}><span style={{color: 'white', marginLeft: '-1.2vw'}}>Total:  </span>${!Quantity ? Price : (Price * Quantity)}</div> <span style={{marginTop: '1vh', marginLeft: '1vw'}}></span></div>
-                {/* this div is for the estimated delivery */}
-                 {/* and the two buttons are below */}
-                <div className="mobilebuttonsDiv"><button id="mobilepurchaseButtonCart" onClick={() => handleClick(item)}>Add to cart</button> 
-                <StripeCheckout 
-                   stripeKey={'pk_test_51KD0MTBGolAm0YdrCJ4QlFJf3Bdv4WckkNGl6tKyrBvXE5GvP9WCWpOQEzyNT1wQD6zCKZQNj7AmDF1dRfWiZ7Y400CfbKGLoM'}
-                   token={handleToken}
-                   name={Name}
-                   amount={Price * 100}
-                > 
-                <button id="mobilepurchaseButtonBuy">Buy now</button>
-                </StripeCheckout>
-                </div>
-            </div>
-
-            </section>
-        </section>
-
-
-        <section className="mobilemiddleBlock"></section>
-        <section className="mobilebottomBlock"></section>
-
-
-        </main>
-
-        </React.Fragment>
-
-    )
+        </div>
+  )
 }
 
 // creating an action to be dispatched to the redux store
