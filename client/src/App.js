@@ -10,6 +10,7 @@ import ProductDescription from './components/ProductDescription';
 import Checkout from './components/Checkout';
 import Search from './components/Search';
 import Sneakers from './components/Sneakers';
+import ProductTest from './components/ProductTest';
 
 
 
@@ -28,6 +29,7 @@ function App() {
       <Route path='/products/:productId' element={<ProductDescription />} />
       <Route path='/search' element={<Search />} />
       <Route path='/sneakers' element={<Sneakers />} />
+      <Route path='/productTest' element={<ProductTest />} />
       </Routes>
     </Router>
   );
