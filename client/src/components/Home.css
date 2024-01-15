@@ -49,7 +49,7 @@ a {
 
 .searchBar{
     height: 60px;
-    width: 9rem;
+    width: 100%;
     border-radius: 15px;
     background-color: #D9D9D9;
     margin-left: 2vw;
@@ -172,20 +172,24 @@ a {
 
 .categoriesSection{
     background: linear-gradient(to right, #FF0000, #CC0000, #990000, #660000);
-    height: 120vh;
+    height: 194vh;
     width: 100vw;
     margin-top: -10px; /* Adjust the value as needed */
     padding: 0;
     border: 0;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
 }
 
 .categoriesHeader{
     color: #958e8e;
     font-size: 40px;
     letter-spacing: 1px;
-    margin-left: 20%;
+    margin-left: 30%;
 }
 
 .imageCard{
@@ -234,8 +238,8 @@ a {
     background-position: center;
     background-size: cover;
     margin: 0 auto;
-    margin-bottom: 20vh;
     border-radius: 20px;
+    margin-bottom: 4vh;
 }
 
 .imageCardThree:hover{
@@ -245,7 +249,17 @@ a {
     background-position: center;
     background-size: cover;
     margin: 0 auto;
-    margin-bottom: 20vh;
+    border-radius: 20px;
+}
+
+
+.imageCardFour{
+    height: 30vh;
+    width: 80%;
+    background-image: url('../crocsTen.webp');
+    background-position: center;
+    background-size: cover;
+    margin: 0 auto;
     border-radius: 20px;
 }
 
@@ -272,7 +286,7 @@ li{
 
 .videosSection{
     background: #fff;
-    height: 120vh;
+    height: 90vh;
     width: 100vw;
     text-align: justify; 
     color: red;

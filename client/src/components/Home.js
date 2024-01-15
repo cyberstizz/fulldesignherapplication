@@ -120,12 +120,18 @@ const slideShow = [crocsOne,
 </section>
 
 <section className='categoriesSection'>
-<h1 className='categoriesHeader'>Categories</h1>
+<h1 className='categoriesHeader'>Crocs</h1>
 
 <Link to='/crocs'><div className='imageCard'></div></Link>
+<h1 className='categoriesHeader'>Jackets</h1>
+
 <Link to='/jackets'><div className='imageCardTwo'></div></Link>
+<h1 className='categoriesHeader'>Sneakers</h1>
+
 <Link to='/sneakers'><div className='imageCardThree'></div></Link>
-<Link to='/boots'><div className='imageCardThree'></div></Link>
+<h1 className='categoriesHeader'>Boots</h1>
+
+<Link to='/boots'><div className='imageCardFour'></div></Link>
 
 
 
