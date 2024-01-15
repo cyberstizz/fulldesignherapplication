@@ -20,4 +20,26 @@ crocsRouter.get('/allCrocs', async(req, res) => {
   })
 
 
+    
+// Get one croc by product_id
+crocsRouter.get('/:productId', async (req, res) => {
+  const productId = req.params.productId;
+
+  try {
+    const result = await pool.query('SELECT * FROM crocs WHERE product_id = $1', [productId]);
+    const croc = result.rows[0]; // Assuming product_id is unique
+
+    if (croc) {
+      res.json({ croc });
+    } else {
+      res.status(404).json({ error: 'Croc not found' });
+    }
+  } catch (error) {
+    console.error('Error fetching croc:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
+
   module.exports = crocsRouter;
