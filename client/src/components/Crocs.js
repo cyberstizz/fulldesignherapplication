@@ -81,7 +81,7 @@ const Crocs = () => {
             <h1 className='categoryHeader'>Crocs</h1>
             <div className='submenuBody'>
                   {allCrocs.map(croc => (
-                    <Link key={croc.product_id} to={`/products/${croc.product_id}`}>
+                    <Link key={croc.product_id} to={`/crocs/${croc.product_id}`}>
                         <SubMenuComponent onImageLoad={handleImageLoaded} name={properLettering(croc.name)} path={croc.image_path} product_price={croc.product_price} />
                     </Link>
                 ))}
