@@ -72,13 +72,9 @@ const ProductDescription = () => {
 
             <img src={image_path} alt={name} height="50%" width="100%" className='pictureTest' ></img>
             <div className='fullBottomSection'>
-                ${product_id}
+                {name}
                 <br/>
-                ${name}
-                <br/>
-                ${image_path}
-                <br/>
-                ${description}
+                {description}
                 <br/>
                 ${product_price}
 
