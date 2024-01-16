@@ -30,7 +30,7 @@ const ProductDescription = () => {
 
     //add an api url
     const apiUrl = process.env.NODE_ENV === 'production'
-    ? 'https://designhercustomekreations-c288e9799350.herokuapp.com/'
+    ? 'https://designhercustomekreations-c288e9799350.herokuapp.com'
     : 'http://localhost:3001';
 
     useEffect(() => {
