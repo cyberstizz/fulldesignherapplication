@@ -57,7 +57,7 @@ const Sneakers = () => {
 
             <div className='submenuBody'>   
                   {allSneakers.map(sneaker => (
-                    <Link key={sneaker.product_id} to={`/product/${sneaker.product_type}/${sneaker.product_id}`}>
+                    <Link key={sneaker.product_id} to={`/sneakers/${sneaker.product_id}`}>
                         <SubMenuComponent onImageLoad={handleImageLoaded} name={sneaker.name} path={sneaker.image_path} />
                     </Link>
                 ))}

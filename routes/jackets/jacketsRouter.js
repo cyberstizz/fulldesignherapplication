@@ -19,7 +19,7 @@ jacketsRouter.get('/allJackets', async(req, res) => {
     }
   })
 
-  jacketsRouters.get('/:productId', async (req, res) => {
+  jacketsRouter.get('/:productId', async (req, res) => {
     const productId = req.params.productId;
   
     try {
