@@ -68,15 +68,31 @@ const ProductDescription = () => {
 
 
     return (
-        <div className='entireProductDescriptionPage'>
+            <div className='entireProductDescriptionPage'>
 
             <img src={image_path} alt={name} height="50%" width="100%" className='pictureTest' ></img>
             <div className='fullBottomSection'>
-                {name}
-                <br/>
-                {description}
-                <br/>
-                ${product_price}
+            <div className='infoSection'>
+
+                <div className='nameAndPriceSection'>
+                    <h1 className='name'>{name}</h1>
+                    <div className='price'>${product_price}</div>
+                </div>
+
+                <div className='ratingsSection'>
+                    <h1 className='ratingsHeader'>Ratings</h1>
+                    <div className='ratingsStars'></div>
+                    <div className='writeAReview'>Write a review</div>
+                </div>
+
+            </div>
+            <div className='descriptionSection'>
+            {description}
+            </div>
+            <div className='buttonsSection'>
+                <button>Buy now</button>
+                <button>Add to cart</button>
+            </div>
 
 
             </div>
