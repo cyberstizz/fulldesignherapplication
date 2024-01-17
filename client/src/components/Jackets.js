@@ -51,6 +51,8 @@ const Jackets = () => {
             {/* {!imagesLoaded && <Loader />} */}
 
             <Header />
+            <div className='fullCategoryBody'>
+
             <h1 className='categoryHeader'>Jackets</h1>
 
             <div className='submenuBody'>
@@ -61,6 +63,7 @@ const Jackets = () => {
                 ))}
            
             
+            </div>
             </div>
            
         </React.Fragment>

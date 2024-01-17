@@ -13,7 +13,23 @@
 
 .fullBottomSection{
     display: flex;
+    flex-direction: column;
     background-color: red;
     height: 50vh;
     width: 100%;
+}
+
+.infoSection{
+    display: flex;
+    flex-direction: row;
+}
+
+.nameAndPriceSection{
+    display: flex;
+    flex-direction: column;
+}
+
+.ratingsSection{
+    display: flex;
+    flex-direction: column;
 }

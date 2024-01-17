@@ -51,6 +51,8 @@ const Sneakers = () => {
             {/* {!imagesLoaded && <Loader />} */}
 
             <Header />
+            <div className='fullCategoryBody'>
+
             <br/>
 
             <h1 className='categoryHeader'>Sneakers</h1>
@@ -63,6 +65,7 @@ const Sneakers = () => {
                 ))}
            
             
+            </div>
             </div>
            
         </React.Fragment>

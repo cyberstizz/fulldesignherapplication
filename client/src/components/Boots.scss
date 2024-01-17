@@ -1,7 +1,13 @@
 .submenuBody{
     overflow-x: hidden;
-    overflow-y: scroll;}
+    overflow-y: scroll;
+}
 
-    .categoryHeader{
-        margin: 0 auto;
-    }
+.fullCategoryBody{
+    background: linear-gradient(to bottom right, rgb(136, 129, 129), #f0f0f0);
+}
+
+
+.categoryHeader{
+    margin: 0 auto;
+}

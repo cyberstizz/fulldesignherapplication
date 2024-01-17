@@ -51,6 +51,7 @@ const Boots = () => {
             {/* {!imagesLoaded && <Loader />} */}
 
             <Header />
+            <div className='fullCategoryBody'>
             <br/>
 
             <h1 className='categoryHeader'>Boots</h1>
@@ -64,7 +65,7 @@ const Boots = () => {
            
             
             </div>
-           
+            </div>
         </React.Fragment>
     );
 }

@@ -78,6 +78,7 @@ const Crocs = () => {
             {/* {!imagesLoaded && <Loader />} */}
 
             <Header />
+            <div className='fullCategoryBody'>
             <h1 className='categoryHeader'>Crocs</h1>
             <div className='submenuBody'>
                   {allCrocs.map(croc => (
@@ -87,6 +88,7 @@ const Crocs = () => {
                 ))}
            
             
+            </div>
             </div>
            
         </React.Fragment>
