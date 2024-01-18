@@ -1,0 +1,35 @@
+
+.entireProductDescriptionPage{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    border: solid 2px green;
+}
+
+.pictureTest{
+    display: flex;
+    height: 50vh;
+}
+
+.fullBottomSection{
+    display: flex;
+    flex-direction: column;
+    background-color: red;
+    height: 50vh;
+    width: 100%;
+}
+
+.infoSection{
+    display: flex;
+    flex-direction: row;
+}
+
+.nameAndPriceSection{
+    display: flex;
+    flex-direction: column;
+}
+
+.ratingsSection{
+    display: flex;
+    flex-direction: column;
+}

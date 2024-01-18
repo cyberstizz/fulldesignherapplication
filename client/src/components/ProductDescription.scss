@@ -3,33 +3,121 @@
     width: 100vw;
     display: flex;
     flex-direction: column;
-    border: solid 2px green;
+    position: relative;
+
 }
 
 .pictureTest{
     display: flex;
+    position: relative;
+    z-index: 1;
     height: 50vh;
+    overflow: visible;
+    object-fit: fill;
 }
 
 .fullBottomSection{
     display: flex;
     flex-direction: column;
-    background-color: red;
-    height: 50vh;
+    border-top-right-radius: 35px;
+    background: linear-gradient(to right, #c45f37, #c22007);
+    height: 54vh;
     width: 100%;
+    position: relative;
+    z-index: 2;
+    margin-top: -30px;
 }
 
 .infoSection{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    height: 35%;
+    margin-top: 5%;
 }
 
 .nameAndPriceSection{
     display: flex;
     flex-direction: column;
+    margin-left: 3%;
+    width: auto;
+    height: 100%;
+    white-space: nowrap;
 }
 
 .ratingsSection{
     display: flex;
     flex-direction: column;
+    margin-right: 3%;
+    width: auto;
+    height: 100%;
+}
+
+.name{
+    font-size: 40px;
+    width: auto;
+    color: black;
+    margin-left: 5%;
+}
+
+.price{
+    font-size: 35px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(43, 245, 43);
+}
+
+.ratingsHeader{
+    font-size: 40px;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.ratingsStars{
+
+}
+
+.writeAReview{
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.descriptionSection{
+    padding: 10px;
+    width: 90%;
+    height: 40%;
+    margin: 0 auto;
+    font-size: 35px;
+    font-family: fantasy;
+    color: rgb(66, 1, 1);
+}
+
+.buttonsSection{
+    margin: 0 auto;
+    width: 90%;
+    height: 12%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 1%;
+}
+
+.buyNowButton{
+    width: 40%;
+    border-radius: 15px;
+    background-color: rgb(71, 114, 6);
+    border-color: rgb(71, 114, 6);
+    font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+}
+
+.addToCartButton{
+    width: 40%;
+    border-radius: 15px;
+    color: white;
+    font-size: 22px;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: rgb(156, 9, 9);
+    border-color: rgb(156, 9, 9);
+
 }

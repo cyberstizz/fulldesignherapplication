@@ -23,7 +23,7 @@ import StripeCheckout from 'react-stripe-checkout';
 //     }
 // }
 
-const ProductDescription = () => {
+const ProductDescriptionTest = () => {
 
     const { productCategory, productId } = useParams();
     const [product, setProduct] = useState(null);
@@ -70,13 +70,13 @@ const ProductDescription = () => {
     return (
             <div className='entireProductDescriptionPage'>
 
-            <img src={image_path} alt={name} width="100%" className='pictureTest' ></img>
+            <img src='/crocsOne.webp' alt='some random croc i chose' height="50%" width="100%" className='pictureTest' ></img>
             <div className='fullBottomSection'>
             <div className='infoSection'>
 
                 <div className='nameAndPriceSection'>
-                    <h1 className='name'>{name}</h1>
-                    <div className='price'>${product_price}</div>
+                    <h1 className='name'>some random croc</h1>
+                    <div className='price'>$150</div>
                 </div>
 
                 <div className='ratingsSection'>
@@ -87,11 +87,13 @@ const ProductDescription = () => {
 
             </div>
             <div className='descriptionSection'>
-            {description}
+            this is just some random description but it is
+            a description of quality, of grace and character.
+            and that being said everybody wins. so let's celebrate.
             </div>
             <div className='buttonsSection'>
-                <button className='buyNowButton'>Buy now</button>
-                <button className='addToCartButton'>Add to cart</button>
+                <button>Buy now</button>
+                <button>Add to cart</button>
             </div>
 
 
@@ -107,4 +109,4 @@ const ProductDescription = () => {
 
 // export default connect(mapStateToProps, mapDispatchToProps)(ProductDescription)
        
-export default ProductDescription;
+export default ProductDescriptionTest;
