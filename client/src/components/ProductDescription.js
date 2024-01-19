@@ -40,7 +40,7 @@ const ProductDescription = () => {
         try {
             const response = await Axios.get(`${apiUrl}/${productCategory}/${productId}`);
             console.log('API Response:', response.data);
-            setProduct(response.data.croc);
+            setProduct(response.data.);
             
         } catch (error) {
             console.error("There was an error fetching the product data:", error);
