@@ -73,23 +73,10 @@ const ProductDescription = () => {
         //call the product and put it into a variable
         try {
             const response = await Axios.get(`${apiUrl}/${productCategory}/${productId}`);
-            console.log('API Response:', response.data);
+            console.log('API Response:', response.data[productCategory]);
             
-            switch (productCategory) {
-                    case 'croc':
-                        setProduct(response.data.croc);
-                        break;
-                    case 'jacket':
-                        setProduct(response.data.jacket);
-                        break;
-                    case 'boot':
-                        setProduct(response.data.boot);
-                        break;
-                    case 'sneaker':
-                        setProduct(response.data.sneaker);
-                        break;
-                }
-            
+                        setProduct(response.data[productCategory]);
+                    
         } catch (error) {
             console.error("There was an error fetching the product data:", error);
         }
