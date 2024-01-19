@@ -11,7 +11,7 @@ const SubMenuComponent = (props) => {
                 <section className="submenuTitle">{props.name}</section>
                 <section className="productPrice">${props.product_price}</section>
                 </div>
-                <img src="/cart-icon-28356.png" width='15%'height='30%' style={{marginTop: '30%', marginRight: '4%', objectFit: 'contain'}} alt='pants'></img>
+                <img src="/cart-icon-28356.png" width='15%'height='30%' style={{marginTop: '30%', marginRight: '4%', objectFit: 'contain', overflow: 'hidden'}} alt='cart icon'></img>
             </main>
         </React.Fragment>
     )
