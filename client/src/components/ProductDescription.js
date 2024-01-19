@@ -75,7 +75,7 @@ const ProductDescription = () => {
             const response = await Axios.get(`${apiUrl}/${productCategory}/${productId}`);
             console.log('API Response:', response.data);
             
-            switch (response.data.category) {
+            switch (productCategory) {
                     case 'croc':
                         setProduct(response.data.croc);
                         break;
