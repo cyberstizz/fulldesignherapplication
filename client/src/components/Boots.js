@@ -46,6 +46,34 @@ const Boots = () => {
 //   }
 // }, [loadedImagesCount]);
 
+
+const properLettering = (word) => {
+    //this function will parse a string and remove
+    //any _ characters
+
+    //create a new variable that will be returned
+    //this variable will be an array
+    let newString = [];
+
+
+    for(let i = 0; i < word.length; i++){
+
+    
+    //loop through the string, and for every element
+    //check to see if it is an underscore and if it is
+    //push a blank space into the array '', if it is not
+    if(word[i] !== '_'){
+    //push the letter into the array
+        newString.push(word[i]);
+    } else{
+        newString.push(' ');
+    }
+    }
+    return newString.join('');
+    //after getting out of the array join the array
+    //into a string, and return the string
+}
+
     return(
         <React.Fragment>
             {/* {!imagesLoaded && <Loader />} */}
@@ -59,7 +87,7 @@ const Boots = () => {
             <div className='submenuBody'>
                   {allBoots.map(boot => (
                     <Link key={boot.product_id} to={`/boots/${boot.product_id}`}>
-                        <SubMenuComponent onImageLoad={handleImageLoaded} name={boot.name} path={boot.image_path} product_price={boot.product_price} />
+                        <SubMenuComponent onImageLoad={handleImageLoaded} name={properLettering(boot.name)} path={boot.image_path} product_price={boot.product_price} />
                     </Link>
                 ))}
            

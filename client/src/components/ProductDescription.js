@@ -25,6 +25,11 @@ import StripeCheckout from 'react-stripe-checkout';
 
 const ProductDescription = () => {
 
+    let currentProduct;
+
+    
+
+
     const { productCategory, productId } = useParams();
     const [product, setProduct] = useState(null);
 
@@ -33,6 +38,36 @@ const ProductDescription = () => {
     ? 'https://designhercustomekreations-c288e9799350.herokuapp.com'
     : 'http://localhost:3001';
 
+
+
+    const properLettering = (word) => {
+        //this function will parse a string and remove
+        //any _ characters
+
+        //create a new variable that will be returned
+        //this variable will be an array
+        let newString = [];
+
+
+        for(let i = 0; i < word.length; i++){
+
+        
+        //loop through the string, and for every element
+        //check to see if it is an underscore and if it is
+        //push a blank space into the array '', if it is not
+        if(word[i] !== '_'){
+        //push the letter into the array
+            newString.push(word[i]);
+        } else{
+            newString.push(' ');
+        }
+        }
+        return newString.join('');
+        //after getting out of the array join the array
+        //into a string, and return the string
+    }
+
+
     useEffect(() => {
 
     const getProduct = async() => {
@@ -40,7 +75,22 @@ const ProductDescription = () => {
         try {
             const response = await Axios.get(`${apiUrl}/${productCategory}/${productId}`);
             console.log('API Response:', response.data);
-            setProduct(response.data.);
+            
+            switch (response.data.category) {
+                    case 'croc':
+                        currentProduct = response.data.croc;
+                        break;
+                    case 'jacket':
+                        currentProduct = response.data.jacket;
+                        break;
+                    case 'boot':
+                        currentProduct = response.data.boot;
+                        break;
+                    case 'sneaker':
+                        currentProduct = response.data.sneaker;
+                        break;
+}
+            setProduct(currentProduct);
             
         } catch (error) {
             console.error("There was an error fetching the product data:", error);
@@ -67,6 +117,8 @@ const ProductDescription = () => {
       const {product_id, name, image_path, description, product_price} = product;
 
 
+    
+
     return (
             <div className='entireProductDescriptionPage'>
 
@@ -75,7 +127,7 @@ const ProductDescription = () => {
             <div className='infoSection'>
 
                 <div className='nameAndPriceSection'>
-                    <h1 className='name'>{name}</h1>
+                    <h1 className='name'>{properLettering(name)}</h1>
                     <div className='price'>${product_price}</div>
                 </div>
 
