@@ -125,7 +125,7 @@ const slideShow = [crocsOne,
 <Link to='/crocs'><div className='imageCard'></div></Link>
 <h1 className='categoriesHeader'>Jackets</h1>
 
-<Link to='/jackets'><div className='imageCardTwo'></div></Link>
+<Link to='/jackets'><div className='imageCardTwo'> style={{backgroundImage: "url('https://designherbucket.s3.amazonaws.com/unicornSneaker.jpg')"}}</div></Link>
 <h1 className='categoriesHeader'>Sneakers</h1>
 
 <Link to='/sneakers'><div className='imageCardThree'></div></Link>

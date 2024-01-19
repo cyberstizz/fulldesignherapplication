@@ -195,7 +195,7 @@ a {
 .imageCard{
     height: 30vh;
     width: 80%;
-    background-image: url('crocThumbnail.jpeg');
+    background-image: url('crocsFour.webp');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -223,7 +223,6 @@ a {
 .imageCardTwo:hover{
     height: 30vh;
     width: 80%;
-    background-image: url('jacketThumbnail.jpeg');
     background-position: center;
     background-size: cover;
     margin: 0 auto;
@@ -256,7 +255,7 @@ a {
 .imageCardFour{
     height: 30vh;
     width: 80%;
-    background-image: url('../crocsTen.webp');
+    background-image: url('bootThumbnail.jpg');
     background-position: center;
     background-size: cover;
     margin: 0 auto;
