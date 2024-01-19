@@ -86,7 +86,7 @@ const properLettering = (word) => {
 
             <div className='submenuBody'>
                   {allBoots.map(boot => (
-                    <Link key={boot.product_id} to={`/boots/${boot.product_id}`}>
+                    <Link key={boot.product_id} to={`/boot/${boot.product_id}`}>
                         <SubMenuComponent onImageLoad={handleImageLoaded} name={properLettering(boot.name)} path={boot.image_path} product_price={boot.product_price} />
                     </Link>
                 ))}
