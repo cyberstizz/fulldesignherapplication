@@ -76,6 +76,10 @@ const ProductDescription = () => {
             console.log('API Response:', response.data);
 
             const product = response.data[productCategory];
+
+            console.log('Product:', product);
+            console.log('Product Type:', typeof product);
+
       
             if (product) {
               setProduct(product);
