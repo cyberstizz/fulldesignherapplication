@@ -45,6 +45,16 @@ const slideShow = [crocsOne,
    crocsSeventeen,
   ]
 
+const sneakerStyle = {
+    height: '30vh',
+    width: '80%',
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    margin: '0 auto',
+    borderRadius: '20px',
+    marginBottom: '4vh',
+}  
+
   const iconStyle = {
     fontSize: '360px', // Set the desired font size for the icon
     color: '#FF0000', // Set the desired color for the icon
@@ -128,7 +138,7 @@ const slideShow = [crocsOne,
 <Link to='/jackets'><div className='imageCardTwo'></div></Link>
 <h1 className='categoriesHeader'>Sneakers</h1>
 
-<Link to='/sneakers'><img src='https://designherbucket.s3.amazonaws.com/theDiva.jpeg' className='imageCardThree'></img></Link>
+<Link to='/sneakers'><img src='https://designherbucket.s3.amazonaws.com/unicornSneaker.jpg' style={sneakerStyle}></img></Link>
 <h1 className='categoriesHeader'>Boots</h1>
 
 <Link to='/boots'><div className='imageCardFour'></div></Link>

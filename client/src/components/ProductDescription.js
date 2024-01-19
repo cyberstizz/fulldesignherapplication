@@ -25,13 +25,12 @@ import StripeCheckout from 'react-stripe-checkout';
 
 const ProductDescription = () => {
 
-    let currentProduct;
 
     
 
 
     const { productCategory, productId } = useParams();
-    const [product, setProduct] = useState(null);
+    const [currentProduct, setProduct] = useState(null);
 
     //add an api url
     const apiUrl = process.env.NODE_ENV === 'production'
@@ -78,19 +77,15 @@ const ProductDescription = () => {
             
             switch (response.data.category) {
                     case 'croc':
-                        currentProduct = response.data.croc;
                         setProduct(currentProduct);
                         break;
                     case 'jacket':
-                        currentProduct = response.data.jacket;
                         setProduct(currentProduct);
                         break;
                     case 'boot':
-                        currentProduct = response.data.boot;
                         setProduct(currentProduct);
                         break;
                     case 'sneaker':
-                        currentProduct = response.data.sneaker;
                         setProduct(currentProduct);
                         break;
                 }
@@ -117,7 +112,7 @@ const ProductDescription = () => {
 
           //destructure each relevant part of the product
 
-      const {product_id, name, image_path, description, product_price} = currentProduct;
+      const {name, image_path, description, product_price} = currentProduct;
 
 
     
