@@ -30,13 +30,13 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 
 ///////////////////////////////////////////////
-app.use('/crocs', crocsRouter)
+app.use('/croc', crocsRouter)
 
-app.use('/jackets', jacketsRouter)
+app.use('/jacket', jacketsRouter)
 
-app.use('/boots', bootsRouter)
+app.use('/boot', bootsRouter)
 
-app.use('/sneakers', sneakersRouter);
+app.use('/sneaker', sneakersRouter);
 
 ///////////////////////////////////////////////
 

@@ -23,7 +23,7 @@ const Boots = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await Axios.get(`${apiUrl}/boots/allBoots`);
+                const response = await Axios.get(`${apiUrl}/boot/allBoots`);
                 console.log(response.data.boots)
                 setAllBoots(response.data.boots);
             } catch (error) {

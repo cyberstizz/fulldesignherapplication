@@ -23,7 +23,7 @@ const Sneakers = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await Axios.get(`${apiUrl}/sneakers/allsneakers`);
+                const response = await Axios.get(`${apiUrl}/sneaker/allsneakers`);
                 console.log(response.data.sneakers)
                 setAllSneakers(response.data.sneakers);
             } catch (error) {
