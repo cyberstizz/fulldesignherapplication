@@ -125,10 +125,10 @@ const slideShow = [crocsOne,
 <Link to='/crocs'><div className='imageCard'></div></Link>
 <h1 className='categoriesHeader'>Jackets</h1>
 
-<Link to='/jackets'><img src='https://designherbucket.s3.amazonaws.com/unicornSneaker.jpg' className='imageCardTwo'></img></Link>
+<Link to='/jackets'><div className='imageCardTwo'></div></Link>
 <h1 className='categoriesHeader'>Sneakers</h1>
 
-<Link to='/sneakers'><div className='imageCardThree'></div></Link>
+<Link to='/sneakers'><img src='https://designherbucket.s3.amazonaws.com/theDiva.jpeg' className='imageCardThree'></img></Link>
 <h1 className='categoriesHeader'>Boots</h1>
 
 <Link to='/boots'><div className='imageCardFour'></div></Link>

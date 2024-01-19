@@ -79,18 +79,21 @@ const ProductDescription = () => {
             switch (response.data.category) {
                     case 'croc':
                         currentProduct = response.data.croc;
+                        setProduct(currentProduct);
                         break;
                     case 'jacket':
                         currentProduct = response.data.jacket;
+                        setProduct(currentProduct);
                         break;
                     case 'boot':
                         currentProduct = response.data.boot;
+                        setProduct(currentProduct);
                         break;
                     case 'sneaker':
                         currentProduct = response.data.sneaker;
+                        setProduct(currentProduct);
                         break;
-}
-            setProduct(currentProduct);
+                }
             
         } catch (error) {
             console.error("There was an error fetching the product data:", error);
@@ -108,7 +111,7 @@ const ProductDescription = () => {
     console.log('Product State:', currentProduct);
 
 
-    if (!product) {
+    if (!currentProduct) {
         return <div>Loading...</div>;
       }
 
