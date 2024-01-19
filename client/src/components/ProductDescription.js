@@ -105,7 +105,7 @@ const ProductDescription = () => {
 
 
 
-    console.log('Product State:', product);
+    console.log('Product State:', currentProduct);
 
 
     if (!product) {
@@ -114,7 +114,7 @@ const ProductDescription = () => {
 
           //destructure each relevant part of the product
 
-      const {product_id, name, image_path, description, product_price} = product;
+      const {product_id, name, image_path, description, product_price} = currentProduct;
 
 
     
