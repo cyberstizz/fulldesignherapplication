@@ -77,16 +77,16 @@ const ProductDescription = () => {
             
             switch (response.data.category) {
                     case 'croc':
-                        setProduct(currentProduct);
+                        setProduct(response.data.croc);
                         break;
                     case 'jacket':
-                        setProduct(currentProduct);
+                        setProduct(response.data.jacket);
                         break;
                     case 'boot':
-                        setProduct(currentProduct);
+                        setProduct(response.data.boot);
                         break;
                     case 'sneaker':
-                        setProduct(currentProduct);
+                        setProduct(response.data.sneaker);
                         break;
                 }
             
