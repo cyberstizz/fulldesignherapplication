@@ -223,7 +223,8 @@ a {
 .imageCardTwo:hover{
     height: 30vh;
     width: 80%;
-projects/fulldesignherapplication/client/public/crocsFour.webpprojects/fulldesignherapplication/client/public/crocsFour.webp    background-position: center;
+    background-image: url('jacketThumbnail.jpeg');
+    background-position: center;
     background-size: cover;
     margin: 0 auto;
     margin-bottom: 4vh;
