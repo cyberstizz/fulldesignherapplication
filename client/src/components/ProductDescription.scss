@@ -58,7 +58,8 @@
     width: auto;
     color: black;
     margin-left: 5%;
-    overflow-x: visible;
+    overflow: hidden;
+    word-wrap: break-word;
 }
 
 .price{
