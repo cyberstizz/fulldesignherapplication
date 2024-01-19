@@ -75,22 +75,12 @@ const ProductDescription = () => {
             const response = await Axios.get(`${apiUrl}/${productCategory}/${productId}`);
             console.log('API Response:', response.data);
 
-            switch (productCategory) {
-              case 'croc':
-                setProduct(response.data.croc);
-                break;
-              case 'jacket':
-                setProduct(response.data.jacket);
-                break;
-              case 'boot':
-                setProduct(response.data.boot);
-                break;
-              case 'sneaker':
-                setProduct(response.data.sneaker);
-                break;
-              default:
-                setProduct(null); // Handle unknown category
-                break;
+            const product = response.data[productCategory];
+      
+            if (product) {
+              setProduct(product);
+            } else {
+              setProduct(null); // Handle unknown category
             }
         } catch (error) {
             console.error("There was an error fetching the product data:", error);
