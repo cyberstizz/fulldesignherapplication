@@ -141,7 +141,7 @@ const ProductDescription = () => {
             </div>
             <div className='buttonsSection'>
                 {/* <button className='buyNowButton'>Buy now</button> */}
-                <CheckoutButton />
+                <CheckoutButton  price={price}/>
                 <button className='addToCartButton'>Add to cart</button>
             </div>
 
