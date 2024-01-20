@@ -6,7 +6,7 @@ const CheckoutButton = ( props ) => {
   const stripe = useStripe();
   const elements = useElements();
   const [clientSecret, setClientSecret] = useState('');
-  const { thePrice } = props.price;
+  const thePrice = props.price;
 
   const checkoutButtonStyle = {
         width: '100%',
