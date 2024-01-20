@@ -10,6 +10,7 @@ const crocsRouter = require('./routes/crocs/crocsRouter')
 const jacketsRouter = require('./routes/jackets/jacketsRouter')
 const bootsRouter = require('./routes/boots/bootsRouter')
 const sneakersRouter = require('./routes/sneakers/sneakersRouter')
+console.log('Stripe Secret Key:', process.env.STRIPE_SECRET_KEY);
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 const bodyParser = require('body-parser');
 
