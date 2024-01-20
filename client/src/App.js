@@ -16,6 +16,7 @@ import ProductDescriptionTest from './components/ProductDescriptionTest';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
+console.log('Stripe Publishable Key:', process.env.STRIPE_PUBLISHABLE_KEY);
 const stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY); // Replace with your actual publishable key
 
 
