@@ -168,6 +168,9 @@ app.post('/charge', async (req, res) => {
       return_url: 'https://designhercustomekreations-c288e9799350.herokuapp.com/jacket/cbf87f9f-1113-4ae4-85bd-176d89948196',  // Replace with your actual success URL
     });
 
+    console.log('client Secret:', intent.client_secret);
+
+
     // Send the client secret back to the frontend
     res.json({ clientSecret: intent.client_secret });
   } catch (error) {
