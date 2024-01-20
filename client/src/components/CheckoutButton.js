@@ -34,6 +34,13 @@ const CheckoutButton = ( props ) => {
         payment_method: 'pm_card_visa', // Replace with the actual payment method ID
       });
 
+        // Ensure the client secret is in the correct format
+    const { clientSecret } = response.data;
+    if (!clientSecret.startsWith('pi_') || !clientSecret.includes('_secret_')) {
+      console.error('Invalid client secret format');
+      return;
+    }
+
       setClientSecret(response.data.clientSecret);
 
       // Proceed to confirm the payment immediately after retrieving the client secret
