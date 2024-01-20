@@ -149,10 +149,8 @@ app.get('/order/{$order_number}', (req, res) => {
 
 })
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+
+
 
 
 app.post('/charge', async (req, res) => {
@@ -173,3 +171,9 @@ app.post('/charge', async (req, res) => {
     res.status(500).send({ error: 'Failed to process payment' });
   }
 });
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
+
