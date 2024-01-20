@@ -7,6 +7,9 @@ import './ProductDescription.scss';
 import Axios from 'axios';
 // import { addToCart } from './reducers/AddToCart';
 import StripeCheckout from 'react-stripe-checkout';
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import CheckoutButton from './CheckoutButton';
+
 // import { useDispatch, useSelector } from 'react-redux';
 
 // creating the two functions that will be needed to connect this component to the store
@@ -24,11 +27,12 @@ import StripeCheckout from 'react-stripe-checkout';
 // }
 
 const ProductDescription = () => {
+    //first initiation of all hooks and 
+    //important variables
 
-
-    
-
-
+    const stripe = useStripe();
+    const elements = useElements();
+    const [clientSecret, setClientSecret] = useState('');
     const { productCategory, productId } = useParams();
     const [currentProduct, setProduct] = useState(null);
 
@@ -136,7 +140,8 @@ const ProductDescription = () => {
             {description}
             </div>
             <div className='buttonsSection'>
-                <button className='buyNowButton'>Buy now</button>
+                {/* <button className='buyNowButton'>Buy now</button> */}
+                <CheckoutButton />
                 <button className='addToCartButton'>Add to cart</button>
             </div>
 

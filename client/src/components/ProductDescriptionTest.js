@@ -7,6 +7,9 @@ import './ProductDescription.scss';
 import Axios from 'axios';
 // import { addToCart } from './reducers/AddToCart';
 import StripeCheckout from 'react-stripe-checkout';
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import CheckoutButton from './CheckoutButton';
+
 // import { useDispatch, useSelector } from 'react-redux';
 
 // creating the two functions that will be needed to connect this component to the store
@@ -23,15 +26,50 @@ import StripeCheckout from 'react-stripe-checkout';
 //     }
 // }
 
-const ProductDescriptionTest = () => {
+const ProductDescription = () => {
+    //first initiation of all hooks and 
+    //important variables
 
+    const stripe = useStripe();
+    const elements = useElements();
+    const [clientSecret, setClientSecret] = useState('');
     const { productCategory, productId } = useParams();
-    const [product, setProduct] = useState(null);
+    const [currentProduct, setProduct] = useState(null);
 
     //add an api url
     const apiUrl = process.env.NODE_ENV === 'production'
     ? 'https://designhercustomekreations-c288e9799350.herokuapp.com'
     : 'http://localhost:3001';
+
+
+
+    const properLettering = (word) => {
+        //this function will parse a string and remove
+        //any _ characters
+
+        //create a new variable that will be returned
+        //this variable will be an array
+        let newString = [];
+
+
+        for(let i = 0; i < word.length; i++){
+
+        
+        //loop through the string, and for every element
+        //check to see if it is an underscore and if it is
+        //push a blank space into the array '', if it is not
+        if(word[i] !== '_'){
+        //push the letter into the array
+            newString.push(word[i]);
+        } else{
+            newString.push(' ');
+        }
+        }
+        return newString.join('');
+        //after getting out of the array join the array
+        //into a string, and return the string
+    }
+
 
     useEffect(() => {
 
@@ -40,14 +78,23 @@ const ProductDescriptionTest = () => {
         try {
             const response = await Axios.get(`${apiUrl}/${productCategory}/${productId}`);
             console.log('API Response:', response.data);
-            setProduct(response.data.croc);
-            
+
+            const product = response.data[productCategory];
+
+            console.log('Product:', product);
+            console.log('Product Type:', typeof product);
+
+      
+            if (product) {
+              setProduct(product);
+            } else {
+              setProduct(null); // Handle unknown category
+            }
         } catch (error) {
             console.error("There was an error fetching the product data:", error);
         }
     }
 
-    getProduct()
 
 }, [apiUrl, productCategory, productId])
 
@@ -55,28 +102,27 @@ const ProductDescriptionTest = () => {
 
 
 
-    console.log('Product State:', product);
+    console.log('Product State:', currentProduct);
 
 
-    if (!product) {
-        return <div>Loading...</div>;
-      }
+    
 
           //destructure each relevant part of the product
 
-      const {product_id, name, image_path, description, product_price} = product;
 
+
+    
 
     return (
             <div className='entireProductDescriptionPage'>
 
-            <img src='/crocsOne.webp' alt='some random croc i chose' height="50%" width="100%" className='pictureTest' ></img>
+            <img src='crocsFour.webp' alt='someCroc' width="100%" className='pictureTest' ></img>
             <div className='fullBottomSection'>
             <div className='infoSection'>
 
                 <div className='nameAndPriceSection'>
-                    <h1 className='name'>some random croc</h1>
-                    <div className='price'>$150</div>
+                    <h1 className='name'>{properLettering('croc')}</h1>
+                    <div className='price'>300</div>
                 </div>
 
                 <div className='ratingsSection'>
@@ -87,13 +133,12 @@ const ProductDescriptionTest = () => {
 
             </div>
             <div className='descriptionSection'>
-            this is just some random description but it is
-            a description of quality, of grace and character.
-            and that being said everybody wins. so let's celebrate.
+            this is some reandom description
             </div>
             <div className='buttonsSection'>
-                <button>Buy now</button>
-                <button>Add to cart</button>
+                {/* <button className='buyNowButton'>Buy now</button> */}
+                <CheckoutButton price={400} />
+                <button className='addToCartButton'>Add to cart</button>
             </div>
 
 
@@ -109,4 +154,4 @@ const ProductDescriptionTest = () => {
 
 // export default connect(mapStateToProps, mapDispatchToProps)(ProductDescription)
        
-export default ProductDescriptionTest;
+export default ProductDescription;

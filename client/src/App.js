@@ -13,12 +13,16 @@ import Sneakers from './components/Sneakers';
 import ProductTest from './components/ProductTest';
 import ProductDescriptionTest from './components/ProductDescriptionTest';
 
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
-
+const stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY); // Replace with your actual publishable key
 
 
 function App() {
   return (
+    <Elements stripe={stripePromise}>
+
     <Router>  
       <Routes>
       <Route path='/' element={<Home />} />
@@ -34,6 +38,8 @@ function App() {
       <Route path='/productTest' element={<ProductTest />} />
       </Routes>
     </Router>
+
+    </Elements>
   );
 }
 

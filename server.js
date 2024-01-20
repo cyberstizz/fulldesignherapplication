@@ -10,9 +10,12 @@ const crocsRouter = require('./routes/crocs/crocsRouter')
 const jacketsRouter = require('./routes/jackets/jacketsRouter')
 const bootsRouter = require('./routes/boots/bootsRouter')
 const sneakersRouter = require('./routes/sneakers/sneakersRouter')
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+const bodyParser = require('body-parser');
 
 
 
+app.use(bodyParser.json());
 app.use(cors());
 
 // app.get('/', (req, res) => {
@@ -46,14 +49,22 @@ app.use('/sneaker', sneakersRouter);
 
 //all products
 app.get('/allProducts', async(req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM products'); // Replace 'products' with your table name
-    const products = result.rows;
-    res.json({ products });
-  } catch (error) {
-    console.error('Error fetching products:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
+        try {
+          const crocResult = await pool.query('SELECT * FROM crocs'); // Replace 'products' with your table name
+          const jacketResult = await pool.query('SELECT * FROM jackets'); // Replace 'products' with your table name
+          const sneakerResult = await pool.query('SELECT * FROM sneakers'); // Replace 'products' with your table name
+          const bootResult = await pool.query('SELECT * FROM boots'); // Replace 'products' with your table name
+
+          const crocs = crocResult.rows;
+          const jackets = jacketResult.rows;
+          const sneakers = sneakerResult.rows;
+          const boots = bootResult.rows;
+
+          res.json({ crocs }, { jackets }, { sneakers },{ boots });
+        } catch (error) {
+          console.error('Error fetching products:', error);
+          res.status(500).json({ error: 'Internal server error' });
+        }
 })
 
 app.get('/products/:productId', async(req, res) => {
@@ -141,4 +152,24 @@ app.get('/order/{$order_number}', (req, res) => {
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
+});
+
+
+app.post('/charge', async (req, res) => {
+  try {
+    // Retrieve the payment method and create a payment intent
+    const intent = await stripe.paymentIntents.create({
+      amount: req.body.amount,
+      currency: 'usd',
+      payment_method: req.body.payment_method,
+      confirmation_method: 'manual',
+      confirm: true,
+    });
+
+    // Send the client secret back to the frontend
+    res.json({ clientSecret: intent.client_secret });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: 'Failed to process payment' });
+  }
 });
