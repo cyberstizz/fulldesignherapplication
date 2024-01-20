@@ -160,7 +160,7 @@ app.post('/charge', async (req, res) => {
   try {
     // Retrieve the payment method and create a payment intent
     const intent = await stripe.paymentIntents.create({
-      amount: req.body.amount,
+      amount: req.body.amount * 100,
       currency: 'usd',
       payment_method: req.body.payment_method,
       confirmation_method: 'manual',
