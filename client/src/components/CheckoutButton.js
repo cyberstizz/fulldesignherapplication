@@ -30,8 +30,8 @@ const CheckoutButton = ( props ) => {
     ? `${baseUrl}`
     : 'http://localhost:3001';
 
-  const handleBuyNow = async () => {
-
+  const handleBuyNow = async (event) => {
+    event.preventDefault()
 
 
     const cardElement = elements.getElement(CardElement);
