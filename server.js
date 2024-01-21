@@ -22,7 +22,9 @@ app.use(cors());
 //     res.sendFile(path.join(__dirname, 'client/build')); // Replace 'path_to_your_index_html_file' with the actual path to your HTML file
 //   });
 
-
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
 // Serve static files from the client directory
 if (process.env.NODE_ENV === 'production') {
