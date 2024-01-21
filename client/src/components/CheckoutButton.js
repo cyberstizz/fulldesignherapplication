@@ -110,7 +110,7 @@ const CheckoutButton = ( props ) => {
     <div>
       <form>
           <CardElement />
-          <button type="submit" onClick={(e) => { e.preventDefault(); handleBuyNow(); }} style={checkoutButtonStyle}>Buy Now</button>
+          <button type="submit" onClick={handleBuyNow(e)} style={checkoutButtonStyle}>Buy Now</button>
       </form>
     </div>
   );
