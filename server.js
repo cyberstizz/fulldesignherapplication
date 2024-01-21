@@ -168,7 +168,7 @@ app.post('/charge', async (req, res) => {
       payment_method,
       confirmation_method: 'manual',
       confirm: true,
-      return_url: 'https://designhercustomekreations-c288e9799350.herokuapp.com/jacket/cbf87f9f-1113-4ae4-85bd-176d89948196',  // Replace with your actual success URL
+      return_url: 'https://designhercustomekreations-c288e9799350.herokuapp.com',  // Replace with your actual success URL
     });
 
     console.log('client Secret:', intent.client_secret);
