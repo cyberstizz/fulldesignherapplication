@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 
@@ -11,7 +11,6 @@ const CheckoutButton = ( props ) => {
 
 
   // Check if cardElement is defined
-  console.log(cardElement);
 
   const checkoutButtonStyle = {
         width: '100%',
