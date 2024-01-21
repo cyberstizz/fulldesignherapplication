@@ -62,6 +62,9 @@ const CheckoutButton = ( props ) => {
       },
     });
 
+    console.log('Payment Intent Status:', result.paymentIntent.status);
+
+
     if (result.error) {
       // Show error to your customer (e.g., insufficient funds)
       console.error(result.error.message);
