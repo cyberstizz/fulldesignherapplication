@@ -28,10 +28,18 @@ const CheckoutButton = ( props ) => {
 
   const handleBuyNow = async () => {
     try {
+
+      //first i will create  method dynamically
+      const { paymentMethod } = await stripe.createPaymentMethod({
+        type: 'card',
+        card: elements.getElement(CardElement),
+      });
+
+
       // Make a request to your server to create a PaymentIntent
       const response = await axios.post(`${apiUrl}/charge`, {
         amount: thePrice, // Replace with the actual amount in cents
-        payment_method: 'pm_card_visa', // Replace with the actual payment method ID
+        payment_method: paymentMethod.id, // Replace with the actual payment method ID
       });
 
         // Ensure the client secret is in the correct format
@@ -40,17 +48,18 @@ const CheckoutButton = ( props ) => {
       console.error('Invalid client secret format');
       return;
     }
-
-      setClientSecret(response.data.clientSecret);
+      console.log('this is the client secret');
+      console.log(clientSecret);
+      setClientSecret(clientSecret);
 
       // Proceed to confirm the payment immediately after retrieving the client secret
-      confirmPayment();
+      confirmPayment(clientSecret);
     } catch (error) {
       console.error('Error processing payment:', error);
     }
   };
 
-  const confirmPayment = async () => {
+  const confirmPayment = async (clientSecret) => {
     if (!stripe || !elements) {
       console.error('Stripe.js has not loaded yet.');
       return;
