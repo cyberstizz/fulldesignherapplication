@@ -39,7 +39,7 @@ const CheckoutButton = ( props ) => {
       // Make a request to your server to create a PaymentIntent
       const response = await axios.post(`${apiUrl}/charge`, {
         amount: thePrice, // Replace with the actual amount in cents
-        payment_method: paymentMethod.id, // Replace with the actual payment method ID
+        payment_method: paymentMethod, // Replace with the actual payment method ID
       });
 
         // Ensure the client secret is in the correct format
