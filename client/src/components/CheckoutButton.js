@@ -106,8 +106,10 @@ const CheckoutButton = ( props ) => {
 
   return (
     <div>
-      <button onClick={handleBuyNow} style={checkoutButtonStyle}>Buy Now</button>
-      <CardElement ref={cardElementRef} />
+      <form>
+          <CardElement />
+          <button type="submit" onClick={handleBuyNow} style={checkoutButtonStyle}>Buy Now</button>
+      </form>
     </div>
   );
 };
