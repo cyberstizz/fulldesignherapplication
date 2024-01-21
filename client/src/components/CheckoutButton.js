@@ -8,6 +8,12 @@ const CheckoutButton = ( props ) => {
   const [clientSecret, setClientSecret] = useState('');
   const thePrice = props.price;
 
+  console.log(`these are the elements object ${elements}`)
+  const cardElement = elements.getElement(CardElement);
+
+  // Check if cardElement is defined
+  console.log(cardElement);
+
   const checkoutButtonStyle = {
         width: '100%',
         height: '100%',
@@ -32,7 +38,7 @@ const CheckoutButton = ( props ) => {
       //first i will create  method dynamically
       const { paymentMethod } = await stripe.createPaymentMethod({
         type: 'card',
-        card: elements.getElement(CardElement),
+        card: cardElement,
       });
 
       console.log(`this is the payment method ${paymentMethod}`)
