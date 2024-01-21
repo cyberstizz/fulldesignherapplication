@@ -62,6 +62,8 @@ const CheckoutButton = ( props ) => {
         payment_method: paymentMethod.id, // Replace with the actual payment method ID
       });
 
+      console.log('server response', response)
+
         // Ensure the client secret is in the correct format
     const { clientSecret } = response.data;
     if (!clientSecret.startsWith('pi_') || !clientSecret.includes('_secret_')) {
