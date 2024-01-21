@@ -32,8 +32,9 @@ const CheckoutButton = ( props ) => {
 
   const handleBuyNow = async () => {
 
-    const cardElement = cardElementRef.current;
-
+    const cardElement = elements.getElement(CardElement);
+    console.log(`these are the element ${elements}`)
+    console.log(`and this is the card element ${cardElement}`)
     try {
 
       //first i will create  method dynamically
