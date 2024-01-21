@@ -7,9 +7,8 @@ const CheckoutButton = ( props ) => {
   const elements = useElements();
   const [clientSecret, setClientSecret] = useState('');
   const thePrice = props.price;
+  const cardElementRef = useRef();
 
-  console.log(`these are the elements object ${elements}`)
-  const cardElement = elements.getElement(CardElement);
 
   // Check if cardElement is defined
   console.log(cardElement);
@@ -33,6 +32,9 @@ const CheckoutButton = ( props ) => {
     : 'http://localhost:3001';
 
   const handleBuyNow = async () => {
+
+    const cardElement = cardElementRef.current;
+
     try {
 
       //first i will create  method dynamically
@@ -105,7 +107,7 @@ const CheckoutButton = ( props ) => {
   return (
     <div>
       <button onClick={handleBuyNow} style={checkoutButtonStyle}>Buy Now</button>
-      <CardElement />
+      <CardElement ref={cardElementRef} />
     </div>
   );
 };
