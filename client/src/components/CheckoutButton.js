@@ -35,6 +35,16 @@ const CheckoutButton = ( props ) => {
         card: elements.getElement(CardElement),
       });
 
+      console.log(`this is the payment method ${paymentMethod}`)
+      console.log(`and this is the payment method.id ${paymentMethod.id}`)
+
+
+
+      if (!paymentMethod || !paymentMethod.id) {
+        console.error('Payment method not available or missing ID.');
+        return;
+      }
+
 
       // Make a request to your server to create a PaymentIntent
       const response = await axios.post(`${apiUrl}/charge`, {
