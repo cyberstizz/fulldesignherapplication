@@ -32,6 +32,8 @@ const CheckoutButton = ( props ) => {
 
   const handleBuyNow = async () => {
 
+
+
     const cardElement = elements.getElement(CardElement);
     console.log(`these are the element ${elements}`)
     console.log(`and this is the card element ${cardElement}`)
@@ -108,7 +110,7 @@ const CheckoutButton = ( props ) => {
     <div>
       <form>
           <CardElement />
-          <button type="submit" onClick={handleBuyNow} style={checkoutButtonStyle}>Buy Now</button>
+          <button type="submit" onClick={(e) => { e.preventDefault(); handleBuyNow(); }} style={checkoutButtonStyle}>Buy Now</button>
       </form>
     </div>
   );
