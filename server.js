@@ -158,17 +158,22 @@ app.post('/charge', async (req, res) => {
   console.log('Stripe Secret Key:', process.env.STRIPE_SECRET_KEY);
 
   try {
+
+    const { amount, payment_method } = req.body;
+
     // Retrieve the payment method and create a payment intent
     const intent = await stripe.paymentIntents.create({
-      amount: req.body.amount * 100,
+      amount,
       currency: 'usd',
-      payment_method: req.body.payment_method,
+      payment_method,
       confirmation_method: 'manual',
       confirm: true,
       return_url: 'https://designhercustomekreations-c288e9799350.herokuapp.com/jacket/cbf87f9f-1113-4ae4-85bd-176d89948196',  // Replace with your actual success URL
     });
 
     console.log('client Secret:', intent.client_secret);
+
+    console.log(amount)
 
 
     // Send the client secret back to the frontend
