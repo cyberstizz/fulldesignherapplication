@@ -1,8 +1,36 @@
 import React, { useState, useRef } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
+import StripeCheckout from 'react-stripe-checkout';
 
 const CheckoutButton = ( props ) => {
+
+  const handleToken = (token) => {
+    // Send the token to your server for processing
+    const body = {
+      token,
+      product: props.product, 
+    };
+
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+
+
+    fetch('/charge', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Handle the response from your server (e.g., show success message)
+        console.log(data);
+      })
+      .catch((error) => console.error(error));
+  };
+
+
   const stripe = useStripe();
   const elements = useElements();
   const [clientSecret, setClientSecret] = useState('');
@@ -110,10 +138,15 @@ const CheckoutButton = ( props ) => {
 
   return (
     <div>
-      <form>
-          <CardElement />
-          <button type="submit" onClick={handleBuyNow} style={checkoutButtonStyle}>Buy Now</button>
-      </form>
+      <StripeCheckout
+      stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}
+      token={handleToken}
+      name={props.name} // Replace with the actual product name
+      amount={props.price} // Convert the price to cents
+    >
+          <button onClick={handleBuyNow} style={checkoutButtonStyle}>Buy Now</button>
+      </StripeCheckout>
+
     </div>
   );
 };

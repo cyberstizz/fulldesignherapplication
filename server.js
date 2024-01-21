@@ -150,39 +150,61 @@ app.get('/order/{$order_number}', (req, res) => {
 })
 
 
-
-
-
-app.post('/charge', async (req, res) => {
-
-  console.log('Stripe Secret Key:', process.env.STRIPE_SECRET_KEY);
+app.post('/payments', async (req, res) => {
+  const { product, token } = req.body;
 
   try {
-
-    const { amount, payment_method } = req.body;
-
-    // Retrieve the payment method and create a payment intent
-    const intent = await stripe.paymentIntents.create({
-      amount,
-      currency: 'usd',
-      payment_method,
-      confirmation_method: 'manual',
-      confirm: true,
-      return_url: 'https://designhercustomekreations-c288e9799350.herokuapp.com/',  // Replace with your actual success URL
+    const customer = await stripe.customers.create({
+      email: token.email,
+      source: token.id,
     });
 
-    console.log('client Secret:', intent.client_secret);
+    const charge = await stripe.charges.create({
+      amount: product.price * 100, // amount in cents
+      currency: 'usd',
+      customer: customer.id,
+      receipt_email: token.email,
+      description: product.description,
+    });
 
-    console.log(amount)
-
-
-    // Send the client secret back to the frontend
-    res.json({ clientSecret: intent.client_secret });
+    console.log('Payment Successful:', charge);
+    res.json({ success: true, charge });
   } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: 'Failed to process payment' });
+    console.error('Payment Error:', error);
+    res.json({ success: false, error: error.message });
   }
 });
+
+
+// app.post('/charge', async (req, res) => {
+
+
+//   try {
+
+//     const { amount, payment_method } = req.body;
+
+//     // Retrieve the payment method and create a payment intent
+//     const intent = await stripe.paymentIntents.create({
+//       amount,
+//       currency: 'usd',
+//       payment_method,
+//       confirmation_method: 'manual',
+//       confirm: true,
+//       return_url: 'https://designhercustomekreations-c288e9799350.herokuapp.com/',  // Replace with your actual success URL
+//     });
+
+//     console.log('client Secret:', intent.client_secret);
+
+//     console.log(amount)
+
+
+//     // Send the client secret back to the frontend
+//     res.json({ clientSecret: intent.client_secret });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send({ error: 'Failed to process payment' });
+//   }
+// });
 
 // Start the server
 app.listen(port, () => {
