@@ -121,8 +121,8 @@ const ProductDescription = () => {
             <div className='infoSection'>
 
                 <div className='nameAndPriceSection'>
-                    <h1 className='name'>{properLettering('croc')}</h1>
-                    <div className='price'>300</div>
+                    <h1 className='name'>{properLettering('f5red4dd rtfftftffft')}</h1>
+                    <div className='price'>$300</div>
                 </div>
 
                 <div className='ratingsSection'>

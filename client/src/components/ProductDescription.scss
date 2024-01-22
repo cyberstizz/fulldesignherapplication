@@ -20,6 +20,7 @@
     display: flex;
     flex-direction: column;
     border-top-right-radius: 35px;
+    border-top-left-radius: 35px;
     background: linear-gradient(to right, #c45f37, #c22007);
     height: 54vh;
     width: 100%;
@@ -44,7 +45,7 @@
     height: 100%;
     white-space: nowrap;
     word-wrap: break-word;
-
+    justify-items: flex-start;
 }
 
 .ratingsSection{
@@ -58,17 +59,21 @@
 .name{
     font-size: 40px;
     width: 100%;
-    height: auto;
     color: black;
     margin-left: 2%;
-    overflow: visible;
+    overflow: scroll;
     word-wrap: break-word;
+
 }
 
 .price{
-    font-size: 35px;
+    font-size: 40px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: rgb(43, 245, 43);
+    margin-left: 2%;
+    margin-top: -8%;
+    width: 50%;
+
 }
 
 .ratingsHeader{
@@ -88,13 +93,13 @@
 
 .descriptionSection{
     padding: 10px;
-    width: 90%;
-    height: 40%;
+    width: 80%;
+    height: 38%;
     margin: 0 auto;
     font-size: 35px;
     font-family: fantasy;
     color: rgb(66, 1, 1);
-    border-bottom-color: rgb(66, 1, 1);
+    border-bottom: solid 1px rgb(66, 1, 1);
 }
 
 .buttonsSection{
@@ -111,7 +116,6 @@
     width: 40%;
     border-radius: 15px;
     background: linear-gradient(to right, rgb(71, 114, 6), rgb(30, 48, 2));
-    border-color: rgb(71, 114, 6);
     font-size: 25px;
     font-family: 'Times New Roman', Times, serif;
     color: white;

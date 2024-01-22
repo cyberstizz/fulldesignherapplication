@@ -45,8 +45,7 @@ const CheckoutButton = ( props ) => {
         height: '100%',
         borderRadius: '15px',
         background: 'linear-gradient(to right, rgb(71, 114, 6), rgb(30, 48, 2))',
-        borderColor: 'rgb(71, 114, 6)',
-        border: 'solid 2px orange',
+        borderColor: 'green',
         fontSize: '25px',
         fontFamily: "'Times New Roman', Times, serif",
         color: 'white'
