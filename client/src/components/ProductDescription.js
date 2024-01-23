@@ -9,6 +9,7 @@ import Axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import CheckoutButton from './CheckoutButton';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 // import { useDispatch, useSelector } from 'react-redux';
 

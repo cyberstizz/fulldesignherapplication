@@ -9,6 +9,7 @@ import Axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import CheckoutButton from './CheckoutButton';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 // import { useDispatch, useSelector } from 'react-redux';
 
@@ -115,13 +116,15 @@ const ProductDescription = () => {
 
     return (
             <div className='entireProductDescriptionPage'>
+    
+            <i className="fas fa-arrow-left" style={{ position: 'absolute', top: '10px', left: '10px', cursor: 'pointer' }}></i>
 
             <img src='crocsFour.webp' alt='someCroc' width="100%" className='pictureTest' ></img>
             <div className='fullBottomSection'>
             <div className='infoSection'>
 
                 <div className='nameAndPriceSection'>
-                    <h1 className='name'>{properLettering('f5red4dd rtfftftffft')}</h1>
+                    <h1 className='name'>{properLettering(' rvjhjr')}</h1>
                     <div className='price'>$300</div>
                 </div>
 
