@@ -184,12 +184,13 @@ app.post('/payments', async (req, res) => {
 
   try {
 
-    const { amount, payment_method } = req.body;
+    const { amount, payment_method, token } = req.body;
 
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency: 'usd',
       confirm: true,
+      payment_method: token.id, // Set the payment method using the card token
       return_url: 'https://designhercustomekreations-c288e9799350.herokuapp.com/',  // Replace with your actual success URL
   });
     // Retrieve the payment method and create a payment intent
