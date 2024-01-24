@@ -10,7 +10,7 @@ const CheckoutButton = ( props ) => {
     const body = {
       token,
       product: props.product, 
-      amount: props.price
+      amount: Math.round(props.price * 100)
     };
 
     const headers = {
