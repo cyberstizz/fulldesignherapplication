@@ -151,7 +151,6 @@ app.get('/order/{$order_number}', (req, res) => {
 
 })
 
-
 app.post('/payments', async (req, res) => {
   const { product, token } = req.body;
 
@@ -161,16 +160,17 @@ app.post('/payments', async (req, res) => {
       source: token.id,
     });
 
-    const charge = await stripe.charges.create({
+    const paymentIntent = await stripe.paymentIntents.create({
       amount: product.price * 100, // amount in cents
       currency: 'usd',
       customer: customer.id,
       receipt_email: token.email,
       description: product.description,
+      confirm: true, // Confirm the PaymentIntent immediately
     });
 
-    console.log('Payment Successful:', charge);
-    res.json({ success: true, charge });
+    console.log('Payment Successful:', paymentIntent);
+    res.json({ success: true, paymentIntent });
   } catch (error) {
     console.error('Payment Error:', error);
     res.json({ success: false, error: error.message });
