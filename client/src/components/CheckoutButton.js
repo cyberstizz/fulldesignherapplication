@@ -17,7 +17,7 @@ const CheckoutButton = ( props ) => {
     };
 
     try{
-    fetch('/payments', {
+    const response = fetch('/charge', {
       method: 'POST',
       headers,
       body: JSON.stringify(body),
