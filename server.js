@@ -179,13 +179,13 @@ app.post('/payments', async (req, res) => {
 
 
  app.post('/charge', async (req, res) => {
+  console.log('Request Payload:', req.body);
 
 
   try {
 
     const { amount, payment_method } = req.body;
 
-    console.log('sooo this is the Request Payload:', req.body);
 
     // Retrieve the payment method and create a payment intent
     const intent = await stripe.paymentIntents.create({
