@@ -109,9 +109,9 @@ a {
     width: 100%;
     height: 35vh;
     margin: 0;
-    border: 0;
+    border-top: solid 2px #e2dfdf;
+    border-bottom: solid 3px #fb0a0a;
     padding: 0;
-    border: solid 2px black;
 }
 
 
@@ -230,6 +230,7 @@ a {
 .imageCardThree{
     height: 30vh;
     width: 80%;
+    background-image: url('unicornSneaker.jpg');
     background-position: center;
     background-size: cover;
     margin: 0 auto;

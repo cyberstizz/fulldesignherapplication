@@ -138,7 +138,7 @@ const sneakerStyle = {
 <Link to='/jackets'><div className='imageCardTwo'></div></Link>
 <h1 className='categoriesHeader'>Sneakers</h1>
 
-<Link to='/sneakers'><img src='https://designherbucket.s3.amazonaws.com/unicornSneaker.jpg' style={sneakerStyle}></img></Link>
+<Link to='/sneakers'><div s className='imageCardThree'></div></Link>
 <h1 className='categoriesHeader'>Boots</h1>
 
 <Link to='/boots'><div className='imageCardFour'></div></Link>
