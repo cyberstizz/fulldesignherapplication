@@ -185,6 +185,8 @@ app.post('/payments', async (req, res) => {
 
     const { amount, payment_method } = req.body;
 
+    console.log('sooo this is the Request Payload:', req.body);
+
     // Retrieve the payment method and create a payment intent
     const intent = await stripe.paymentIntents.create({
       amount,
