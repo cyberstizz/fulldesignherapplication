@@ -18,30 +18,30 @@ const CheckoutButton = ( props ) => {
     };
 
     try{
-    const response = fetch('/charge', {
+    const createPaymentIntentResponse = fetch('/charge', {
       method: 'POST',
       headers,
       body: JSON.stringify(body),
     })
 
   
-  const { clientSecret } = await response.json();
+  const { clientSecret } = await createPaymentIntentResponse.json();
 
-  // Step 2: Confirm the PaymentIntent on the client side
-  const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
-    payment_method: token.id, // Use the token from Stripe Elements
+  // Confirm the PaymentIntent on the client side
+  const confirmPaymentResponse = await stripe.confirmCardPayment(clientSecret, {
+    payment_method: token.id,
   });
 
-  if (error) {
-    console.error('Error confirming payment:', error.message);
-  } else if (paymentIntent.status === 'succeeded') {
+  if (confirmPaymentResponse.error) {
+    console.error('Error confirming payment:', confirmPaymentResponse.error.message);
+  } else if (confirmPaymentResponse.paymentIntent.status === 'succeeded') {
     console.log('Payment succeeded!');
     // Handle success scenario here
   }
 } catch (error) {
   console.error('Error processing payment:', error);
 }
-  };
+};
 
 
   const stripe = useStripe();
