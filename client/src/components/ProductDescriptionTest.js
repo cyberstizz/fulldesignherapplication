@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Header from './Header';
 import './ProductDescription.scss';
 import Axios from 'axios';
@@ -30,6 +30,13 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 const ProductDescription = () => {
     //first initiation of all hooks and 
     //important variables
+
+    const navigate = useNavigate();
+
+  const handleArrowClick = () => {
+    // Navigate to the home page when the logo is clicked
+    navigate(-1);
+  };
 
     const stripe = useStripe();
     const elements = useElements();
@@ -117,7 +124,7 @@ const ProductDescription = () => {
     return (
             <div className='entireProductDescriptionPage'>
     
-            <i className="fas fa-arrow-left" style={{ position: 'absolute', top: '10px', left: '10px', cursor: 'pointer' }}></i>
+    <i className="fas fa-arrow-left" onClick={handleArrowClick} style={{ position: 'absolute', top: '10px', left: '10px', cursor: 'pointer' }}></i>
 
             <img src='crocsFour.webp' alt='someCroc' width="100%" className='pictureTest' ></img>
             <div className='fullBottomSection'>
