@@ -18,7 +18,7 @@ const CheckoutButton = ( props ) => {
     };
 
     try{
-    const createPaymentIntentResponse = fetch('/charge', {
+    const createPaymentIntentResponse = await fetch('/charge', {
       method: 'POST',
       headers,
       body: JSON.stringify(body),
