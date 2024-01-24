@@ -5,7 +5,7 @@ import StripeCheckout from 'react-stripe-checkout';
 
 const CheckoutButton = ( props ) => {
 
-  const handleToken = (token) => {
+  const handleToken = async(token) => {
     // Send the token to your server for processing
     const body = {
       token,
@@ -16,18 +16,30 @@ const CheckoutButton = ( props ) => {
       'Content-Type': 'application/json',
     };
 
-
+    try{
     fetch('/payments', {
       method: 'POST',
       headers,
       body: JSON.stringify(body),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        // Handle the response from your server (e.g., show success message)
-        console.log(data);
-      })
-      .catch((error) => console.error(error));
+
+  
+  const { clientSecret } = await response.json();
+
+  // Step 2: Confirm the PaymentIntent on the client side
+  const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
+    payment_method: token.id, // Use the token from Stripe Elements
+  });
+
+  if (error) {
+    console.error('Error confirming payment:', error.message);
+  } else if (paymentIntent.status === 'succeeded') {
+    console.log('Payment succeeded!');
+    // Handle success scenario here
+  }
+} catch (error) {
+  console.error('Error processing payment:', error);
+}
   };
 
 

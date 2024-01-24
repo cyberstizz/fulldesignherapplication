@@ -178,35 +178,35 @@ app.post('/payments', async (req, res) => {
 });
 
 
-// app.post('/charge', async (req, res) => {
+ app.post('/charge', async (req, res) => {
 
 
-//   try {
+  try {
 
-//     const { amount, payment_method } = req.body;
+    const { amount, payment_method } = req.body;
 
-//     // Retrieve the payment method and create a payment intent
-//     const intent = await stripe.paymentIntents.create({
-//       amount,
-//       currency: 'usd',
-//       payment_method,
-//       confirmation_method: 'manual',
-//       confirm: true,
-//       return_url: 'https://designhercustomekreations-c288e9799350.herokuapp.com/',  // Replace with your actual success URL
-//     });
+    // Retrieve the payment method and create a payment intent
+    const intent = await stripe.paymentIntents.create({
+      amount,
+      currency: 'usd',
+      payment_method,
+      confirmation_method: 'manual',
+      confirm: true,
+      return_url: 'https://designhercustomekreations-c288e9799350.herokuapp.com/',  // Replace with your actual success URL
+    });
 
-//     console.log('client Secret:', intent.client_secret);
+    console.log('client Secret:', intent.client_secret);
 
-//     console.log(amount)
+    console.log(amount)
 
 
-//     // Send the client secret back to the frontend
-//     res.json({ clientSecret: intent.client_secret });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send({ error: 'Failed to process payment' });
-//   }
-// });
+    // Send the client secret back to the frontend
+    res.json({ clientSecret: intent.client_secret });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: 'Failed to process payment' });
+  }
+});
 
 // Start the server
 app.listen(port, () => {
