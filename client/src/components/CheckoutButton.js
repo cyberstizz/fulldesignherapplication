@@ -9,6 +9,7 @@ const CheckoutButton = (props) => {
   const handleBuyNow = async () => {
     try {
       // Get the token from the CardElement
+      const stripe = useStripe(); 
       const cardElement = stripe.elements.getElement(CardElement);
       const { token } = await stripe.createToken(cardElement);
   
