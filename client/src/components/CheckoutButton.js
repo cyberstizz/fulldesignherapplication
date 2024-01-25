@@ -9,14 +9,16 @@ const CheckoutButton = (props) => {
   const handleBuyNow = async () => {
     try {
       // Get the token from the CardElement
-      const cardElement = stripe.elements.getElement(CardElement);
-      const { token } = await stripe.createToken(cardElement);
+      try {
+        // Use CardElement directly (no need for stripe.elements.getElement)
+        const { token } = await stripe.createToken();
+    
+        // Make a request to your server to create a PaymentIntent
+        const response = await axios.post('/charge', {
+          amount: props.price * 100,
+          token: token.id, // Pass the token.id to the server
+        });
   
-      // Make a request to your server to create a PaymentIntent
-      const response = await axios.post('/charge', {
-        amount: props.price * 100,
-        token: token.id, // Pass the token.id to the server
-      });
   
       const { clientSecret } = response.data;
       setClientSecret(clientSecret);
