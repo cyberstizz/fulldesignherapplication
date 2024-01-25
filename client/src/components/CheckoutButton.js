@@ -7,7 +7,6 @@ const CheckoutButton = (props) => {
   const [clientSecret, setClientSecret] = useState('');
 
   const handleBuyNow = async () => {
-    try {
       // Get the token from the CardElement
       try {
         // Use CardElement directly (no need for stripe.elements.getElement)
