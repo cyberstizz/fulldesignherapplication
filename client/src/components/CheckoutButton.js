@@ -9,17 +9,20 @@ const CheckoutButton = (props) => {
   const handleBuyNow = async () => {
     try {
       // Create a PaymentMethod using CardElement
-      const { token, error } = await stripe.createToken();
+      const { paymentMethod, error } = await stripe.createPaymentMethod({
+        type: 'card',
+        card: stripe.elements.getElement(CardElement),
+      });
 
       if (error) {
-        console.error('Error creating token:', error);
+        console.error('Error creating PaymentMethod:', error);
         return;
       }
 
       // Make a request to your server to create a PaymentIntent
       const response = await axios.post('/charge', {
         amount: props.price * 100,
-        token: token.id,
+        payment_method: paymentMethod.id,
       });
 
       const { clientSecret } = response.data;
@@ -27,9 +30,7 @@ const CheckoutButton = (props) => {
 
       // Confirm the payment on the client side
       const confirmPayment = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: token.card.id,
-        },
+        payment_method: paymentMethod.id,
       });
 
       console.log('Payment Intent Status:', confirmPayment.paymentIntent.status);
