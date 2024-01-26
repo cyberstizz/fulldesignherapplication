@@ -10,6 +10,8 @@ import ProductDescription from './components/ProductDescription';
 import Checkout from './components/Checkout';
 import Search from './components/Search';
 import Sneakers from './components/Sneakers';
+import Success from './components/Success';
+import Failure from './components/Failure';
 import ProductTest from './components/ProductTest';
 import ProductDescriptionTest from './components/ProductDescriptionTest';
 
@@ -27,6 +29,8 @@ function App() {
     <Router>  
       <Routes>
       <Route path='/' element={<Home />} />
+      <Route path="/success" element={<Success />} />
+      <Route path="/failure" element={<Failure />} />
       <Route path='/crocs' element={<Crocs />} />
       <Route path='/boots' element={<Boots />} />
       <Route path='/checkout' element={<Checkout />} />
