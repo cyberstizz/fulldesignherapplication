@@ -188,6 +188,34 @@ a {
     margin-left: 30%;
 }
 
+.categoriesHeaderOne{
+    color: #958e8e;
+    font-size: 40px;
+    letter-spacing: 1px;
+    margin-left: 35%;
+}
+
+.categoriesHeaderTwo{
+    color: #958e8e;
+    font-size: 40px;
+    letter-spacing: 1px;
+    margin-left: 27%;
+}
+
+.categoriesHeaderThree{
+    color: #958e8e;
+    font-size: 40px;
+    letter-spacing: 1px;
+    margin-left: 25%;
+}
+
+.categoriesHeaderFour{
+    color: #958e8e;
+    font-size: 40px;
+    letter-spacing: 1px;
+    margin-left: 33%;
+}
+
 .imageCard{
     height: 30vh;
     width: 80%;
