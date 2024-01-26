@@ -1,5 +1,5 @@
 import React from 'react';
-import { StripeCheckout } from 'react-stripe-checkout'; // Assuming you have a similar component for Stripe Checkout
+import StripeCheckout  from 'react-stripe-checkout'; // Assuming you have a similar component for Stripe Checkout
 import axios from 'axios';
 
 const CheckoutButton = (props) => {
