@@ -198,8 +198,8 @@ app.post('/payments', async (req, res) => {
 
     console.log('Payment Successful:', charge);
 
-    sendEmail('diannabeaty65@gmail.com', `an order just came in for ${product}`, `this sale was made by this email${token.email}!`);
-    sendEmail(`${token.email}`, 'Order Confirmation', `Thank you for your order of ${product}!`);
+    await sendEmail('diannabeaty65@gmail.com', `an order just came in for ${product}`, `this sale was made by this email${token.email}!`);
+    await sendEmail(`${token.email}`, 'Order Confirmation', `Thank you for your order of ${product}!`);
 
     res.json({ success: true, charge });
   } catch (error) {
