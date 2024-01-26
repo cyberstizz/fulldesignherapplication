@@ -12,11 +12,40 @@ const bootsRouter = require('./routes/boots/bootsRouter')
 const sneakersRouter = require('./routes/sneakers/sneakersRouter')
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 const bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
 
 
 
 app.use(bodyParser.json());
 app.use(cors());
+
+// Create a transporter using your email service credentials
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'charles.lamb.dev@gmail.com',
+    pass: process.env.GMAIL_PASSWORD,
+  },
+});
+
+// Function to send email
+const sendEmail = async (to, subject, text) => {
+  const mailOptions = {
+    from: 'charles.lamb.dev@gmail.com',
+    to,
+    subject,
+    text,
+  };
+
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent:', info.response);
+  } catch (error) {
+    console.error('Error sending email:', error);
+  }
+};
+
+
 
 // app.get('/', (req, res) => {
 //     res.sendFile(path.join(__dirname, 'client/build')); // Replace 'path_to_your_index_html_file' with the actual path to your HTML file
@@ -168,6 +197,10 @@ app.post('/payments', async (req, res) => {
     });
 
     console.log('Payment Successful:', charge);
+
+    sendEmail('diannabeaty65@gmail.com', `an order just came in for ${product}`, `this sale was made by this email${token.email}!`);
+    sendEmail(`${token.email}`, 'Order Confirmation', `Thank you for your order of ${product}!`);
+
     res.json({ success: true, charge });
   } catch (error) {
     console.error('Payment Error:', error);
