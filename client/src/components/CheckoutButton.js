@@ -1,6 +1,7 @@
 import React from 'react';
 import StripeCheckout  from 'react-stripe-checkout'; // Assuming you have a similar component for Stripe Checkout
 import axios from 'axios';
+import './CheckoutButton.scss';
 
 const CheckoutButton = (props) => {
   const handleToken = async (token) => {
@@ -38,7 +39,7 @@ const CheckoutButton = (props) => {
       name={props.name}
       amount={props.price * 100}
     >
-      <button>Buy Now</button>
+      <button className='buyNowButton'>Buy Now</button>
     </StripeCheckout>
   );
 };
