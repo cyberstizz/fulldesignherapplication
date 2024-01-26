@@ -160,61 +160,22 @@ app.post('/payments', async (req, res) => {
       source: token.id,
     });
 
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: product.price * 100, // amount in cents
+    const charge = await stripe.charges.create({
+      amount: product.price * 100,
       currency: 'usd',
       customer: customer.id,
       receipt_email: token.email,
-      description: product.description,
-      confirm: true, // Confirm the PaymentIntent immediately
     });
 
-    console.log('Payment Successful:', paymentIntent);
-    res.json({ success: true, paymentIntent });
+    console.log('Payment Successful:', charge);
+    res.json({ success: true, charge });
   } catch (error) {
     console.error('Payment Error:', error);
     res.json({ success: false, error: error.message });
   }
 });
 
-
- app.post('/charge', async (req, res) => {
-  console.log('Request Payload:', req.body);
-
-
-  try {
-
-    const { amount, payment_method, token } = req.body;
-
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount,
-      currency: 'usd',
-      confirm: true,
-      payment_method: token.id, // Set the payment method using the card token
-      return_url: 'https://designhercustomekreations-c288e9799350.herokuapp.com/',  // Replace with your actual success URL
-  });
-    // Retrieve the payment method and create a payment intent
-    // const intent = await stripe.paymentIntents.create({
-    //   amount,
-    //   currency: 'usd',
-    //   payment_method,
-    //   confirmation_method: 'manual',
-    //   confirm: true,
-    //   return_url: 'https://designhercustomekreations-c288e9799350.herokuapp.com/',  // Replace with your actual success URL
-    // });
-
-    console.log('client Secret:', paymentIntent.client_secret);
-
-    console.log(amount)
-
-
-    // Send the client secret back to the frontend
-    res.json({ clientSecret: paymentIntent.client_secret });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: 'Failed to process payment' });
-  }
-});
+ 
 
 // Start the server
 app.listen(port, () => {
