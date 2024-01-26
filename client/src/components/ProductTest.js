@@ -11,6 +11,9 @@ const  ProductTest = () => {
   return (
 <React.Fragment>
 <Header />
+<div className='fullCategoryBody'>
+<h1 className='categoryHeader'>Crocs</h1>
+<div className='submenuBody'>
 <SubMenuComponent path='/crocsOne.webp' name='randomCroc' product_price={400.00} />
 <SubMenuComponent path='/crocsOne.webp' name='randomCroc' product_price={400.00} />
 <SubMenuComponent path='/crocsOne.webp' name='randomCroc' product_price={400.00} />
@@ -18,7 +21,8 @@ const  ProductTest = () => {
 <SubMenuComponent path='/crocsOne.webp' name='randomCroc' product_price={400.00} />
 <SubMenuComponent path='/crocsOne.webp' name='randomCroc' product_price={400.00} />
 
-
+</div>
+</div>
 </React.Fragment>);
 }
 

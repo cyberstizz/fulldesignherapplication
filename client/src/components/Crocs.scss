@@ -1,11 +1,12 @@
-.submenuBody{
-    overflow-x: hidden;
-    overflow-y: scroll;
-    background-color: inherit;
-}
+
 
 .fullCategoryBody{
     background: linear-gradient(to bottom right, rgb(136, 129, 129), #f0f0f0);
+}
+
+.submenuBody{
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .categoryHeader{
