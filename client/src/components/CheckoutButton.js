@@ -2,9 +2,14 @@ import React from 'react';
 import StripeCheckout  from 'react-stripe-checkout'; // Assuming you have a similar component for Stripe Checkout
 import axios from 'axios';
 import './CheckoutButton.scss';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const CheckoutButton = (props) => {
+
+  const navigate = useNavigate();
+
 
 
   const handleToken = async (token) => {
@@ -30,14 +35,14 @@ const CheckoutButton = (props) => {
       console.log(response);
 
       // Handle response as needed
-      window.location.href = '/success';
+      navigate('/success'); // Navigate to the success page
 
 
 
     } catch (error) {
       console.error('Error processing payment:', error);
 
-      window.location.href = '/failure';
+      navigate('/failure'); // Navigate to the success page
 
     }
   };
