@@ -37,6 +37,12 @@ const sendEmail = async (to, subject, text) => {
     text,
   };
 
+  console.log('Gmail credentials:', {
+    user: 'charles.lamb.dev@gmail.com',
+    pass: process.env.GMAIL_PASSWORD,
+  });
+  
+
   try {
     const info = await transporter.sendMail(mailOptions);
     console.log('Email sent:', info.response);
