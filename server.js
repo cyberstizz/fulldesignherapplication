@@ -4,6 +4,8 @@ const passport = require('passport');
 const session = require('express-session');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
+const crypto = require('crypto');
+const secret = crypto.randomBytes(64).toString('hex');
 const app = express();
 const port = process.env.PORT || 3001; // Change this to the desired port
 // const { Pool } = require('pg');
@@ -21,7 +23,7 @@ const nodemailer = require('nodemailer');
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use(session({ secret: 'your-secret-key', resave: true, saveUninitialized: true }));
+app.use(session({ secret, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
