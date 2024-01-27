@@ -25,41 +25,45 @@ app.use(session({ secret: 'your-secret-key', resave: true, saveUninitialized: tr
 app.use(passport.initialize());
 app.use(passport.session());
 
-//now setup passport local strategy
-passport.use(
-  new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
-    // Check your database for the user with the given email
-    // Example with a hypothetical User model:
-    const user = await User.findOne({ email });
+//setting up the methods to serialize and deserialize a user
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
 
-    if (!user) {
+passport.deserializeUser((id, done) => {
+  const user = users.find(u => u.id === id);
+  done(null, user);
+});
+
+//now setup passport local strategy
+// now setup passport local strategy
+passport.use(new LocalStrategy({
+  usernameField: 'email_address',
+  passwordField: 'password',
+}, async (email, password, done) => {
+  try {
+    const result = await pool.query('SELECT * FROM users WHERE email_address = $1', [email]);
+
+    if (result.rows.length === 0) {
       return done(null, false, { message: 'Incorrect email.' });
     }
 
-    // Check if the password is correct
+    const user = result.rows[0];
+
     const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (!passwordMatch) {
       return done(null, false, { message: 'Incorrect password.' });
     }
 
-    // If everything is fine, return the user object
     return done(null, user);
-  })
-);
+  } catch (error) {
+    console.error('Error during authentication:', error);
+    return done(error);
+  }
+}));
 
 
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-
-passport.deserializeUser(async (id, done) => {
-  // Retrieve user information from the database using the id
-  // Example with a hypothetical User model:
-  const user = await User.findById(id);
-
-  done(null, user);
-});
 
 
 
@@ -127,6 +131,55 @@ app.use('/sneaker', sneakersRouter);
 
 
 // the routes will inlcude
+
+
+// Registration endpoint
+app.post('/register', async (req, res) => {
+  const { email_address, password, first_name, last_name } = req.body;
+
+  // Validation checks
+  if (!email_address || !password || !first_name || !last_name) {
+    return res.status(400).json({ message: 'All fields are required.' });
+  }
+
+  try {
+    // Check if the email is already taken
+    const existingUser = await pool.query('SELECT * FROM users WHERE email_address = $1', [email_address]);
+
+    if (existingUser.rows.length > 0) {
+      return res.status(400).json({ message: 'Email already in use.' });
+    }
+
+    // Hash the password before storing it in the database
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Insert the new user into the users table
+    await pool.query(`
+      INSERT INTO users (email_address, first_name, last_name, password)
+      VALUES ($1, $2, $3, $4)
+    `, [email_address, first_name, last_name, hashedPassword]);
+
+    return res.status(201).json({ message: 'User registered successfully.' });
+  } catch (error) {
+    console.error('Error during registration:', error);
+    return res.status(500).json({ message: 'Internal server error.' });
+  }
+});
+
+// Login endpoint
+app.post('/login',
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/failure',
+    failureFlash: true,
+  })
+);
+
+// Logout endpoint
+app.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/'); // Redirect to the home page or any other desired page after logout
+});
 
 
 //all products

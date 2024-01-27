@@ -12,7 +12,8 @@ CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     email_address VARCHAR(255),
     first_name VARCHAR(100),
-    last_name VARCHAR(100)
+    last_name VARCHAR(100),
+    password VARCHAR(100) -- Add a password field
 );
 
 -- Create the crocs table with product_id as UUID
