@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require('path');
-
+const passport = require('passport');
+const session = require('express-session');
+const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcrypt');
 const app = express();
 const port = process.env.PORT || 3001; // Change this to the desired port
 // const { Pool } = require('pg');
@@ -18,6 +21,48 @@ const nodemailer = require('nodemailer');
 
 app.use(bodyParser.json());
 app.use(cors());
+app.use(session({ secret: 'your-secret-key', resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+//now setup passport local strategy
+passport.use(
+  new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
+    // Check your database for the user with the given email
+    // Example with a hypothetical User model:
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return done(null, false, { message: 'Incorrect email.' });
+    }
+
+    // Check if the password is correct
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      return done(null, false, { message: 'Incorrect password.' });
+    }
+
+    // If everything is fine, return the user object
+    return done(null, user);
+  })
+);
+
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  // Retrieve user information from the database using the id
+  // Example with a hypothetical User model:
+  const user = await User.findById(id);
+
+  done(null, user);
+});
+
+
+
 
 // Create a transporter using your email service credentials
 const transporter = nodemailer.createTransport({

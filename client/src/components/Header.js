@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 import SubMenuComponent from './SubmenuComponent';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -21,8 +23,8 @@ const Header = () => {
     return(
         
  <header className="mainHeader">
-
-<div className='mainLogo' onClick={handleLogoClick}> </div>
+    <FontAwesomeIcon className="lockIcon" icon={faLock} />
+    <div className='mainLogo' onClick={handleLogoClick}> sign in</div>
 <div className='headerRightSide'>
     <input type='search' className='searchBar'></input>
     <div className='navigationBar'>

@@ -26,8 +26,23 @@ a {
     flex-direction: row;
 }
 
+.logoAndLock{
+    display: flex;
+    flex-direction: column;
+}
+
+.lockIcon{
+    min-width: 8%;
+    color: rgb(168, 37, 37);
+    min-height: 3%;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 5;
+}
+
 .mainLogo{
-    margin-top: .2vh;
+    margin-top: .7vh;
     z-index: 1;
     width: 50%;
     margin-left: .2vw;
