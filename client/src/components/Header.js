@@ -5,12 +5,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 import LoginModal from './LoginModal';
+import Signup from './SignUp';
 
 
 
 
 const Header = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
 
 
@@ -26,7 +27,7 @@ const Header = () => {
  <header className="mainHeader">
 
 <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
-      <SignupModal
+      <Signup
         isOpen={isSignupModalOpen}
         onClose={() => setIsSignupModalOpen(false)}
         onOpenLoginModal={() => {
@@ -36,7 +37,7 @@ const Header = () => {
       />
 
 
-    <FontAwesomeIcon className="lockIcon" icon={faLock} onClick={() => setIsModalOpen(true)} />
+    <FontAwesomeIcon className="lockIcon" icon={faLock} onClick={() => setIsLoginModalOpen(true)} />
     <div className='mainLogo' onClick={handleLogoClick}> sign in</div>
 <div className='headerRightSide'>
     <input type='search' className='searchBar'></input>

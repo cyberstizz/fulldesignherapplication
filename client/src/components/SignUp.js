@@ -1,6 +1,6 @@
 // SignupModal.js
 import React, { useState } from 'react';
-import './Signup.scss';
+import './SignUp.scss';
 
 const Signup = ({ isOpen, onClose, onOpenLoginModal }) => {
   const [username, setUsername] = useState('');
