@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
+import LoginModal from './LoginModal';
 
 
 
@@ -36,6 +37,7 @@ const Header = () => {
         <Link to='/boots'><div className='navItem'>Boots</div></Link>
     </div>
 </div>
+<LoginModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 </header> 
                 
     );
