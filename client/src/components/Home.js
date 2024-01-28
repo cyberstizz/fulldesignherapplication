@@ -20,40 +20,41 @@ import crocsFourteen from '../crocsFourteen.heic';
 import crocsFifteen from '../crocsFifteen.heic';
 import crocsSixteen from '../crocsSixteen.heic';
 import crocsSeventeen from '../crocsSeventeen.heic';
-import { Route } from 'react-router-dom';
-import ProductDescription from './ProductDescription';
 
 
 
 
 function Home() {
 
-const slideShow = [crocsOne,
-   crocsTwo,
-   crocsFour, 
-   crocsFive, 
-   crocsSix, 
-   crocsSeven, 
-   crocsEight, 
-   crocsNine, 
-   crocsTen,
-   crocsTwelve,
-   crocsThirteen,
-   crocsFourteen,
-   crocsFifteen,
-   crocsSixteen,
-   crocsSeventeen,
-  ]
 
-const sneakerStyle = {
-    height: '30vh',
-    width: '80%',
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    margin: '0 auto',
-    borderRadius: '20px',
-    marginBottom: '4vh',
-}  
+      
+
+      const slideShow = [crocsOne,
+        crocsTwo,
+        crocsFour, 
+        crocsFive, 
+        crocsSix, 
+        crocsSeven, 
+        crocsEight, 
+        crocsNine, 
+        crocsTen,
+        crocsTwelve,
+        crocsThirteen,
+        crocsFourteen,
+        crocsFifteen,
+        crocsSixteen,
+        crocsSeventeen,
+        ]
+
+      const sneakerStyle = {
+          height: '30vh',
+          width: '80%',
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          margin: '0 auto',
+          borderRadius: '20px',
+          marginBottom: '4vh',
+      }  
 
   const iconStyle = {
     fontSize: '360px', // Set the desired font size for the icon
@@ -110,6 +111,7 @@ const sneakerStyle = {
   <source src="/output_video.mp4" type="video/mp4"/>
   Your browser does not support the video tag.projects/designherCustomKreations/designhercustomkreations/public/VID_158480824_122841_103.mp4
 </video>
+
 
 <section className='slideShowSection'>
   <h1 className='slideShowText'>As seen on </h1>

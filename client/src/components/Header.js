@@ -2,8 +2,6 @@ import React from 'react';
 import './Header.scss';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Axios from 'axios';
-import SubMenuComponent from './SubmenuComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,6 +9,7 @@ import { faLock } from '@fortawesome/free-solid-svg-icons';
 
 
 const Header = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
 
     const navigate = useNavigate();
@@ -23,7 +22,7 @@ const Header = () => {
     return(
         
  <header className="mainHeader">
-    <FontAwesomeIcon className="lockIcon" icon={faLock} />
+    <FontAwesomeIcon className="lockIcon" icon={faLock} onClick={() => setIsModalOpen(true)} />
     <div className='mainLogo' onClick={handleLogoClick}> sign in</div>
 <div className='headerRightSide'>
     <input type='search' className='searchBar'></input>
