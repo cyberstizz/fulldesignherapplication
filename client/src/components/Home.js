@@ -26,7 +26,6 @@ import crocsSeventeen from '../crocsSeventeen.heic';
 
 function Home() {
 
-
       
 
       const slideShow = [crocsOne,

@@ -1,8 +1,10 @@
 .buyNowButton{
-    width: 40%;
+    min-width: 140px;
+    height: 100%;
     border-radius: 15px;
     background: linear-gradient(to right, rgb(71, 114, 6), rgb(30, 48, 2));
     font-size: 25px;
     font-family: 'Times New Roman', Times, serif;
     color: white;
+    border: solid 2px green;
 }
