@@ -1,0 +1,52 @@
+.modal {
+  
+    .signup-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  
+      .form-group {
+        margin-bottom: 15px;
+        text-align: center;
+  
+        label {
+          margin-bottom: 5px;
+        }
+  
+        input {
+          width: 100%;
+          padding: 8px;
+          font-size: 16px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        }
+      }
+  
+      .signup-button {
+        background: linear-gradient(to right, #007bff, #0056b3);
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+  
+        &:hover {
+          background: #0056b3; // You can adjust this color
+        }
+      }
+  
+      .login-link {
+        font-size: 14px;
+        color: #007bff; // You can adjust this color
+        margin-top: 10px;
+        cursor: pointer;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  

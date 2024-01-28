@@ -11,6 +11,7 @@ import LoginModal from './LoginModal';
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
 
 
     const navigate = useNavigate();
@@ -23,6 +24,18 @@ const Header = () => {
     return(
         
  <header className="mainHeader">
+
+<LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
+      <SignupModal
+        isOpen={isSignupModalOpen}
+        onClose={() => setIsSignupModalOpen(false)}
+        onOpenLoginModal={() => {
+          setIsLoginModalOpen(true);
+          setIsSignupModalOpen(false);
+        }}
+      />
+
+
     <FontAwesomeIcon className="lockIcon" icon={faLock} onClick={() => setIsModalOpen(true)} />
     <div className='mainLogo' onClick={handleLogoClick}> sign in</div>
 <div className='headerRightSide'>
@@ -37,7 +50,6 @@ const Header = () => {
         <Link to='/boots'><div className='navItem'>Boots</div></Link>
     </div>
 </div>
-<LoginModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 </header> 
                 
     );
