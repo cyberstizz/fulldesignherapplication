@@ -1,7 +1,7 @@
 // LoginModal.js
 import React from 'react';
 import { useState } from 'react';
-import './LoginModal.scss';
+import './LoginModal.scss';   
 
 const LoginModal = ({ isOpen, onClose }) => {
 

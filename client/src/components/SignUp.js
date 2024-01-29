@@ -3,6 +3,12 @@ import React, { useState } from 'react';
 import './SignUp.scss';
 
 const Signup = ({ isOpen, onClose, onOpenLoginModal }) => {
+
+
+  console.log('Signup component rendered');
+
+
+
   const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -11,6 +17,7 @@ const Signup = ({ isOpen, onClose, onOpenLoginModal }) => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
+
 
     // Perform your API call to the signup route here
     // Example: const response = await fetch('/signup', { method: 'POST', body: JSON.stringify({ username, firstName, lastName, email, password }), headers: { 'Content-Type': 'application/json' } });
@@ -24,13 +31,18 @@ const Signup = ({ isOpen, onClose, onOpenLoginModal }) => {
     console.log('Password:', password);
 
     // Close the modal
-    onClose();
+    onClose()
   };
 
   if (!isOpen) return null;
 
+
+  console.log('State:', { username, firstName, lastName, email, password });
+
+
   return (
     <div className="modal-overlay" onClick={onClose}>
+
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <button className="close-button" onClick={onClose}>
           &times;
@@ -97,11 +109,14 @@ const Signup = ({ isOpen, onClose, onOpenLoginModal }) => {
           </button>
         </form>
 
-        <p className="login-link" onClick={onOpenLoginModal}>
+        <p className="login-link" onClick={() => {
+          console.log('Link clicked');
+          onOpenLoginModal()
+        }}>
           Already have an account? Login
         </p>
       </div>
-    </div>
+      </div>
   );
 };
 
