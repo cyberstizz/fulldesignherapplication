@@ -1,13 +1,7 @@
-// SignupModal.js
 import React, { useState } from 'react';
 import './SignUp.scss';
 
-const Signup = ({ isOpen, onClose, onOpenLoginModal }) => {
-
-
-
-
-
+const SignUp = ({ isOpen, onClose }) => {
   const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -16,7 +10,6 @@ const Signup = ({ isOpen, onClose, onOpenLoginModal }) => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-
 
     // Perform your API call to the signup route here
     // Example: const response = await fetch('/signup', { method: 'POST', body: JSON.stringify({ username, firstName, lastName, email, password }), headers: { 'Content-Type': 'application/json' } });
@@ -30,23 +23,15 @@ const Signup = ({ isOpen, onClose, onOpenLoginModal }) => {
     console.log('Password:', password);
 
     // Close the modal
-    onClose()
+    onClose();
   };
 
-  if (!isOpen) return null;
-
-
-  console.log('State:', { username, firstName, lastName, email, password });
-
-
-  return (
+  return isOpen && (
     <div className="modal-overlay" onClick={onClose}>
-
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <button className="close-button" onClick={onClose}>
           &times;
         </button>
-
         <form className="signup-form" onSubmit={handleSignup}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -58,7 +43,6 @@ const Signup = ({ isOpen, onClose, onOpenLoginModal }) => {
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
-
           <div className="form-group">
             <label htmlFor="firstName">First Name</label>
             <input
@@ -69,7 +53,6 @@ const Signup = ({ isOpen, onClose, onOpenLoginModal }) => {
               onChange={(e) => setFirstName(e.target.value)}
             />
           </div>
-
           <div className="form-group">
             <label htmlFor="lastName">Last Name</label>
             <input
@@ -80,7 +63,6 @@ const Signup = ({ isOpen, onClose, onOpenLoginModal }) => {
               onChange={(e) => setLastName(e.target.value)}
             />
           </div>
-
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
@@ -91,7 +73,6 @@ const Signup = ({ isOpen, onClose, onOpenLoginModal }) => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-
           <div className="form-group">
             <label htmlFor="password">Password</label>
             <input
@@ -102,21 +83,16 @@ const Signup = ({ isOpen, onClose, onOpenLoginModal }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-
           <button type="submit" className="signup-button">
             Sign Up
           </button>
         </form>
-
-        <p className="login-link" onClick={() => {
-          console.log('Link clicked');
-          onOpenLoginModal()
-        }}>
+        <p className="login-link" onClick={onClose}>
           Already have an account? Login
         </p>
       </div>
-      </div>
+    </div>
   );
 };
 
-export default Signup;
+export default SignUp;

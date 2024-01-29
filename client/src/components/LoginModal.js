@@ -1,17 +1,14 @@
-// LoginModal.js
-import React from 'react';
-import { useState } from 'react';
-import './LoginModal.scss';   
+import React, { useState } from 'react';
+import './LoginModal.scss';
 
-const LoginModal = (props,{ isOpen, onClose }) => {
-
+const LoginModal = ({ isOpen, onClose }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // You can perform your API call to the /login route here using username and password state values
+    // Perform your API call to the /login route here using username and password state values
     // Example: const response = await fetch('/login', { method: 'POST', body: JSON.stringify({ username, password }), headers: { 'Content-Type': 'application/json' } });
     // Add your logic based on the response
 
@@ -23,10 +20,7 @@ const LoginModal = (props,{ isOpen, onClose }) => {
     onClose();
   };
 
-
-  if (!isOpen) return null;
-
-  return (
+  return isOpen && (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <button className="close-button" onClick={onClose}>
@@ -43,7 +37,6 @@ const LoginModal = (props,{ isOpen, onClose }) => {
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
-
           <div className="form-group">
             <label htmlFor="password">Password</label>
             <input
@@ -54,13 +47,14 @@ const LoginModal = (props,{ isOpen, onClose }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-
           <button type="submit" className="login-button">
             Login
           </button>
-
-          <p className="create-account-link" onClick={() => props.handleModalToggle('signup')}>New? Create account</p>
-        </form>      </div>
+          <p className="create-account-link" onClick={onClose}>
+            New? Create account
+          </p>
+        </form>
+      </div>
     </div>
   );
 };
