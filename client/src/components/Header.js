@@ -15,6 +15,11 @@ const Header = () => {
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
 
 
+  const handleModalToggle = (modalType) => {
+    setIsLoginModalOpen(modalType === 'login');
+    setIsSignupModalOpen(modalType === 'signup');
+  };
+
     const navigate = useNavigate();
 
   const handleLogoClick = () => {
@@ -26,7 +31,7 @@ const Header = () => {
         
  <header className="mainHeader">
 
-<LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
+<LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} handleModalToggle={handleModalToggle} />
       <Signup
         isOpen={isSignupModalOpen}
         onClose={() => setIsSignupModalOpen(false)}

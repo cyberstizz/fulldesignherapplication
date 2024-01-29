@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import './LoginModal.scss';   
 
-const LoginModal = ({ isOpen, onClose }) => {
+const LoginModal = (props,{ isOpen, onClose }) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -59,7 +59,7 @@ const LoginModal = ({ isOpen, onClose }) => {
             Login
           </button>
 
-          <p className="create-account-link">New? Create account</p>
+          <p className="create-account-link" onClick={() => props.handleModalToggle('signup')}>New? Create account</p>
         </form>      </div>
     </div>
   );

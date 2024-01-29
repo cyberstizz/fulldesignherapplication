@@ -5,7 +5,6 @@ import './SignUp.scss';
 const Signup = ({ isOpen, onClose, onOpenLoginModal }) => {
 
 
-  console.log('Signup component rendered');
 
 
 
