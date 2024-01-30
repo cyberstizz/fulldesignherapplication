@@ -95,6 +95,13 @@ const Control = () => {
 
             <Header />
             <div className='fullCategoryBody'>
+            <h1 className='categoryHeader'>Control page</h1>
+
+            <h2>on this page you can add items and edit or delete them below</h2>
+
+            <h3>use this button below to add new products</h3>
+            <button>Create new product</button>
+
             <h1 className='categoryHeader'>Crocs</h1>
             <div className='submenuBody'>
                   {allCrocs.map(croc => (
