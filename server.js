@@ -24,11 +24,6 @@ const nodemailer = require('nodemailer');
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use(session({ secret, resave: true, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
-
-
 app.use(session({
   store: new pgSession({
     pool: pool, 
@@ -41,6 +36,13 @@ app.use(session({
     maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
   },
 }));
+
+
+
+app.use(session({ secret, resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 //setting up the methods to serialize and deserialize a user
 passport.serializeUser((user, done) => {
