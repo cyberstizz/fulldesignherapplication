@@ -99,10 +99,10 @@ const Control = () => {
             <br />
             <br />
 
-            <h1>on this page you can add items and edit or delete them below</h1>
+            <h1 className='categoryHeader'>on this page you can add items and edit or delete them below</h1>
             <br />
             <br />
-            <h1>use this button below to add new products</h1>
+            <h1 className='categoryHeader'>use this button below to add new products</h1>
             <button style={{display: "block", margin: "auto"}}>Create new product</button>
 
             <h1 className='categoryHeader'>Crocs</h1>
