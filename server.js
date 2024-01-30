@@ -233,7 +233,9 @@ app.get('/allProducts', async(req, res) => {
           const sneakers = sneakerResult.rows;
           const boots = bootResult.rows;
 
-          res.json({ crocs }, { jackets }, { sneakers },{ boots });
+          allproducts = {crocs, jackets, sneakers, boots}
+
+          res.json(allproducts);
         } catch (error) {
           console.error('Error fetching products:', error);
           res.status(500).json({ error: 'Internal server error' });
