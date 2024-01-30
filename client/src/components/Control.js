@@ -103,7 +103,7 @@ const Control = () => {
             <br />
             <br />
             <h1>use this button below to add new products</h1>
-            <button style="display: block; margin: auto;">Create new product</button>
+            <button style={{display: "block", margin: "auto"}}>Create new product</button>
 
             <h1 className='categoryHeader'>Crocs</h1>
             <div className='submenuBody'>
