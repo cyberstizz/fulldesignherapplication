@@ -95,7 +95,7 @@ const Control = () => {
 
             <Header />
             <div className='fullCategoryBody'>
-            <h1 className='categoryHeader' {{color: "red"}}>Control page</h1>
+            <h1 className='categoryHeader' style={{color: "red"}}>Control page</h1>
             <br />
             <br />
             <br />
