@@ -37,11 +37,11 @@ app.use(session({
   },
 }));
 
-
-
-app.use(session({ secret, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(session({ secret, resave: true, saveUninitialized: true }));
+
 
 
 //setting up the methods to serialize and deserialize a user
