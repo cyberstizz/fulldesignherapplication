@@ -56,7 +56,7 @@ const Header = () => {
       <div className='mainLogo' onClick={handleLogoClick}> sign in</div>
 
       <div className='headerRightSide'>
-        <input type='search' className='searchBar'></input>
+       <Link to="/control" ><input type='search' className='searchBar'></input></Link>
         <div className='navigationBar'>
           <Link to="/jackets"><div className='firstNavItem'>Jackets</div></Link>
           <Link to="/crocs"><div className='navItem'>Crocs</div></Link>
