@@ -28,6 +28,10 @@ const Control = () => {
         const fetchData = async () => {
             try {
                 const response = await Axios.get(`${apiUrl}/allProducts`);
+                
+                console.log(response.data);
+
+                
                 console.log(response.data.crocs)
                 console.log(response.data.boots)
                 console.log(response.data.jackets)

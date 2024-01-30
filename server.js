@@ -223,10 +223,10 @@ app.get('/logout', (req, res) => {
 //all products
 app.get('/allProducts', async(req, res) => {
         try {
-          const crocResult = await pool.query('SELECT * FROM crocs'); // Replace 'products' with your table name
-          const jacketResult = await pool.query('SELECT * FROM jackets'); // Replace 'products' with your table name
-          const sneakerResult = await pool.query('SELECT * FROM sneakers'); // Replace 'products' with your table name
-          const bootResult = await pool.query('SELECT * FROM boots'); // Replace 'products' with your table name
+          const crocResult = await pool.query('SELECT * FROM crocs'); 
+          const jacketResult = await pool.query('SELECT * FROM jackets'); 
+          const sneakerResult = await pool.query('SELECT * FROM sneakers');
+          const bootResult = await pool.query('SELECT * FROM boots');
 
           const crocs = crocResult.rows;
           const jackets = jacketResult.rows;
