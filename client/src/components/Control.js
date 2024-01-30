@@ -95,11 +95,16 @@ const Control = () => {
 
             <Header />
             <div className='fullCategoryBody'>
-            <h1 className='categoryHeader'>Control page</h1>
+            <h1 className='categoryHeader' {{color: "red"}}>Control page</h1>
+            <br />
+            <br />
             <br />
             <br />
 
+
             <h1 className='categoryHeader'>on this page you can add items and edit or delete them below</h1>
+            <br />
+            <br />
             <br />
             <br />
             <h1 className='categoryHeader'>use this button below to add new products</h1>
