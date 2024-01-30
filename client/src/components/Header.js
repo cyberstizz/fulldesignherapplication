@@ -9,8 +9,26 @@ import SignUp from './SignUp';
 const Header = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
+  const [user, setUser] = useState(null); // Assuming user state holds user information
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkUserAuthentication = async () => {
+      try {
+        const response = await axios.get('/user');
+        if (response.status === 200) {
+          setUser(response.data.user);
+        } else {
+          setUser(null);
+        }
+      } catch (error) {
+        console.error('Error checking user authentication:', error.message);
+      }
+    };
+
+    checkUserAuthentication();
+  }, []);
 
   const handleLogoClick = () => {
     navigate('/');
@@ -26,7 +44,13 @@ const Header = () => {
       <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} handleModalToggle={handleModalToggle} />
       <SignUp isOpen={isSignupModalOpen} onClose={() => setIsSignupModalOpen(false)} onOpenLoginModal={() => handleModalToggle('login')} />
 
-      <FontAwesomeIcon className="lockIcon" icon={faLock} onClick={() => handleModalToggle('login')} />
+      {user ? (
+        <div className="userWelcome">Welcome, {user.username}</div>
+      ) : (
+        <FontAwesomeIcon className="lockIcon" icon={faLock} onClick={() => handleModalToggle('login')} />
+      )}     
+     
+     
       <div className='mainLogo' onClick={handleLogoClick}> sign in</div>
 
       <div className='headerRightSide'>

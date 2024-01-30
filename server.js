@@ -1,4 +1,5 @@
 const express = require('express');
+const pgSession = require('connect-pg-simple')(session);
 const path = require('path');
 const passport = require('passport');
 const session = require('express-session');
@@ -26,6 +27,20 @@ app.use(cors());
 app.use(session({ secret, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+app.use(session({
+  store: new pgSession({
+    pool: pool, 
+    tableName: 'session',
+  }),
+  secret: '415bce5250e29548041087cd1add8dc54347dd7414d33d49b91d28f9ddd4fefc', // Change this to a strong secret
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+  },
+}));
 
 //setting up the methods to serialize and deserialize a user
 passport.serializeUser((user, done) => {
@@ -167,6 +182,23 @@ app.post('/register', async (req, res) => {
     return res.status(500).json({ message: 'Internal server error.' });
   }
 });
+
+
+app.get('/user', (req, res) => {
+  if (req.isAuthenticated()) {
+    // User is authenticated, send user information
+    return res.status(200).json({
+      user: req.user,
+      authenticated: true,
+    });
+  } else {
+    // User is not authenticated
+    return res.status(401).json({
+      authenticated: false,
+    });
+  }
+});
+
 
 // Login endpoint
 app.post('/login',

@@ -11,16 +11,35 @@ const SignUp = ({ isOpen, onClose }) => {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    // Perform your API call to the signup route here
-    // Example: const response = await fetch('/signup', { method: 'POST', body: JSON.stringify({ username, firstName, lastName, email, password }), headers: { 'Content-Type': 'application/json' } });
-    // Add your logic based on the response
+    try {
+      const response = await axios.post('/register', {
+        email_address: email,
+        password,
+        first_name: firstName,
+        last_name: lastName,
+      });
 
-    // For now, let's just log the signup data
-    console.log('Username:', username);
-    console.log('First Name:', firstName);
-    console.log('Last Name:', lastName);
-    console.log('Email:', email);
-    console.log('Password:', password);
+      // Check the response status and handle accordingly
+      if (response.status === 201) {
+        // Successful registration, you can redirect or perform other actions
+        console.log('Registration successful!');
+
+        console.log('Username:', username);
+        console.log('First Name:', firstName);
+        console.log('Last Name:', lastName);
+        console.log('Email:', email);
+        console.log('Password:', password);
+
+
+
+      } else {
+        // Handle registration failure, display error message or take appropriate action
+        console.error('Registration failed:', response.data.message);
+      }
+    } catch (error) {
+      console.error('Error during registration:', error.message);
+    }
+  
 
     // Close the modal
     onClose();

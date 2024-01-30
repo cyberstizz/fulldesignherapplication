@@ -8,13 +8,25 @@ const LoginModal = ({ isOpen, onClose, handleModalToggle }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Perform your API call to the /login route here using username and password state values
-    // Example: const response = await fetch('/login', { method: 'POST', body: JSON.stringify({ username, password }), headers: { 'Content-Type': 'application/json' } });
-    // Add your logic based on the response
+    try {
+      const response = await axios.post('/login', { email_address: username, password });
+      // Check the response status and handle accordingly
+      if (response.status === 200) {
+        // Successful login, you can redirect or perform other actions
+        console.log('Login successful!');
 
-    // For now, let's just log the credentials
-    console.log('Username:', username);
-    console.log('Password:', password);
+        console.log('Username:', username);
+        console.log('Password:', password);
+
+      } else {
+        // Handle login failure, display error message or take appropriate action
+        console.error('Login failed:', response.data.message);
+      }
+    } catch (error) {
+      console.error('Error during login:', error.message);
+    }
+
+    
 
     // Close the modal
     onClose();
