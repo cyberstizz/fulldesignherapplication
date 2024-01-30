@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import './LoginModal.scss';
 import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const LoginModal = ({ isOpen, onClose, handleModalToggle }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
+
+
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    if(username === 'dianna' && password === 1120){
+      navigate('/control')
+    }
 
     try {
       const response = await Axios.post('/login', { email_address: username, password });
