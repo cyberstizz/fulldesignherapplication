@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './LoginModal.scss';
 
-const LoginModal = ({ isOpen, onClose }) => {
+const LoginModal = ({ isOpen, onClose, handleModalToggle }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -18,6 +18,7 @@ const LoginModal = ({ isOpen, onClose }) => {
 
     // Close the modal
     onClose();
+
   };
 
   return isOpen && (
@@ -50,7 +51,7 @@ const LoginModal = ({ isOpen, onClose }) => {
           <button type="submit" className="login-button">
             Login
           </button>
-          <p className="create-account-link" onClick={onClose}>
+          <p className="create-account-link" onClick={() => handleModalToggle('signup')}>
             New? Create account
           </p>
         </form>
