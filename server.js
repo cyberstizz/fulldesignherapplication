@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
 const path = require('path');
+const flash = require('express-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
@@ -24,6 +25,7 @@ const nodemailer = require('nodemailer');
 
 app.use(bodyParser.json());
 app.use(cors());
+app.use(flash());
 app.use(session({
   store: new pgSession({
     pool: pool, 
