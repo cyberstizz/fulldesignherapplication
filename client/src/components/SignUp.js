@@ -14,7 +14,7 @@ const SignUp = ({ isOpen, onClose }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/register', {
+      const response = await Axios.post('/register', {
         email_address: email,
         password,
         first_name: firstName,

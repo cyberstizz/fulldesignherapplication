@@ -11,7 +11,7 @@ const LoginModal = ({ isOpen, onClose, handleModalToggle }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/login', { email_address: username, password });
+      const response = await Axios.post('/login', { email_address: username, password });
       // Check the response status and handle accordingly
       if (response.status === 200) {
         // Successful login, you can redirect or perform other actions

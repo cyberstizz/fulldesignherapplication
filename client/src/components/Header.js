@@ -18,7 +18,7 @@ const Header = () => {
   useEffect(() => {
     const checkUserAuthentication = async () => {
       try {
-        const response = await axios.get('/user');
+        const response = await Axios.get('/user');
         if (response.status === 200) {
           setUser(response.data.user);
         } else {
