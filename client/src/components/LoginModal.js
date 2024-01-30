@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './LoginModal.scss';
+import Axios from 'axios';
+
 
 const LoginModal = ({ isOpen, onClose, handleModalToggle }) => {
   const [username, setUsername] = useState('');

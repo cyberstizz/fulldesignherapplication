@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './SignUp.scss';
+import Axios from 'axios';
+
 
 const SignUp = ({ isOpen, onClose }) => {
   const [username, setUsername] = useState('');
