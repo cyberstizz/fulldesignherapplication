@@ -14,7 +14,7 @@ const LoginModal = ({ isOpen, onClose, handleModalToggle }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    if(username === 'dianna' && password === 1120){
+    if(username === 'dianna' && password === '1120'){
       navigate('/control')
     }
 
