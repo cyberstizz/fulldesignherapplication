@@ -95,7 +95,7 @@ const Control = () => {
 
             <Header />
             <div className='fullCategoryBody'>
-            <h1 className='categoryHeader' style={{color: "red"}}>Control page</h1>
+            <h1 className='categoryHeader' style={{color: "blue"}}>Control page</h1>
             <br />
             <br />
             <br />
@@ -111,17 +111,6 @@ const Control = () => {
             <button style={{display: "block", margin: "auto"}}>Create new product</button>
 
             <h1 className='categoryHeader'>Crocs</h1>
-            <div className='submenuBody'>
-                  {allCrocs.map(croc => (
-                    <Link key={croc.product_id} to={`/croc/${croc.product_id}`}>
-                        <SubMenuComponent onImageLoad={handleImageLoaded} name={properLettering(croc.name)} path={croc.image_path} product_price={croc.product_price} />
-                    </Link>
-                ))}
-           
-            
-            </div>
-
-
 
             <h1 className='categoryHeader'>Jackets</h1>
             <div className='submenuBody'>
@@ -155,6 +144,16 @@ const Control = () => {
                   {allBoots.map(boot => (
                     <Link key={boot.product_id} to={`/boots/${boot.product_id}`}>
                         <SubMenuComponent onImageLoad={handleImageLoaded} name={properLettering(boot.name)} path={boot.image_path} product_price={boot.product_price} />
+                    </Link>
+                ))}
+           
+            
+            </div>
+
+            <div className='submenuBody'>
+                  {allCrocs.map(croc => (
+                    <Link key={croc.product_id} to={`/croc/${croc.product_id}`}>
+                        <SubMenuComponent onImageLoad={handleImageLoaded} name={properLettering(croc.name)} path={croc.image_path} product_price={croc.product_price} />
                     </Link>
                 ))}
            
