@@ -22,7 +22,7 @@
     "b": "^2.0.1",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
-    "connect-pg-simple": "^9.0.1",
+    "connect-pg-simple": "^latest",
     "cors": "^2.8.5",
     "crypt": "^0.0.2",
     "crypto": "^1.0.1",
