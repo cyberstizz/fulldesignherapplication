@@ -24,14 +24,20 @@ const Control = () => {
         const fetchData = async () => {
             try {
                 const response = await Axios.get(`/allProducts`);
+
+                console.log('this is the response', response);
+
                 
-                console.log(response.data);
+                console.log('this is the response.data', response.data);
 
                 
                 console.log(response.data.crocs)
                 console.log(response.data.boots)
                 console.log(response.data.jackets)
                 console.log(response.data.sneakers)
+
+                console.log(Array.isArray(response.data.crocs));
+
 
                 setAllCrocs(response.data.crocs);
                 setAllBoots(response.data.boots);
