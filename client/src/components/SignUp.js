@@ -108,9 +108,6 @@ const SignUp = ({ isOpen, onClose }) => {
             Sign Up
           </button>
         </form>
-        <p className="login-link" onClick={onClose}>
-          Already have an account? Login
-        </p>
       </div>
     </div>
   );
