@@ -103,6 +103,7 @@ const renderControlComponents = (products) => {
             product_price={product.product_price}
             product_id={product.product_id}
             product_type={product.product_type} // Pass the product type to ControlComponent
+            onUpdate={handleEdit}
         />
     ))
     ) : (
