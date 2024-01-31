@@ -3,7 +3,7 @@ import './Crocs.scss';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
-import SubMenuComponent from './SubmenuComponent';
+import ControlComponent from './ControlComponent';
 import Header from './Header';
 
 
@@ -116,7 +116,7 @@ const Control = () => {
             <div className='submenuBody'>
                   {allJackets.map(jacket => (
                     <Link key={jacket.product_id} to={`/jacket/${jacket.product_id}`}>
-                        <SubMenuComponent onImageLoad={handleImageLoaded} name={properLettering(jacket.name)} path={jacket.image_path} product_price={jacket.product_price} />
+                        <ControlComponent onImageLoad={handleImageLoaded} name={properLettering(jacket.name)} path={jacket.image_path} product_price={jacket.product_price} />
                     </Link>
                 ))}
            
@@ -130,7 +130,7 @@ const Control = () => {
             <div className='submenuBody'>
                   {allSneakers.map(sneaker => (
                     <Link key={sneaker.product_id} to={`/sneaker/${sneaker.product_id}`}>
-                        <SubMenuComponent onImageLoad={handleImageLoaded} name={properLettering(sneaker.name)} path={sneaker.image_path} product_price={sneaker.product_price} />
+                        <ControlComponent onImageLoad={handleImageLoaded} name={properLettering(sneaker.name)} path={sneaker.image_path} product_price={sneaker.product_price} />
                     </Link>
                 ))}
            
@@ -143,7 +143,7 @@ const Control = () => {
             <div className='submenuBody'>
                   {allBoots.map(boot => (
                     <Link key={boot.product_id} to={`/boots/${boot.product_id}`}>
-                        <SubMenuComponent onImageLoad={handleImageLoaded} name={properLettering(boot.name)} path={boot.image_path} product_price={boot.product_price} />
+                        <ControlComponent onImageLoad={handleImageLoaded} name={properLettering(boot.name)} path={boot.image_path} product_price={boot.product_price} />
                     </Link>
                 ))}
            
@@ -153,7 +153,7 @@ const Control = () => {
             <div className='submenuBody'>
                   {allCrocs.map(croc => (
                     <Link key={croc.product_id} to={`/croc/${croc.product_id}`}>
-                        <SubMenuComponent onImageLoad={handleImageLoaded} name={properLettering(croc.name)} path={croc.image_path} product_price={croc.product_price} />
+                        <ControlComponent onImageLoad={handleImageLoaded} name={properLettering(croc.name)} path={croc.image_path} product_price={croc.product_price} />
                     </Link>
                 ))}
            
