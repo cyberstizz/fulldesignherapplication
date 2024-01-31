@@ -89,6 +89,21 @@ const Control = () => {
 //   }
 // }, [loadedImagesCount]);
 
+
+const renderControlComponents = (products) => {
+    return products.map(product => (
+        <ControlComponent
+            key={product.product_id}
+            onImageLoad={handleImageLoaded}
+            name={properLettering(product.name)}
+            path={product.image_path}
+            product_price={product.product_price}
+            product_id={product.product_id}
+            product_type={product.product_type} // Pass the product type to ControlComponent
+        />
+    ));
+};
+
     return(
         <React.Fragment>
             {/* {!imagesLoaded && <Loader />} */}
@@ -113,55 +128,24 @@ const Control = () => {
 
             <h1 className='categoryHeader'>Jackets</h1>
             <div className='submenuBody'>
-                  {allJackets.map(jacket => (
-                    <Link key={jacket.product_id} to={`/jacket/${jacket.product_id}`}>
-                        <ControlComponent onImageLoad={handleImageLoaded} name={properLettering(jacket.name)} path={jacket.image_path} product_price={jacket.product_price} />
-                    </Link>
-                ))}
-           
-            
+                {renderControlComponents(allJackets)}
             </div>
-
-
-
 
             <h1 className='categoryHeader'>Sneakers</h1>
             <div className='submenuBody'>
-                  {allSneakers.map(sneaker => (
-                    <Link key={sneaker.product_id} to={`/sneaker/${sneaker.product_id}`}>
-                        <ControlComponent onImageLoad={handleImageLoaded} name={properLettering(sneaker.name)} path={sneaker.image_path} product_price={sneaker.product_price} />
-                    </Link>
-                ))}
-           
-            
+                {renderControlComponents(allSneakers)}
             </div>
-
-
 
             <h1 className='categoryHeader'>Boots</h1>
             <div className='submenuBody'>
-                  {allBoots.map(boot => (
-                    <Link key={boot.product_id} to={`/boots/${boot.product_id}`}>
-                        <ControlComponent onImageLoad={handleImageLoaded} name={properLettering(boot.name)} path={boot.image_path} product_price={boot.product_price} />
-                    </Link>
-                ))}
-           
-            
+                {renderControlComponents(allBoots)}
             </div>
 
             <h1 className='categoryHeader'>Crocs</h1>
             <div className='submenuBody'>
-                  {allCrocs.map(croc => (
-                    <Link key={croc.product_id} to={`/croc/${croc.product_id}`}>
-                        <ControlComponent onImageLoad={handleImageLoaded} name={properLettering(croc.name)} path={croc.image_path} product_price={croc.product_price} />
-                    </Link>
-                ))}
-           
-            
+                {renderControlComponents(allCrocs)}
             </div>
-
-
-
+           
 
             </div>
            
