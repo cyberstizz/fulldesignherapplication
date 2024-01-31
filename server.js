@@ -138,6 +138,37 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 
 
+router.put('/:productType/:productId', async (req, res) => {
+  try {
+      const { productType, productId } = req.params;
+      const updatedProduct = req.body;
+
+      // Validate if productType is one of the allowed types (crocs, jackets, sneakers, boots)
+      const allowedTypes = ['crocs', 'jackets', 'sneakers', 'boots'];
+      if (!allowedTypes.includes(productType)) {
+          return res.status(400).json({ error: 'Invalid product type' });
+      }
+
+      // Construct the SQL query based on the product type
+      const query = `UPDATE ${productType} SET name = $1, image_path = $2, description = $3, product_price = $4 WHERE product_id = $5 RETURNING *`;
+      const values = [updatedProduct.name, updatedProduct.image_path, updatedProduct.description, updatedProduct.product_price, productId];
+
+      // Execute the query using the pool
+      const result = await pool.query(query, values);
+
+      if (result.rows.length === 0) {
+          // If no rows were updated, the product with the given ID was not found
+          return res.status(404).json({ error: 'Product not found' });
+      }
+
+      // Send the updated product as a response
+      res.json(result.rows[0]);
+  } catch (error) {
+      console.error('Error updating product:', error.message);
+      res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
 ///////////////////////////////////////////////
 app.use('/croc', crocsRouter)
