@@ -5,6 +5,14 @@ import { useNavigate } from 'react-router-dom';
 
 
 const LoginModal = ({ isOpen, onClose, handleModalToggle }) => {
+
+  const baseUrl = window.location.origin;
+
+  const apiUrl = process.env.NODE_ENV === 'production'
+  ? `${baseUrl}`
+  : 'http://localhost:3001';
+
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -19,7 +27,7 @@ const LoginModal = ({ isOpen, onClose, handleModalToggle }) => {
     }
 
     try {
-      const response = await Axios.post('/login', { email_address: username, password });
+      const response = await Axios.post(`${apiUrl}/login`, { email_address: username, password });
       // Check the response status and handle accordingly
       if (response.status === 200) {
         // Successful login, you can redirect or perform other actions

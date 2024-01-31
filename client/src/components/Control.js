@@ -18,16 +18,12 @@ const Control = () => {
     const [allBoots, setAllBoots] = useState([]);
 
 
-    const baseUrl = window.location.origin;
-
-    const apiUrl = process.env.NODE_ENV === 'production'
-    ? `${baseUrl}`
-    : 'http://localhost:3001';
+    
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await Axios.get(`${apiUrl}/allProducts`);
+                const response = await Axios.get(`/allProducts`);
                 
                 console.log(response.data);
 
