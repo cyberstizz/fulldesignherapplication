@@ -21,7 +21,6 @@ const EditModal = ({ isOpen, onClose, product, onUpdate }) => {
     }
   };
 
-
   const handleUpdate = () => {
     onUpdate(editedProduct); // Call the onUpdate function provided by the parent component
     onClose(); // Close the modal
@@ -40,7 +39,7 @@ const EditModal = ({ isOpen, onClose, product, onUpdate }) => {
       setEditedProduct({ ...product });
     }
   }, [product]);
-
+  
   return (
     <div className={`modal ${isOpen ? 'open' : ''}`}>
     {/* Modal content */}
