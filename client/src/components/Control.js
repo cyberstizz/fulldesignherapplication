@@ -123,7 +123,7 @@ const renderControlComponents = (products) => {
             <br />
             <br />
             <h1 className='categoryHeader'>use this button below to add new products</h1>
-            <button style={{fontSize: "35px", fontFamily: "fantasy", height: "60px", width: "50%", fontFace: "bolder", color: "silver", display: "block", margin: "auto", backgroundColor: "green", borderRadius: "20px"}}>New product</button>
+            <button style={{fontSize: "35px", fontFamily: "fantasy", height: "60px", width: "50%", fontFace: "bolder", color: "silver", display: "block", margin: "auto", backgroundColor: "green", borderRadius: "20px"}}>New</button>
 
 
             <h1 className='categoryHeader'>Jackets</h1>
