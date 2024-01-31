@@ -138,7 +138,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 
 
-router.put('/:productType/:productId', async (req, res) => {
+app.put('/:productType/:productId', async (req, res) => {
   try {
       const { productType, productId } = req.params;
       const updatedProduct = req.body;
