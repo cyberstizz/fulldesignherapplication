@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './EditModal.scss'; // You can create this CSS file for styling
 
 const EditModal = ({ isOpen, onClose, product, onUpdate }) => {
