@@ -87,7 +87,8 @@ const Control = () => {
 
 
 const renderControlComponents = (products) => {
-    return products.map(product => (
+    return products ? ( 
+        products.map(product => (
         <ControlComponent
             key={product.product_id}
             onImageLoad={handleImageLoaded}
@@ -97,7 +98,8 @@ const renderControlComponents = (products) => {
             product_id={product.product_id}
             product_type={product.product_type} // Pass the product type to ControlComponent
         />
-    ));
+    ))
+    ) : null;
 };
 
     return(
