@@ -52,6 +52,23 @@ const Control = () => {
         fetchData();
     }, []);
 
+    const handleEdit = async (editedProduct) => {
+        // Make a PUT request to the appropriate route for editing based on props.product_type
+        try {
+            const response = await Axios.put(`${apiUrl}/${props.product_type}/${props.product_id}`, editedProduct);
+ // Log the response data
+ console.log('Updated product:', response.data);
+
+ // Call the onUpdate function to update the product in the parent component
+ props.onUpdate(editedProduct);
+
+ // Close the EditModal
+ setEditModalOpen(false);
+        } catch (error) {
+            console.error('Error editing item:', error.message);
+        }
+    };
+
 
 
     const properLettering = (word) => {
