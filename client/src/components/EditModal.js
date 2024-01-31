@@ -4,36 +4,105 @@ import './EditModal.scss'; // You can create this CSS file for styling
 const EditModal = ({ isOpen, onClose, product, onUpdate }) => {
   const [editedProduct, setEditedProduct] = useState({ ...product });
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setEditedProduct((prevProduct) => ({
+          ...prevProduct,
+          image: reader.result,
+        }));
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+
+
   const handleUpdate = () => {
     onUpdate(editedProduct); // Call the onUpdate function provided by the parent component
     onClose(); // Close the modal
   };
 
-  return isOpen && (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <button className="close-button" onClick={onClose}>
-          &times;
-        </button>
-        <div className="edit-modal-content">
-          <p>Edit {product.name}</p>
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              value={editedProduct.name}
-              onChange={(e) => setEditedProduct({ ...editedProduct, name: e.target.value })}
-            />
-          </div>
-          {/* Add other input fields for image, description, product type, and product price */}
-          <div className="button-container">
-            <button className="update-button" onClick={handleUpdate}>Update</button>
-            <button className="cancel-button" onClick={onClose}>Cancel</button>
-          </div>
-        </div>
-      </div>
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedProduct((prevProduct) => ({
+      ...prevProduct,
+      [name]: value,
+    }));
+  };
+
+  return (
+    <div className={`modal ${isOpen ? 'open' : ''}`}>
+    {/* Modal content */}
+    <h2>Edit {product.name}</h2>
+    {/* Input fields for name, image, description, product type, and product price */}
+    <div className="form-group">
+      <label htmlFor="name">Name:</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        value={editedProduct.name}
+        onChange={handleInputChange}
+      />
     </div>
+
+    <div className="form-group">
+      <label htmlFor="image">Image:</label>
+      <input
+        type="file"
+        id="image"
+        name="image"
+        onChange={handleImageChange}
+      />
+    </div>
+
+    <div className="form-group">
+      <label htmlFor="description">Description:</label>
+      <textarea
+        id="description"
+        name="description"
+        value={editedProduct.description}
+        onChange={handleInputChange}
+      />
+    </div>
+
+    <div className="form-group">
+      <label htmlFor="productType">Product Type:</label>
+      <select
+        id="productType"
+        name="productType"
+        value={editedProduct.productType}
+        onChange={handleInputChange}
+      >
+        {/* Options for product types */}
+        <option value="crocs">Crocs</option>
+        <option value="jackets">Jackets</option>
+        <option value="sneakers">Sneakers</option>
+        <option value="boots">Boots</option>
+      </select>
+    </div>
+
+    <div className="form-group">
+      <label htmlFor="productPrice">Product Price:</label>
+      <input
+        type="number"
+        id="productPrice"
+        name="productPrice"
+        value={editedProduct.productPrice}
+        onChange={handleInputChange}
+      />
+    </div>
+
+    {/* Update button to call handleUpdate */}
+    <button onClick={handleUpdate}>Update</button>
+    {/* Cancel button to close the modal */}
+    <button onClick={onClose}>Cancel</button>
+  </div>
   );
 };
 
