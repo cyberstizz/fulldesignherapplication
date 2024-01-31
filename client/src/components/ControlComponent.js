@@ -69,6 +69,7 @@ const ControlComponent = (props) => {
 
 
              {/* Render the EditModal with appropriate props */}
+    {isEditModalOpen && selectedProduct && (
       <EditModal
         isOpen={isEditModalOpen}
         onClose={() => setEditModalOpen(false)}
@@ -79,6 +80,8 @@ const ControlComponent = (props) => {
           console.log('Updated product:', editedProduct);
         }}
       />
+      )}
+
 
       {/* Render the DeleteModal with appropriate props */}
       <DeleteModal
