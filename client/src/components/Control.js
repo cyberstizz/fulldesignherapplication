@@ -137,6 +137,8 @@ const renderControlComponents = (products) => {
                 {allJackets.length > 0 && renderControlComponents(allJackets)}
             </div>
 
+
+            <br />
             <h1 className='categoryHeader'>Sneakers</h1>
             <div className='submenuBody'>
                 {allSneakers.length > 0 && renderControlComponents(allSneakers)}
