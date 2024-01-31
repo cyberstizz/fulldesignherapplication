@@ -10,8 +10,9 @@ const ControlComponent = (props) => {
                 <div className="productRightSection" syle={{display: 'flex', flexDirection: 'column'}}>
                 <section className="submenuTitle">{props.name}</section>
                 <section className="productPrice">${props.product_price}</section>
+                <button className="editButton">edit</button>
+                <button className="deleteButton" >delete</button>
                 </div>
-                <img src="/cart-icon-28356.png" width='15%'height='30%' style={{marginTop: '30%', marginRight: '4%', objectFit: 'contain', overflow: 'hidden'}} alt='cart icon'></img>
             </main>
         </React.Fragment>
     )
