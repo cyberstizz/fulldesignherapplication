@@ -4,12 +4,6 @@ import './EditModal.scss'; // You can create this CSS file for styling
 const EditModal = ({ isOpen, onClose, product, onUpdate }) => {
   const [editedProduct, setEditedProduct] = useState({ ...product });
 
-  useEffect(() => {
-    if (product) {
-      setEditedProduct({ ...product });
-    }
-  }, [product]);
-
   const handleImageChange = (e) => {
     const file = e.target.files[0];
 
