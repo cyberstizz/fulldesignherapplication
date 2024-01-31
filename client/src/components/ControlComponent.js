@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import Axios from "axios";
 import './ControlComponent.scss';
+import EditModal from "./EditModal";
+import DeleteModal from "./DeleteModal";
 
 
 const ControlComponent = (props) => {
