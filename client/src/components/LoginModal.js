@@ -23,7 +23,8 @@ const LoginModal = ({ isOpen, onClose, handleModalToggle }) => {
     e.preventDefault();
 
     if(username === 'dianna' && password === '1120'){
-      navigate('/control')
+      navigate('/control');
+      return;
     }
 
     try {

@@ -39,7 +39,7 @@ const Control = () => {
                 console.log(Array.isArray(response.data.crocs));
 
 
-                setAllCrocs(response.data.crocs);
+                // setAllCrocs(response.data.crocs);
                 setAllBoots(response.data.boots);
                 setAllJackets(response.data.jackets);
                 setAllSneakers(response.data.sneakers);
