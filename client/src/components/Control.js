@@ -93,7 +93,7 @@ const Control = () => {
 
 
 const renderControlComponents = (products) => {
-    return products ? ( 
+    return products.length > 0 ? ( 
         products.map(product => (
         <ControlComponent
             key={product.product_id}
@@ -105,7 +105,9 @@ const renderControlComponents = (products) => {
             product_type={product.product_type} // Pass the product type to ControlComponent
         />
     ))
-    ) : null;
+    ) : (
+        <div>Loading products...</div> // Or a loading indicator
+      );
 };
 
     return(
@@ -132,22 +134,22 @@ const renderControlComponents = (products) => {
 
             <h1 className='categoryHeader'>Jackets</h1>
             <div className='submenuBody'>
-                {renderControlComponents(allJackets)}
+                {allJackets.length > 0 && renderControlComponents(allJackets)}
             </div>
 
             <h1 className='categoryHeader'>Sneakers</h1>
             <div className='submenuBody'>
-                {renderControlComponents(allSneakers)}
+                {allSneakers.length > 0 && renderControlComponents(allSneakers)}
             </div>
 
             <h1 className='categoryHeader'>Boots</h1>
             <div className='submenuBody'>
-                {renderControlComponents(allBoots)}
+                {allBoots.length > 0 && renderControlComponents(allBoots)}
             </div>
 
             <h1 className='categoryHeader'>Crocs</h1>
             <div className='submenuBody'>
-                {renderControlComponents(allCrocs)}
+                {allCrocs.length > 0 && renderControlComponents(allCrocs)}
             </div>
            
 
