@@ -21,19 +21,38 @@ const ControlComponent = (props) => {
     const handleEdit = async (editedProduct) => {
         // Make a PUT request to the appropriate route for editing based on props.product_type
         try {
-            const response = await Axios.put(`${apiUrl}/${props.product_type}/${props.product_id}`, editedProduct);
- // Log the response data
- console.log('Updated product:', response.data);
 
- // Call the onUpdate function to update the product in the parent component
- props.onUpdate(response.data);
+              // Create a FormData object
+        const formData = new FormData();
 
- // Close the EditModal
- setEditModalOpen(false);
-        } catch (error) {
-            console.error('Error editing item:', error.message);
-        }
-    };
+        // Append each property of editedProduct to the FormData object
+        Object.keys(editedProduct).forEach((key) => {
+            formData.append(key, editedProduct[key]);
+        });
+
+        // Append the file to the FormData object (assuming your file input field name is 'image')
+        formData.append('image', editedProduct.image);
+
+
+        // Make a PUT request using FormData
+        const response = await Axios.put(`${apiUrl}/${props.product_type}/${props.product_id}`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+}); 
+        // Log the response data
+          console.log('Updated product:', response.data);
+
+        // Call the onUpdate function to update the product in the parent component
+        props.onUpdate(response.data);
+
+        // Close the EditModal
+        setEditModalOpen(false);
+        
+                } catch (error) {
+                    console.error('Error editing item:', error.message);
+                }
+            };
 
     const handleDelete = async () => {
         // Make a DELETE request to the appropriate route for deletion based on props.product_type
