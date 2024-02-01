@@ -25,7 +25,9 @@ const multer = require('multer');
 const multerS3 = require('multer-s3');
 
 
-
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 app.use(bodyParser.json());
 app.use(cors());
 app.use(flash());
@@ -151,9 +153,7 @@ const sendEmail = async (to, subject, text) => {
 //     res.sendFile(path.join(__dirname, 'client/build')); // Replace 'path_to_your_index_html_file' with the actual path to your HTML file
 //   });
 
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-}
+
 
 // Serve static files from the client directory
 if (process.env.NODE_ENV === 'production') {
@@ -167,7 +167,7 @@ app.put('/:productType/:productId', upload.single('image'), async (req, res) => 
 
     console.log('Request body:', req.body);
     console.log('Uploaded file:', req.file);
-    
+
       const { productType, productId } = req.params;
       const updatedProduct = req.body;
 
