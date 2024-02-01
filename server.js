@@ -20,6 +20,9 @@ const sneakersRouter = require('./routes/sneakers/sneakersRouter')
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
+const AWS = require('aws-sdk');
+const multer = require('multer');
+const multerS3 = require('multer-s3');
 
 
 
@@ -83,6 +86,27 @@ passport.use(new LocalStrategy({
     return done(error);
   }
 }));
+
+// Configure AWS SDK
+AWS.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.AWS_REGION,
+});
+
+const s3 = new AWS.S3();
+
+// Set up multer with S3 storage
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'designherbucket',
+    key: function (req, file, cb) {
+      // Set the file key in your S3 bucket
+      cb(null, 'uploads/' + Date.now() + '_' + file.originalname);
+    },
+  }),
+});
 
 
 
