@@ -103,7 +103,7 @@ const upload = multer({
     bucket: 'designherbucket',
     key: function (req, file, cb) {
       // Set the file key in your S3 bucket
-      cb(null, 'uploads/' + Date.now() + '_' + file.originalname);
+      cb(null, Date.now() + '_' + file.originalname);
     },
   }),
 });
