@@ -26,7 +26,7 @@ const ControlComponent = (props) => {
  console.log('Updated product:', response.data);
 
  // Call the onUpdate function to update the product in the parent component
- props.onUpdate(editedProduct);
+ props.onUpdate(response.data);
 
  // Close the EditModal
  setEditModalOpen(false);
