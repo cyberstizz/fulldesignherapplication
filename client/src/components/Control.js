@@ -10,12 +10,23 @@ import Header from './Header';
 
 
 const Control = () => {
+
+
+    const baseUrl = window.location.origin;
+
+    const apiUrl = process.env.NODE_ENV === 'production'
+    ? `${baseUrl}`
+    : 'http://localhost:3001';
+
+
     // const [imagesLoaded, setImagesLoaded] = useState(false);
     // const [loadedImagesCount, setLoadedImagesCount] = useState(0);
     const [allCrocs, setAllCrocs] = useState([]);
     const [allJackets, setAllJackets] = useState([]);
     const [allSneakers, setAllSneakers] = useState([]);
     const [allBoots, setAllBoots] = useState([]);
+    const [isEditModalOpen, setEditModalOpen] = useState(false);
+
 
 
     
@@ -55,12 +66,12 @@ const Control = () => {
     const handleEdit = async (editedProduct) => {
         // Make a PUT request to the appropriate route for editing based on props.product_type
         try {
-            const response = await Axios.put(`${apiUrl}/${props.product_type}/${props.product_id}`, editedProduct);
+            const response = await Axios.put(`${apiUrl}/${editedProduct.product_type}/${editedProduct.product_id}`, editedProduct);
  // Log the response data
  console.log('Updated product:', response.data);
 
  // Call the onUpdate function to update the product in the parent component
- props.onUpdate(editedProduct);
+ editedProduct.onUpdate(editedProduct);
 
  // Close the EditModal
  setEditModalOpen(false);
