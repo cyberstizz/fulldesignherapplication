@@ -168,16 +168,26 @@ const renderControlComponents = (products) => {
 
 
             <br />
+            <br />
+            <br />
+            <br />
             <h1 className='categoryHeader'>Sneakers</h1>
             <div className='submenuBody'>
                 {allSneakers.length > 0 && renderControlComponents(allSneakers)}
             </div>
-
+            <br />
+            <br />
+            <br />
+            <br />
             <h1 className='categoryHeader'>Boots</h1>
             <div className='submenuBody'>
                 {allBoots.length > 0 && renderControlComponents(allBoots)}
             </div>
 
+            <br />
+            <br />
+            <br />
+            <br />
             <h1 className='categoryHeader'>Crocs</h1>
             <div className='submenuBody'>
                 {allCrocs.length > 0 && renderControlComponents(allCrocs)}
