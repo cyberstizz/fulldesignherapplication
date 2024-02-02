@@ -164,8 +164,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.put('/:productType/:productId', upload.single('image'), async (req, res) => {
   try {
-    console.log('Request body:', req.body);
-    console.log('Uploaded file:', req.file);
+    console.log('Uploaded file url if everything worked correctly:', req.file.location);
 
     const { productType, productId } = req.params;
     const updatedProduct = req.body;
