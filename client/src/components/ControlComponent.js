@@ -22,12 +22,15 @@ const ControlComponent = (props) => {
       try {
         // Create a FormData object
         const formData = new FormData();
-        formData.append(editedProduct.image);
-    
-        // Append each property of editedProduct to the FormData object
-        Object.keys(editedProduct).forEach((key) => {
-          formData.append(key, editedProduct[key]);
-        });
+         // Append the file to the FormData object (assuming your file input field name is 'image')
+    formData.append('image', editedProduct.image, editedProduct.image.name);
+
+    // Append each property of editedProduct (excluding 'image') to the FormData object
+    Object.keys(editedProduct).forEach((key) => {
+      if (key !== 'image') {
+        formData.append(key, editedProduct[key]);
+      }
+    });
     
         // Make a PUT request using FormData
         const response = await Axios.put(`${apiUrl}/${props.product_type}/${props.product_id}`, formData, {
