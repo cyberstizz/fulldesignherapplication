@@ -22,6 +22,7 @@ const ControlComponent = (props) => {
       try {
         // Create a FormData object
         const formData = new FormData();
+        formData.append(editedProduct.image);
     
         // Append each property of editedProduct to the FormData object
         Object.keys(editedProduct).forEach((key) => {
