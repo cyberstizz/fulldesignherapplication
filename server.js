@@ -111,6 +111,7 @@ const upload = multer({
 });
 
 
+console.log('Multer-S3 configuration:', upload);  // Add this line for logging
 
 
 
@@ -164,7 +165,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.put('/:productType/:productId', upload.single('image'), async (req, res) => {
   try {
-    console.log('Uploaded file url if everything worked correctly:', req.file.location);
+    console.log('Received file:', req.file);  // Add this line for logging
 
     const { productType, productId } = req.params;
     const updatedProduct = req.body;
