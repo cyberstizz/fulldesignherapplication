@@ -22,11 +22,14 @@ const ControlComponent = (props) => {
       try {
         // Create a FormData object
         const formData = new FormData();
-         // Append the file to the FormData object (assuming your file input field name is 'image')
-        console.log('i am the handleEdit function about to handle th file, this is a copy  of it', editedProduct.image)
-    // Append each property of editedProduct (excluding 'image') to the FormData object
+        // Explicitly append the image file
+    formData.append('image', editedProduct.image);
+
+    // Append other properties (excluding 'image')
     Object.keys(editedProduct).forEach((key) => {
+      if (key !== 'image') {
         formData.append(key, editedProduct[key]);
+      }
     });
     console.log(formData);
         // Make a PUT request using FormData
