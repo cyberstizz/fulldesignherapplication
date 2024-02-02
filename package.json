@@ -20,7 +20,7 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.504.0",
     "@craco/craco": "^6.4.0",
-    "aws-sdk": "^2.1548.0",
+    "aws-sdk": "^2.1549.0",
     "b": "^2.0.1",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
