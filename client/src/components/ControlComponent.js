@@ -28,7 +28,7 @@ const ControlComponent = (props) => {
     Object.keys(editedProduct).forEach((key) => {
         formData.append(key, editedProduct[key]);
     });
-    
+    console.log(formData);
         // Make a PUT request using FormData
         const response = await Axios.put(`${apiUrl}/${props.product_type}/${props.product_id}`, formData, {
           headers: {
