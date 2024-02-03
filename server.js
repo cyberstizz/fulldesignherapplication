@@ -10,7 +10,6 @@ const crypto = require('crypto');
 const secret = crypto.randomBytes(64).toString('hex');
 const app = express();
 const port = process.env.PORT || 3001; // Change this to the desired port
-// const { Pool } = require('pg');
 const pool = require('./db');
 const cors = require('cors');
 const crocsRouter = require('./routes/crocs/crocsRouter')
@@ -20,9 +19,12 @@ const sneakersRouter = require('./routes/sneakers/sneakersRouter')
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
-const AWS = require('aws-sdk');
+const { S3Client } = require('@aws-sdk/client-s3');
+const { fromIni } = require('@aws-sdk/credential-provider-ini');
 const multer = require('multer');
-const multerS3 = require('multer-s3');
+const { S3 } = require('@aws-sdk/client-s3');
+const { Upload } = require('@aws-sdk/lib-storage');
+const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
 
 
 if (process.env.NODE_ENV !== 'production') {
@@ -46,7 +48,6 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-
 app.use(session({ secret, resave: true, saveUninitialized: true }));
 
 
@@ -100,21 +101,19 @@ passport.use(new LocalStrategy({
 
 
 
-const s3Client = new AWS.S3({
+const s3Client = new S3({
   region: process.env.AWS_REGION,
-  credentials: {
+  credentials: fromIni({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  },
+  }),
 });
 
-// Set up multer with S3 storage
 const upload = multer({
   storage: multerS3({
     s3: s3Client,
     bucket: 'designherbucket',
     key: function (req, file, cb) {
-      // Set the file key in your S3 bucket
       cb(null, Date.now() + '_' + file.originalname);
     },
   }),
