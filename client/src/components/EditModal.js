@@ -30,10 +30,10 @@ const EditModal = ({ isOpen, onClose, product, onUpdate }) => {
   };
 
   const handleInputChange = (e) => {
-    const { name, value, type } = e.target;
+    const { name, value } = e.target;
     setEditedProduct((prevProduct) => ({
       ...prevProduct,
-      [name]: type === 'file' ? prevProduct[name] : value,
+      image: selectedFile, // Use the file object directly
     }));
   };
 
