@@ -3,12 +3,9 @@ import './EditModal.scss'; // You can create this CSS file for styling
 
 const EditModal = ({ isOpen, onClose, product, onUpdate }) => {
   const [editedProduct, setEditedProduct] = useState({ ...product });
-  const [selectedFile, setSelectedFile] = useState(null); // Add a state to store the selected file
-
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    setSelectedFile(file); // Store the selected file in the state
 
     if (file) {
       const reader = new FileReader();
@@ -30,10 +27,10 @@ const EditModal = ({ isOpen, onClose, product, onUpdate }) => {
   };
 
   const handleInputChange = (e) => {
-    const { name, value, type } = e.target;
+    const { name, value } = e.target;
     setEditedProduct((prevProduct) => ({
       ...prevProduct,
-      [name]: type === 'file' ? prevProduct[name] : value,
+      image: file, // Use the file object directly
     }));
   };
 
