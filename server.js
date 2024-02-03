@@ -22,6 +22,7 @@ const nodemailer = require('nodemailer');
 const { S3Client } = require('@aws-sdk/client-s3');
 const { fromIni } = require('@aws-sdk/credential-provider-ini');
 const multer = require('multer');
+const multerS3 = require('multer-s3');
 const { S3 } = require('@aws-sdk/client-s3');
 const { Upload } = require('@aws-sdk/lib-storage');
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
