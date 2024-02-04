@@ -173,6 +173,44 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 
 
+app.delete('/:productType/:productId', async (req, res) => {
+  try {
+    const { productType, productId } = req.params;
+
+    // Validate if productType is one of the allowed types (crocs, jackets, sneakers, boots)
+    const allowedTypes = ['crocs', 'jackets', 'sneakers', 'boots'];
+    if (!allowedTypes.includes(productType)) {
+      return res.status(400).json({ error: 'Invalid product type' });
+    }
+
+    // Construct the SQL query based on the product type
+    const query = `DELETE FROM ${productType} WHERE product_id = $1 RETURNING *`;
+    const values = [productId];
+
+    // Execute the query using the pool
+    const result = await pool.query(query, values);
+
+    if (result.rows.length === 0) {
+      // If no rows were deleted, the product with the given ID was not found
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+ // Delete the associated image from AWS S3
+ const s3 = new S3();
+ const imageKey = result.rows[0].image_path.split('/').pop(); // Assuming 'image_path' is the S3 key
+
+ await s3.deleteObject({
+   Bucket: 'designherbucket',
+   Key: imageKey,
+ }).promise();
+    res.json({ message: 'Product deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting product:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
 app.put('/:productType/:productId', upload.single('image'), async (req, res) => {
   try {
     console.log('Received file:', req.file);  // Add this line for logging
