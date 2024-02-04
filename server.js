@@ -196,14 +196,19 @@ app.delete('/:productType/:productId', async (req, res) => {
     }
 
  // Delete the associated image from AWS S3
- const s3 = new S3();
- const imageKey = result.rows[0].image_path.split('/').pop(); // Assuming 'image_path' is the S3 key
+ const s3 = new S3({
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  },
+}); const imageKey = result.rows[0].image_path.split('/').pop(); // Assuming 'image_path' is the S3 key
 
  await s3.deleteObject({
    Bucket: 'designherbucket',
    Key: imageKey,
  })
- 
+
     res.json({ message: 'Product deleted successfully' });
   } catch (error) {
     console.error('Error deleting product:', error.message);
