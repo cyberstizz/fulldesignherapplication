@@ -42,12 +42,8 @@ const Control = () => {
                 console.log('this is the response.data', response.data);
 
                 
-                console.log(response.data.crocs)
-                console.log(response.data.boots)
-                console.log(response.data.jackets)
-                console.log(response.data.sneakers)
+           
 
-                console.log(Array.isArray(response.data.crocs));
 
 
                 setAllCrocs(response.data.crocs);
@@ -71,7 +67,7 @@ const Control = () => {
  console.log('Updated product:', response.data);
 
  // Call the onUpdate function to update the product in the parent component
- editedProduct.onUpdate(editedProduct);
+ props.onUpdate(editedProduct);
 
  // Close the EditModal
  setEditModalOpen(false);
@@ -109,9 +105,9 @@ const Control = () => {
         //into a string, and return the string
     }
 
-    const handleImageLoaded = () => {
-        // setLoadedImagesCount(prevCount => prevCount + 1);
-};
+//     const handleImageLoaded = () => {
+//         // setLoadedImagesCount(prevCount => prevCount + 1);
+// };
 
 // useEffect(() => {
 //   if (loadedImagesCount === allCrocs.length) {

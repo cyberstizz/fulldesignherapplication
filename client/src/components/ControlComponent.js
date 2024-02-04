@@ -50,6 +50,8 @@ const ControlComponent = (props) => {
     
       } catch (error) {
         console.error('Error editing item:', error.message);
+        console.error('Server response:', error.response); /
+        console.error('Error editing item:', error.message);
       }
     };
     
