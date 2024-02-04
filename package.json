@@ -44,7 +44,8 @@
     "passport-local": "^1.0.0",
     "pg": "^8.11.3",
     "react-stripe-checkout": "^2.6.3",
-    "stripe": "^14.13.0"
+    "stripe": "^14.13.0",
+    "uuid": "^9.0.1"
   },
   "engines": {
     "node": "14.9.0"

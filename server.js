@@ -26,6 +26,8 @@ const multerS3 = require('multer-s3');
 const { S3 } = require('@aws-sdk/client-s3');
 const { Upload } = require('@aws-sdk/lib-storage');
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
+const { v4: uuidv4 } = require('uuid');
+
 
 
 if (process.env.NODE_ENV !== 'production') {
@@ -196,12 +198,12 @@ app.delete('/:productType/:productId', async (req, res) => {
     }
 
  // Delete the associated image from AWS S3
- const s3 = new S3({
+ const s3 = new S3Client({
   region: process.env.AWS_REGION,
-  credentials: {
+  credentials: ({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  },
+  }),
 }); const imageKey = result.rows[0].image_path.split('/').pop(); // Assuming 'image_path' is the S3 key
 
  await s3.deleteObject({
@@ -252,6 +254,43 @@ app.put('/:productType/:productId', upload.single('image'), async (req, res) => 
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+
+app.post('/:productType', upload.single('image'), async (req, res) => {
+  try {
+    console.log('Received file:', req.file);  // Add this line for logging
+
+    const { productType } = req.params;
+    const newProduct = req.body;
+
+    // Validate if productType is one of the allowed types (crocs, jackets, sneakers, boots)
+    const allowedTypes = ['crocs', 'jackets', 'sneakers', 'boots'];
+    if (!allowedTypes.includes(productType)) {
+      return res.status(400).json({ error: 'Invalid product type' });
+    }
+
+    // Use the S3 URL for the image_path in the database
+    const s3Url = req.file.location;
+
+    // Generate a new UUID for the product_id
+    const productId = uuidv4();
+
+    // Construct the SQL query for inserting a new product
+    const query = `INSERT INTO ${productType} (product_id, name, image_path, description, product_price) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+    const values = [productId, newProduct.name, s3Url, newProduct.description, newProduct.product_price];
+
+    // Execute the query using the pool
+    const result = await pool.query(query, values);
+
+    // Send the newly created product as a response
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.error('Error creating product:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
 
 
 ///////////////////////////////////////////////
