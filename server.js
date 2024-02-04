@@ -206,10 +206,11 @@ app.delete('/:productType/:productId', async (req, res) => {
   }),
 }); const imageKey = result.rows[0].image_path.split('/').pop(); // Assuming 'image_path' is the S3 key
 
- await s3.deleteObject({
-   Bucket: 'designherbucket',
-   Key: imageKey,
- })
+
+ await s3.send(new DeleteObjectCommand({
+  Bucket: 'designherbucket',
+  Key: imageKey,
+}));
 
     res.json({ message: 'Product deleted successfully' });
   } catch (error) {
