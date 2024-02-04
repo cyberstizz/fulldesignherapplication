@@ -67,7 +67,7 @@ const Control = () => {
  console.log('Updated product:', response.data);
 
  // Call the onUpdate function to update the product in the parent component
- props.onUpdate(editedProduct);
+//  props.onUpdate(editedProduct);
 
  // Close the EditModal
  setEditModalOpen(false);
@@ -121,13 +121,11 @@ const renderControlComponents = (products) => {
         products.map(product => (
         <ControlComponent
             key={product.product_id}
-            onImageLoad={handleImageLoaded}
             name={properLettering(product.name)}
             path={product.image_path}
             product_price={product.product_price}
             product_id={product.product_id}
             product_type={product.product_type} // Pass the product type to ControlComponent
-            onUpdate={handleEdit}
         />
     ))
     ) : (

@@ -43,14 +43,14 @@ const ControlComponent = (props) => {
         console.log('Updated product:', response.data);
     
         // Call the onUpdate function to update the product in the parent component
-        props.onUpdate(response.data);
+        // props.onUpdate(response.data);
     
         // Close the EditModal
         setEditModalOpen(false);
     
       } catch (error) {
         console.error('Error editing item:', error.message);
-        console.error('Server response:', error.response); /
+        console.error('Server response:', error.response); 
         console.error('Error editing item:', error.message);
       }
     };
