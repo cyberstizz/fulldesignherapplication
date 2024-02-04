@@ -202,7 +202,8 @@ app.delete('/:productType/:productId', async (req, res) => {
  await s3.deleteObject({
    Bucket: 'designherbucket',
    Key: imageKey,
- }).promise();
+ })
+ 
     res.json({ message: 'Product deleted successfully' });
   } catch (error) {
     console.error('Error deleting product:', error.message);
