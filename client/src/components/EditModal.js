@@ -26,11 +26,13 @@ const EditModal = ({ isOpen, onClose, product, onUpdate }) => {
   };
 
   const handleUpdate = () => {
+    console.log('Updated product before update:', editedProduct);
     onUpdate(editedProduct); // Call the onUpdate function provided by the parent component
     onClose(); // Close the modal
   };
 
   const handleInputChange = (e) => {
+    console.log('Input change:', e.target.name, e.target.value);
     const { name, value } = e.target;
     setEditedProduct((prevProduct) => ({
       ...prevProduct,
