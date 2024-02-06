@@ -91,17 +91,16 @@ const Control = () => {
 
 
     const handleCreate = async (product) => {
-            setNewProduct(product);
             console.log("this is the product I am about to create", product)
 
 
             try {
                 const formData = new FormData();
-                formData.append('name', newProduct.name);
-                formData.append('image', newProduct.image);
-                formData.append('description', newProduct.description);
-                formData.append('productType', newProduct.productType);
-                formData.append('price', newProduct.price);
+                formData.append('name', product.name);
+                formData.append('image', product.image);
+                formData.append('description', product.description);
+                formData.append('productType', product.productType);
+                formData.append('price', product.price);
             
                 // Make a POST request to the backend route '/create'
                 const response = await Axios.post(`${apiUrl}/create`, formData, {
@@ -111,7 +110,7 @@ const Control = () => {
                 });
             
                 console.log(response.data);
-                        
+                        setNewProduct(product)
                 // Close the modal
                 toggleCreateModal();
         } catch (error) {
