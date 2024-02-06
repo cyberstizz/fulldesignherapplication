@@ -35,7 +35,10 @@ const Control = () => {
       price: '',
     });
 
-
+    useEffect(() => {
+        console.log(isCreateModalOpen); // This will log the updated state after it has changed
+    }, [isCreateModalOpen]); // The effect runs whenever isCreateModalOpen changes
+    
 
     
 
