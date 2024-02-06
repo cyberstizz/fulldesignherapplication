@@ -1,0 +1,68 @@
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  
+    &.open {
+      display: block;
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+  
+    .form-group {
+      margin-bottom: 15px;
+  
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+  
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+  
+      textarea {
+        resize: vertical;
+      }
+    }
+  
+    button {
+      padding: 10px;
+      color: white;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      margin-right: 10px;
+      font-weight: bold;
+  
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  
+    button[style*="green"] {
+      background-color: green;
+    }
+  
+    button[style*="red"] {
+      background-color: red;
+    }
+  }
+  
