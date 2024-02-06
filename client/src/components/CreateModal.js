@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
+import './CreateModal.scss'
 
 const CreateModal = ({ isOpen, onClose, onCreate }) => {
   const [newProduct, setNewProduct] = useState({
