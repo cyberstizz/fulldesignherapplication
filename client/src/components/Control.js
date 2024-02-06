@@ -80,7 +80,6 @@ const Control = () => {
 
 
     const handleCreate = async () => {
-        try {
             try {
                 const formData = new FormData();
                 formData.append('name', newProduct.name);
@@ -97,11 +96,7 @@ const Control = () => {
                 });
             
                 console.log(response.data);
-            
-                // Update the state with the new product if needed
-                // This depends on how you manage your state
-                // You might want to fetch the updated data again from the server
-            
+                        
                 // Close the modal
                 onClose();
         } catch (error) {
