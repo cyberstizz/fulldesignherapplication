@@ -256,7 +256,7 @@ app.put('/:productType/:productId', upload.single('image'), async (req, res) => 
   }
 });
 
-
+//create route
 app.post('/:productType', upload.single('image'), async (req, res) => {
   try {
     console.log('Received file:', req.file);  // Add this line for logging

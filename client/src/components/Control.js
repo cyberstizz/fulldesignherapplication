@@ -1,10 +1,10 @@
 import React from 'react';
 import './Crocs.scss';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import ControlComponent from './ControlComponent';
 import Header from './Header';
+import CreateModal from './CreateModal'; // Assuming the file path is correct
 
 
 
@@ -26,6 +26,8 @@ const Control = () => {
     const [allSneakers, setAllSneakers] = useState([]);
     const [allBoots, setAllBoots] = useState([]);
     const [isEditModalOpen, setEditModalOpen] = useState(false);
+    const [isCreateModalOpen, setCreateModalOpen] = useState(false);
+
 
 
 
@@ -76,6 +78,37 @@ const Control = () => {
         }
     };
 
+
+    const handleCreate = async () => {
+        try {
+            try {
+                const formData = new FormData();
+                formData.append('name', newProduct.name);
+                formData.append('image', newProduct.image);
+                formData.append('description', newProduct.description);
+                formData.append('productType', newProduct.productType);
+                formData.append('price', newProduct.price);
+            
+                // Make a POST request to the backend route '/create'
+                const response = await Axios.post('/create', formData, {
+                  headers: {
+                    'Content-Type': 'multipart/form-data',
+                  },
+                });
+            
+                console.log(response.data);
+            
+                // Update the state with the new product if needed
+                // This depends on how you manage your state
+                // You might want to fetch the updated data again from the server
+            
+                // Close the modal
+                onClose();
+        } catch (error) {
+          console.error('Error creating product:', error.message);
+        }
+      };
+      
 
 
     const properLettering = (word) => {
@@ -152,7 +185,22 @@ const renderControlComponents = (products) => {
             <br />
             <br />
             <h1 className='categoryHeader'>use this button below to add new products</h1>
-            <button style={{fontSize: "35px", fontFamily: "fantasy", height: "60px", width: "50%", fontFace: "bolder", color: "silver", display: "block", margin: "auto", backgroundColor: "green", borderRadius: "20px"}}>New</button>
+            <button style={{
+                fontSize: "35px",
+                fontFamily: "fantasy", 
+                height: "60px", 
+                width: "50%", 
+                fontFace: "bolder", 
+                color: "silver", 
+                display: "block", 
+                margin: "auto", 
+                backgroundColor: "green", 
+                borderRadius: "20px"
+                }}
+                onClick={() => setCreateModalOpen(true)}
+                >
+                New
+            </button>
 
 
             <h1 className='categoryHeader'>Jackets</h1>
@@ -185,8 +233,12 @@ const renderControlComponents = (products) => {
             <h1 className='categoryHeader'>Crocs</h1>
             <div className='submenuBody'>
                 {allCrocs.length > 0 && renderControlComponents(allCrocs)}
-            </div>
-           
+            </div>  
+            <CreateModal
+                isOpen={isCreateModalOpen}
+                onClose={() => setCreateModalOpen(false)}
+                onCreate={handleCreate}
+            />
 
             </div>
            
