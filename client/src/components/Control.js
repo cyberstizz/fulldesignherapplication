@@ -103,7 +103,7 @@ const Control = () => {
                 formData.append('image', product.image);
                 formData.append('description', product.description);
                 formData.append('productType', product.productType);
-                formData.append('price', product.price);
+                formData.append('product_price', product.price);
 
 
                 console.log(`just for good measure this is the product name ${product.name}`)
