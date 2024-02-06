@@ -94,6 +94,8 @@ const Control = () => {
             console.log("this is the handleCreate and i was just called. this is the product I am about to create", product)
             console.log(`and this is the newProduct ${newProduct}, if it has already loaded it should like the same as product`)
 
+            const productType = product.productType;
+
 
             try {
                 const formData = new FormData();
@@ -108,7 +110,7 @@ const Control = () => {
                 console.log(`now if this was done correctly this is the product details ${formData}`)
             
                 // Make a POST request to the backend route '/create'
-                const response = await Axios.post(`${apiUrl}/create`, formData, {
+                const response = await Axios.post(`${apiUrl}/${productType}`, formData, {
                   headers: {
                     'Content-Type': 'multipart/form-data',
                   },
