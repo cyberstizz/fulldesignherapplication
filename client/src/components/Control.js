@@ -254,6 +254,8 @@ const renderControlComponents = (products) => {
             <div className='submenuBody'>
                 {allCrocs.length > 0 && renderControlComponents(allCrocs)}
             </div>  
+
+            </div>
             <CreateModal
                 isOpen={isCreateModalOpen}
                 onClose={() => setCreateModalOpen(false)}
@@ -263,8 +265,6 @@ const renderControlComponents = (products) => {
                     handleCreate(product)
                 }}
             />
-
-            </div>
            
         </React.Fragment>
     );
