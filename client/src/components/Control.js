@@ -110,7 +110,7 @@ const Control = () => {
                 console.log(response.data);
                         
                 // Close the modal
-                onClose();
+                toggleCreateModal();
         } catch (error) {
           console.error('Error creating product:', error.message);
         }
