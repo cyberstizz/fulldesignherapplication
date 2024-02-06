@@ -91,7 +91,8 @@ const Control = () => {
 
 
     const handleCreate = async (product) => {
-            console.log("this is the product I am about to create", product)
+            console.log("this is the handleCreate and i was just called. this is the product I am about to create", product)
+            console.log(`and this is the newProduct ${newProduct}, if it has already loaded it should like the same as product`)
 
 
             try {
@@ -101,6 +102,10 @@ const Control = () => {
                 formData.append('description', product.description);
                 formData.append('productType', product.productType);
                 formData.append('price', product.price);
+
+
+                console.log(`just for good measure this is the product name ${product.name}`)
+                console.log(`now if this was done correctly this is the product details ${formData}`)
             
                 // Make a POST request to the backend route '/create'
                 const response = await Axios.post(`${apiUrl}/create`, formData, {
@@ -251,6 +256,8 @@ const renderControlComponents = (products) => {
                 isOpen={isCreateModalOpen}
                 onClose={() => setCreateModalOpen(false)}
                 onCreate={(product) =>{
+                    console.log(`this is the onCreate function and this is the product i recieved ${product}`)
+                    setNewProduct(product)
                     handleCreate(product)
                 }}
             />
