@@ -250,7 +250,9 @@ const renderControlComponents = (products) => {
             <CreateModal
                 isOpen={isCreateModalOpen}
                 onClose={() => setCreateModalOpen(false)}
-                onCreate={handleCreate}
+                onCreate={(product) =>{
+                    handleCreate(product)
+                }}
             />
 
             </div>
