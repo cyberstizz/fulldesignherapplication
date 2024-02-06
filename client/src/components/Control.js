@@ -204,7 +204,11 @@ const renderControlComponents = (products) => {
                 backgroundColor: "green", 
                 borderRadius: "20px"
                 }}
-                onClick={() => setCreateModalOpen(true)}
+                onClick={() => {
+                    setCreateModalOpen(true)
+                    console.log(isCreateModalOpen)
+                }
+                    }
                 >
                 New
             </button>
