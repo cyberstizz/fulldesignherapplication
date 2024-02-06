@@ -43,11 +43,6 @@ const Control = () => {
                 
                 console.log('this is the response.data', response.data);
 
-                
-           
-
-
-
                 setAllCrocs(response.data.crocs);
                 setAllBoots(response.data.boots);
                 setAllJackets(response.data.jackets);
