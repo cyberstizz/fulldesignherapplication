@@ -30,28 +30,7 @@ const CreateModal = ({ isOpen, onClose, onCreate }) => {
   };
 
   const handleCreate = async () => {
-    try {
-      const formData = new FormData();
-      formData.append('name', newProduct.name);
-      formData.append('image', newProduct.image);
-      formData.append('description', newProduct.description);
-      formData.append('productType', newProduct.productType);
-      formData.append('price', newProduct.price);
-
-      const response = await Axios.post('/create', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
-      console.log(response.data);
-
-      // Call the onCreate function provided by the parent component
-      onCreate();
-      onClose(); // Close the modal
-    } catch (error) {
-      console.error('Error creating product:', error.message);
-    }
+        onCreate(newProduct)
   };
 
   return (

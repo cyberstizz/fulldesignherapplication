@@ -27,7 +27,13 @@ const Control = () => {
     const [allBoots, setAllBoots] = useState([]);
     const [isEditModalOpen, setEditModalOpen] = useState(false);
     const [isCreateModalOpen, setCreateModalOpen] = useState(false);
-
+    const [newProduct, setNewProduct] = useState({
+      name: '',
+      image: null,
+      description: '',
+      productType: 'crocs',
+      price: '',
+    });
 
 
 
@@ -56,6 +62,13 @@ const Control = () => {
         fetchData();
     }, []);
 
+
+    //firt a function to open the create model
+    const toggleCreateModal = () => {
+        setCreateModalOpen(!isCreateModalOpen);
+      };
+      
+
     const handleEdit = async (editedProduct) => {
         // Make a PUT request to the appropriate route for editing based on props.product_type
         try {
@@ -74,7 +87,11 @@ const Control = () => {
     };
 
 
-    const handleCreate = async () => {
+    const handleCreate = async (product) => {
+            setNewProduct(product);
+            console.log("this is the product I am about to create", product)
+
+
             try {
                 const formData = new FormData();
                 formData.append('name', newProduct.name);
