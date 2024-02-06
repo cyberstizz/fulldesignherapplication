@@ -187,6 +187,15 @@ const renderControlComponents = (products) => {
             {/* {!imagesLoaded && <Loader />} */}
 
             <Header />
+            <CreateModal
+                isOpen={isCreateModalOpen}
+                onClose={() => setCreateModalOpen(false)}
+                onCreate={(product) =>{
+                    console.log(`this is the onCreate function and this is the product i recieved ${product}`)
+                    setNewProduct(product)
+                    handleCreate(product)
+                }}
+            />
             <div className='fullCategoryBody'>
             <h1 className='categoryHeader' style={{color: "red"}}>Control page</h1>
             <br />
@@ -256,15 +265,7 @@ const renderControlComponents = (products) => {
             </div>  
 
             </div>
-            <CreateModal
-                isOpen={isCreateModalOpen}
-                onClose={() => setCreateModalOpen(false)}
-                onCreate={(product) =>{
-                    console.log(`this is the onCreate function and this is the product i recieved ${product}`)
-                    setNewProduct(product)
-                    handleCreate(product)
-                }}
-            />
+           
            
         </React.Fragment>
     );
