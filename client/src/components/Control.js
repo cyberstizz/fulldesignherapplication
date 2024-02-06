@@ -104,7 +104,7 @@ const Control = () => {
                 formData.append('price', newProduct.price);
             
                 // Make a POST request to the backend route '/create'
-                const response = await Axios.post('/create', formData, {
+                const response = await Axios.post(`${apiUrl}/create`, formData, {
                   headers: {
                     'Content-Type': 'multipart/form-data',
                   },
