@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/cyberstizz/fulldesignherapplication#readme",
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.504.0",
+    "@aws-sdk/client-s3": "^3.507.0",
     "@aws-sdk/credential-provider-ini": "^3.504.0",
     "@aws-sdk/lib-storage": "^3.504.0",
     "@aws-sdk/s3-request-presigner": "^3.504.0",
