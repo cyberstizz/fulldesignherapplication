@@ -60,9 +60,17 @@ passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser((id, done) => {
-  const user = users.find(u => u.id === id);
-  done(null, user);
+passport.deserializeUser(async (id, done) => {
+  try {
+    const result = await pool.query('SELECT * FROM users WHERE user_id = $1', [id]);
+    if (result.rows.length > 0) {
+      done(null, result.rows[0]);
+    } else {
+      done(new Error('User not found'), null);
+    }
+  } catch (error) {
+    done(error, null);
+  }
 });
 
 //now setup passport local strategy
