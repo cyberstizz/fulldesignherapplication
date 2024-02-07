@@ -312,6 +312,7 @@ app.use('/sneaker', sneakersRouter);
 
 // Registration endpoint
 app.post('/register', async (req, res) => {
+  console.log(req.body)
   const { email_address, password, first_name, last_name, username } = req.body; // Include username in the destructured request body
 
 
