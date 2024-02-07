@@ -80,7 +80,7 @@ passport.use(new LocalStrategy({
   passwordField: 'password',
 }, async (username, password, done) => {
   try {
-    const query = `SELECT * FROM users WHERE email_address = $1 OR username = $1`;
+    const query = `SELECT * FROM users WHERE username = $1`;
     const result = await pool.query(query, [username]);
 
     if (result.rows.length === 0) {
@@ -347,6 +347,7 @@ app.post('/login', (req, res, next) => {
       }
       req.logIn(user, err => {
         if (err) {
+          console.error('Error during req.logIn:', err); // Ensure this logging is in place
           return res.status(500).json({ error: 'Error logging in' });
         }
         // Authentication and login successful

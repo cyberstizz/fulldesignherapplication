@@ -10,6 +10,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 -- Create the users table
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
+    username VARCHAR(100),
     email_address VARCHAR(255),
     first_name VARCHAR(100),
     last_name VARCHAR(100),
