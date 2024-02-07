@@ -328,6 +328,7 @@ app.get('/user', (req, res) => {
 app.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
       console.log('this is the user', user)
+      console.log('this is the mysterious info', info)
 
       if (err) {
         return res.status(500).json({ error: 'Internal server error' });
