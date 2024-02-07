@@ -35,7 +35,7 @@ const CreateModal = ({ isOpen, onClose, onCreate }) => {
   };
 
   return (
-    <div className={`modal ${isOpen ? 'open' : ''}`}>
+    <div className={`create-modal ${isOpen ? 'open' : ''}`}>
       <h2>Create Product</h2>
       {/* Input fields for name, image, description, product type, and product price */}
       <div className="form-group">
