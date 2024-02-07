@@ -12,6 +12,12 @@ const SignUp = ({ isOpen, onClose }) => {
   : 'http://localhost:3001';
 
 
+  const [username, setUsername] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const handleSignup = async (e) => {
 
     try {
