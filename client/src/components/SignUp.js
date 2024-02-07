@@ -12,15 +12,6 @@ const SignUp = ({ isOpen, onClose }) => {
   : 'http://localhost:3001';
 
 
-  try {
-    const response = await Axios.post(`${apiUrl}/register`, {
-      username, // Add this line to include the username in the request payload
-      email_address: email,
-      password,
-      first_name: firstName,
-      last_name: lastName,
-    });
-
   const handleSignup = async (e) => {
 
     try {
