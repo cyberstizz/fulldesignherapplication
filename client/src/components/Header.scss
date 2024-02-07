@@ -41,6 +41,14 @@ a {
     z-index: 5;
 }
 
+.userWelcome {
+    color: #ffffff; /* Example color */
+    font-size: 1rem;
+    margin-right: 20px; /* Adjust based on your layout */
+    display: flex;
+    align-items: center;
+}
+
 .mainLogo{
     margin-top: .7vh;
     z-index: 1;
