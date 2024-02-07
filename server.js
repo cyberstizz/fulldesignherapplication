@@ -296,8 +296,7 @@ app.post('/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Insert the new user into the users table
-    await pool.query(`
-      INSERT INTO users (email_address, first_name, last_name, password, username) // Include username in the INSERT statement
+    await pool.query(`INSERT INTO users (email_address, first_name, last_name, password, username)
       VALUES ($1, $2, $3, $4, $5) // Adjust the placeholders and values accordingly
     `, [email_address, first_name, last_name, hashedPassword, username]); // Pass username as a parameter
 

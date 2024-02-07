@@ -20,6 +20,7 @@ const SignUp = ({ isOpen, onClose }) => {
 
   const handleSignup = async (e) => {
 
+      e.preventDefault()
     try {
       const response = await Axios.post(`${apiUrl}/register`, {
         username,
