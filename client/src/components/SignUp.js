@@ -4,6 +4,14 @@ import Axios from 'axios';
 
 
 const SignUp = ({ isOpen, onClose }) => {
+
+  const baseUrl = window.location.origin;
+
+  const apiUrl = process.env.NODE_ENV === 'production'
+  ? `${baseUrl}`
+  : 'http://localhost:3001';
+
+
   const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -14,7 +22,7 @@ const SignUp = ({ isOpen, onClose }) => {
     e.preventDefault();
 
     try {
-      const response = await Axios.post('/register', {
+      const response = await Axios.post(`${apiUrl}/register`, {
         username, // Add this line to include the username in the request payload
         email_address: email,
         password,
