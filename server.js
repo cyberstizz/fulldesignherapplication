@@ -325,13 +325,25 @@ app.get('/user', (req, res) => {
 
 
 // Login endpoint
-app.post('/login',
-  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/failure',
-    failureFlash: true,
+app.post('/login', (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+      if (err) {
+        return res.status(500).json({ error: 'Internal server error' });
+      }
+      if (!user) {
+        // Authentication failed
+        return res.status(401).json({ error: 'Invalid username or password' });
+      }
+      req.logIn(user, err => {
+        if (err) {
+          return res.status(500).json({ error: 'Error logging in' });
+        }
+        // Authentication and login successful
+        return res.status(200).json({ message: 'Login successful', user: user });
+      });
+    })(req, res, next)
   })
-);
+
 
 // Logout endpoint
 app.get('/logout', (req, res) => {
