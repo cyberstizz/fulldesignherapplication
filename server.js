@@ -68,11 +68,12 @@ passport.deserializeUser((id, done) => {
 //now setup passport local strategy
 // now setup passport local strategy
 passport.use(new LocalStrategy({
-  usernameField: 'email_address',
+  usernameField: 'username',
   passwordField: 'password',
-}, async (email, password, done) => {
+}, async (username, password, done) => {
   try {
-    const result = await pool.query('SELECT * FROM users WHERE email_address = $1', [email]);
+    const query = `SELECT * FROM users WHERE email_address = $1 OR username = $1`;
+    const result = await pool.query(query, [login]);
 
     if (result.rows.length === 0) {
       return done(null, false, { message: 'Incorrect email.' });
@@ -311,16 +312,17 @@ app.use('/sneaker', sneakersRouter);
 
 // Registration endpoint
 app.post('/register', async (req, res) => {
-  const { email_address, password, first_name, last_name } = req.body;
+  const { email_address, password, first_name, last_name, username } = req.body; // Include username in the destructured request body
+
 
   // Validation checks
-  if (!email_address || !password || !first_name || !last_name) {
+  if (!email_address || !password || !first_name || !last_name || !username) {
     return res.status(400).json({ message: 'All fields are required.' });
   }
 
   try {
     // Check if the email is already taken
-    const existingUser = await pool.query('SELECT * FROM users WHERE email_address = $1', [email_address]);
+    const existingUser = await pool.query('SELECT * FROM users WHERE email_address = $1 OR username = $2', [email_address, username]);
 
     if (existingUser.rows.length > 0) {
       return res.status(400).json({ message: 'Email already in use.' });
@@ -331,9 +333,9 @@ app.post('/register', async (req, res) => {
 
     // Insert the new user into the users table
     await pool.query(`
-      INSERT INTO users (email_address, first_name, last_name, password)
-      VALUES ($1, $2, $3, $4)
-    `, [email_address, first_name, last_name, hashedPassword]);
+      INSERT INTO users (email_address, first_name, last_name, password, username) // Include username in the INSERT statement
+      VALUES ($1, $2, $3, $4, $5) // Adjust the placeholders and values accordingly
+    `, [email_address, first_name, last_name, hashedPassword, username]); // Pass username as a parameter
 
     return res.status(201).json({ message: 'User registered successfully.' });
   } catch (error) {
