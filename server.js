@@ -73,7 +73,7 @@ passport.use(new LocalStrategy({
 }, async (username, password, done) => {
   try {
     const query = `SELECT * FROM users WHERE email_address = $1 OR username = $1`;
-    const result = await pool.query(query, [login]);
+    const result = await pool.query(query, [username]);
 
     if (result.rows.length === 0) {
       return done(null, false, { message: 'Incorrect email.' });

@@ -28,7 +28,10 @@ const LoginModal = ({ isOpen, onClose, handleModalToggle }) => {
     }
 
     try {
-      const response = await Axios.post(`${apiUrl}/login`, { email_address: username, password });
+      const response = await Axios.post(`${apiUrl}/login`, {
+        username, 
+        password 
+      });
       // Check the response status and handle accordingly
       if (response.status === 200) {
         // Successful login, you can redirect or perform other actions
