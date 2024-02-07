@@ -22,7 +22,7 @@ const SignUp = ({ isOpen, onClose }) => {
 
     try {
       const response = await Axios.post(`${apiUrl}/register`, {
-        username, // Add this line to include the username in the request payload
+        username,
         email_address: email,
         password,
         first_name: firstName,
