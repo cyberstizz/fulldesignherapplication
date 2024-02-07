@@ -57,12 +57,12 @@ app.use(session({ secret, resave: true, saveUninitialized: true }));
 
 //setting up the methods to serialize and deserialize a user
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user.user_id); // Use 'user.user_id' to match your schema
 });
 
-passport.deserializeUser(async (id, done) => {
+passport.deserializeUser(async (user_id, done) => {
   try {
-    const result = await pool.query('SELECT * FROM users WHERE user_id = $1', [id]);
+    const result = await pool.query('SELECT * FROM users WHERE user_id = $1', [user_id]);
     if (result.rows.length > 0) {
       done(null, result.rows[0]);
     } else {
