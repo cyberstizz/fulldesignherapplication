@@ -43,6 +43,15 @@ const Header = () => {
     checkUserAuthentication();
   }, []);
 
+  const handleCloseModal = () => {
+    setWelcomeModalOpen(false);
+    setWelcomeUserModalOpen(false);
+    setUserModalOpen(false);
+  };
+
+
+
+
   const handleLogoClick = () => {
     navigate('/');
   };
