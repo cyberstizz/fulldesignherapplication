@@ -36,6 +36,10 @@ const Header = () => {
     navigate('/');
   };
 
+  const openUserModal = () => {
+    console.log('something')
+  };
+
   const handleModalToggle = (modalType) => {
     setIsLoginModalOpen(modalType === 'login');
     setIsSignupModalOpen(modalType === 'signup');
@@ -47,7 +51,7 @@ const Header = () => {
       <SignUp isOpen={isSignupModalOpen} onClose={() => setIsSignupModalOpen(false)} onOpenLoginModal={() => handleModalToggle('login')} />
 
       {user ? (
-        <div className="userWelcome">Welcome, {user.username}</div>
+        <div className="userWelcome" onClick={openUserModal}> {user.username}</div>
       ) : (
         <FontAwesomeIcon className="lockIcon" icon={faLock} onClick={() => handleModalToggle('login')} />
       )}     
