@@ -7,11 +7,22 @@ import LoginModal from './LoginModal';
 import SignUp from './SignUp';
 import { useEffect } from 'react';
 import Axios from 'axios';
+import UserModal from './UserModal';
+import WelcomeModal from './WelcomeModal';
+import WelcomeUserModal from  './WelcomeUserModal';
 
 const Header = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
-  const [user, setUser] = useState(null); // Assuming user state holds user information
+  const [user, setUser] = useState(null);
+  const [isWelcomeModalOpen, setWelcomeModalOpen] = useState(false);
+  const [isWelcomeUserModalOpen, setWelcomeUserModalOpen] = useState(false);
+  const [isUserModalOpen, setUserModalOpen] = useState(false);
+
+  const handleOpenWelcomeModal = () => setWelcomeModalOpen(true);
+  const handleOpenWelcomeUserModal = () => setWelcomeUserModalOpen(true);
+  const handleOpenUserModal = () => setUserModalOpen(true);
+
 
   const navigate = useNavigate();
 
@@ -36,9 +47,6 @@ const Header = () => {
     navigate('/');
   };
 
-  const openUserModal = () => {
-    console.log('something')
-  };
 
   const handleModalToggle = (modalType) => {
     setIsLoginModalOpen(modalType === 'login');
@@ -49,9 +57,11 @@ const Header = () => {
     <header className="mainHeader">
       <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} handleModalToggle={handleModalToggle} />
       <SignUp isOpen={isSignupModalOpen} onClose={() => setIsSignupModalOpen(false)} onOpenLoginModal={() => handleModalToggle('login')} />
-
+      <WelcomeModal isOpen={isWelcomeModalOpen} onClose={handleCloseModal} />
+      <WelcomeUserModal isOpen={isWelcomeUserModalOpen} onClose={handleCloseModal} user={user} />
+      <UserModal isOpen={isUserModalOpen} onClose={handleCloseModal} />
       {user ? (
-        <div className="userWelcome" onClick={openUserModal}> {user.username}</div>
+        <div className="userWelcome" onClick={handleOpenUserModal}> {user.username}</div>
       ) : (
         <FontAwesomeIcon className="lockIcon" icon={faLock} onClick={() => handleModalToggle('login')} />
       )}     
