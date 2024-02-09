@@ -33,6 +33,7 @@
         cursor: pointer;
         background-color: rgba(255, 255, 255, 0.2);
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        font-size: 26px;
         font-weight: bold;
         text-transform: uppercase;
         transition: background-color 0.3s, transform 0.2s;
@@ -60,7 +61,7 @@
     color: black;
     text-align: center;
     margin-bottom: 20px;
-    font-size: 30px;
+    font-size: 26px;
     letter-spacing: 0.05em; // Adds slight spacing between letters
   }
   
