@@ -66,7 +66,7 @@ const Header = () => {
 
   const handleOpenWelcome = () => {
     //this function simply calls the hook that will open or close the welcome modal
-    WelcomeModal === false ? setWelcomeModalOpen(true) : setWelcomeModalOpen(false)
+    setWelcomeModalOpen(true); // Directly open the Welcome Modal
     
   }
 
