@@ -57,7 +57,7 @@ const Header = () => {
       console.log('Logged out successfully');
   
       handleCloseModal();
-  
+      navigate(0, { replace: true, state: { key: Date.now() } }); // navigate(0) is a way to refresh the page
   
     } catch (error) {
       console.error('Error during logout:', error.message);

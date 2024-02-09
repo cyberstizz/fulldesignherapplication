@@ -40,6 +40,9 @@ const LoginModal = ({ isOpen, onClose, handleModalToggle }) => {
         console.log('Username:', username);
         console.log('Password:', password);
 
+        navigate(0, { replace: true, state: { key: Date.now() } }); // navigate(0) is a way to refresh the page
+
+
       } else {
         // Handle login failure, display error message or take appropriate action
         console.error('Login failed:', response.data.message);
