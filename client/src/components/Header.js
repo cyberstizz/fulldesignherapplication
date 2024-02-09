@@ -62,7 +62,7 @@ const Header = () => {
     } catch (error) {
       console.error('Error during logout:', error.message);
     }
-
+  }
 
   const handleLogoClick = () => {
     navigate('/');
@@ -106,6 +106,5 @@ const Header = () => {
   );
 };
 
-}
 
 export default Header;
