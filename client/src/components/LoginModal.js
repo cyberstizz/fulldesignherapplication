@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 
 const LoginModal = ({ isOpen, onClose, handleModalToggle, handleOpen }) => {
+  const [hasAccess, setHasAccess] = useState(false);
+
 
   const baseUrl = window.location.origin;
 
@@ -23,6 +25,9 @@ const LoginModal = ({ isOpen, onClose, handleModalToggle, handleOpen }) => {
     e.preventDefault();
 
     if(username === 'dianna' && password === '1120'){
+      setHasAccess(true);
+
+
       navigate('/control');
       return;
     }

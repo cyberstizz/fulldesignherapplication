@@ -20,7 +20,6 @@ const Header = () => {
   const [isUserModalOpen, setUserModalOpen] = useState(false);
   const [hasAccess, setHasAccess] = useState(false);
 
-
   const handleOpenWelcomeModal = () => setWelcomeModalOpen(true);
   const handleOpenWelcomeUserModal = () => setWelcomeUserModalOpen(true);
   const handleOpenUserModal = () => setUserModalOpen(true);
@@ -57,6 +56,7 @@ const Header = () => {
       // Call the logout endpoint
       await Axios.get('/logout');
       console.log('Logged out successfully');
+      setHasAccess(false);
   
       handleCloseModal();
       navigate(0, { replace: true, state: { key: Date.now() } }); // navigate(0) is a way to refresh the page
