@@ -365,8 +365,10 @@ app.post('/login', (req, res, next) => {
 
 // Logout endpoint
 app.get('/logout', (req, res) => {
-  req.logout();
-  res.redirect('/'); // Redirect to the home page or any other desired page after logout
+  req.session.destroy((err) => {
+    req.logout();
+    res.redirect('/');
+  });
 });
 
 
