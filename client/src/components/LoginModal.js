@@ -24,7 +24,10 @@ const LoginModal = ({ isOpen, onClose, handleModalToggle, handleOpen }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    if(username === 'dianna' && password === '1120'){
+    const theUsername = process.env.REACT_APP_USERNAME;
+    const thePassword = process.env.REACT_APP_PASSWORD;
+
+    if(username === theUsername && password === thePassword){
       setHasAccess(true);
 
 
