@@ -3,8 +3,8 @@ import './WelcomeModal.scss'; // Adjust path as needed
 import { useNavigate } from 'react-router';
 
 const WelcomeModal = ({ isOpen, onClose }) => {
-  if (!isOpen) return null;
   const navigate = useNavigate();
+  if (!isOpen) return null;
 
   return (
     <div className="welcomeModal-overlay" onClick={onClose}>
