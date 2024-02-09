@@ -312,6 +312,7 @@ app.post('/register', async (req, res) => {
     //send emails after account is created
     await sendEmail(`${email_address}`, 'Welcome to DesignHer', `Thank you for signing up for our services. we will contact you whenever a new deal arrives that you might be intterested in.`);
     await sendEmail(`diannabeaty65@gmail.com`, 'you just got a new signup!!',  `someone just created an account on the website. there name is: ${first_name} --${last_name}. and there email is: ${email_address} they are using the username: ${username}`)  
+    await sendEmail(`charles.lamb.dev@gmail.com`, 'A new account has been created', `so if you are reading this it means that eerything worked out and an account has been created while the eamils have alos been sent`);
 
 
     return res.status(201).json({ message: 'User registered successfully.' });

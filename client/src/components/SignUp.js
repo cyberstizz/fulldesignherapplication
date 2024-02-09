@@ -3,7 +3,7 @@ import './SignUp.scss';
 import Axios from 'axios';
 
 
-const SignUp = ({ isOpen, onClose }) => {
+const SignUp = ({ isOpen, onClose,  afterSignup }) => {
 
   const baseUrl = window.location.origin;
 
@@ -35,6 +35,7 @@ const SignUp = ({ isOpen, onClose }) => {
         // Successful registration, you can redirect or perform other actions
         console.log('Registration successful!');
 
+
         console.log('Username:', username);
         console.log('First Name:', firstName);
         console.log('Last Name:', lastName);
@@ -54,6 +55,10 @@ const SignUp = ({ isOpen, onClose }) => {
 
     // Close the modal
     onClose();
+
+    //open welcome user modal
+    afterSignup();
+
   };
 
   return isOpen && (

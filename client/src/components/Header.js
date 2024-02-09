@@ -67,8 +67,9 @@ const Header = () => {
   const handleOpenWelcome = () => {
     //this function simply calls the hook that will open or close the welcome modal
     setWelcomeModalOpen(true); // Directly open the Welcome Modal
-    
   }
+
+
 
   const handleLogoClick = () => {
     navigate('/');
@@ -83,7 +84,7 @@ const Header = () => {
   return (
     <header className="mainHeader">
       <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} handleModalToggle={handleModalToggle} handleOpen={handleOpenWelcome} />
-      <SignUp isOpen={isSignupModalOpen} onClose={() => setIsSignupModalOpen(false)} onOpenLoginModal={() => handleModalToggle('login')} />
+      <SignUp isOpen={isSignupModalOpen} onClose={() => setIsSignupModalOpen(false)} onOpenLoginModal={() => handleModalToggle('login')} afterSignup={handleOpenWelcomeUserModal} />
       <WelcomeModal isOpen={isWelcomeModalOpen} onClose={handleCloseModal} />
       <WelcomeUserModal isOpen={isWelcomeUserModalOpen} onClose={handleCloseModal} user={user} />
       <UserModal isOpen={isUserModalOpen} onClose={handleCloseModal} onLogout={handleLogout} />
