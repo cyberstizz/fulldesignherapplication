@@ -18,6 +18,8 @@ const Header = () => {
   const [isWelcomeModalOpen, setWelcomeModalOpen] = useState(false);
   const [isWelcomeUserModalOpen, setWelcomeUserModalOpen] = useState(false);
   const [isUserModalOpen, setUserModalOpen] = useState(false);
+  const [hasAccess, setHasAccess] = useState(false);
+
 
   const handleOpenWelcomeModal = () => setWelcomeModalOpen(true);
   const handleOpenWelcomeUserModal = () => setWelcomeUserModalOpen(true);
