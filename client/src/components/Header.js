@@ -50,6 +50,18 @@ const Header = () => {
   };
 
 
+  const handleLogout = async () => {
+    try {
+      // Call the logout endpoint
+      await Axios.get('/logout');
+      console.log('Logged out successfully');
+  
+      handleCloseModal();
+  
+  
+    } catch (error) {
+      console.error('Error during logout:', error.message);
+    }
 
 
   const handleLogoClick = () => {
@@ -68,7 +80,7 @@ const Header = () => {
       <SignUp isOpen={isSignupModalOpen} onClose={() => setIsSignupModalOpen(false)} onOpenLoginModal={() => handleModalToggle('login')} />
       <WelcomeModal isOpen={isWelcomeModalOpen} onClose={handleCloseModal} />
       <WelcomeUserModal isOpen={isWelcomeUserModalOpen} onClose={handleCloseModal} user={user} />
-      <UserModal isOpen={isUserModalOpen} onClose={handleCloseModal} />
+      <UserModal isOpen={isUserModalOpen} onClose={handleCloseModal} onLogout={handleLogout} />
       {user ? (
         <div className="userWelcome" onClick={handleOpenUserModal}> {user.username}</div>
       ) : (
