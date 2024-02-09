@@ -29,9 +29,8 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    font-size: 20px;
+    font-size: 25px;
     cursor: pointer;
-    background-color: red;
     border: none;
     padding: 0;
   }
@@ -47,6 +46,8 @@
 
       label {
         margin-bottom: 5px;
+        color: red;
+        font-size: 20px;
       }
 
       input {
@@ -55,6 +56,7 @@
         font-size: 16px;
         border: 1px solid #ccc;
         border-radius: 5px;
+        color: black;
       }
     }
 
