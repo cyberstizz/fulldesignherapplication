@@ -53,10 +53,6 @@ const LoginModal = ({ isOpen, onClose, handleModalToggle, handleOpen }) => {
 
     // Close the modal
     onClose();
-
-    //refresh the page
-    navigate(0, { replace: true, state: { key: Date.now() } }); // navigate(0) is a way to refresh the page
-
     //open the welcome modal
     handleOpen();
 
