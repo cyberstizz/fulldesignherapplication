@@ -365,8 +365,8 @@ app.post('/login', (req, res, next) => {
 
 // Logout endpoint
 app.get('/logout', (req, res) => {
-  req.session.destroy((err) => {
-    req.logout();
+  req.logout(function(err) {
+    if (err) { return next(err); }
     res.redirect('/');
   });
 });
