@@ -28,8 +28,6 @@ const LoginModal = ({ isOpen, onClose, handleModalToggle, handleOpen }) => {
     const thePassword = process.env.REACT_APP_PASSWORD;
 
     if(username === theUsername && password === thePassword){
-      setHasAccess(true);
-
 
       navigate('/control');
       return;
