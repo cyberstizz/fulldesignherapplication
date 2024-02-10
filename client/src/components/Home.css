@@ -357,7 +357,7 @@ li{
     .headerRightSide{
         margin-top: 1vh;
         width: 48%;
-        height: 140px;
+        height: 100px;
         display: flex;
         flex-direction: column;
         overflow: hidden;
