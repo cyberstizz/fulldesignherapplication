@@ -337,9 +337,9 @@ li{
 /* Mobile styles go here */
 
 @media (min-width: 768px) {
-    mainHeader{
+    .mainHeader{
         width: 100%;
-        height: 45vh;
+        height: 45%;
         background-color: black;
         display: flex;
         flex-direction: row;
@@ -611,7 +611,7 @@ li{
         border-radius: 20px;
     }
 
-    
+
   }
   
   @media (min-width: 1024px) {
