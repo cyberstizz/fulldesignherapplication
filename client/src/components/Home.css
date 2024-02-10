@@ -347,10 +347,11 @@ li{
     }
     
     .mainLogo{
-        width: 52%;
+        width: 50vw;
         background-image: url('Designher.jpg');
         background-position: center;
         background-size: contain;
+        border: solid 2px orange;
     }
     
     .headerRightSide{
@@ -463,7 +464,6 @@ li{
         background-color: white;
         overflow: hidden;
         margin-left: 2%;
-        border: solid 2px gold;
     }
     
     .slideShowText{
@@ -485,9 +485,10 @@ li{
     
     .theSlideShow{
         object-fit: contain;
-        height: 52%;
-        width: 60vw;
+        height: 40vh;
+        width: 70vw;
         margin-left: 5%;
+        border: solid 2px green;
     }    
   }
   
