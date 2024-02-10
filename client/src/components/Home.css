@@ -350,7 +350,7 @@ li{
         width: 50vw;
         background-image: url('Designher.jpg');
         background-position: center;
-        background-size: contain;
+        background-size: cover;
         border: solid 2px orange;
     }
     
