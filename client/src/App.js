@@ -19,8 +19,8 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Control from './components/Control';
 import ControlTest from './components/controlTest';
+import Cart from './components/Cart';
 
-console.log('Stripe Publishable Key:', process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY); // Replace with your actual publishable key
 
 
@@ -34,6 +34,7 @@ function App() {
       <Route path='/success' element={<Success />} />
       <Route path='/failure' element={<Failure />} />
       <Route path='/crocs' element={<Crocs />} />
+      <Route path='/cart' element={<Cart />} />
       <Route path='/boots' element={<Boots />} />
       <Route path='/control' element={<Control />} />
       <Route path='/controlTest' element={<ControlTest />} />

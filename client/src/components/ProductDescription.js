@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from './Header';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../features/cart/cartSlice';
 import './ProductDescription.scss';
 import Axios from 'axios';
 // import { addToCart } from './reducers/AddToCart';
@@ -30,7 +32,11 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 const ProductDescription = () => {
     //first initiation of all hooks and 
     //important variables
-
+        const dispatch = useDispatch();
+      
+    const handleAddToCart = () => {
+          dispatch(addToCart(currentProduct));
+        };
 
   const navigate = useNavigate();
 
@@ -154,7 +160,7 @@ const ProductDescription = () => {
             <div className='buttonsSection'>
                 {/* <button className='buyNowButton'>Buy now</button> */}
                 <CheckoutButton  product={name} price={Number(product_price)}/>
-                <button className='addToCartButton'>Add to cart</button>
+                <button className='addToCartButton' onClick={handleAddToCart}>Add to cart</button>
             </div>
 
 
