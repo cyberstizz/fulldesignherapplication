@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from './Header';
 import { useDispatch } from 'react-redux';
-import { addToCart } from '../features/cart/cartSlice';
+import { addToCart } from '../app/features/cart/cartSlice';
 import './ProductDescription.scss';
 import Axios from 'axios';
 // import { addToCart } from './reducers/AddToCart';
