@@ -311,9 +311,8 @@ li{
     } */
     
     .theSlideShow{
-        object-fit: contain;
         height: 40vh;
-        width: fit-content;
+        width: 50%;
         margin-left: 5%;
         border: solid 2px green;
     }    
