@@ -490,6 +490,128 @@ li{
         margin-left: 5%;
         border: solid 2px green;
     }    
+
+    .categoriesSection{
+        background: linear-gradient(to right, #FF0000, #CC0000, #990000, #660000);
+        height: 194vh;
+        width: 100vw;
+        margin-top: -10px; /* Adjust the value as needed */
+        padding: 0;
+        border: 0;
+        box-sizing: border-box;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* align-items: center; */
+    }
+    
+    .categoriesHeader{
+        color: #958e8e;
+        font-size: 40px;
+        letter-spacing: 1px;
+        margin-left: 30%;
+    }
+    
+    .categoriesHeaderOne{
+        color: white;
+        font-size: 40px;
+        letter-spacing: 1.3px;
+        margin-left: 33%;
+    }
+    
+    .categoriesHeaderTwo{
+        color: white;
+        font-size: 40px;
+        letter-spacing: 1.3px;
+        margin-left: 27%;
+    }
+    
+    .categoriesHeaderThree{
+        color: white;
+        font-size: 40px;
+        letter-spacing: 1.3px;
+        margin-left: 25%;
+    }
+    
+    .categoriesHeaderFour{
+        color: white;
+        font-size: 40px;
+        letter-spacing: 1.3px;
+        margin-left: 33%;
+    }
+    
+    .imageCard{
+        height: 30vh;
+        width: 80%;
+        background-image: url('crocsFour.webp');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        margin-bottom: 4vh;
+        border-radius: 20px;
+        transition: background-image 0.3s ease; /* Adding transition for smooth effect */
+    }
+    
+    .imageCard:hover{
+        background-image: url('crocThumbnail.jpeg');
+    }
+    
+    .imageCardTwo{
+        height: 30vh;
+        width: 80%;
+        background-image: url('jacketThumbnail.jpeg');
+        background-position: center;
+        background-size: cover;
+        margin: 0 auto;
+        margin-bottom: 4vh;
+        border-radius: 20px;
+    }
+    
+    .imageCardTwo:hover{
+        height: 30vh;
+        width: 80%;
+        background-image: url('jacketThumbnail.jpeg');
+        background-position: center;
+        background-size: cover;
+        margin: 0 auto;
+        margin-bottom: 4vh;
+        border-radius: 20px;
+    }
+    
+    .imageCardThree{
+        height: 30vh;
+        width: 80%;
+        background-image: url('unicornSneaker.jpg');
+        background-position: center;
+        background-size: cover;
+        margin: 0 auto;
+        border-radius: 20px;
+        margin-bottom: 4vh;
+    }
+    
+    .imageCardThree:hover{
+        height: 30vh;
+        width: 80%;
+        background-position: center;
+        background-size: cover;
+        margin: 0 auto;
+        border-radius: 20px;
+    }
+    
+    
+    .imageCardFour{
+        height: 30vh;
+        width: 80%;
+        background-image: url('bootThumbnail.jpg');
+        background-position: center;
+        background-size: cover;
+        margin: 0 auto;
+        border-radius: 20px;
+    }
+
+    
   }
   
   @media (min-width: 1024px) {
