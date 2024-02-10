@@ -142,6 +142,7 @@ a {
         justify-content: center; /* Centers logo vertically in the available space */
         align-items: center; /* Centers logo horizontally */
         z-index: 1;
+        width: fit-content;
     }
     
     .lockIcon, .userWelcome {
@@ -150,6 +151,8 @@ a {
         left: 10px; /* Adjust as necessary */
         z-index: 5;
         color: rgb(182, 46, 46);
+        width: fit-content;
+        border: solid 1px gold;
     }
     
     
@@ -157,6 +160,7 @@ a {
         color: red; /* Example color */
         font-size: 26px; /* Adjust size as needed */
         margin-right: 20px;
+        width: fit-content;
     }
     
     .mainLogo{
