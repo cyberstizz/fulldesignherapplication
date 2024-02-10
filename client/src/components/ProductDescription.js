@@ -33,12 +33,13 @@ const ProductDescription = () => {
     //first initiation of all hooks and 
     //important variables
         const dispatch = useDispatch();
-      
+        const navigate = useNavigate();
+
     const handleAddToCart = () => {
           dispatch(addToCart(currentProduct));
+          navigate('/cart');
         };
 
-  const navigate = useNavigate();
 
   const handleArrowClick = () => {
     // Navigate to the home page when the logo is clicked
