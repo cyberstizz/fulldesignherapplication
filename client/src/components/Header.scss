@@ -127,7 +127,7 @@ a {
     .mainHeader{
         position: relative; /* Ensures that absolute positioning is relative to this container */
         width: 100%;
-        height: 40vh;
+        height: 35vh;
         background-color: black;
         display: flex;
         flex-direction: row;
@@ -212,19 +212,21 @@ a {
         color: rgb(230, 230, 230);
         align-content: flex-start;
         overflow: visible;
-    
+        border: solid 2px gold;
     }
     
     .firstNavItem{
         width: 100%;
         height: 70%;
-        font-size: 60px;
+        font-size: 50px;
+        border: solid 2px gold;
     }
     
     .navItem{
         width: 100%;
         height: 70%;
-        font-size: 60px;
+        font-size: 50px;
+        border: solid 2px gold;
     }
 
 }
