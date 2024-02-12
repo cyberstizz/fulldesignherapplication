@@ -14,7 +14,7 @@
   .welcomeModal {
     background: linear-gradient(to right, #FF0000, #CC0000, #990000, #660000);
     padding: 20px;
-    height: 60%;
+    height: 70%;
     width: 80%;
     color: black;
     font-size: 45px;
@@ -31,7 +31,7 @@
         border-radius: 5px;
         color: black;
         cursor: pointer;
-        height: 20%;
+        height: 15%;
         background-color: rgba(255, 255, 255, 0.2);
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         font-size: 26px;
@@ -54,7 +54,7 @@
     color: black;
     text-align: center;
     margin-bottom: 15px;
-    font-size: 50px;
+    font-size: 40px;
     letter-spacing: 0.05em; // Adds slight spacing between letters
   }
   
@@ -62,7 +62,7 @@
     color: black;
     text-align: center;
     margin-bottom: 20px;
-    font-size: 26px;
+    font-size: 22px;
     letter-spacing: 0.05em; // Adds slight spacing between letters
   }
   
