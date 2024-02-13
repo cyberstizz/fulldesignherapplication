@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import CartItem from './CartItem';
 
 const Cart = () => {
   const items = useSelector((state) => state.cart.items);
@@ -8,10 +9,7 @@ const Cart = () => {
     <div>
       <h2>Cart</h2>
       {items.map((item) => (
-        <div key={item.id}>
-          <h3>{item.name}</h3>
-          {/* Display item details */}
-        </div>
+        <CartItem path={item.path} name={item.name} price={item.product_price} />
       ))}
     </div>
   );
