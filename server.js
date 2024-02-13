@@ -7,6 +7,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
+const redis = require('redis');
+const { createClient } = require('redis');
 const secret = crypto.randomBytes(64).toString('hex');
 const app = express();
 const port = process.env.PORT || 3001; // Change this to the desired port
@@ -110,6 +112,24 @@ passport.use(new LocalStrategy({
 // });
 
 // const s3 = new AWS.S3();
+
+
+const redisClient = createClient({
+  url: process.env.REDIS_URL // Use the REDIS_URL environment variable provided by Heroku
+});
+
+// const redisClient = redis.createClient({
+//   // If you're using a local Redis server without a password
+//   // For a managed Redis instance, you would specify host, port, and auth_pass
+// });
+
+redisClient.on('connect', function () {
+  console.log('Connected to Redis...');
+});
+
+redisClient.on('error', (err) => {
+  console.log('Redis error: ', err);
+});
 
 
 
@@ -375,6 +395,21 @@ app.get('/logout', (req, res) => {
 
 //all products
 app.get('/allProducts', async(req, res) => {
+
+
+      const cacheKey = 'allProducts';
+
+      // Try fetching the data from Redis cache
+      redisClient.get(cacheKey, async (err, data) => {
+        if (err) throw err;
+
+
+        if (data) {
+          // Send cached data
+          return res.json(JSON.parse(data));
+        } else {
+          // Data
+
         try {
           const crocResult = await pool.query('SELECT * FROM crocs'); 
           const jacketResult = await pool.query('SELECT * FROM jackets'); 
@@ -388,11 +423,16 @@ app.get('/allProducts', async(req, res) => {
 
           allproducts = {crocs, jackets, sneakers, boots}
 
+          redisClient.setex(cacheKey, 3600, JSON.stringify(allproducts)); // Cache for 1 hour
+
+
           res.json(allproducts);
         } catch (error) {
           console.error('Error fetching products:', error);
           res.status(500).json({ error: 'Internal server error' });
         }
+      }
+      })
 })
 
 app.get('/products/:productId', async(req, res) => {
