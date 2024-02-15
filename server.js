@@ -86,7 +86,7 @@ passport.use(new LocalStrategy({
     const result = await pool.query(query, [username]);
 
     if (result.rows.length === 0) {
-      return done(null, false, { message: 'Incorrect email.' });
+      return done(null, false, { message: 'the user was not found.' });
     }
 
     const user = result.rows[0];

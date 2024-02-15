@@ -19,31 +19,26 @@ const SignUp = ({ isOpen, onClose,  afterSignup }) => {
   const [password, setPassword] = useState('');
 
   const handleSignup = async (e) => {
-
-      e.preventDefault()
+    e.preventDefault();
     try {
       const response = await Axios.post(`${apiUrl}/register`, {
-        username,
+        username: username.toLowerCase(), // Convert username to lowercase
         email_address: email,
-        password,
+        password, // Keep password as is to maintain case sensitivity
         first_name: firstName,
         last_name: lastName,
       });
-
+  
       // Check the response status and handle accordingly
       if (response.status === 201) {
         // Successful registration, you can redirect or perform other actions
         console.log('Registration successful!');
-
-
-        console.log('Username:', username);
+        console.log('Username:', username.toLowerCase());
         console.log('First Name:', firstName);
         console.log('Last Name:', lastName);
         console.log('Email:', email);
-        console.log('Password:', password);
-
-
-
+        console.log('Password:', password); // Note: Displaying password in console is generally not safe
+  
       } else {
         // Handle registration failure, display error message or take appropriate action
         console.error('Registration failed:', response.data.message);
@@ -52,14 +47,13 @@ const SignUp = ({ isOpen, onClose,  afterSignup }) => {
       console.error('Error during registration:', error.message);
     }
   
-
     // Close the modal
     onClose();
-
-    //open welcome user modal
+  
+    // Open welcome user modal
     afterSignup();
-
   };
+  
 
   return isOpen && (
     <div className="modal-overlay" onClick={onClose}>
