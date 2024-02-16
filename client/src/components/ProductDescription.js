@@ -161,7 +161,7 @@ const ProductDescription = () => {
             <div className='buttonsSection'>
                 {/* <button className='buyNowButton'>Buy now</button> */}
                 <CheckoutButton  product={name} price={Number(product_price)}/>
-                <button className='addToCartButton' onClick={(currentProduct) => handleAddToCart(currentProduct)}>Add to cart</button>
+                <button className='addToCartButton' onClick={() => handleAddToCart(currentProduct)}>Add to cart</button>
             </div>
 
 
