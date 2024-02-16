@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { removeFromCart } from './features/cart/cartSlice';
+import { removeFromCart } from '../app/features/cart/cartSlice'
 import './CartItem.scss';
 import RemoveFromCartModal from './RemoveFromCartModal';
 
