@@ -35,8 +35,11 @@ const ProductDescription = () => {
         const dispatch = useDispatch();
         const navigate = useNavigate();
 
-    const handleAddToCart = () => {
-          dispatch(addToCart(currentProduct.croc || currentProduct.jacket || currentProduct.sneaker || currentProduct.boot));
+    const handleAddToCart = (productType, productData) => {
+        const itemToAdd = {
+            ...productData[productType],
+          };
+          dispatch(addToCart(itemToAdd));          
           navigate('/cart');
         };
 
@@ -161,7 +164,7 @@ const ProductDescription = () => {
             <div className='buttonsSection'>
                 {/* <button className='buyNowButton'>Buy now</button> */}
                 <CheckoutButton  product={name} price={Number(product_price)}/>
-                <button className='addToCartButton' onClick={handleAddToCart}>Add to cart</button>
+                <button className='addToCartButton' onClick={(currentProduct) => handleAddToCart(currentProduct.product_type, currentProduct )}>Add to cart</button>
             </div>
 
 
