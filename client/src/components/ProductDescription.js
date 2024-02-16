@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../app/features/cart/cartSlice';
