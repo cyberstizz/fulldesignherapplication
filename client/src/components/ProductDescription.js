@@ -36,7 +36,7 @@ const ProductDescription = () => {
         const navigate = useNavigate();
 
     const handleAddToCart = () => {
-          dispatch(addToCart(currentProduct.croc || currentProduct.jacket || currentProduct.sneaker || currentProduct.boot)));
+          dispatch(addToCart(currentProduct.croc || currentProduct.jacket || currentProduct.sneaker || currentProduct.boot));
           navigate('/cart');
         };
 
