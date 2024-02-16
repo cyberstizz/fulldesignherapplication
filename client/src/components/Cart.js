@@ -11,7 +11,7 @@ const Cart = () => {
 
   let totalPrice = 0;
 
-  items.array.forEach(element => {
+  items.forEach(element => {
     totalPrice += element.product_price;
   });
 
