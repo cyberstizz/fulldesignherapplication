@@ -23,7 +23,7 @@ const Cart = () => {
 
       <h2>Cart</h2>
       {items.map((item) => (
-        <CartItem path={item.image_path} name={item.name} product_price={item.product_price} />
+        <CartItem id={item.product_id} path={item.image_path} name={item.name} product_price={item.product_price} />
       ))}
     </div>
   );
