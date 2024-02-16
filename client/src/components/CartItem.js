@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { removeFromCart } from '../app/features/cart/cartSlice'
 import './CartItem.scss';
 import RemoveFromCartModal from './RemoveFromCartModal';
+import { useNavigate } from 'react-router';
 
 
 
@@ -12,6 +13,8 @@ const  CartItem = ({id, path, name, product_price}) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch(); 
+
+  const navigate = useNavigate();
 
   // Function to open the modal
   const openRemoveFromCartModal = () => setIsModalOpen(true);
@@ -24,6 +27,7 @@ const  CartItem = ({id, path, name, product_price}) => {
     dispatch(removeFromCart({ id }));
     console.log("Item removed");
     closeRemoveFromCartModal(); 
+    navigate(0);
   };
 
   return (

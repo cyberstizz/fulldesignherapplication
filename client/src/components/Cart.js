@@ -9,6 +9,12 @@ const Cart = () => {
   const items = useSelector((state) => state.cart.items);
   const navigate = useNavigate();
 
+  let totalPrice = 0;
+
+  items.array.forEach(element => {
+    totalPrice += element.product_price;
+  });
+
 
   const handleArrowClick = () => {
     // Navigate to the home page when the logo is clicked
@@ -25,6 +31,11 @@ const Cart = () => {
       {items.map((item) => (
         <CartItem id={item.product_id} path={item.image_path} name={item.name} product_price={item.product_price} />
       ))}
+
+
+      <div>
+        total ${totalPrice}
+      </div>
     </div>
   );
 };
