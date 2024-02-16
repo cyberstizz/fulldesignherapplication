@@ -16,4 +16,3 @@ root.render(
 document.getElementById('root')
 );
 
-reportWebVitals();
