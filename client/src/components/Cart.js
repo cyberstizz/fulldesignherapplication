@@ -11,7 +11,7 @@ const Cart = () => {
     <div>
       <h2>Cart</h2>
       {items.map((item) => (
-        <CartItem path={item.path} name={item.name} price={item.product_price} />
+        <CartItem path={item.image_path} name={item.name} price={item.product_price} />
       ))}
     </div>
   );
