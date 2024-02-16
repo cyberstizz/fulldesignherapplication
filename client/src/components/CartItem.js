@@ -27,7 +27,7 @@ const  CartItem = ({id, path, name, product_price}) => {
     dispatch(removeFromCart({ id }));
     console.log("Item removed");
     closeRemoveFromCartModal(); 
-    navigate(0);
+    navigate(0, { replace: true, state: { key: Date.now() } });
   };
 
   return (
