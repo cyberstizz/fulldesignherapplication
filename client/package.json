@@ -32,6 +32,7 @@
     "react-stripe-checkout": "^2.6.3",
     "readable-stream": "^4.5.2",
     "redux": "^5.0.1",
+    "redux-persist": "^6.0.0",
     "sass": "^1.69.5",
     "stream-browserify": "^3.0.0",
     "web-vitals": "^2.1.4"
