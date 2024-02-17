@@ -22,6 +22,7 @@ const Cart = () => {
   };
 
   console.log(items);
+  console.log('this is the total price:', totalPrice);
 
   return (
     <div>
