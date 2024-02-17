@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import CartItem from './CartItem';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import './Cart.scss';
 
 
 const Cart = () => {
@@ -12,7 +13,7 @@ const Cart = () => {
   let totalPrice = 0;
 
   items.forEach(element => {
-    totalPrice += element.product_price;
+    totalPrice += parseFloat(element.product_price);
   });
 
 
@@ -34,8 +35,8 @@ const Cart = () => {
       ))}
 
 
-      <div>
-        total ${totalPrice}
+      <div className='totalSpot'>
+      Total: ${totalPrice.toFixed(2)}
       </div>
     </div> 
   );
