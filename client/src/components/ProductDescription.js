@@ -39,8 +39,8 @@ const ProductDescription = () => {
         const navigate = useNavigate();
 
         
-        const [isAddToCartModalOpen, setIsAddToCartModalOpen] = (false);
-        const [isAddedToCartModalOpen, setIsAddedToCartModalOpen] = (false);
+        const [isAddToCartModalOpen, setIsAddToCartModalOpen] = useState(false);
+        const [isAddedToCartModalOpen, setIsAddedToCartModalOpen] = useState(false);
 
 
 
