@@ -1,44 +1,44 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import CartItem from './CartItem';
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import { clearCart } from '../app/features/cart/cartSlice'; // Adjust path as necessary
 import './Cart.scss';
-
 
 const Cart = () => {
   const items = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  let totalPrice = 0;
+  let totalPrice = items.reduce((total, item) => total + parseFloat(item.product_price), 0);
 
-  items.forEach(element => {
-    totalPrice += parseFloat(element.product_price);
-  });
-
-
-  const handleArrowClick = () => {
-    // Navigate to the home page when the logo is clicked
-    navigate(-1);
+  const handleCheckout = () => {
+    // Implement checkout logic or navigation
+    console.log('Proceeding to checkout');
   };
 
-  console.log(items);
-  console.log('this is the total price:', totalPrice);
+  const handleClearCart = () => {
+    dispatch(clearCart());
+  };
 
   return (
-    <div>
-    <i className="fas fa-arrow-left" onClick={handleArrowClick} style={{ position: 'absolute', top: '10px', left: '10px', cursor: 'pointer' }}></i>
-
-      <h2>Cart</h2>
-      {items.map((item) => (
-        <CartItem id={item.product_id} path={item.image_path} name={item.name} product_price={item.product_price} />
-      ))}
-
-
-      <div className='totalSpot'>
-      Total: ${totalPrice.toFixed(2)}
+    <div className="cart-container">
+      <div className="cart-header">
+        <h2>Checkout</h2>
       </div>
-    </div> 
+
+      <div className="cart-items">
+        {items.map((item) => (
+          <CartItem key={item.product_id} {...item} />
+        ))}
+      </div>
+
+      <div className="cart-footer">
+        <div className="total-amount">Total: ${totalPrice.toFixed(2)}</div>
+        <button className="checkout-button" onClick={handleCheckout}>Checkout</button>
+        <button className="clear-cart-button" onClick={handleClearCart}>Clear Cart</button>
+      </div>
+    </div>
   );
 };
 
