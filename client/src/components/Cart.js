@@ -19,6 +19,11 @@ const Cart = () => {
     console.log('Proceeding to checkout');
   };
 
+  const handleArrowClick = () => {
+    // Navigate to the home page when the logo is clicked
+    navigate(-1);
+  };
+
   const handleClearCart = () => {
     dispatch(clearCart());
   };
