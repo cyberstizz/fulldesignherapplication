@@ -1,18 +1,18 @@
-// LoginModal.js
+// AddedToCartModal.js
 import React from 'react';
-import './AddedtoCartModal.scss';
+import './AddedToCartModal.scss';
 
-const AddedToCartModal = ({ isOpen, onClose }) => {
+const AddedToCartModal = ({ isOpen, onClose, onGoToCart, productName }) => {
   if (!isOpen) return null;
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <button className="close-button" onClick={onClose}>
-          &times;
-        </button>
-        {/* Add your modal content here */}
-        <div>Added to Cart Modal</div>
+      <div className="modal-content" onClick={e => e.stopPropagation()}>
+        <h2>{productName} added to your cart</h2>
+        <div className="modal-actions">
+          <button className="modal-button" onClick={onClose}>Ok</button>
+          <button className="modal-button" onClick={onGoToCart}>Go to cart</button>
+        </div>
       </div>
     </div>
   );
