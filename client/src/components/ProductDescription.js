@@ -12,6 +12,9 @@ import StripeCheckout from 'react-stripe-checkout';
 import { useStripe, useElements } from '@stripe/react-stripe-js';
 import CheckoutButton from './CheckoutButton';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import AddToCartModal from './AddToCartModal';
+import AddedToCartModal from './AddedToCartModal';
+
 
 // import { useDispatch, useSelector } from 'react-redux';
 
@@ -35,10 +38,20 @@ const ProductDescription = () => {
         const dispatch = useDispatch();
         const navigate = useNavigate();
 
+        
+        const [isAddToCartModalOpen, setIsAddToCartModalOpen] = (false);
+        const [isAddedToCartModalOpen, setIsAddedToCartModalOpen] = (false);
+
+
+
     const handleAddToCart = (productData) => {
-          dispatch(addToCart(productData));          
-          navigate('/cart');
+          dispatch(addToCart(productData));      
+          setIsAddedToCartModalOpen(true);    
         };
+
+    const handleGoToCart = () => {
+        navigate('/cart')
+    }
 
 
   const handleArrowClick = () => {
@@ -134,39 +147,53 @@ const ProductDescription = () => {
     
 
     return (
-            <div className='entireProductDescriptionPage'>
+            <React.Fragment>
+                    <AddToCartModal
+                    isOpen={isAddToCartModalOpen}
+                    onClose={() => setIsAddToCartModalOpen(false)}
+                    onAdd={() => handleAddToCart(currentProduct)} 
+                    productName={name}
+                    />
+                    <AddedToCartModal 
+                    isOpen={isAddToCartModalOpen}
+                    onClose={() => setIsAddedToCartModalOpen(false)}
+                    onGoToCart={handleGoToCart} 
+                    productName={name}
+                    />
+                    <div className='entireProductDescriptionPage'>
 
-            <i className="fas fa-arrow-left" onClick={handleArrowClick} style={{ position: 'absolute', top: '10px', left: '10px', cursor: 'pointer' }}></i>
+                    <i className="fas fa-arrow-left" onClick={handleArrowClick} style={{ position: 'absolute', top: '10px', left: '10px', cursor: 'pointer' }}></i>
 
 
-            <img src={image_path} alt={name} width="100%" className='pictureTest' ></img>
-            <div className='fullBottomSection'>
-            <div className='infoSection'>
+                    <img src={image_path} alt={name} width="100%" className='pictureTest' ></img>
+                    <div className='fullBottomSection'>
+                    <div className='infoSection'>
 
-                <div className='nameAndPriceSection'>
-                    <h1 className='name'>{properLettering(name)}</h1>
-                    <div className='price'>${product_price}</div>
+                        <div className='nameAndPriceSection'>
+                            <h1 className='name'>{properLettering(name)}</h1>
+                            <div className='price'>${product_price}</div>
+                        </div>
+
+                        <div className='ratingsSection'>
+                            <h1 className='ratingsHeader'>Ratings</h1>
+                            <div className='ratingsStars'></div>
+                            <div className='writeAReview'>Write a review</div>
+                        </div>
+
+                    </div>
+                    <div className='descriptionSection'>
+                    {description}
+                    </div>
+                    <div className='buttonsSection'>
+                        {/* <button className='buyNowButton'>Buy now</button> */}
+                        <CheckoutButton  product={name} price={Number(product_price)}/>
+                        <button className='addToCartButton' onClick={() => setIsAddToCartModalOpen(true)}>Add to cart</button>
+                    </div>
+
+
+                    </div>
                 </div>
-
-                <div className='ratingsSection'>
-                    <h1 className='ratingsHeader'>Ratings</h1>
-                    <div className='ratingsStars'></div>
-                    <div className='writeAReview'>Write a review</div>
-                </div>
-
-            </div>
-            <div className='descriptionSection'>
-            {description}
-            </div>
-            <div className='buttonsSection'>
-                {/* <button className='buyNowButton'>Buy now</button> */}
-                <CheckoutButton  product={name} price={Number(product_price)}/>
-                <button className='addToCartButton' onClick={() => handleAddToCart(currentProduct)}>Add to cart</button>
-            </div>
-
-
-            </div>
-        </div>
+        </React.Fragment>
   )
 }
 
