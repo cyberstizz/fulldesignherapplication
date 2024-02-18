@@ -28,7 +28,30 @@
     gap: 10px;
   }
   
-  .modal-action-btn {
+  .yes-action-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    min-width: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.2s;
+  
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+    }
+  
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
+  .cancel-action-btn {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;

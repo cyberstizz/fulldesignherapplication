@@ -9,8 +9,8 @@ const RemoveFromCartModal = ({ isOpen, onClose, onRemove }) => {
       <div className="removeFromCartModal" onClick={e => e.stopPropagation()}>
         <p>Remove from cart?</p>
         <div className="modal-actions">
-          <button className="modal-action-btn" onClick={onRemove}>Yes</button>
-          <button className="modal-action-btn" onClick={onClose}>Cancel</button>
+          <button className="yes-action-btn" onClick={onRemove}>Yes</button>
+          <button className="cancel-action-btn" onClick={onClose}>Cancel</button>
         </div>
       </div>
     </div>
