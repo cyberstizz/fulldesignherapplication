@@ -155,7 +155,7 @@ const ProductDescription = () => {
                     productName={name}
                     />
                     <AddedToCartModal 
-                    isOpen={isAddToCartModalOpen}
+                    isOpen={isAddedToCartModalOpen}
                     onClose={() => setIsAddedToCartModalOpen(false)}
                     onGoToCart={handleGoToCart} 
                     productName={name}
