@@ -1,18 +1,93 @@
-.cart-container {
+// .cart-container {
+//     display: flex;
+//     flex-direction: column;
+//   }
+  
+//   .cart-header {
+//     background: linear-gradient(to right, #FF0000, #CC0000, #990000, #660000);
+//     color: white;
+//     padding: 20px;
+//     text-align: center;
+//   }
+  
+//   .cart-items {
+//     padding: 20px;
+//     background-color: #f4f4f4; // A light background to compliment the header
+//   }
+  
+//   .cart-footer {
+//     background: linear-gradient(to left, #FF0000, #CC0000, #990000, #660000);
+//     color: white;
+//     padding: 20px;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//   }
+  
+//   .total-amount {
+//     font-size: 20px;
+//   }
+  
+//   .checkout-button, .clear-cart-button {
+//     padding: 10px 20px;
+//     border: none;
+//     border-radius: 5px;
+//     cursor: pointer;
+//     color: #fff;
+//     font-weight: bold;
+//     text-transform: uppercase;
+//     transition: background-color 0.3s, transform 0.2s;
+  
+//     &:hover {
+//       transform: translateY(-2px);
+//     }
+  
+//     &:active {
+//       transform: translateY(1px);
+//     }
+//   }
+  
+//   .checkout-button {
+//     background-color: rgb(86, 133, 17); // A color that stands out for checkout
+//   }
+  
+//   .clear-cart-button {
+//     background-color: #f44336; // A color indicating removal or deletion
+//   }
+  
+
+
+
+  .cart-container {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
   }
   
   .cart-header {
     background: linear-gradient(to right, #FF0000, #CC0000, #990000, #660000);
     color: white;
     padding: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+  }
+  
+  .arrow-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
   }
   
   .cart-items {
     padding: 20px;
-    background-color: #f4f4f4; // A light background to compliment the header
+    background: linear-gradient(to bottom, #EAEAEA, #CACACA);
+    flex-grow: 1;
+    overflow: auto;
   }
   
   .cart-footer {
@@ -26,6 +101,7 @@
   
   .total-amount {
     font-size: 20px;
+    color: black;
   }
   
   .checkout-button, .clear-cart-button {
@@ -48,10 +124,11 @@
   }
   
   .checkout-button {
-    background-color: #009688; // A color that stands out for checkout
+    background-color: rgb(86, 133, 17); // A color that stands out for checkout
+    margin-right: 2%;
   }
   
   .clear-cart-button {
-    background-color: #f44336; // A color indicating removal or deletion
+    background-color: #f44336;
   }
   

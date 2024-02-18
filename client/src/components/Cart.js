@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import CartItem from './CartItem';
 import { clearCart } from '../app/features/cart/cartSlice'; // Adjust path as necessary
 import './Cart.scss';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 const Cart = () => {
   const items = useSelector((state) => state.cart.items);
@@ -24,6 +26,7 @@ const Cart = () => {
   return (
     <div className="cart-container">
       <div className="cart-header">
+      <i className="fas fa-arrow-left arrow-icon" onClick={handleArrowClick}></i>
         <h2>Checkout</h2>
       </div>
 
