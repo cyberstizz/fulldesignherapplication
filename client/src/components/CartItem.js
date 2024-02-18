@@ -39,7 +39,7 @@ const  CartItem = ({id, path, name, product_price}) => {
     </div>
     <img src="/cart-icon-28356.png" width='15%'height='30%' style={{marginTop: '30%', marginRight: '4%', objectFit: 'contain', overflow: 'hidden'}} alt='cart icon'></img>
     
-    <RemoveFromCartModal isOpen={isModalOpen} onClose={() => closeRemoveFromCartModal()} onRemove={handleRemoveItem} />
+    <RemoveFromCartModal isOpen={isModalOpen} onClose={closeRemoveFromCartModal} onRemove={handleRemoveItem} />
 
 </main>
   );
