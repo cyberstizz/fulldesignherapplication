@@ -1,60 +1,90 @@
 $mainBlue: #3FA396;
 $mainRed: #E63C23;
 $complimentaryGray: #D9D9D9;
+$lightGray: #f5f5f5;
 
-*{
+* {
     text-decoration: none !important;
     list-style: none;  
 }
 
-.fullCartItemComponent{
-    height: 20vh;
-    width: 90vw;
-    background: linear-gradient(to right, #2a2929, #070707);
-    // background: linear-gradient(to right, #FFA07A, #E63C23);
-    margin-top: 3vh;
-    margin-left: 5vw;
-    color: white;
+.fullCartItemComponent {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background: linear-gradient(135deg, #2a2929 0%, #070707 100%);
+    margin: 20px auto;
+    color: $lightGray;
     border-radius: 15px;
-    box-shadow: 0px 4px 8px rgba(159, 71, 71, 0.1); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: calc(100% - 40px);
     overflow: hidden;
 }
 
-.cartRightSection{
-    width: 75%;
-    overflow: hidden;
-}
-
-.cartTitle{
-    text-decoration: none !important;
-    color: rgb(206, 184, 184);
-    height: 10vh;
-    min-width: 45%;
-    width: auto;
-    font-family: fantasy;
-    font-size: 30px;
-    margin-top: 1vh;
-    margin-left: 1vw;
-    text-align: center;
+.cartRightSection {
     display: flex;
-    overflow: hidden;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-grow: 1;
+    padding-left: 20px;
 }
 
-.cartPrice{
-    margin-top: 18%;
-    margin-left: 5%;
-    font-size: 30px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    height: 20%;
-    min-width: 35%;
+.cartTitle {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: $lightGray;
+    margin: 0;
+}
+
+.cartPrice {
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+    color: $mainRed;
+    margin: 0;
+}
+
+.deleteButton {
+    background-color: $mainRed;
     color: white;
-    overflow: hidden;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+
+    &:hover {
+        background-color: darken($mainRed, 10%);
+    }
 }
 
-.deleteButton{
-    width: 80%;
-    font-size: 22px;
-    font-family: 'Times New Roman', Times, serif;
+img {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    width: 100px; /* Adjust based on your needs */
+    height: auto;
+    object-fit: cover;
+}
+
+/* Additional styles for responsiveness */
+@media (max-width: 768px) {
+    .fullCartItemComponent {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .cartRightSection {
+        padding-left: 0;
+        padding-top: 20px;
+    }
+
+    img {
+        width: 80%; /* Adjust for smaller screens */
+    }
 }
