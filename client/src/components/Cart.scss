@@ -100,8 +100,9 @@
   }
   
   .total-amount {
-    font-size: 20px;
+    font-size: 25px;
     color: black;
+    font-weight: 900;
   }
   
   .checkout-button, .clear-cart-button {
@@ -128,6 +129,9 @@
     margin-right: 2%;
     align-self: center;
     justify-self: center;
+    padding-right: 30px;
+    justify-content: center;
+    align-content: center;
   }
   
   .clear-cart-button {
