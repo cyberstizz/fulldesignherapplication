@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../app/features/cart/cartSlice';
-import CustomStripeModal from './CustomStripeModal';
 import './ProductDescription.scss';
 import Axios from 'axios';
 // import { addToCart } from './reducers/AddToCart';
