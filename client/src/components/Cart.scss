@@ -106,7 +106,8 @@
   }
   
   .checkout-button, .clear-cart-button {
-    padding: 10px 15px;
+    padding: 10px 30px; // Increased padding for wider buttons
+    min-width: 100px; // Ensures the button has a minimum width
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -114,6 +115,7 @@
     font-weight: bold;
     text-transform: uppercase;
     transition: background-color 0.3s, transform 0.2s;
+    text-align: center; // Ensure the text is centered
   
     &:hover {
       transform: translateY(-2px);
@@ -127,11 +129,10 @@
   .checkout-button {
     background-color: rgb(78, 123, 12); 
     margin-right: 2%;
-    align-self: center;
-    justify-self: center;
-    padding-right: 30px;
-    justify-content: center;
-    align-content: center;
+    // Removed the padding-right as it is now included in the general padding
+    display: flex; // Use flexbox for centering
+    justify-content: center; // Center horizontally in the flex container
+    align-items: center; // Center vertically in the flex container
   }
   
   .clear-cart-button {
