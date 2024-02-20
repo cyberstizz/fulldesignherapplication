@@ -519,26 +519,22 @@ app.get('/order/{$order_number}', (req, res) => {
 
 app.post('/payments', async (req, res) => {
   const { product, token } = req.body;
-
+  
   try {
-    const customer = await stripe.customers.create({
-      email: token.email,
-      source: token.id,
-    });
-
-    const charge = await stripe.charges.create({
+    const paymentIntent = await stripe.paymentIntents.create({
       amount: product.price * 100,
       currency: 'usd',
-      customer: customer.id,
-      receipt_email: token.email,
+      payment_method_types: ['card'],
+      confirm: true,
+      payment_method: token.id,
     });
 
-    console.log('Payment Successful:', charge);
+    console.log('Payment Intent:', paymentIntent);
 
     await sendEmail('diannabeaty65@gmail.com', `an order just came in for ${product}`, `this sale was made by this email${token.email}!`);
     await sendEmail(`${token.email}`, 'Order Confirmation', `Thank you for your order of ${product}!`);
 
-    res.json({ success: true, charge });
+    res.json({ success: true, paymentIntent });
   } catch (error) {
     console.error('Payment Error:', error);
     res.json({ success: false, error: error.message });
