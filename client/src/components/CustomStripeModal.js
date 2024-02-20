@@ -38,7 +38,7 @@ const CustomStripeModal = ({ isOpen, onClose, totalPrice }) => {
   return (
     <div className="customStripeModal-overlay" onClick={onClose}>
       <div className="customStripeModal" onClick={(e) => e.stopPropagation()}>
-        <CardElement />
+        <CardElement className="StripeElement" />
         <button onClick={handleSubmit}>Pay ${totalPrice.toFixed(2)}</button>
       </div>
     </div>
