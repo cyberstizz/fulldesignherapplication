@@ -195,7 +195,7 @@ const ProductDescription = () => {
                     <div className='buttonsSection'>
                         {/* <button className='buyNowButton'>Buy now</button> */}
                         {/* <CheckoutButton  product={name} price={Number(product_price)}/> */}
-                        <button className='addToCartButton' onClick={() => setIsCustomStripeModalOpen(true)}>Buy now</button>
+                        <button className='buyButton' onClick={() => setIsCustomStripeModalOpen(true)}>Buy now</button>
                         <button className='addToCartButton' onClick={() => setIsAddToCartModalOpen(true)}>Add to cart</button>
                     </div>
 
