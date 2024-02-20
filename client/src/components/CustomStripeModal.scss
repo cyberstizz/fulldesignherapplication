@@ -27,6 +27,7 @@
     background: white;
     padding: 15px;
     border-radius: 5px;
+    font-size: 22px;
     margin-bottom: 20px; // Space before the pay button
     border: 1px solid #ccc; // Subtle border for the input field
     &:focus {
@@ -42,7 +43,7 @@
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold; // Make the text bold
-    font-size: 18px; // Larger font size for better readability
+    font-size: 22px; // Larger font size for better readability
     &:hover {
       background-color: #f8f8f8;
       border-color: #666; // Darker border on hover

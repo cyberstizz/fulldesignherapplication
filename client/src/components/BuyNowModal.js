@@ -11,7 +11,6 @@ const BuyNowModal = ({ isOpen, onClose }) => {
         <button className="close-button" onClick={onClose}>
           &times;
         </button>
-        {/* Add your modal content here */}
         <div>buy now Modal</div>
       </div>
     </div>

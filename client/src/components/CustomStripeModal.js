@@ -9,29 +9,32 @@ const CustomStripeModal = ({ isOpen, onClose, totalPrice }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     if (!stripe || !elements) {
+      console.log('Stripe has not loaded');
       return;
     }
-
+  
     const cardElement = elements.getElement(CardElement);
-
-    const {token} = await stripe.createToken(cardElement);
-
-    if (token) {
+    const { token, error } = await stripe.createToken(cardElement);
+  
+    if (error) {
+      console.error('Error creating token:', error);
+    } else if (token) {
+      console.log('Created token:', token);
       try {
-        await axios.post('/payments', {
+        const response = await axios.post('/payments', {
           token: token.id,
-          product: {name: "Your Cart", price: totalPrice},
+          product: { name: "Your Cart", price: totalPrice },
         });
-
-        console.log("Payment successful");
+        console.log("Payment successful:", response.data);
         onClose(); // Close the modal upon successful payment
       } catch (error) {
         console.error('Payment error:', error);
       }
     }
   };
+  
 
   if (!isOpen) return null;
 
