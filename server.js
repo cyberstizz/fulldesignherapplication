@@ -525,16 +525,21 @@ app.post('/payments', async (req, res) => {
       amount: product.price * 100,
       currency: 'usd',
       payment_method_types: ['card'],
-      confirm: true,
       payment_method: token.id,
     });
 
-    console.log('Payment Intent:', paymentIntent);
+    const confirmedPaymentIntent = await stripe.paymentIntents.confirm(
+      paymentIntent.id, {
+        payment_method: token.id,
+      }
+    );
+
+    console.log('Payment Intent confirmed:', confirmedPaymentIntent);
 
     await sendEmail('diannabeaty65@gmail.com', `an order just came in for ${product}`, `this sale was made by this email${token.email}!`);
     await sendEmail(`${token.email}`, 'Order Confirmation', `Thank you for your order of ${product}!`);
 
-    res.json({ success: true, paymentIntent });
+    res.json({ success: true, paymentIntent: confirmedPaymentIntent });
   } catch (error) {
     console.error('Payment Error:', error);
     res.json({ success: false, error: error.message });
