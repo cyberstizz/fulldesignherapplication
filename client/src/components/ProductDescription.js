@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../app/features/cart/cartSlice';
+import CustomStripeModal from './CustomStripeModal';
 import './ProductDescription.scss';
 import Axios from 'axios';
 // import { addToCart } from './reducers/AddToCart';
@@ -14,6 +15,7 @@ import CheckoutButton from './CheckoutButton';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import AddToCartModal from './AddToCartModal';
 import AddedToCartModal from './AddedToCartModal';
+import CustomStripeModal from './CustomStripeModal';
 
 
 // import { useDispatch, useSelector } from 'react-redux';
@@ -41,6 +43,7 @@ const ProductDescription = () => {
         
         const [isAddToCartModalOpen, setIsAddToCartModalOpen] = useState(false);
         const [isAddedToCartModalOpen, setIsAddedToCartModalOpen] = useState(false);
+        const [isCustomStripeModalOpen, setIsCustomStripeModalOpen] = useState(false);
 
 
 
@@ -149,6 +152,11 @@ const ProductDescription = () => {
 
     return (
             <React.Fragment>
+                <CustomStripeModal
+                 isOpen={isCustomStripeModalOpen}
+                 onClose={() => setIsCustomStripeModalOpen(false)}
+                 totalPrice={product_price}
+                />
                     <AddToCartModal
                     isOpen={isAddToCartModalOpen}
                     onClose={() => setIsAddToCartModalOpen(false)}
@@ -187,7 +195,8 @@ const ProductDescription = () => {
                     </div>
                     <div className='buttonsSection'>
                         {/* <button className='buyNowButton'>Buy now</button> */}
-                        <CheckoutButton  product={name} price={Number(product_price)}/>
+                        {/* <CheckoutButton  product={name} price={Number(product_price)}/> */}
+                        <button className='addToCartButton' onClick={() => setIsCustomStripeModalOpen(true)}>Buy now</button>
                         <button className='addToCartButton' onClick={() => setIsAddToCartModalOpen(true)}>Add to cart</button>
                     </div>
 
