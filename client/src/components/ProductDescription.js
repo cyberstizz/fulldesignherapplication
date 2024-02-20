@@ -46,7 +46,8 @@ const ProductDescription = () => {
 
     const handleAddToCart = (productData) => {
           dispatch(addToCart(productData));      
-          setIsAddedToCartModalOpen(true);    
+          setIsAddedToCartModalOpen(true);
+          setIsAddToCartModalOpen(false);    
         };
 
     const handleGoToCart = () => {
