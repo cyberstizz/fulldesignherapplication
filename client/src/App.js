@@ -37,7 +37,6 @@ function App() {
       <Route path='/boots' element={<Boots />} />
       <Route path='/control' element={<Control />} />
       <Route path='/controlTest' element={<ControlTest />} />
-      <Route path='/checkout' element={<Checkout />} />
       <Route path='/jackets' element={<Jackets />} />
       <Route path='/privacyPolicy' element={<PrivacyPolicy />} />
       <Route path='/:productCategory/:productId' element={<ProductDescription />} />
