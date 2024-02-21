@@ -3,7 +3,6 @@ import './CustomStripeModal.scss';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import axios from 'axios';
 
-
 const CustomStripeModal = ({ isOpen, onClose, totalPrice }) => {
   const stripe = useStripe();
   const elements = useElements();
@@ -15,27 +14,41 @@ const CustomStripeModal = ({ isOpen, onClose, totalPrice }) => {
       console.log('Stripe has not loaded');
       return;
     }
-  
+
     const cardElement = elements.getElement(CardElement);
-    const { token, error } = await stripe.createToken(cardElement);
-  
+    
+    // Create a token or directly use cardElement for payment method creation
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: 'card',
+      card: cardElement,
+    });
+
     if (error) {
-      console.error('Error creating token:', error);
-    } else if (token) {
-      console.log('Created token:', token);
-      try {
-        const response = await axios.post('/payments', {
-          token: token.id,
-          product: { name: "Your Cart", price: totalPrice },
-        });
-        console.log("Payment successful:", response.data);
+      console.error('Error:', error);
+      return;
+    }
+
+    try {
+      // Call your backend to create the PaymentIntent
+      const { data } = await axios.post('/payments', {
+        product: { name: "Your Cart", price: totalPrice },
+      });
+
+      // Confirm the payment on the client side
+      const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(data.clientSecret, {
+        payment_method: paymentMethod.id,
+      });
+
+      if (confirmError) {
+        console.error('Payment confirmation error:', confirmError);
+      } else {
+        console.log("Payment successful:", paymentIntent);
         onClose(); // Close the modal upon successful payment
-      } catch (error) {
-        console.error('Payment error:', error);
       }
+    } catch (error) {
+      console.error('Payment error:', error);
     }
   };
-  
 
   if (!isOpen) return null;
 

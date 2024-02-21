@@ -521,30 +521,24 @@ app.post('/payments', async (req, res) => {
   const { product, token } = req.body;
   
   try {
+    // Create a PaymentIntent without immediately confirming it
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: product.price * 100,
+      amount: product.price * 100, // Assuming price is in dollars, convert to cents
       currency: 'usd',
-      payment_method_types: ['card'],
-      payment_method: token.id,
+      // Removed payment_method and confirmation here to handle it client-side
+      description: `Purchase of ${product.name}`, // Optional: Add a description
+      receipt_email: token.email, // Optional: Send receipt to this email
     });
 
-    const confirmedPaymentIntent = await stripe.paymentIntents.confirm(
-      paymentIntent.id, {
-        payment_method: token.id,
-      }
-    );
+    console.log('Payment Intent created:', paymentIntent);
 
-    console.log('Payment Intent confirmed:', confirmedPaymentIntent);
-
-    await sendEmail('diannabeaty65@gmail.com', `an order just came in for ${product}`, `this sale was made by this email${token.email}!`);
-    await sendEmail(`${token.email}`, 'Order Confirmation', `Thank you for your order of ${product}!`);
-
-    res.json({ success: true, paymentIntent: confirmedPaymentIntent });
+    res.json({ success: true, clientSecret: paymentIntent.client_secret });
   } catch (error) {
     console.error('Payment Error:', error);
     res.json({ success: false, error: error.message });
   }
 });
+
 
  //create route
 app.post('/:productType', upload.single('image'), async (req, res) => {
