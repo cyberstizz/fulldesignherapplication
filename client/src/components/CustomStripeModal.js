@@ -3,6 +3,7 @@ import './CustomStripeModal.scss';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import axios from 'axios';
 
+
 const CustomStripeModal = ({ isOpen, onClose, totalPrice }) => {
   const stripe = useStripe();
   const elements = useElements();
