@@ -2,7 +2,7 @@ import React from 'react';
 import './CustomStripeModal.scss';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import axios from 'axios';
-import { useNavigate } from 'react-routter-dom';
+import { useNavigate } from 'react-router-dom';
 
 const CustomStripeModal = ({ isOpen, onClose, totalPrice }) => {
   const stripe = useStripe();
