@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import CartItem from './CartItem';
@@ -12,7 +12,7 @@ const Cart = () => {
   const items = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isCustomStripeModalOpen, setIsCustomStripeModalOpen] = useState(false);
+  const [isCustomStripeModalOpen, setIsCustomStripeModalOpen] = useState;
 
 
   let totalPrice = items.reduce((total, item) => total + parseFloat(item.product_price), 0);
@@ -36,7 +36,7 @@ const Cart = () => {
       <CustomStripeModal
         isOpen={isCustomStripeModalOpen}
         onClose={() => setIsCustomStripeModalOpen(false)}
-        totalPrice={Number(product_price)}
+        totalPrice={Number(totalPrice)}
       />
     <div className="cart-container">
       <div className="cart-header">
