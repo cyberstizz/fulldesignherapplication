@@ -12,7 +12,7 @@ const Cart = () => {
   const items = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isCustomStripeModalOpen, setIsCustomStripeModalOpen] = useState;
+  const [isCustomStripeModalOpen, setIsCustomStripeModalOpen] = useState(false);
 
 
   let totalPrice = items.reduce((total, item) => total + parseFloat(item.product_price), 0);
