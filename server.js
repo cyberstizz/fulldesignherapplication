@@ -517,17 +517,17 @@ app.get('/order/{$order_number}', (req, res) => {
 
 })
 
+
+//payment route integrated with stripe
 app.post('/payments', async (req, res) => {
-  const { product, token } = req.body;
+  const { product } = req.body;
   
   try {
     // Create a PaymentIntent without immediately confirming it
     const paymentIntent = await stripe.paymentIntents.create({
       amount: product.price * 100, // Assuming price is in dollars, convert to cents
       currency: 'usd',
-      // Removed payment_method and confirmation here to handle it client-side
-      description: `Purchase of ${product.name}`, // Optional: Add a description
-      receipt_email: token.email, // Optional: Send receipt to this email
+      payment_method_types: ['card'],
     });
 
     console.log('Payment Intent created:', paymentIntent);

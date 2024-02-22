@@ -2,10 +2,12 @@ import React from 'react';
 import './CustomStripeModal.scss';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import axios from 'axios';
+import { useNavigate } from 'react-routter-dom';
 
 const CustomStripeModal = ({ isOpen, onClose, totalPrice }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -14,41 +16,46 @@ const CustomStripeModal = ({ isOpen, onClose, totalPrice }) => {
       console.log('Stripe has not loaded');
       return;
     }
-
+  
     const cardElement = elements.getElement(CardElement);
-    
-    // Create a token or directly use cardElement for payment method creation
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
-      card: cardElement,
-    });
-
-    if (error) {
-      console.error('Error:', error);
-      return;
-    }
-
+  
+    // No need to create a token here; instead, create a PaymentIntent on the server and confirm it here
+  
     try {
-      // Call your backend to create the PaymentIntent
+      // Call your server endpoint to create a PaymentIntent
       const { data } = await axios.post('/payments', {
         product: { name: "Your Cart", price: totalPrice },
       });
-
-      // Confirm the payment on the client side
-      const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(data.clientSecret, {
-        payment_method: paymentMethod.id,
-      });
-
-      if (confirmError) {
-        console.error('Payment confirmation error:', confirmError);
+  
+      if (data.success && data.clientSecret) {
+        // Use the clientSecret from the server to confirm the payment
+        const result = await stripe.confirmCardPayment(data.clientSecret, {
+          payment_method: {
+            card: cardElement,
+            // Optionally, include billing details, etc., here
+          },
+        });
+  
+        if (result.error) {
+          console.error('Payment confirmation error:', result.error);
+          // Handle errors here (e.g., showing an error message to the customer)
+        } else {
+          if (result.paymentIntent.status === 'succeeded') {
+            console.log("Payment successful:", result.paymentIntent);
+            onClose(); // Close the modal upon successful payment
+            navigate('/success')
+        }
+        }
       } else {
-        console.log("Payment successful:", paymentIntent);
-        onClose(); // Close the modal upon successful payment
+        console.error('Failed to create PaymentIntent on the server');
+        // Handle server failure to create a PaymentIntent
       }
     } catch (error) {
       console.error('Payment error:', error);
+      // Handle general axios errors here
     }
   };
+  
 
   if (!isOpen) return null;
 
