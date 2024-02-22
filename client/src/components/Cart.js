@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import CartItem from './CartItem';
+import CustomStripeModal from './CustomStripeModal';
 import { clearCart } from '../app/features/cart/cartSlice'; // Adjust path as necessary
 import './Cart.scss';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -11,6 +12,8 @@ const Cart = () => {
   const items = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isCustomStripeModalOpen, setIsCustomStripeModalOpen] = useState(false);
+
 
   let totalPrice = items.reduce((total, item) => total + parseFloat(item.product_price), 0);
 
@@ -29,6 +32,12 @@ const Cart = () => {
   };
 
   return (
+    <React.Fragment>
+      <CustomStripeModal
+        isOpen={isCustomStripeModalOpen}
+        onClose={() => setIsCustomStripeModalOpen(false)}
+        totalPrice={Number(product_price)}
+      />
     <div className="cart-container">
       <div className="cart-header">
       <i className="fas fa-arrow-left arrow-icon" onClick={handleArrowClick}></i>
@@ -43,10 +52,11 @@ const Cart = () => {
 
       <div className="cart-footer">
         <div className="total-amount">Total: ${totalPrice.toFixed(2)}</div>
-        <button className="checkout-button" onClick={handleCheckout}>Checkout</button>
+        <button className="checkout-button" onClick={() => setIsCustomStripeModalOpen(true)}>Checkout</button>
         <button className="clear-cart-button" onClick={handleClearCart}>Clear Cart</button>
       </div>
     </div>
+    </React.Fragment>
   );
 };
 
