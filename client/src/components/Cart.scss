@@ -139,9 +139,11 @@
     display: flex; // Use flexbox for centering
     justify-content: center; // Center horizontally in the flex container
     align-items: center; // Center vertically in the flex container
+    height: 80%;
   }
   
   .clear-cart-button {
     background-color: #f44336;
+    height: 80%;
   }
   
