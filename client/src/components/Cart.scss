@@ -88,6 +88,9 @@
     background: linear-gradient(to bottom, #EAEAEA, #CACACA);
     flex-grow: 1;
     overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
   }
   
   .cart-footer {

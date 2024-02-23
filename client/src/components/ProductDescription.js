@@ -160,7 +160,7 @@ const ProductDescription = () => {
                     isOpen={isAddToCartModalOpen}
                     onClose={() => setIsAddToCartModalOpen(false)}
                     onAdd={() => handleAddToCart(currentProduct)} 
-                    productName={name}
+                    productName={properLettering(name)}
                     />
                     <AddedToCartModal 
                     isOpen={isAddedToCartModalOpen}

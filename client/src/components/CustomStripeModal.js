@@ -1,13 +1,18 @@
 import React from 'react';
 import './CustomStripeModal.scss';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
+import { useDispatch } from 'react-redux';
+import { clearCart } from '../app/features/cart/cartSlice'; // Adjust path as necessary
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
 
 const CustomStripeModal = ({ isOpen, onClose, totalPrice }) => {
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -43,6 +48,8 @@ const CustomStripeModal = ({ isOpen, onClose, totalPrice }) => {
           if (result.paymentIntent.status === 'succeeded') {
             console.log("Payment successful:", result.paymentIntent);
             onClose(); // Close the modal upon successful payment
+            //next clear the cart
+            dispatch(clearCart());
             navigate('/success')
         }
         }
