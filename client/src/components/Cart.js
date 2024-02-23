@@ -16,6 +16,8 @@ const Cart = () => {
 
 
   let totalPrice = items.reduce((total, item) => total + parseFloat(item.product_price), 0);
+  
+
 
   const handleCheckout = () => {
     // Implement checkout logic or navigation
@@ -37,6 +39,7 @@ const Cart = () => {
         isOpen={isCustomStripeModalOpen}
         onClose={() => setIsCustomStripeModalOpen(false)}
         totalPrice={Number(totalPrice)}
+        productName="cart"
       />
     <div className="cart-container">
       <div className="cart-header">

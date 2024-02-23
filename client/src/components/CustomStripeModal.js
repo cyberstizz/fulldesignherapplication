@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
-const CustomStripeModal = ({ isOpen, onClose, totalPrice }) => {
+const CustomStripeModal = ({ isOpen, onClose, totalPrice, productName }) => {
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
@@ -47,11 +47,10 @@ const CustomStripeModal = ({ isOpen, onClose, totalPrice }) => {
         } else {
           if (result.paymentIntent.status === 'succeeded') {
             console.log("Payment successful:", result.paymentIntent);
-            onClose(); // Close the modal upon successful payment
-            //next clear the cart
+            onClose(); 
             dispatch(clearCart());
-            navigate('/success')
-        }
+            navigate('/success', { state: { itemName: productName } }); // Assuming you have the currentProduct name available here
+          }
         }
       } else {
         console.error('Failed to create PaymentIntent on the server');
