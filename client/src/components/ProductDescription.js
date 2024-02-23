@@ -167,7 +167,7 @@ const ProductDescription = () => {
                     isOpen={isAddedToCartModalOpen}
                     onClose={() => setIsAddedToCartModalOpen(false)}
                     onGoToCart={handleGoToCart} 
-                    productName={name}
+                    productName={properLettering(name)}
                     />
                     <div className='entireProductDescriptionPage'>
 
