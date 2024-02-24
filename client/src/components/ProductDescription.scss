@@ -32,7 +32,7 @@
     flex-direction: column;
     border-top-right-radius: 35px;
     border-top-left-radius: 35px;
-    background: linear-gradient(to right, #c45f37, #c22007);
+    background: linear-gradient(to right, #FF0000, #CC0000, #990000, #660000);
     height: 54vh;
     width: 100%;
     position: relative;
@@ -91,6 +91,7 @@
     margin-left: 2%;
     margin-top: -8%;
     width: 50%;
+    overflow: visible;
 }
 
 .ratingsHeader{
@@ -142,22 +143,52 @@
 
 
 .buyButton{
-    width: 40%;
-    border-radius: 15px;
-    color: white;
-    font-size: 22px;
-    font-family: 'Times New Roman', Times, serif;
-    background-color: rgb(97, 144, 25);
-    border-color: rgb(97, 144, 25);
+    padding: 10px 30px; 
+    min-width: 100px; // Ensures the button has a minimum width
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background-color: #4CAF50; 
+    color: #000000;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  
+    &:active {
+      transform: translateY(1px);
+    }
 }
 
 .addToCartButton{
-    width: 40%;
-    border-radius: 15px;
-    color: white;
-    font-size: 22px;
-    font-family: 'Times New Roman', Times, serif;
-    background-color: rgb(156, 9, 9);
-    border-color: rgb(156, 9, 9);
+    padding: 10px 30px; 
+    min-width: 100px; // Ensures the button has a minimum width
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background-color: #FF4500; 
+    color: #000000;
+    margin-left: 10px;
 
+    &:hover {
+      transform: translateY(-2px);
+    }
+  
+    &:active {
+      transform: translateY(1px);
+    }
 }
