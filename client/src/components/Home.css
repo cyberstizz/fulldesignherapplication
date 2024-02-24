@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Edu+QLD+Beginner&family=Rubik+Doodle+Triangles&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
 
 *{
     font-size: 20px;
@@ -244,8 +245,8 @@ li{
     line-height: 1.2; /* Set appropriate line height for better readability */
     margin-bottom: 20px; 
     margin-left: 8%;
-    width: 85%;
-    font-family: 'Edu QLD Beginner', sans-serif;
+    width: 95%;
+    font-family: 'Lato', sans-serif;
     overflow: hidden;
 }
 
@@ -381,9 +382,7 @@ li{
         transition: background-image 0.3s ease; /* Adding transition for smooth effect */
     }
     
-    .imageCard:hover{
-        background-image: url('crocThumbnail.jpeg');
-    }
+    
     
     .imageCardTwo{
         height: 30vh;
@@ -396,16 +395,7 @@ li{
         border-radius: 20px;
     }
     
-    .imageCardTwo:hover{
-        height: 30vh;
-        width: 80%;
-        background-image: url('jacketThumbnail.jpeg');
-        background-position: center;
-        background-size: cover;
-        margin: 0 auto;
-        margin-bottom: 4vh;
-        border-radius: 20px;
-    }
+    
     
     .imageCardThree{
         height: 30vh;
@@ -418,14 +408,7 @@ li{
         margin-bottom: 4vh;
     }
     
-    .imageCardThree:hover{
-        height: 30vh;
-        width: 80%;
-        background-position: center;
-        background-size: cover;
-        margin: 0 auto;
-        border-radius: 20px;
-    }
+   
     
     
     .imageCardFour{
