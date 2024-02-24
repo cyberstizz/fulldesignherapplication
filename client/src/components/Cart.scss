@@ -118,7 +118,6 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    color: #fff;
     font-weight: bold;
     text-transform: uppercase;
     transition: background-color 0.3s, transform 0.2s;
@@ -138,6 +137,7 @@
   
   .checkout-button {
     background-color: #4CAF50; 
+    color: #263238;
 
     &:hover {
       background-color: #45a049; // A slightly darker shade for hover effect
@@ -145,7 +145,7 @@
   }
 
   .clear-cart-button {
-    background-color: #FF4500; 
+    background-color: #000000; 
     margin-left: 10px;
   }
   
