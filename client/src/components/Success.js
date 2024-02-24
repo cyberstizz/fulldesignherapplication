@@ -10,7 +10,7 @@ const Success = () => {
   return (
     <div className="success-container">
       <h1>Success!</h1>
-      <p>Your payment has been received! Your receipt for {itemName} will be emailed to you.</p>
+      <p>Your payment has been received! Your receipt for "{itemName}" will be emailed to you.</p>
       <Link to="/"><button className="home-button">Go Home</button></Link>
     </div>
   );
