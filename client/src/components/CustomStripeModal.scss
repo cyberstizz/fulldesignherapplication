@@ -36,17 +36,17 @@
   }
   
   .customStripeModal button {
-    background-color: #fff;
-    color: #333; // For better contrast against the button background
-    border: 1px solid #ccc; // Define a border for the button
-    padding: 15px 30px; // Larger padding for a bigger button
+    background-color: #4CAF50; 
+    color: #263238;
+    border: 1px solid #ccc;
+    padding: 15px 30px;
     border-radius: 5px;
     cursor: pointer;
-    font-weight: bold; // Make the text bold
-    font-size: 22px; // Larger font size for better readability
+    font-weight: bold; 
+    font-size: 22px; 
     &:hover {
       background-color: #f8f8f8;
-      border-color: #666; // Darker border on hover
+      border-color: #666; 
     }
   }
   
