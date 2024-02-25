@@ -115,7 +115,7 @@ passport.use(new LocalStrategy({
 
 
 const redisClient = createClient({
-  url: process.env.REDIS_URL // Use the REDIS_URL environment variable provided by Heroku
+  url: process.env.REDISCLOUD_URL // Use the REDIS_URL environment variable provided by Heroku
 });
 
 // const redisClient = redis.createClient({
