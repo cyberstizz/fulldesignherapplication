@@ -114,22 +114,8 @@ passport.use(new LocalStrategy({
 // const s3 = new AWS.S3();
 
 
-const redisClient = createClient({
-  url: process.env.REDISCLOUD_URL // Use the REDIS_URL environment variable provided by Heroku
-});
 
-// const redisClient = redis.createClient({
-//   // If you're using a local Redis server without a password
-//   // For a managed Redis instance, you would specify host, port, and auth_pass
-// });
 
-redisClient.on('connect', function () {
-  console.log('Connected to Redis...');
-});
-
-redisClient.on('error', (err) => {
-  console.log('Redis error: ', err);
-});
 
 
 
@@ -249,6 +235,38 @@ app.delete('/:productType/:productId', async (req, res) => {
 });
 
 
+///////////////////////////////////////////////
+app.use('/croc', crocsRouter)
+
+app.use('/jacket', jacketsRouter)
+
+app.use('/boot', bootsRouter)
+
+app.use('/sneaker', sneakersRouter);
+
+///////////////////////////////////////////////
+
+
+const redisClient = createClient({
+  url: process.env.REDISCLOUD_URL // Use the REDIS_URL environment variable provided by Heroku
+});
+
+// const redisClient = redis.createClient({
+//   // If you're using a local Redis server without a password
+//   // For a managed Redis instance, you would specify host, port, and auth_pass
+// });
+
+redisClient.on('connect', function () {
+  console.log('Connected to Redis...');
+});
+
+redisClient.on('error', (err) => {
+  console.log('Redis error: ', err);
+});
+
+
+
+
 app.put('/:productType/:productId', upload.single('image'), async (req, res) => {
   try {
     console.log('Received file:', req.file);  // Add this line for logging
@@ -284,18 +302,6 @@ app.put('/:productType/:productId', upload.single('image'), async (req, res) => 
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
-
-///////////////////////////////////////////////
-app.use('/croc', crocsRouter)
-
-app.use('/jacket', jacketsRouter)
-
-app.use('/boot', bootsRouter)
-
-app.use('/sneaker', sneakersRouter);
-
-///////////////////////////////////////////////
 
 
 // the routes will inlcude
