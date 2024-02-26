@@ -73,7 +73,8 @@ const Header = () => {
 
 
   //function responsible for checking a users search
-  const handleSearch = async () => {
+  const handleSearch = async (e) => {
+    e.preventDefault();
     // Navigate to the search page and pass the query as state
     navigate('/search', { state: { query } });
   };
