@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import axios from 'axios';
-import 'search.scss'
+import './Search.scss'
 
 const Search = () => {
   const [results, setResults] = useState([]);
