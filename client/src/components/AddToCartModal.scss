@@ -28,7 +28,11 @@
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    color: white;
+    display: flex;
+    justify-content: center; // Centers the buttons horizontally
+    gap: 10px;
+    background-color: #fff;
+    color: #E63C23;
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.2);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
