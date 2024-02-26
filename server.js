@@ -264,6 +264,30 @@ redisClient.on('error', (err) => {
   console.log('Redis error: ', err);
 });
 
+// server.js or in a relevant router file
+app.get('/search', async (req, res) => {
+  const { query } = req.query; // Assuming you're passing the search query as a query parameter
+
+  try {
+    // Use UNION to combine results from multiple tables
+    const sqlQuery = `
+      (SELECT 'crocs' AS product_type, product_id, name, image_path, description, product_price FROM crocs WHERE name ILIKE $1)
+      UNION
+      (SELECT 'jackets' AS product_type, product_id, name, image_path, description, product_price FROM jackets WHERE name ILIKE $1)
+      UNION
+      (SELECT 'sneakers' AS product_type, product_id, name, image_path, description, product_price FROM sneakers WHERE name ILIKE $1)
+      UNION
+      (SELECT 'boots' AS product_type, product_id, name, image_path, description, product_price FROM boots WHERE name ILIKE $1);
+    `;
+    const values = [`%${query}%`]; // Use ILIKE for case-insensitive search and '%' for partial matches
+
+    const result = await pool.query(sqlQuery, values);
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Error performing search:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 
 

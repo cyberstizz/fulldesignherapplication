@@ -70,6 +70,8 @@ function Home() {
 
   const [currentNumber, setCurrentNumber] = useState(0);
 
+
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentNumber((prevNumber) =>

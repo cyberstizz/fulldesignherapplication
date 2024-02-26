@@ -19,6 +19,7 @@ const Header = () => {
   const [isWelcomeUserModalOpen, setWelcomeUserModalOpen] = useState(false);
   const [isUserModalOpen, setUserModalOpen] = useState(false);
   const [hasAccess, setHasAccess] = useState(false);
+  const [query, setQuery] = useState('');
 
   const handleOpenWelcomeModal = () => setWelcomeModalOpen(true);
   const handleOpenWelcomeUserModal = () => setWelcomeUserModalOpen(true);
@@ -71,6 +72,12 @@ const Header = () => {
   }
 
 
+  //function responsible for checking a users search
+  const handleSearch = async () => {
+    // Navigate to the search page and pass the query as state
+    navigate('/search', { state: { query } });
+  };
+
 
   const handleLogoClick = () => {
     navigate('/');
@@ -99,7 +106,15 @@ const Header = () => {
       <div className='mainLogo' onClick={handleLogoClick}> sign in</div>
 
       <div className='headerRightSide'>
-       <input type='search' className='searchBar'></input>
+      <form onSubmit={handleSearch} className='searchForm'>
+      <input 
+        type="text" 
+        value={query} 
+        onChange={(e) => setQuery(e.target.value)} 
+        placeholder="Search for products..." 
+        className='searchBar'
+        />
+        </form>
         <div className='navigationBar'>
           <Link to="/jackets"><div className='firstNavItem'>Jackets</div></Link>
           <Link to="/crocs"><div className='navItem'>Crocs</div></Link>
