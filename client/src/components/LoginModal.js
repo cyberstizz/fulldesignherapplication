@@ -45,7 +45,8 @@ const LoginModal = ({ isOpen, onClose, handleModalToggle, handleOpen }) => {
 
         console.log('Username:', username);
         console.log('Password:', password);
-
+        //open the welcome modal
+        handleOpen();
 
       } else {
         // Handle login failure, display error message or take appropriate action
@@ -55,12 +56,8 @@ const LoginModal = ({ isOpen, onClose, handleModalToggle, handleOpen }) => {
       console.error('Error during login:', error.message);
     }
 
-    
-
     // Close the modal
     onClose();
-    //open the welcome modal
-    handleOpen();
 
 
   };

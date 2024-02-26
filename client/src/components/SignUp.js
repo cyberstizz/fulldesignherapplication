@@ -33,12 +33,9 @@ const SignUp = ({ isOpen, onClose,  afterSignup }) => {
       if (response.status === 201) {
         // Successful registration, you can redirect or perform other actions
         console.log('Registration successful!');
-        console.log('Username:', username.toLowerCase());
-        console.log('First Name:', firstName);
-        console.log('Last Name:', lastName);
-        console.log('Email:', email);
-        console.log('Password:', password); // Note: Displaying password in console is generally not safe
-  
+         // Open welcome user modal
+         afterSignup();
+
       } else {
         // Handle registration failure, display error message or take appropriate action
         console.error('Registration failed:', response.data.message);
@@ -50,8 +47,7 @@ const SignUp = ({ isOpen, onClose,  afterSignup }) => {
     // Close the modal
     onClose();
   
-    // Open welcome user modal
-    afterSignup();
+   
   };
   
 
