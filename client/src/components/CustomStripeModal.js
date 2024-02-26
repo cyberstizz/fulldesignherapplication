@@ -95,7 +95,7 @@ const CustomStripeModal = ({ isOpen, onClose, totalPrice, productName }) => {
   return (
     <div className="customStripeModal-overlay" onClick={onClose}>
       <div className="customStripeModal" onClick={(e) => e.stopPropagation()}>
-        <h1 style={{fontSize: "25px", color: "white"}}>buy {properLettering(productName)} with secured payment</h1>
+        <h1 style={{fontSize: "35px", color: "white", justifySelf: "center"}}>buy {properLettering(productName)} with secure checkout</h1>
         <CardElement className="StripeElement" />
         <button onClick={handleSubmit}>Pay ${totalPrice.toFixed(2)}</button>
       </div>

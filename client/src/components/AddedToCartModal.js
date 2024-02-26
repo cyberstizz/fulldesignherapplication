@@ -10,8 +10,8 @@ const AddedToCartModal = ({ isOpen, onClose, onGoToCart, productName }) => {
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <h2 style={{color: 'green'}}>{productName} was added to your cart!!</h2>
         <div className="modal-actions">
-          <button className="modal-button" onClick={onClose}>Ok</button>
-          <button className="modal-button" onClick={onGoToCart}>Go to cart</button>
+          <button className="modalOk-button" onClick={onClose}>Ok</button>
+          <button className="modalCart-button" onClick={onGoToCart}>Go to cart</button>
         </div>
       </div>
     </div>
