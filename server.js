@@ -29,6 +29,7 @@ const { S3 } = require('@aws-sdk/client-s3');
 const { Upload } = require('@aws-sdk/lib-storage');
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
 const { v4: uuidv4 } = require('uuid');
+const redisClient = require('../../redis-config');
 
 
 
@@ -234,9 +235,7 @@ app.delete('/:productType/:productId', async (req, res) => {
   }
 });
 
-const redisClient = createClient({
-  url: process.env.REDISCLOUD_URL // Use the REDIS_URL environment variable provided by Heroku
-});
+
 
 // const redisClient = redis.createClient({
 //   // If you're using a local Redis server without a password

@@ -1,7 +1,6 @@
 const express = require('express');
 const crocsRouter = express.Router({mergeParams: true});
 const pool = require('../../db');
-const redisClient = require('../../redis-config');
 
 
 
