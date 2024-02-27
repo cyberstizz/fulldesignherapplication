@@ -29,7 +29,7 @@ const { S3 } = require('@aws-sdk/client-s3');
 const { Upload } = require('@aws-sdk/lib-storage');
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
 const { v4: uuidv4 } = require('uuid');
-const redisClient = require('../../redis-config');
+const redisClient = require('./redis-config');
 
 
 
