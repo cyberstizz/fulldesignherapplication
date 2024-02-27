@@ -271,9 +271,8 @@ app.get('/search', async (req, res) => {
       UNION
       (SELECT 'sneakers' AS product_type, product_id, name, image_path, description, product_price FROM sneakers WHERE name ILIKE $1)
       UNION
-      (SELECT 'boots' AS product_type, product_id, name, image_path, description, product_price FROM boots WHERE name ILIKE $1);
-    `;
-    const values = [`%${query}%`]; // Use ILIKE for case-insensitive search and '%' for partial matches
+      (SELECT 'boots' AS product_type, product_id, name, image_path, description, product_price FROM boots WHERE name ILIKE $1);`;
+    const values = [`%${query}%`]; 
 
     const result = await pool.query(sqlQuery, values);
     res.json(result.rows);

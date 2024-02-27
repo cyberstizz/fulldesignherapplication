@@ -7,13 +7,14 @@ import './Search.scss'
 const Search = () => {
   const [results, setResults] = useState([]);
   const location = useLocation();
-  const { query } = location.state || {}; // If using React Router v6
+  const { query } = location.state || {}; 
 
   useEffect(() => {
     const fetchResults = async () => {
       try {
         const response = await axios.get(`/search?query=${query}`);
         setResults(response.data);
+        console.log(results)
       } catch (error) {
         console.error('Error fetching search results:', error);
       }
