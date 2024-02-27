@@ -234,19 +234,6 @@ app.delete('/:productType/:productId', async (req, res) => {
   }
 });
 
-
-///////////////////////////////////////////////
-app.use('/croc', crocsRouter)
-
-app.use('/jacket', jacketsRouter)
-
-app.use('/boot', bootsRouter)
-
-app.use('/sneaker', sneakersRouter);
-
-///////////////////////////////////////////////
-
-
 const redisClient = createClient({
   url: process.env.REDISCLOUD_URL // Use the REDIS_URL environment variable provided by Heroku
 });
@@ -263,6 +250,21 @@ redisClient.on('connect', function () {
 redisClient.on('error', (err) => {
   console.log('Redis error: ', err);
 });
+
+
+///////////////////////////////////////////////
+app.use('/croc', crocsRouter)
+
+app.use('/jacket', jacketsRouter)
+
+app.use('/boot', bootsRouter)
+
+app.use('/sneaker', sneakersRouter);
+
+///////////////////////////////////////////////
+
+
+
 
 // server.js or in a relevant router file
 app.get('/search', async (req, res) => {
