@@ -32,7 +32,7 @@ crocsRouter.get('/allCrocs', async(req, res) => {
               const crocs = result.rows;
 
               // Cache the result
-              redisClient.setex(cacheKey, 3600, JSON.stringify(crocs)); // Cache for 1 hour
+              // redisClient.setex(cacheKey, 3600, JSON.stringify(crocs)); // Cache for 1 hour
 
               res.json({ crocs });
           } catch (error) {
