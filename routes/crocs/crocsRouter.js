@@ -1,11 +1,20 @@
 const express = require('express');
 const crocsRouter = express.Router({mergeParams: true});
 const pool = require('../../db');
+const redisClient = require('../../redis-config');
 
 
 
 // all crocs
 crocsRouter.get('/allCrocs', async(req, res) => {
+
+  redisClient.on('connect', function () {
+    console.log('Connected to Redis...');
+  });
+  
+  redisClient.on('error', (err) => {
+    console.log('Redis error: ', err);
+  });
   
   if (!redisClient.isOpen) {
     console.log('Redis client not connected. Attempting to reconnect...');
