@@ -1,7 +1,7 @@
 const express = require('express');
 const crocsRouter = express.Router({mergeParams: true});
 const pool = require('../../db');
-const redisClient = require('../../redis-config');
+// const redisClient = require('../../redis-config');
 
 
 
@@ -9,24 +9,24 @@ const redisClient = require('../../redis-config');
 crocsRouter.get('/allCrocs', async(req, res) => {
 
   
-  if (!redisClient.isOpen) {
-    console.log('Redis client not connected. Attempting to reconnect...');
-    await redisClient.connect().catch(console.error);
-  }
+  // if (!redisClient.isOpen) {
+  //   console.log('Redis client not connected. Attempting to reconnect...');
+  //   await redisClient.connect().catch(console.error);
+  // }
 
 
-  const cacheKey = 'allCrocs';
+  // const cacheKey = 'allCrocs';
 
-  redisClient.get(cacheKey, async (err, cachedCrocs) => {
-      if (err) {
-          console.error('Redis error:', err);
-          return res.status(500).json({ error: 'Internal server error' });
-      }
+  // redisClient.get(cacheKey, async (err, cachedCrocs) => {
+  //     if (err) {
+  //         console.error('Redis error:', err);
+  //         return res.status(500).json({ error: 'Internal server error' });
+  //     }
 
-      if (cachedCrocs) {
-          // Send cached data
-          return res.json(JSON.parse(cachedCrocs));
-      } else {
+  //     if (cachedCrocs) {
+  //         // Send cached data
+  //         return res.json(JSON.parse(cachedCrocs));
+  //     } else {
           try {
               const result = await pool.query('SELECT * FROM crocs');
               const crocs = result.rows;
@@ -39,10 +39,9 @@ crocsRouter.get('/allCrocs', async(req, res) => {
               console.error('Error fetching crocs:', error);
               res.status(500).json({ error: 'Internal server error' });
           }
-      }
-  });
+      });
 
-  })
+  
 
 
     
