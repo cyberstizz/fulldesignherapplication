@@ -43,9 +43,7 @@ a {
     left: 10px; 
     z-index: 5;
     color: rgb(182, 46, 46);
-    border: solid 2px green;
     height: 10%;
-    display: none;
 }
 
 
@@ -60,13 +58,12 @@ a {
     z-index: 1;
     min-width: 150px; 
     width: 50%;
-    height: 12vh;
+    height: 14vh;
     margin-left: .2vw;
     background-image: url('Designher.jpg');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    border: solid 2px goldenrod;
 }
 
 .headerRightSide{
@@ -75,7 +72,6 @@ a {
     display: flex;
     flex-direction: column;
     overflow: visible;
-    border: solid 2px yellow;
 }
 
 .searchBar{
@@ -85,7 +81,6 @@ a {
     overflow: visible;
     font-size: 16px;
     width: 75%;
-    border: solid 2px blue;
 }
 
 .navigationBar{
@@ -99,7 +94,6 @@ a {
     margin-top: 5%;
     align-content: flex-start;
     overflow: visible;
-    border: solid 2px green;
 }
 
 .navigationBarTwo{
@@ -112,7 +106,6 @@ a {
     color: rgb(230, 230, 230);
     align-content: flex-start;
     overflow: visible;
-    border: solid 2px green;
 
 }
 
