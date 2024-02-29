@@ -25,6 +25,11 @@ const Search = () => {
     }
   }, [query]);
 
+  useEffect(() => {
+    console.log(results);
+  }, [results]);
+  
+
   return (
     <div>
       <h1>Search Results</h1>
