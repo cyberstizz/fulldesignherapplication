@@ -29,16 +29,17 @@ a {
 }
 
 .logoAndLock{
-    position: relative; 
+    position: relative; /* Establishes a new positioning context for its children */
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center; /* Centers logo vertically in the available space */
+    align-items: center; /* Centers logo horizontally */
     z-index: 1;
 }
 
 .lockIcon, .userWelcome {
     position: absolute;
+    top: 5px; 
     left: 10px; 
     z-index: 5;
     color: rgb(182, 46, 46);
@@ -58,7 +59,7 @@ a {
     z-index: 1;
     width: 50%;
     margin-left: .2vw;
-    height: auto;
+    height: 60%;
     background-image: url('Designher.jpg');
     background-position: center;
     background-size: cover;
