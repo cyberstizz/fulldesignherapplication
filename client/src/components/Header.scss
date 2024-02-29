@@ -17,7 +17,7 @@ a {
     
 
 .mainHeader{
-    position: relative; /* Ensures that absolute positioning is relative to this container */
+    position: relative;
     width: 100%;
     min-height: 20vh;
     background-color: black;
@@ -59,7 +59,6 @@ a {
     z-index: 1;
     width: 50%;
     margin-left: .2vw;
-    height: 60%;
     background-image: url('Designher.jpg');
     background-position: center;
     background-size: cover;
