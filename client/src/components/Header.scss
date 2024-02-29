@@ -39,7 +39,6 @@ a {
 
 .lockIcon, .userWelcome {
     position: absolute;
-    top: 5px; 
     left: 10px; 
     z-index: 5;
     color: rgb(182, 46, 46);
@@ -59,7 +58,7 @@ a {
     z-index: 1;
     width: 50%;
     margin-left: .2vw;
-    height: 80%;
+    height: auto;
     background-image: url('Designher.jpg');
     background-position: center;
     background-size: cover;
