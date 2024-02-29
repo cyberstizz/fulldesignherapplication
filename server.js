@@ -262,6 +262,13 @@ app.use('/sneaker', sneakersRouter);
 app.get('/search', async (req, res) => {
   const { query } = req.query; // Assuming you're passing the search query as a query parameter
 
+  res.set({
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma': 'no-cache',
+    'Expires': '0'
+  });
+
+
   try {
     // Use UNION to combine results from multiple tables
     const sqlQuery = `
