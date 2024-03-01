@@ -14,6 +14,7 @@ import WelcomeUserModal from  './WelcomeUserModal';
 const Header = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
+  const [user, setUser] = useState(null);
   const [isWelcomeModalOpen, setWelcomeModalOpen] = useState(false);
   const [isWelcomeUserModalOpen, setWelcomeUserModalOpen] = useState(false);
   const [isUserModalOpen, setUserModalOpen] = useState(false);
