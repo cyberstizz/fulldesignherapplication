@@ -5,6 +5,8 @@ const ReviewModal = ({ isOpen, onClose, userId, onReviewSubmit }) => {
   const [headline, setHeadline] = useState('');
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState('');
+  
+
 
   if (!isOpen) return null;
 
@@ -17,6 +19,9 @@ const ReviewModal = ({ isOpen, onClose, userId, onReviewSubmit }) => {
     onReviewSubmit({ userId, headline, rating, review });
     onClose(); // Close the modal after submission
   };
+
+
+
 
   return (
     <div className="reviewModal-overlay" onClick={onClose}>

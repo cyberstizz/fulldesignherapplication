@@ -2,7 +2,6 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from './Header';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../app/features/cart/cartSlice';
 import './ProductDescription.scss';
@@ -15,6 +14,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import AddToCartModal from './AddToCartModal';
 import AddedToCartModal from './AddedToCartModal';
 import CustomStripeModal from './CustomStripeModal';
+import ReviewModal from './ReviewModal';
 
 
 // import { useDispatch, useSelector } from 'react-redux';
@@ -43,6 +43,7 @@ const ProductDescription = () => {
         const [isAddToCartModalOpen, setIsAddToCartModalOpen] = useState(false);
         const [isAddedToCartModalOpen, setIsAddedToCartModalOpen] = useState(false);
         const [isCustomStripeModalOpen, setIsCustomStripeModalOpen] = useState(false);
+        const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
 
 
 
@@ -64,14 +65,20 @@ const ProductDescription = () => {
 
     const stripe = useStripe();
     const elements = useElements();
-    const [clientSecret, setClientSecret] = useState('');
     const { productCategory, productId } = useParams();
     const [currentProduct, setProduct] = useState(null);
+    const [user, setUser] = useState(null);
+
 
     //add an api url
     const apiUrl = process.env.NODE_ENV === 'production'
     ? 'https://designhercustomekreations-c288e9799350.herokuapp.com'
     : 'http://localhost:3001';
+
+
+    const handleOnReviewSubmit = () => {
+        console.log('the handle submit for a review has been clicked')
+    }
 
 
 
@@ -134,6 +141,24 @@ const ProductDescription = () => {
 
 
 
+useEffect(() => {
+    const checkUserAuthentication = async () => {
+      try {
+        const response = await Axios.get('/user');
+        if (response.status === 200) {
+          setUser(response.data.user);
+        } else {
+          setUser(null);
+        }
+      } catch (error) {
+        console.error('Error checking user authentication:', error.message);
+      }
+    };
+
+    checkUserAuthentication();
+  }, []);
+
+
 
     console.log('Product State:', currentProduct);
 
@@ -151,6 +176,12 @@ const ProductDescription = () => {
 
     return (
             <React.Fragment>
+                <ReviewModal 
+                isOpen={isReviewModalOpen}
+                onClose={() => setIsReviewModalOpen(false)}
+                userId={user.user_id}
+                onReviewSubmit={handleOnReviewSubmit}
+                />
                 <CustomStripeModal
                  isOpen={isCustomStripeModalOpen}
                  onClose={() => setIsCustomStripeModalOpen(false)}
@@ -186,7 +217,7 @@ const ProductDescription = () => {
                         <div className='ratingsSection'>
                             <h1 className='ratingsHeader'>Ratings</h1>
                             <div className='ratingsStars'></div>
-                            <div className='writeAReview'>Write a review</div>
+                            <div className='writeAReview' onClick={() => setIsReviewModalOpen(true)}>Write a review</div>
                         </div>
 
                     </div>
