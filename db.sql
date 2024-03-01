@@ -78,11 +78,11 @@ CREATE TABLE order_items (
 CREATE TABLE reviews (
     review_id SERIAL PRIMARY KEY,
     product_id UUID NOT NULL,
+    product_type VARCHAR(255) NOT NULL,
     user_id UUID NOT NULL,
     headline VARCHAR(255),
     review TEXT,
     rating DECIMAL(2, 1) CHECK (rating >= 1 AND rating <= 5),
-    FOREIGN KEY (product_id) REFERENCES products(product_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
