@@ -50,6 +50,19 @@ const Search = () => {
     // setLoadedImagesCount(prevCount => prevCount + 1);
 };
 
+  const properProductType = (type) => {
+    //identify the producttype
+    let givenProductName = type;
+
+    //turn the producttype into an array
+    let nameArrayed = givenProductName.split('')
+    
+    //return the result of cutting the array down by one and rejoining the array
+    //into a string
+
+    return nameArrayed.slice(0, nameArrayed.length - 1).join('');
+  }
+
   useEffect(() => {
     const fetchResults = async () => {
       try {
@@ -79,7 +92,7 @@ const Search = () => {
       {results.length > 0 ? (
         <div className='submenuBody'>
         {results.map(item => (
-          <Link key={item.product_id} to={`/${item.product_type}/${item.product_id}`}>
+          <Link key={item.product_id} to={`/${properProductType(item.product_type)}/${item.product_id}`}>
               <SubMenuComponent onImageLoad={handleImageLoaded} name={properLettering(item.name)} path={item.image_path} product_price={item.product_price} />
           </Link>
       ))}
