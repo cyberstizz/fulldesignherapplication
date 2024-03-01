@@ -12,6 +12,44 @@ const Search = () => {
   const location = useLocation();
   const { query } = location.state || {}; 
 
+
+
+
+
+  const properLettering = (word) => {
+    //this function will parse a string and remove
+    //any _ characters
+
+    //create a new variable that will be returned
+    //this variable will be an array
+    let newString = [];
+
+
+    for(let i = 0; i < word.length; i++){
+
+    
+    //loop through the string, and for every element
+    //check to see if it is an underscore and if it is
+    //push a blank space into the array '', if it is not
+    if(word[i] !== '_'){
+    //push the letter into the array
+        newString.push(word[i]);
+    } else{
+        newString.push(' ');
+    }
+    }
+    return newString.join('');
+    //after getting out of the array join the array
+    //into a string, and return the string
+}
+
+
+
+
+  const handleImageLoaded = () => {
+    // setLoadedImagesCount(prevCount => prevCount + 1);
+};
+
   useEffect(() => {
     const fetchResults = async () => {
       try {
