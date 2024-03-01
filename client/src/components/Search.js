@@ -44,9 +44,9 @@ const Search = () => {
           </div>
         ))
       ) : (
-        <div>
+        <div style={{display: 'flex', justifyContent: 'center'}}>
           <p style={{color: 'black'}}>There are no items that match your search.</p>
-          <Link to="/"><span style={{color: 'black'}}>Go Back</span></Link>
+          <Link to="/"><span style={{color: 'black', display: 'flex', justifySelf: 'center'}}>Go Back</span></Link>
         </div>
       )}
     </div>
