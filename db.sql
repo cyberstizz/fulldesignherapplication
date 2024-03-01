@@ -74,6 +74,11 @@ CREATE TABLE order_items (
         UNION SELECT product_id FROM boots
     )
 );
+
+CREATE TABLE reviews (
+    
+)
+
 ----------------------------------------------------
 
 -- For Crocs products
