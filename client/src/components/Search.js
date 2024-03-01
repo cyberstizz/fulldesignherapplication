@@ -4,6 +4,8 @@ import { useLocation, Link } from 'react-router-dom';
 import axios from 'axios';
 import './Search.scss'
 import Header from './Header';
+import SubMenuComponent from './SubmenuComponent';
+
 
 const Search = () => {
   const [results, setResults] = useState([]);
@@ -37,13 +39,17 @@ const Search = () => {
     <div>
       <h1>Search Results</h1>
       {results.length > 0 ? (
-        results.map((item) => (
-          <div key={item.product_id}>
-            <h2>{item.name}</h2>
-            {/* Display product details */}
-          </div>
-        ))
-      ) : (
+        <div className='submenuBody'>
+        {results.map(item => (
+          <Link key={item.product_id} to={`/${item.name}/${item.product_id}`}>
+              <SubMenuComponent onImageLoad={handleImageLoaded} name={properLettering(item.name)} path={item.image_path} product_price={item.product_price} />
+          </Link>
+      ))}
+ 
+  
+  </div>
+  )
+       : (
         <div style={{display: 'flex', justifyContent: 'center'}}>
           <p style={{color: 'black'}}>There are no items that match your search.</p>
           <Link to="/"><span style={{color: 'black', display: 'flex', justifySelf: 'center'}}>Go Back</span></Link>
