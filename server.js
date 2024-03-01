@@ -257,6 +257,39 @@ app.use('/sneaker', sneakersRouter);
 
 
 
+// Route to get reviews and average rating for a specific product
+router.get('/reviews/:productType/:productId', async (req, res) => {
+  const { productType, productId } = req.params;
+
+  try {
+    // Query to fetch reviews and calculate average rating
+    const reviewQuery = `
+      SELECT * FROM reviews
+      WHERE product_id = $1 AND product_type = $2;
+    `;
+
+    const avgRatingQuery = `
+      SELECT AVG(rating) as average_rating FROM reviews
+      WHERE product_id = $1 AND product_type = $2;
+    `;
+
+    // Execute both queries in parallel
+    const [reviewResult, avgRatingResult] = await Promise.all([
+      pool.query(reviewQuery, [productId, productType]),
+      pool.query(avgRatingQuery, [productId, productType])
+    ]);
+
+    const reviews = reviewResult.rows;
+    const averageRating = avgRatingResult.rows[0].average_rating ? parseFloat(avgRatingResult.rows[0].average_rating).toFixed(1) : null;
+
+    // Send back reviews along with the average rating
+    res.json({ reviews, averageRating });
+  } catch (error) {
+    console.error('Error fetching reviews and average rating:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 
 // server.js or in a relevant router file
 app.get('/search', async (req, res) => {
