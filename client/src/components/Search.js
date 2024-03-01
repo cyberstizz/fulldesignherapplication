@@ -42,7 +42,7 @@ const Search = () => {
         ))
       ) : (
         <div>
-          <p>There are no items that match your search.</p>
+          <p style={{color: 'black'}}>There are no items that match your search.</p>
           <Link to="/">Go Back</Link>
         </div>
       )}
