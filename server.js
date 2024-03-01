@@ -255,10 +255,7 @@ app.use('/sneaker', sneakersRouter);
 
 ///////////////////////////////////////////////
 
-
-
-// Route to get reviews and average rating for a specific product
-router.get('/reviews/:productType/:productId', async (req, res) => {
+app.get('/reviews/:productType/:productId', async (req, res) => {
   const { productType, productId } = req.params;
 
   try {
@@ -291,7 +288,6 @@ router.get('/reviews/:productType/:productId', async (req, res) => {
 });
 
 
-// server.js or in a relevant router file
 app.get('/search', async (req, res) => {
   const { query } = req.query; // Assuming you're passing the search query as a query parameter
 
