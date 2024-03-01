@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import axios from 'axios';
 import './Search.scss'
+import Header from './Header';
 
 const Search = () => {
   const [results, setResults] = useState([]);
@@ -31,6 +32,8 @@ const Search = () => {
   
 
   return (
+    <React.Fragment>
+      <Header />
     <div>
       <h1>Search Results</h1>
       {results.length > 0 ? (
@@ -47,6 +50,7 @@ const Search = () => {
         </div>
       )}
     </div>
+    </React.Fragment>
   );
 };
 
