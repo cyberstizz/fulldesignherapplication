@@ -76,8 +76,8 @@ const ProductDescription = () => {
     : 'http://localhost:3001';
 
 
-    const handleOnReviewSubmit = () => {
-        console.log('the handle submit for a review has been clicked')
+    const handleOnReviewSubmit = ({ userId, headline, rating, review }) => {
+        console.log(`this re the items: userId: ${userId}, rating: ${heaadline}, rating: ${rating}, review: ${review}`)
     }
 
 

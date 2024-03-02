@@ -17,7 +17,7 @@ const ReviewModal = ({ isOpen, onClose, userId, onReviewSubmit }) => {
       return;
     }
     onReviewSubmit({ userId, headline, rating, review });
-    onClose(); // Close the modal after submission
+    onClose();
   };
 
 
