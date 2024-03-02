@@ -202,7 +202,6 @@ useEffect(() => {
                 isOpen={isReviewModalOpen}
                 onClose={() => setIsReviewModalOpen(false)}
                 userId={user.user_id}
-                onReviewSubmit={handleOnReviewSubmit}
                 />
                 <CustomStripeModal
                  isOpen={isCustomStripeModalOpen}
