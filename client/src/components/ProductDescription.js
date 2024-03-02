@@ -77,7 +77,7 @@ const ProductDescription = () => {
 
 
     const handleOnReviewSubmit = ({ userId, headline, rating, review }) => {
-        console.log(`this re the items: userId: ${userId}, rating: ${heaadline}, rating: ${rating}, review: ${review}`)
+        console.log(`this re the items: userId: ${userId}, rating: ${headline}, rating: ${rating}, review: ${review}`)
     }
 
 
