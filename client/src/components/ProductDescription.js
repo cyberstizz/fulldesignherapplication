@@ -82,7 +82,7 @@ const ProductDescription = () => {
         try {
             // Example API endpoint for submitting a review
             const endpoint = `/api/reviews`;
-            const response = await axios.post(endpoint, {
+            const response = await Axios.post(endpoint, {
                 userId,
                 headline,
                 rating: parseFloat(rating), // Ensure rating is sent as a number
