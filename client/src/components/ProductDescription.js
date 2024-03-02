@@ -76,9 +76,31 @@ const ProductDescription = () => {
     : 'http://localhost:3001';
 
 
-    const handleOnReviewSubmit = ({ userId, headline, rating, review }) => {
-        console.log(`this re the items: userId: ${userId}, rating: ${headline}, rating: ${rating}, review: ${review}`)
-    }
+    const handleOnReviewSubmit = async({ userId, headline, rating, review }) => {
+        console.log('Submitting review:', { userId, headline, rating, review });
+
+        try {
+            // Example API endpoint for submitting a review
+            const endpoint = `/api/reviews`;
+            const response = await axios.post(endpoint, {
+                userId,
+                headline,
+                rating: parseFloat(rating), // Ensure rating is sent as a number
+                review,
+            });
+    
+            if (response.status === 200) {
+                console.log('Review submitted successfully:', response.data);
+                // Handle successful review submission (e.g., display a success message, refresh reviews list)
+            } else {
+                console.error('Failed to submit review:', response.data);
+                // Handle failure (e.g., display an error message to the user)
+            }
+        } catch (error) {
+            console.error('Error submitting review:', error);
+            // Handle error (e.g., display an error message to the user)
+        }
+        }
 
 
 

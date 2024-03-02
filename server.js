@@ -288,6 +288,34 @@ app.get('/reviews/:productType/:productId', async (req, res) => {
 });
 
 
+
+// Route to submit a new review
+app.post('/reviews', async (req, res) => {
+  const { product_id, product_type, user_id, headline, review, rating } = req.body;
+
+  try {
+      const sqlQuery = `
+          INSERT INTO reviews (product_id, product_type, user_id, headline, review, rating)
+          VALUES ($1, $2, $3, $4, $5, $6)
+          RETURNING *;
+      `;
+      const values = [product_id, product_type, user_id, headline, review, rating];
+      
+      const result = await pool.query(sqlQuery, values);
+      const newReview = result.rows[0];
+      
+      res.status(201).json({
+          message: "Review submitted successfully",
+          review: newReview,
+      });
+  } catch (error) {
+      console.error('Error submitting review:', error);
+      res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
+
 app.get('/search', async (req, res) => {
   const { query } = req.query; // Assuming you're passing the search query as a query parameter
 
