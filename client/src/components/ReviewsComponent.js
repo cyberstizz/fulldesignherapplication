@@ -29,6 +29,7 @@ const ReviewsComponent = () => {
     };
 
     fetchReviews();
+    console.log(reviews)
   }, [productId, productType]);
 
   return (

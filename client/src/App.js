@@ -14,7 +14,6 @@ import Failure from './components/Failure';
 import ProductTest from './components/ProductTest';
 import ProductDescriptionTest from './components/ProductDescriptionTest';
 import ReviewsComponent from './components/ReviewsComponent';
-
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Control from './components/Control';
@@ -45,7 +44,7 @@ function App() {
       <Route path='/search' element={<Search />} />
       <Route path='/sneakers' element={<Sneakers />} />
       <Route path='/productTest' element={<ProductTest />} />
-      <Route path="/reviews/:productType/:productId" elememt={<ReviewsComponent />} />
+      <Route path='/reviews/:productType/:productId' elememt={<ReviewsComponent />} />
       </Routes>
     </Router>
 
