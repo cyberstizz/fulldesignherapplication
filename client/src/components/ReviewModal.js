@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ReviewModal.scss';
 import { Axios } from 'axios';
 
-const ReviewModal = ({ isOpen, onClose, userId }) => {
+const ReviewModal = ({ isOpen, onClose, userId, productId, productType }) => {
   const [headline, setHeadline] = useState('');
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState('');
@@ -16,12 +16,14 @@ const ReviewModal = ({ isOpen, onClose, userId }) => {
 
   
   const handleSubmit = async() => {
-    console.log('Submitting review:', { userId, headline, rating, review });
+    console.log('Submitting review:', { userId, headline, rating, review, productId, productType });
 
     try {
         // Example API endpoint for submitting a review
         const endpoint = `${apiUrl}/reviews`;
         const response = await Axios.post(endpoint, {
+            productId,
+            productType,
             userId,
             headline,
             rating: parseFloat(rating), // Ensure rating is sent as a number

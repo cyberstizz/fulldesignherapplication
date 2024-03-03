@@ -191,7 +191,7 @@ useEffect(() => {
 
           //destructure each relevant part of the product
 
-      const {name, image_path, description, product_price} = currentProduct;
+      const {name, image_path, description, product_price, product_type, product_id} = currentProduct;
 
 
     
@@ -202,6 +202,8 @@ useEffect(() => {
                 isOpen={isReviewModalOpen}
                 onClose={() => setIsReviewModalOpen(false)}
                 userId={user.user_id}
+                productId={product_id}
+                productType={product_type}
                 />
                 <CustomStripeModal
                  isOpen={isCustomStripeModalOpen}
