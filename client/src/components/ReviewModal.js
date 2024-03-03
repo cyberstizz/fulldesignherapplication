@@ -31,7 +31,7 @@ const ReviewModal = ({ isOpen, onClose, userId, productId, productType }) => {
             review,
         });
 
-        if (response.status === 200) {
+        if (response.status === 200 || 201) {
             console.log('Review submitted successfully:', response.data);
             // Handle successful review submission (e.g., display a success message, refresh reviews list)
         } else {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -69,7 +69,6 @@ const ProductDescription = () => {
     const [user, setUser] = useState(null);
 
 
-    //add an api url
     const apiUrl = process.env.NODE_ENV === 'production'
     ? 'https://designhercustomekreations-c288e9799350.herokuapp.com'
     : 'http://localhost:3001';
@@ -237,7 +236,7 @@ useEffect(() => {
                         </div>
 
                         <div className='ratingsSection'>
-                            <h1 className='ratingsHeader'>Ratings</h1>
+                            <Link to={`/reviews/${product_type}/${product_id}`}><h1 className='ratingsHeader'>Ratings</h1></Link>
                             <div className='ratingsStars'></div>
                             <div className='writeAReview' onClick={() => setIsReviewModalOpen(true)}>Write a review</div>
                         </div>
