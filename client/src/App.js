@@ -44,7 +44,7 @@ function App() {
       <Route path='/search' element={<Search />} />
       <Route path='/sneakers' element={<Sneakers />} />
       <Route path='/productTest' element={<ProductTest />} />
-      <Route path='/reviews/:productType/:productId' elememt={<ReviewsComponent />} />
+      <Route path='/reviews/:productType/:productId' element={<ReviewsComponent />} />
       </Routes>
     </Router>
 
