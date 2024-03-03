@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ReviewModal.scss';
-import { Axios } from 'axios';
+import Axios from 'axios';
 
 const ReviewModal = ({ isOpen, onClose, userId, productId, productType }) => {
   const [headline, setHeadline] = useState('');
