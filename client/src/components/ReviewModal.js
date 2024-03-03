@@ -22,9 +22,9 @@ const ReviewModal = ({ isOpen, onClose, userId, productId, productType }) => {
         // Example API endpoint for submitting a review
         const endpoint = `${apiUrl}/reviews`;
         const response = await Axios.post(endpoint, {
-            productId,
-            productType,
-            userId,
+            product_id: productId,
+            product_type: productType,
+            user_id: userId,
             headline,
             rating: parseFloat(rating), // Ensure rating is sent as a number
             review,
