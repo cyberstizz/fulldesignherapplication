@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './ReviewModal.scss';
+import { Axios } from 'axios';
 
 const ReviewModal = ({ isOpen, onClose, userId }) => {
   const [headline, setHeadline] = useState('');
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState('');
   
-
+ //add an api url
+ const apiUrl = process.env.NODE_ENV === 'production'
+ ? 'https://designhercustomekreations-c288e9799350.herokuapp.com'
+ : 'http://localhost:3001';
 
   if (!isOpen) return null;
 
