@@ -291,6 +291,8 @@ app.get('/reviews/:productType/:productId', async (req, res) => {
 
 // Route to submit a new review
 app.post('/reviews', async (req, res) => {
+  console.log(req.body); // Add this line to log the request body
+
   const { product_id, product_type, user_id, headline, review, rating } = req.body;
 
   try {
