@@ -15,7 +15,8 @@ const ReviewModal = ({ isOpen, onClose, userId, productId, productType }) => {
   if (!isOpen) return null;
 
   
-  const handleSubmit = async() => {
+  const handleSubmit = async(e) => {
+    e.preventDefault()
     console.log('Submitting review:', { userId, headline, rating, review, productId, productType });
 
     try {

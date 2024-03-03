@@ -63,8 +63,7 @@ const ProductDescription = () => {
     navigate(-1);
   };
 
-    const stripe = useStripe();
-    const elements = useElements();
+  
     const { productCategory, productId } = useParams();
     const [currentProduct, setProduct] = useState(null);
     const [user, setUser] = useState(null);
