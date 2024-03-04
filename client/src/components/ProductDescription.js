@@ -6,10 +6,6 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../app/features/cart/cartSlice';
 import './ProductDescription.scss';
 import Axios from 'axios';
-// import { addToCart } from './reducers/AddToCart';
-import StripeCheckout from 'react-stripe-checkout';
-import { useStripe, useElements } from '@stripe/react-stripe-js';
-import CheckoutButton from './CheckoutButton';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import AddToCartModal from './AddToCartModal';
 import AddedToCartModal from './AddedToCartModal';
@@ -17,21 +13,6 @@ import CustomStripeModal from './CustomStripeModal';
 import ReviewModal from './ReviewModal';
 
 
-// import { useDispatch, useSelector } from 'react-redux';
-
-// creating the two functions that will be needed to connect this component to the store
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         addToTheCart: (item) => {dispatch(addToCart(item))}
-//     }
-// }
-
-// const mapStateToProps = (state) => {
-//     return {
-//         items: state.items
-//     }
-// }
 
 const ProductDescription = () => {
     //first initiation of all hooks and 
@@ -154,14 +135,6 @@ const ProductDescription = () => {
         }
     }
 
-    getProduct()
-
-}, [apiUrl, productCategory, productId])
-
-
-
-
-useEffect(() => {
     const checkUserAuthentication = async () => {
       try {
         const response = await Axios.get('/user');
@@ -176,7 +149,14 @@ useEffect(() => {
     };
 
     checkUserAuthentication();
-  }, []);
+
+    getProduct()
+
+
+
+
+
+}, [productCategory, productId])
 
 
 
