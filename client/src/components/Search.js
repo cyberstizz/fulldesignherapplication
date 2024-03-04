@@ -69,6 +69,7 @@ const Search = () => {
         const response = await axios.get(`/search?query=${query}`);
         setResults(response.data);
         console.log(results)
+        console.log('this is the name of the product after the function,', properProductType(item.product_type))
       } catch (error) {
         console.error('Error fetching search results:', error);
       }
