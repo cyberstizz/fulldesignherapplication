@@ -199,7 +199,7 @@ useEffect(() => {
                 <ReviewModal 
                 isOpen={isReviewModalOpen}
                 onClose={() => setIsReviewModalOpen(false)}
-                userId={user.user_id}
+                userId={user ? user.user_id : null}
                 productId={product_id}
                 productType={product_type}
                 />
