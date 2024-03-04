@@ -48,25 +48,12 @@ crocsRouter.get('/allCrocs', async(req, res) => {
 // Get one croc by product_id
 crocsRouter.get('/:productId', async (req, res) => {
   const productId = req.params.productId;
-  const cacheKey = `croc:${productId}`;
-
-  redisClient.get(cacheKey, async (err, cachedCroc) => {
-    if (err) {
-      console.error('Redis error:', err);
-      return res.status(500).json({ error: 'Internal server error' });
-    }
-
-    if (cachedCroc) {
-      // Send cached data
-      return res.json(JSON.parse(cachedCroc));
-    } else {
+  
       try {
         const result = await pool.query('SELECT * FROM crocs WHERE product_id = $1', [productId]);
         const croc = result.rows[0]; // Assuming product_id is unique
 
         if (croc) {
-          // Cache the result before sending it
-          redisClient.setex(cacheKey, 3600, JSON.stringify(croc)); // Cache for 1 hour
 
           res.json({ croc });
         } else {
@@ -76,9 +63,7 @@ crocsRouter.get('/:productId', async (req, res) => {
         console.error('Error fetching croc:', error);
         res.status(500).json({ error: 'Internal server error' });
       }
-    }
   });
-});
 
 
 

@@ -92,7 +92,7 @@ const Search = () => {
       {results.length > 0 ? (
         <div className='submenuBody'>
         {results.map(item => (
-          <Link key={item.product_id} to={`/${properProductType(item.product_type)}/${item.product_id}`}>
+          <Link key={item.product_id} to={`/${item.product_type}/${item.product_id}`}>
               <SubMenuComponent onImageLoad={handleImageLoaded} name={properLettering(item.name)} path={item.image_path} product_price={item.product_price} />
           </Link>
       ))}
