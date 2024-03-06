@@ -94,8 +94,6 @@ const Control = () => {
             console.log("this is the handleCreate and i was just called. this is the product I am about to create", product)
             console.log(`and this is the newProduct ${newProduct}, if it has already loaded it should like the same as product`)
 
-            const productType = product.productType;
-
 
             try {
                 const formData = new FormData();
