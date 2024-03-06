@@ -3,9 +3,14 @@ import Axios from "axios";
 import './ControlComponent.scss';
 import EditModal from "./EditModal";
 import DeleteModal from "./DeleteModal";
+import { useNavigate } from 'react-router-dom';
+
 
 
 const ControlComponent = (props) => {
+
+    const navigate = useNavigate();
+
 
     const baseUrl = window.location.origin;
 
@@ -61,6 +66,9 @@ const ControlComponent = (props) => {
         try {
             const response = await Axios.delete(`${apiUrl}/${props.product_type}/${props.product_id}`);
             console.log(response.data);
+
+            navigate('/control');
+
         } catch (error) {
             console.error('Error deleting item:', error.message);
         }

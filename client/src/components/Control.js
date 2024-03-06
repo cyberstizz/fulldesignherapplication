@@ -5,11 +5,16 @@ import Axios from 'axios';
 import ControlComponent from './ControlComponent';
 import Header from './Header';
 import CreateModal from './CreateModal'; // Assuming the file path is correct
+import { useNavigate } from 'react-router-dom';
+
 
 
 
 
 const Control = () => {
+
+
+    const navigate = useNavigate();
 
 
     const baseUrl = window.location.origin;
@@ -118,6 +123,10 @@ const Control = () => {
                         setNewProduct(product)
                 // Close the modal
                 toggleCreateModal();
+
+                //refresh the page
+                navigate('/control');
+
         } catch (error) {
           console.error('Error creating product:', error.message);
         }
