@@ -492,48 +492,30 @@ app.get('/logout', (req, res) => {
   });
 });
 
+app.get('/allProducts', async (req, res) => {
+  try {
+      // Direct database queries to fetch products
+      const crocResult = await pool.query('SELECT * FROM crocs'); 
+      const jacketResult = await pool.query('SELECT * FROM jackets'); 
+      const sneakerResult = await pool.query('SELECT * FROM sneakers');
+      const bootResult = await pool.query('SELECT * FROM boots');
 
-//all products
-app.get('/allProducts', async(req, res) => {
+      // Compile the results into a single object
+      const products = {
+          crocs: crocResult.rows,
+          jackets: jacketResult.rows,
+          sneakers: sneakerResult.rows,
+          boots: bootResult.rows,
+      };
 
+      // Respond with the compiled products object
+      res.json(products);
+  } catch (error) {
+      console.error('Error fetching products:', error);
+      res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
-      const cacheKey = 'allProducts';
-
-      // Try fetching the data from Redis cache
-      redisClient.get(cacheKey, async (err, data) => {
-        if (err) throw err;
-
-
-        if (data) {
-          // Send cached data
-          return res.json(JSON.parse(data));
-        } else {
-          // Data
-
-        try {
-          const crocResult = await pool.query('SELECT * FROM crocs'); 
-          const jacketResult = await pool.query('SELECT * FROM jackets'); 
-          const sneakerResult = await pool.query('SELECT * FROM sneakers');
-          const bootResult = await pool.query('SELECT * FROM boots');
-
-          const crocs = crocResult.rows;
-          const jackets = jacketResult.rows;
-          const sneakers = sneakerResult.rows;
-          const boots = bootResult.rows;
-
-          allproducts = {crocs, jackets, sneakers, boots}
-
-          redisClient.setex(cacheKey, 3600, JSON.stringify(allproducts)); // Cache for 1 hour
-
-
-          res.json(allproducts);
-        } catch (error) {
-          console.error('Error fetching products:', error);
-          res.status(500).json({ error: 'Internal server error' });
-        }
-      }
-      })
-})
 
 app.get('/products/:productId', async(req, res) => {
   
