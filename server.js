@@ -245,7 +245,7 @@ app.delete('/:productType/:productId', async (req, res) => {
     console.error('Error deleting product:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-});
+})
 
 // const redisClient = redis.createClient({
 //   // If you're using a local Redis server without a password
