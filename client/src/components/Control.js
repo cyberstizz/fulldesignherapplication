@@ -125,7 +125,7 @@ const Control = () => {
                 toggleCreateModal();
 
                 //refresh the page
-                navigate('/control');
+                navigate(0, { replace: true })
 
         } catch (error) {
           console.error('Error creating product:', error.message);

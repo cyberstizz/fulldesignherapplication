@@ -67,8 +67,7 @@ const ControlComponent = (props) => {
             const response = await Axios.delete(`${apiUrl}/${props.product_type}/${props.product_id}`);
             console.log(response.data);
 
-            navigate('/control');
-
+            navigate(0, { replace: true })
         } catch (error) {
             console.error('Error deleting item:', error.message);
         }
