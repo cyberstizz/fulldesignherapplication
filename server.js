@@ -188,43 +188,43 @@ if (process.env.NODE_ENV === 'production') {
 app.use(express.static(path.join(__dirname, 'client/build')));
 }
 
-
 app.delete('/:productType/:productId', async (req, res) => {
-  try {
-    const { productType, productId } = req.params;
+  const { productType, productId } = req.params;
+  const allowedTypes = ['crocs', 'jackets', 'sneakers', 'boots'];
 
-    // Validate if productType is one of the allowed types
-    const allowedTypes = ['crocs', 'jackets', 'sneakers', 'boots'];
+  try {
     if (!allowedTypes.includes(productType)) {
       return res.status(400).json({ error: 'Invalid product type' });
     }
 
-    // Fetch the product to be deleted to get its image path
+    // Fetch the product to get its image path
     const selectQuery = `SELECT * FROM ${productType} WHERE product_id = $1`;
     const selectResult = await pool.query(selectQuery, [productId]);
     if (selectResult.rows.length === 0) {
-      // If the product was not found
       return res.status(404).json({ error: 'Product not found' });
     }
-
-    // Extract the image path from the product
     const imagePath = selectResult.rows[0].image_path;
-    const imageKey = imagePath.split('/').pop(); // Assuming 'image_path' contains the full S3 key
 
-    // Check if the image is shared with other products
-    const checkImageUsageQuery = `
-      SELECT COUNT(*) AS usage_count
-      FROM ${allowedTypes.join(", ")}
-      WHERE image_path = $1 AND product_id != $2;
-    `;
-    const imageUsageResult = await pool.query(checkImageUsageQuery, [imagePath, productId]);
-    const isImageShared = parseInt(imageUsageResult.rows[0].usage_count, 10) > 0;
+    // Initialize variable to check image usage across product types
+    let isImageShared = false;
+    for (const type of allowedTypes) {
+      const checkImageUsageQuery = `
+        SELECT COUNT(*) AS usage_count
+        FROM ${type}
+        WHERE image_path = $1 AND product_id != $2;
+      `;
+      const imageUsageResult = await pool.query(checkImageUsageQuery, [imagePath, productId]);
+      if (parseInt(imageUsageResult.rows[0].usage_count, 10) > 0) {
+        isImageShared = true;
+        break;
+      }
+    }
 
-    // Delete the product from the database
+    // Delete the product
     const deleteQuery = `DELETE FROM ${productType} WHERE product_id = $1 RETURNING *`;
     await pool.query(deleteQuery, [productId]);
 
-    // Only delete the image from S3 if it is not shared
+    // Only delete the image from S3 if not shared
     if (!isImageShared) {
       const s3 = new S3Client({
         region: process.env.AWS_REGION,
@@ -233,6 +233,7 @@ app.delete('/:productType/:productId', async (req, res) => {
           secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
         },
       });
+      const imageKey = imagePath.split('/').pop();
       await s3.send(new DeleteObjectCommand({
         Bucket: 'designherbucket',
         Key: imageKey,
@@ -245,7 +246,6 @@ app.delete('/:productType/:productId', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
 
 // const redisClient = redis.createClient({
 //   // If you're using a local Redis server without a password
