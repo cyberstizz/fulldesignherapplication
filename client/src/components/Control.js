@@ -102,7 +102,7 @@ const Control = () => {
                 formData.append('name', product.name);
                 formData.append('image', product.image);
                 formData.append('description', product.description);
-                formData.append('productType', product.productType);
+                formData.append('product_type', product.productType);
                 formData.append('product_price', product.price);
 
 
