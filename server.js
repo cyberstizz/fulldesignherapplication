@@ -645,8 +645,8 @@ app.post('/:productType', upload.single('image'), async (req, res) => {
     const productId = uuidv4();
 
     // Construct the SQL query for inserting a new product
-    const query = `INSERT INTO ${productType} (product_id, name, image_path, description, product_price) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
-    const values = [productId, newProduct.name, s3Url, newProduct.description, newProduct.product_price];
+    const query = `INSERT INTO ${productType} (product_id, name, image_path, description, product_type, product_price) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
+    const values = [productId, newProduct.name, s3Url, newProduct.description, newProduct.productType, newProduct.product_price];
 
     // Execute the query using the pool
     const result = await pool.query(query, values);
