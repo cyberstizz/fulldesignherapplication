@@ -189,51 +189,62 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 }
 
 
-
 app.delete('/:productType/:productId', async (req, res) => {
   try {
     const { productType, productId } = req.params;
 
-    // Validate if productType is one of the allowed types (crocs, jackets, sneakers, boots)
+    // Validate if productType is one of the allowed types
     const allowedTypes = ['crocs', 'jackets', 'sneakers', 'boots'];
     if (!allowedTypes.includes(productType)) {
       return res.status(400).json({ error: 'Invalid product type' });
     }
 
-    // Construct the SQL query based on the product type
-    const query = `DELETE FROM ${productType} WHERE product_id = $1 RETURNING *`;
-    const values = [productId];
-
-    // Execute the query using the pool
-    const result = await pool.query(query, values);
-
-    if (result.rows.length === 0) {
-      // If no rows were deleted, the product with the given ID was not found
+    // Fetch the product to be deleted to get its image path
+    const selectQuery = `SELECT * FROM ${productType} WHERE product_id = $1`;
+    const selectResult = await pool.query(selectQuery, [productId]);
+    if (selectResult.rows.length === 0) {
+      // If the product was not found
       return res.status(404).json({ error: 'Product not found' });
     }
 
- // Delete the associated image from AWS S3
- const s3 = new S3Client({
-  region: process.env.AWS_REGION,
-  credentials: ({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  }),
-}); const imageKey = result.rows[0].image_path.split('/').pop(); // Assuming 'image_path' is the S3 key
+    // Extract the image path from the product
+    const imagePath = selectResult.rows[0].image_path;
+    const imageKey = imagePath.split('/').pop(); // Assuming 'image_path' contains the full S3 key
 
+    // Check if the image is shared with other products
+    const checkImageUsageQuery = `
+      SELECT COUNT(*) AS usage_count
+      FROM ${allowedTypes.join(", ")}
+      WHERE image_path = $1 AND product_id != $2;
+    `;
+    const imageUsageResult = await pool.query(checkImageUsageQuery, [imagePath, productId]);
+    const isImageShared = parseInt(imageUsageResult.rows[0].usage_count, 10) > 0;
 
- await s3.send(new DeleteObjectCommand({
-  Bucket: 'designherbucket',
-  Key: imageKey,
-}));
+    // Delete the product from the database
+    const deleteQuery = `DELETE FROM ${productType} WHERE product_id = $1 RETURNING *`;
+    await pool.query(deleteQuery, [productId]);
+
+    // Only delete the image from S3 if it is not shared
+    if (!isImageShared) {
+      const s3 = new S3Client({
+        region: process.env.AWS_REGION,
+        credentials: {
+          accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+          secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+        },
+      });
+      await s3.send(new DeleteObjectCommand({
+        Bucket: 'designherbucket',
+        Key: imageKey,
+      }));
+    }
 
     res.json({ message: 'Product deleted successfully' });
   } catch (error) {
-    console.error('Error deleting product:', error.message);
+    console.error('Error deleting product:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
 
 
 // const redisClient = redis.createClient({
