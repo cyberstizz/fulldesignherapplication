@@ -627,6 +627,8 @@ app.post('/:productType', upload.single('image'), async (req, res) => {
   try {
     console.log('Received file:', req.file);  // Add this line for logging
 
+    console.log(req.body)
+
     const { productType } = req.params;
     const newProduct = req.body;
 
