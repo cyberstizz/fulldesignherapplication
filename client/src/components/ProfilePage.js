@@ -64,7 +64,7 @@ const ProfilePage = () => {
     try {
       await axios.delete(`${process.env.REACT_APP_API_URL}/users/deleteAccount`); // Adjust the endpoint as needed
       // Handle post-deletion logic (e.g., navigate to a goodbye page, logout the user)
-      navigate('/goodbye');
+      navigate('/');
     } catch (error) {
       console.error('Error deleting account:', error);
       // Handle error (e.g., show error message)
