@@ -32,6 +32,7 @@ const Control = () => {
     const [allBoots, setAllBoots] = useState([]);
     const [isEditModalOpen, setEditModalOpen] = useState(false);
     const [isCreateModalOpen, setCreateModalOpen] = useState(false);
+    const [products, setProducts] = useState([]);
     const [newProduct, setNewProduct] = useState({
       name: '',
       image: null,
@@ -125,7 +126,6 @@ const Control = () => {
                 toggleCreateModal();
 
                 //refresh the page
-                navigate(0, { replace: true, state: { key: Date.now() } }); // navigate(0) is a way to refresh the page
 
         } catch (error) {
           console.error('Error creating product:', error.message);
