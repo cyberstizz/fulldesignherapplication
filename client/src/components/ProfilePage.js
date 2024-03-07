@@ -9,6 +9,37 @@ const ProfilePage = () => {
   const userOrders = ["Order 1", "Order 2"];
   const userReviews = ["Review 1", "Review 2"];
   const navigate = useNavigate();
+  const [orders, setOrders] = useState([]);
+  const [reviews, setReviews] = useState([]);
+
+
+  const apiUrl = process.env.NODE_ENV === 'production'
+  ? `${baseUrl}`
+  : 'http://localhost:3001';
+
+
+  seEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const ordersRes = await axios.get(`${apiUrl}/users/${userId}/orders`);
+        setOrders(ordersRes.data.orders);
+      } catch (error) {
+        console.error('Error fetching orders:', error);
+      }
+    };
+
+    const fetchReviews = async () => {
+      try {
+        const reviewsRes = await axios.get(`${process.env.REACT_APP_API_URL}/users/${userId}/reviews`);
+        setReviews(reviewsRes.data.reviews);
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+      }
+    };
+
+    fetchOrders();
+    fetchReviews();
+  }, [userId]);
 
   const handleDeleteAccount = async () => {
     try {
