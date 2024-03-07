@@ -401,6 +401,29 @@ app.put('/:productType/:productId', upload.single('image'), async (req, res) => 
 // the routes will inlcude
 
 
+//the delete account route
+app.delete('/users/deleteAccount', async (req, res) => {
+  try {
+    // Assuming you have a way to identify the authenticated user, e.g., via a JWT token
+    const userId = req.user.id; // This will depend on your authentication logic
+
+    // Deleting the user from the database
+    const query = 'DELETE FROM users WHERE user_id = $1 RETURNING *';
+    const values = [userId];
+    const result = await pool.query(query, values);
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.json({ message: 'User deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting user account:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
 // Registration endpoint
 app.post('/register', async (req, res) => {
   console.log(req.body)
