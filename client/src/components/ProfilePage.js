@@ -11,6 +11,8 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [user, setUser] = useState(null);
+
 
 
   const apiUrl = process.env.NODE_ENV === 'production'
@@ -18,10 +20,12 @@ const ProfilePage = () => {
   : 'http://localhost:3001';
 
 
+
+
   seEffect(() => {
     const fetchOrders = async () => {
       try {
-        const ordersRes = await axios.get(`${apiUrl}/users/${userId}/orders`);
+        const ordersRes = await axios.get(`${apiUrl}/users/${user}/orders`);
         setOrders(ordersRes.data.orders);
       } catch (error) {
         console.error('Error fetching orders:', error);
@@ -37,6 +41,21 @@ const ProfilePage = () => {
       }
     };
 
+    const checkUserAuthentication = async () => {
+        try {
+          const response = await Axios.get('/user');
+          if (response.status === 200) {
+            setUser(response.data.user);
+          } else {
+            setUser(null);
+          }
+        } catch (error) {
+          console.error('Error checking user authentication:', error.message);
+        }
+      };
+  
+      
+    checkUserAuthentication();
     fetchOrders();
     fetchReviews();
   }, [userId]);
