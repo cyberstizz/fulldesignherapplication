@@ -77,7 +77,7 @@ const ProfilePage = () => {
       <h1 style={{ color: 'red' }}>{userName}</h1>
       <Dropdown title="Your Orders" items={orders} emptyMessage="You have no orders" />
       <Dropdown title="Your Reviews" items={reviews} emptyMessage="You have no reviews" />
-      <button onClick={handleDeleteAccount}>Delete Account</button>
+      <button onClick={handleDeleteAccount} style={{marginBottom: "10vh"}}>Delete Account</button>
       <button onClick={() => navigate(-1)}>Back</button> {/* Navigates back to the previous page */}
     </div>
   );
