@@ -6,6 +6,11 @@
   font-size: 30;
 }
 
+body {
+  cursor: url('crocCurser.png'), auto;
+}
+
+
 .App {
   text-align: center;
 }
