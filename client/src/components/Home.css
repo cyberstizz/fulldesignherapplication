@@ -20,6 +20,10 @@ a {
     outline: none; /* or background-color: transparent; or any other style */
   }
 
+  body {
+    cursor: url('../crocCurser.png'), auto;
+  }
+
 .homeVideo{
     object-fit: fill;
     width: 100%;
