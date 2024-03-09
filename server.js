@@ -298,6 +298,69 @@ app.get('/reviews/:productType/:productId', async (req, res) => {
   }
 });
 
+//grab all orders for a specific user
+app.get('/users/:userId/orders', async (req, res) => {
+// Ensure user is authenticated
+if (!req.isAuthenticated() || req.user.user_id !== parseInt(req.params.userId)) {
+  return res.status(403).send('Unauthorized');
+}
+  try {
+
+    const { userId } = req.params;
+
+    // Fetch orders made by the user
+    const ordersQuery = `
+      SELECT o.order_number, o.order_date, array_agg(i.product_id) as product_ids
+      FROM orders o
+      JOIN order_items i ON o.order_number = i.order_id
+      WHERE o.customer_id = $1
+      GROUP BY o.order_number, o.order_date
+      ORDER BY o.order_date DESC;
+    `;
+    const ordersResult = await pool.query(ordersQuery, [userId]);
+    const orders = ordersResult.rows;
+
+    res.json({ orders });
+  } catch (error) {
+    console.error('Error fetching user orders:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
+//grab all reviews for a specific user
+app.get('/users/:userId/reviews', async (req, res) => {
+  
+   // Ensure user is authenticated
+   if (!req.isAuthenticated() || req.user.user_id !== parseInt(req.params.userId)) {
+    return res.status(403).send('Unauthorized');
+  } 
+
+
+  try {
+
+    const { userId } = req.params;
+
+
+    //fetch all reviews
+    const reviewsQuery = `
+      SELECT review_id, product_id, product_type, headline, review, rating
+      FROM reviews
+      WHERE user_id = $1
+      ORDER BY review_id DESC;
+    `;
+    const reviewsResult = await pool.query(reviewsQuery, [userId]);
+    const reviews = reviewsResult.rows;
+
+    res.json({ reviews });
+  } catch (error) {
+    console.error('Error fetching user reviews:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
+
 
 
 // Route to submit a new review
