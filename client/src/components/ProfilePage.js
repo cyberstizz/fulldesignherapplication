@@ -59,7 +59,7 @@ const ProfilePage = () => {
     checkUserAuthentication();
     fetchOrders();
     fetchReviews();
-  }, [user]);
+  }, []);
 
   const handleDeleteAccount = async () => {
     try {
