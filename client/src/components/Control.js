@@ -32,7 +32,7 @@ const Control = () => {
     const [allBoots, setAllBoots] = useState([]);
     const [isEditModalOpen, setEditModalOpen] = useState(false);
     const [isCreateModalOpen, setCreateModalOpen] = useState(false);
-    const [products, setProducts] = useState([]);
+    const [allProducts, setAllProducts] = useState([]);
     const [newProduct, setNewProduct] = useState({
       name: '',
       image: null,
@@ -62,6 +62,7 @@ const Control = () => {
                 setAllBoots(response.data.boots);
                 setAllJackets(response.data.jackets);
                 setAllSneakers(response.data.sneakers);
+                setAllProducts(response.data);
 
             } catch (error) {
                 console.error("Error fetching crocs data: ", error);
