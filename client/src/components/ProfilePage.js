@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import './ProfilePage.scss';
 import Dropdown from './Dropdown';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const ProfilePage = () => {
-  const userName = user.username;
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [user, setUser] = useState(null);
 
   const baseUrl = window.location.origin;
+
+
+  const userName = user ? user.username : 'Loading...';
 
 
   const apiUrl = process.env.NODE_ENV === 'production'
