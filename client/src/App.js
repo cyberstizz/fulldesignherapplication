@@ -12,6 +12,7 @@ import Sneakers from './components/Sneakers';
 import Success from './components/Success';
 import Failure from './components/Failure';
 import ProductTest from './components/ProductTest';
+import ProfilePage from './components/ProfilePage';
 import ProductDescriptionTest from './components/ProductDescriptionTest';
 import ReviewsComponent from './components/ReviewsComponent';
 import { Elements } from '@stripe/react-stripe-js';
@@ -44,6 +45,7 @@ function App() {
       <Route path='/search' element={<Search />} />
       <Route path='/sneakers' element={<Sneakers />} />
       <Route path='/productTest' element={<ProductTest />} />
+      <Route path='/profile/:user' element={<ProfilePage />} />
       <Route path='/reviews/:productType/:productId' element={<ReviewsComponent />} />
       </Routes>
     </Router>

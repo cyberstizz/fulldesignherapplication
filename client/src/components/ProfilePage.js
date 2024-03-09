@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './ProfilePage.scss';
 import Dropdown from './Dropdown';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const ProfilePage = () => {
@@ -11,8 +11,8 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const [reviews, setReviews] = useState([]);
-  const [user, setUser] = useState(null);
 
+  const user = useParams();
 
 
   const apiUrl = process.env.NODE_ENV === 'production'
@@ -34,7 +34,7 @@ const ProfilePage = () => {
 
     const fetchReviews = async () => {
       try {
-        const reviewsRes = await axios.get(`${process.env.REACT_APP_API_URL}/users/${userId}/reviews`);
+        const reviewsRes = await axios.get(`${apiUrl}/users/${userId}/reviews`);
         setReviews(reviewsRes.data.reviews);
       } catch (error) {
         console.error('Error fetching reviews:', error);
@@ -43,7 +43,7 @@ const ProfilePage = () => {
 
     const checkUserAuthentication = async () => {
         try {
-          const response = await Axios.get('/user');
+          const response = await Axios.get(`/user`);
           if (response.status === 200) {
             setUser(response.data.user);
           } else {
@@ -62,7 +62,7 @@ const ProfilePage = () => {
 
   const handleDeleteAccount = async () => {
     try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/users/deleteAccount`); // Adjust the endpoint as needed
+      await axios.delete(`${apiUrl}/users/deleteAccount`); // Adjust the endpoint as needed
       // Handle post-deletion logic (e.g., navigate to a goodbye page, logout the user)
       navigate('/');
     } catch (error) {

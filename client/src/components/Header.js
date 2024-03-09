@@ -96,7 +96,7 @@ const Header = () => {
       <SignUp isOpen={isSignupModalOpen} onClose={() => setIsSignupModalOpen(false)} onOpenLoginModal={() => handleModalToggle('login')} afterSignup={handleOpenWelcomeUserModal} />
       <WelcomeModal isOpen={isWelcomeModalOpen} onClose={handleCloseModal} />
       <WelcomeUserModal isOpen={isWelcomeUserModalOpen} onClose={handleCloseModal} user={user} />
-      <UserModal isOpen={isUserModalOpen} onClose={handleCloseModal} onLogout={handleLogout} />
+      <UserModal isOpen={isUserModalOpen} onClose={handleCloseModal} onLogout={handleLogout} user={user} />
       {user ? (
         <div className="userWelcome" onClick={handleOpenUserModal}> {user.username}</div>
       ) : (
