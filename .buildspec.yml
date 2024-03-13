@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 14.9.0
+      nodejs: 18
     commands:
       - npm install
       - cd client && npm install --legacy-peer-deps
