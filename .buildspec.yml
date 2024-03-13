@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14.9.0
+    commands:
+      - npm install
+      - cd client && npm install --legacy-peer-deps
+  pre_build:
+    commands:
+      - echo Pre-build step
+  build:
+    commands:
+      - echo Building the React client...
+      - cd client && npm run build
+artifacts:
+  files:
+    - '**/*'
+  base-directory: client/build
+  discard-paths: no
