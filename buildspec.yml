@@ -2,18 +2,29 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      nodejs: 14.9.0
     commands:
+      # Install NVM (Node Version Manager)
+      - echo "Installing NVM..."
+      - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+      - . ~/.nvm/nvm.sh
+      # Install and use Node.js version 18
+      - echo "Installing Node.js version 18..."
+      - nvm install 18
+      - nvm use 18
+      - node -v
+      - npm -v
+      # Install your project dependencies
+      - echo "Installing project dependencies..."
       - npm install
       - cd client && npm install --legacy-peer-deps
   pre_build:
     commands:
-      - echo Pre-build step
+      - echo "Pre-build step..."
   build:
     commands:
-      - echo Building the React client...
+      - echo "Building the React client..."
       - cd client && npm run build
+      - echo "Build completed."
 artifacts:
   files:
     - '**/*'
