@@ -19,6 +19,7 @@ phases:
     - ls -la
     - echo "running the build command..."
     - npm run build
+    - cd..
 artifacts:
   files:
     - '**/*'
