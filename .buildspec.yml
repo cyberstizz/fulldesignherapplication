@@ -1,9 +1,24 @@
 version: 0.2
 
 phases:
+  cache:
+  paths:
+    - /usr/local/lib/nodejs
   install:
     runtime-versions:
       nodejs: 18
+    commands:
+      - npm install
+      - cd client && npm install --legacy-peer-deps
+  pre_build:
+    commands:
+      - echo Pre-build step
   build:
     commands:
-      - echo "Hello World"
+      - echo Building the React client...
+      - cd client && npm run build
+artifacts:
+  files:
+    - '**/*'
+  base-directory: client/build
+  discard-paths: no
