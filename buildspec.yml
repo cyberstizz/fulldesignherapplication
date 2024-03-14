@@ -10,6 +10,11 @@ phases:
   pre_build:
     commands:
       - echo Pre-build step
+      - echo "Listing the contents of the root directory:"
+      - ls -al
+      - echo "Checking if the client directory exists:"
+      - if [ -d client ]; then echo "Client directory exists"; ls -al client; else echo "Client directory does not exist"; fi
+
   build:
     commands:
     - echo "Listing the root directory contents..."
