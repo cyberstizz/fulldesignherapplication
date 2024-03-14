@@ -5,24 +5,24 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
+      - echo "Installing server dependencies..."
       - npm install
-      - cd client && npm install --legacy-peer-deps
   pre_build:
     commands:
-      - echo Pre-build step
+      - echo "Pre-build step"
       - echo "Listing the contents of the root directory:"
       - ls -al
       - echo "Checking if the client directory exists:"
-      - if [ -d client ]; then echo "Client directory exists"; ls -al client; else echo "Client directory does not exist"; fi
-
+      - if [ -d client ]; then echo "Client directory exists"; else echo "Client directory does not exist"; fi
   build:
     commands:
-    - echo "Listing the root directory contents..."
-    - ls -la
-    - echo "Checking for the client directory..."
-    - ls -la client || echo "Client directory not found."
+      - echo "Building the React client..."
+      - cd client
+      - npm install --legacy-peer-deps
+      - npm run build
+      - cd ..
 artifacts:
   files:
     - '**/*'
-  base-directory: client/build
+  base-directory: 'client/build'
   discard-paths: no
