@@ -1,6 +1,23 @@
-build:
-  commands:
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - npm install
+      - cd client && npm install --legacy-peer-deps
+  pre_build:
+    commands:
+      - echo Pre-build step
+  build:
+    commands:
     - echo "Listing the root directory contents..."
     - ls -la
     - echo "Checking for the client directory..."
     - ls -la client || echo "Client directory not found."
+artifacts:
+  files:
+    - '**/*'
+  base-directory: client/build
+  discard-paths: no
