@@ -1,13 +1,17 @@
 version: 0.2
 
 phases:
-  cache:
-  paths:
-    - /usr/local/lib/nodejs
   install:
-    runtime-versions:
-      nodejs: 18
     commands:
+      # Install nvm
+      - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+      # Make nvm available in the current shell session
+      - . ~/.nvm/nvm.sh
+      # Install and use Node.js version 18
+      - nvm install 18
+      - nvm use 18
+      - node -v
+      # Proceed with your installation commands
       - npm install
       - cd client && npm install --legacy-peer-deps
   pre_build:
