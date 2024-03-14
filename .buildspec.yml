@@ -1,6 +1,9 @@
 version: 0.2
 
 phases:
+  cache:
+  paths:
+    - /usr/local/lib/nodejs
   install:
     runtime-versions:
       nodejs: 18
