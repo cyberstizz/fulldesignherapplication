@@ -5,23 +5,22 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
+      # Install root dependencies (if any)
       - npm install
-      - cd client && npm install --legacy-peer-deps
+      # Install client dependencies and build
+      - cd client && npm install --legacy-peer-deps && npm run build
+
   pre_build:
     commands:
       - echo Pre-build step
-      - echo "Listing the contents of the root directory:"
-      - ls -al
 
   build:
     commands:
-    - echo "Listing the root directory contents..."
-    - ls -la
-    - echo "running the build command..."
-    - npm run build
-    - 
+      - echo "Building the React client..."
+      # No need to run npm run build here as we've done it in the install phase
+
 artifacts:
   files:
     - '**/*'
-  base-directory: client/build
+  base-directory: 'client/build' # The directory to package up in the artifact
   discard-paths: no
