@@ -5,22 +5,25 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
-      # Install root dependencies (if any)
       - npm install
-      # Install client dependencies and build
-      - cd client && npm install --legacy-peer-deps && npm run build
 
   pre_build:
     commands:
       - echo Pre-build step
+      - echo "Listing the contents of the root directory:"
+      - ls -al
 
   build:
     commands:
-      - echo "Building the React client..."
-      # No need to run npm run build here as we've done it in the install phase
+      - echo "Building the React client following Heroku postbuild script..."
+      - cd client
+      - rm -rf node_modules
+      - npm install --legacy-peer-deps
+      - npm run build
+      - cd ..
 
 artifacts:
   files:
     - '**/*'
-  base-directory: 'client/build' # The directory to package up in the artifact
+  base-directory: 'client/build'
   discard-paths: no
