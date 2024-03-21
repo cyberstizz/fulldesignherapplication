@@ -28,5 +28,6 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: 'client/build'
+    - '!client/node_modules/**/*' 
+  base-directory: '/'
   discard-paths: no
