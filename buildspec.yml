@@ -28,5 +28,5 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: '/'
+  base-directory: 'client/build'
   discard-paths: no
