@@ -18,8 +18,8 @@ phases:
   build:
     commands:
       - echo "Building the React client following Heroku postbuild script..."
-      - rm -rf node_modules
       - cd client
+      - rm -rf node_modules
       - npm install --legacy-peer-deps
       - ls -al
       - npm run build
