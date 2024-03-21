@@ -21,7 +21,6 @@ phases:
       - cd client
       - npm install --legacy-peer-deps
       - npm run build
-      - cd ..
 
 artifacts:
   files:
