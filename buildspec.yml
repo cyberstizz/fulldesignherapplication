@@ -21,6 +21,7 @@ phases:
       - rm -rf node_modules
       - cd client
       - npm install --legacy-peer-deps
+      - ls
       - npm run build
       - cd ..
 
