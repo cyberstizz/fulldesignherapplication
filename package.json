@@ -50,7 +50,7 @@
     "uuid": "^9.0.1"
   },
   "engines": {
-    "node": "18"
+    "node": "18.x"
   },
   "devDependencies": {
     "crypto-browserify": "^3.12.0",
