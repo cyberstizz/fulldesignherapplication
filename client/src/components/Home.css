@@ -258,9 +258,9 @@ li{
 @media (min-width: 768px) {
     
     .homeVideo{
-        object-fit: cover;
+        object-fit: center;
         width: 100%;
-        height: 70vh;
+        height: 55vh;
         margin: 0;
         border-top: solid 2px #e2dfdf;
         border-bottom: solid 3px #fb0a0a;
