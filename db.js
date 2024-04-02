@@ -3,7 +3,7 @@
 
 const Pool = require('pg').Pool;
 
-//creating a variable representing the heroku environment variables for postgres
+//creating the variable representing the heroku environment variables for postgres
 const proConfig = {
   connectionString: process.env.DATABASE_URL,
   ssl: {
