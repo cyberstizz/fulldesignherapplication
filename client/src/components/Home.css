@@ -259,7 +259,7 @@ li{
     
     .homeVideo{
         object-fit: fit-content;
-        width: 100%;
+        width: 50%;
         height: 60vh;
         margin: 0;
         border-top: solid 2px #e2dfdf;
