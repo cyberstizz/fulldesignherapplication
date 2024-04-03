@@ -180,12 +180,18 @@ a {
         overflow: hidden;
         margin: 0;
         }
+
+        .searchForm{
+            border: solid 2px purple;
+            height: 100%;
+        }
     
     .searchBar{
         height: 30vh;
         width: 90%;
         border-radius: 15px;
         background-color: #D9D9D9;
+        border
     }
     
     .navigationBar{
