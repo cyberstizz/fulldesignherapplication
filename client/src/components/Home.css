@@ -256,14 +256,15 @@ li{
 /* Mobile styles go here */
 
 @media (min-width: 768px) {
+    body{
+        background: linear-gradient(to right, #FF0000, #CC0000, #990000, #660000);
+    }
     
     .homeVideo{
         object-fit: fit-content;
         width: 50%;
         height: 60vh;
-        margin: 0;
-        border-top: solid 2px #e2dfdf;
-        border-bottom: solid 3px #fb0a0a;
+        margin-left: 23.5%;
         padding: 0;
     }
     
@@ -290,11 +291,10 @@ li{
     }
     
     .slideShowSection{
-        width: 95%;
-        height: 90vh;
+        width: 199%;
+        height: 130vh;
         background-color: white;
         overflow: hidden;
-        margin-left: 2%;
     }
     
     .slideShowText{
@@ -316,9 +316,10 @@ li{
     
     .theSlideShow{
         object-fit: cover;
-        height: 40vh;
+        height: 80vh;
         width: 50%;
-        margin-left: 5%;
+        margin-left: 25%;
+        margin-top: 4%;
         border: solid 2px green;
     }    
 
