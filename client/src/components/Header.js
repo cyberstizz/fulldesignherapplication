@@ -112,7 +112,7 @@ const Header = () => {
         type="text" 
         value={query} 
         onChange={(e) => setQuery(e.target.value)} 
-        placeholder="Search for products..." 
+        placeholder="Search" 
         className='searchBar'
         />
         </form>
