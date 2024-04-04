@@ -236,6 +236,7 @@ li{
 @media (min-width: 768px) {
     body{
         background-image: url('../redBackgroundGradient.webp');
+        background-repeat: repeat-x;
     }
     
     .homeVideo{
