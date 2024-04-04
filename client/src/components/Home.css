@@ -235,7 +235,7 @@ li{
 
 @media (min-width: 768px) {
     body{
-        background: linear-gradient(to right, #FF0000, #CC0000, #990000, #660000);
+        background-image: url('../redBackgroundGradient.webp');
     }
     
     .homeVideo{
@@ -246,6 +246,7 @@ li{
         padding: 0;
         border: solid 1px black;
         border-bottom: solid 1px black;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
     }
     
     
