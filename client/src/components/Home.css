@@ -149,10 +149,6 @@ a {
     transition: background-image 0.3s ease; /* Adding transition for smooth effect */
 }
 
-.imageCard:hover{
-    background-image: url('crocThumbnail.jpeg');
-}
-
 .imageCardTwo{
     height: 30vh;
     width: 80%;
@@ -164,16 +160,6 @@ a {
     border-radius: 20px;
 }
 
-.imageCardTwo:hover{
-    height: 30vh;
-    width: 80%;
-    background-image: url('jacketThumbnail.jpeg');
-    background-position: center;
-    background-size: cover;
-    margin: 0 auto;
-    margin-bottom: 4vh;
-    border-radius: 20px;
-}
 
 .imageCardThree{
     height: 30vh;
@@ -186,14 +172,6 @@ a {
     margin-bottom: 4vh;
 }
 
-.imageCardThree:hover{
-    height: 30vh;
-    width: 80%;
-    background-position: center;
-    background-size: cover;
-    margin: 0 auto;
-    border-radius: 20px;
-}
 
 
 .imageCardFour{
@@ -219,7 +197,7 @@ li{
 }
 
 .aboutSection{
-    height:800vh;
+    height: 900vh;
     width: 100vw;
     background: linear-gradient(to right, #000000 0%, #121212 25%, #1f1e1e 50%, #121212 75%, #000000 100%);
     text-align: justify; 
@@ -330,7 +308,7 @@ li{
 
     .categoriesSection{
         background: linear-gradient(to right, #FF0000, #CC0000, #990000, #660000);
-        height: 194vh;
+        height: 440vh;
         width: 100vw;
         margin-top: -10px; /* Adjust the value as needed */
         padding: 0;
@@ -352,35 +330,35 @@ li{
     
     .categoriesHeaderOne{
         color: white;
-        font-size: 60px;
+        font-size: 80px;
         letter-spacing: 1.3px;
-        margin-left: 33%;
+        margin-left: 40vw;
     }
     
     .categoriesHeaderTwo{
         color: white;
-        font-size: 60px;
+        font-size: 80px;
         letter-spacing: 1.3px;
-        margin-left: 27%;
+        margin-left: 35vw;
     }
     
     .categoriesHeaderThree{
         color: white;
-        font-size: 60px;
+        font-size: 80px;
         letter-spacing: 1.3px;
-        margin-left: 25%;
+        margin-left: 35vw;
     }
     
     .categoriesHeaderFour{
         color: white;
         font-size: 60px;
         letter-spacing: 1.3px;
-        margin-left: 33%;
+        margin-left: 40vw;
     }
     
     .imageCard{
-        height: 50vh;
-        width: 80%;
+        height: 70vh;
+        width: 50%;
         background-image: url('crocsFour.webp');
         background-position: center;
         background-size: cover;
@@ -388,27 +366,29 @@ li{
         margin: 0 auto;
         margin-bottom: 4vh;
         border-radius: 20px;
-        transition: background-image 0.3s ease; /* Adding transition for smooth effect */
+        transition: background-image 0.3s ease;
+        overflow: visible;
     }
     
     
     
     .imageCardTwo{
-        height: 30vh;
-        width: 80%;
+        height: 70vh;
+        width: 50%;
         background-image: url('jacketThumbnail.jpeg');
         background-position: center;
         background-size: cover;
         margin: 0 auto;
         margin-bottom: 4vh;
         border-radius: 20px;
+        overflow: visible;
     }
     
     
     
     .imageCardThree{
-        height: 30vh;
-        width: 80%;
+        height: 70vh;
+        width: 50%;
         background-image: url('unicornSneaker.jpg');
         background-position: center;
         background-size: cover;
@@ -421,8 +401,8 @@ li{
     
     
     .imageCardFour{
-        height: 30vh;
-        width: 80%;
+        height: 70vh;
+        width: 50%;
         background-image: url('bootThumbnail.jpg');
         background-position: center;
         background-size: cover;
@@ -433,14 +413,14 @@ li{
 
 .aboutHeader{
     color: #958e8e;
-    font-size: 40px;
+    font-size: 65px;
     letter-spacing: 1px;
-    margin-left: 35%;
+    margin-left: 40vw;
     font-family: 'Edu QLD Beginner', sans-serif;
 }
 
 .aboutSection{
-    height:800vh;
+    height: 950vh;
     width: 100vw;
     background: linear-gradient(to right, #000000 0%, #121212 25%, #1f1e1e 50%, #121212 75%, #000000 100%);
     text-align: justify; 
