@@ -122,8 +122,8 @@ const Header = () => {
         </div>
 
         <div className='navigationBarTwo'>
-          <Link to='/sneakers'><div className='firstNavItem'>Sneakers</div></Link>
-          <Link to='/boots'><div className='navItem'>Boots</div></Link>
+          <Link to='/sneakers'><div className='firstNavItem' id='justSneakers'>Sneakers</div></Link>
+          <Link to='/boots'><div className='navItem' id='justBoots'>Boots</div></Link>
         </div>
       </div>
     </header>

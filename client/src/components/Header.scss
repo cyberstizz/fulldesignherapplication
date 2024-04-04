@@ -131,6 +131,7 @@ a {
         flex-direction: row;
         justify-content: space-between; /* Adjust based on your layout needs */
         align-items: center;
+        border-bottom: solid 2px white;
     }
     
     .logoAndLock{
@@ -204,6 +205,8 @@ a {
         color: rgb(230, 230, 230);
         align-content: flex-start;
         overflow: hidden;
+        margin-left: 2vw;
+        margin-top: 1vh;
     }
     
     .navigationBarTwo{
@@ -216,6 +219,7 @@ a {
         color: rgb(230, 230, 230);
         align-content: flex-start;
         overflow: hidden;    
+        margin-left: 2vw;
     }
     
     .firstNavItem{
@@ -224,6 +228,7 @@ a {
         font-size: 35px;
         margin-left: 1%;
         overflow: hidden;
+        margin-left: 2vw;
     }
     
     .navItem{
@@ -231,6 +236,15 @@ a {
         height: 90%;
         font-size: 35px;
         overflow: hidden;
+        margin-right: 4vw;
+    }
+
+    #justBoots{
+        margin-right: .3vw;
+    }
+
+    #justSneakers{
+        margin-left: 5vw;
     }
 
 }
