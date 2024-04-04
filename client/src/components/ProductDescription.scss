@@ -213,8 +213,8 @@
         position: relative;
         z-index: 1;
         height: 85vh;
-        width: 80vw;
-        margin-left: 10vw;
+        width: 65vw;
+        margin-left: 18vw;
         overflow: hidden;
         object-fit: fill;
     }
@@ -223,12 +223,11 @@
         display: flex;
         flex-direction: column;
         background: linear-gradient(to right, #FF0000, #CC0000, #990000, #660000);
-        height: 54vh;
+        height: 80vh;
         width: 100%;
         position: relative;
         z-index: 2;
         overflow: hidden;
-        
     }
     
     .infoSection{
@@ -237,6 +236,7 @@
         justify-content: space-between;
         height: 35%;
         overflow: hidden;
+        margin-top: 2vh;
     }
     
     .nameAndPriceSection{
@@ -271,6 +271,7 @@
         overflow: hidden;
         white-space: pre-wrap;
         overflow: hidden;
+        margin-top: 2vh;
     }
     
     .price{
@@ -280,6 +281,7 @@
         margin-left: 2%;
         width: 50%;
         overflow: visible;
+        margin-top: 5vh;
     }
     
     .ratingsHeader{
