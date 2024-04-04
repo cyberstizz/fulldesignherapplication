@@ -174,63 +174,63 @@ a {
     
     .headerRightSide{
         width: 40%;
-        height: 100%;
+        height: fit-content;
         display: flex;
         flex-direction: column;
         overflow: visible;
         margin: 0;
-        border: solid 2px gold;
         }
 
     .searchForm{
-        border: solid 2px purple;
-        height: 160px;
+        height: 100%;
         }
     
     .searchBar{
         height: 100%;
         width: 90%;
         border-radius: 15px;
-        background-color: #D9D9D9;
+        background-color: black;
+        border: solid 1px white;
+        color: red;
+        overflow: hidden;
     }
     
     .navigationBar{
-        height: 80%;
-        width: 70%;
+        height: fit-content;
+        width: 75%;
         list-style: none;
         display: flex;
         flex-direction: row;
         color: rgb(230, 230, 230);
         align-content: flex-start;
-        overflow: visible;
-        border: solid 2px orange;
+        overflow: hidden;
     }
     
     .navigationBarTwo{
-        height: 80%;
-        width: 70%;
+        height: fit-content;
+        width: 75%;
         list-style: none;
         display: flex;
         flex-direction: row; 
         justify-content: space-between;
         color: rgb(230, 230, 230);
         align-content: flex-start;
-        overflow: visible;    
+        overflow: hidden;    
     }
     
     .firstNavItem{
-        width: 100%;
+        width: auto;
         height: 90%;
         font-size: 35px;
-        border: solid 2px orange;
-        margin-left: 5%;
+        margin-left: 1%;
+        overflow: hidden;
     }
     
     .navItem{
-        width: 100%;
+        width: auto;
         height: 90%;
         font-size: 35px;
-        border: solid 2px red;
+        overflow: hidden;
     }
 
 }

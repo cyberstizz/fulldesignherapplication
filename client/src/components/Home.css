@@ -295,6 +295,7 @@ li{
         height: 130vh;
         background-color: white;
         overflow: hidden;
+        margin: 0;
     }
     
     .slideShowText{
