@@ -5,14 +5,14 @@
 }
 
 a {
-    text-decoration: none; /* Removes underline */
+    text-decoration: none; 
     color: rgb(230, 230, 230);
-    outline: none; /* or background-color: transparent; or any other style */
+    outline: none; 
   }
   
-  /* Removes the blue highlight on link click */
+  
   a:focus, a:hover {
-    outline: none; /* or background-color: transparent; or any other style */
+    outline: none; 
   }
     
 
@@ -28,11 +28,11 @@ a {
 }
 
 .logoAndLock{
-    position: relative; /* Establishes a new positioning context for its children */
+    position: relative; 
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centers logo vertically in the available space */
-    align-items: center; /* Centers logo horizontally */
+    justify-content: center;
+    align-items: center; 
     z-index: 1;
 }
 
@@ -41,7 +41,7 @@ a {
     top: 5px; 
     left: 10px; 
     z-index: 5;
-    color: rgb(182, 46, 46);
+    color: rgb(91, 12, 12);
     height: 10%;
 }
 
@@ -123,31 +123,31 @@ a {
 @media (min-width: 768px) {
 
     .mainHeader{
-        position: relative; /* Ensures that absolute positioning is relative to this container */
+        position: relative;
         width: 100%;
         height: 30vh;
         background-color: white;
         display: flex;
         flex-direction: row;
-        justify-content: space-between; /* Adjust based on your layout needs */
+        justify-content: space-between;
         align-items: center;
         border-bottom: solid 2px white;
     }
     
     .logoAndLock{
-        position: relative; /* Establishes a new positioning context for its children */
+        position: relative;
         display: flex;
         flex-direction: column;
-        justify-content: center; /* Centers logo vertically in the available space */
-        align-items: center; /* Centers logo horizontally */
+        justify-content: center; 
+        align-items: center; 
         z-index: 1;
         width: fit-content;
     }
     
     .lockIcon, .userWelcome {
         position: absolute;
-        top: 10px; /* Adjust as necessary */
-        left: 10px; /* Adjust as necessary */
+        top: 10px; 
+        left: 10px; 
         z-index: 5;
         color: rgb(182, 46, 46);
         width: fit-content;
@@ -155,8 +155,8 @@ a {
     
     
     .userWelcome {
-        color: red; /* Example color */
-        font-size: 26px; /* Adjust size as needed */
+        color: red;
+        font-size: 26px; 
         margin-right: 20px;
         width: fit-content;
         display: inline-block;
