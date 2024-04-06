@@ -288,22 +288,24 @@
     .ratingsHeader{
         font-size: 40px;
         color: white;
+        margin-left: 10vw;
         font-family: 'Times New Roman', Times, serif;
     }
     
     .ratingsStars{
-    
+        margin-left: 10vw;
     }
     
     .writeAReview{
         color: white;
         font-family: 'Times New Roman', Times, serif;
         overflow: hidden;
+        margin-left: 10vw;
     }
     
     .descriptionSection{
         padding: 10px;
-        width: 60%;
+        width: 50%;
         align-self: center;
         height: 38%;
         margin: 0 auto;
