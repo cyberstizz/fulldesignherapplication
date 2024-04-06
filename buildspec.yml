@@ -28,7 +28,7 @@ phases:
 artifacts:
   files:
     - 'package.json'
-    - 'app.js' # or whatever your main server file is named
+    - 'server.js' # or whatever your main server file is named
     - 'Procfile'
     # Add other specific root-level files or directories required for your Node.js server
     - 'client/build/**/*' # Include the built React app
