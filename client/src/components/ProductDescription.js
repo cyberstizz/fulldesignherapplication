@@ -205,8 +205,9 @@ const ProductDescription = () => {
 
                     <i className="fas fa-arrow-left" onClick={handleArrowClick} style={{ position: 'absolute', top: '10px', left: '10px', cursor: 'pointer' }}></i>
 
-
+                    <div className='topSection'>
                     <img src={image_path} alt={name} width="100%" className='pictureTest' ></img>
+                    </div>
                     <div className='fullBottomSection'>
                     <div className='infoSection'>
 
