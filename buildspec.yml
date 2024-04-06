@@ -28,7 +28,9 @@ phases:
 artifacts:
   files:
     - '**/*'
-    - '!client/node_modules/**/*'
-    - 'client/build/**/*'
-  base-directory: '/'
+    - '!node_modules/**/*'  # Exclude all node_modules
+    - '!client/node_modules/**/*'  # Exclude client's node_modules
+    - '!client/src/**/*'  # Exclude source files of the client, only include the build
+    - 'client/build/**/*'  # Include the built React app
+  base-directory: '/
   discard-paths: no
