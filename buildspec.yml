@@ -27,10 +27,9 @@ phases:
 
 artifacts:
   files:
-    - '**/*'
-    - '!node_modules/**/*'  # Exclude all node_modules
-    - '!client/node_modules/**/*'  # Exclude client's node_modules
-    - '!client/src/**/*'  # Exclude source files of the client, only include the build
-    - 'client/build/**/*'  # Include the built React app
-  base-directory: '/
+    - 'package.json'
+    - 'app.js' # or whatever your main server file is named
+    - 'Procfile'
+    # Add other specific root-level files or directories required for your Node.js server
+    - 'client/build/**/*' # Include the built React app
   discard-paths: no
