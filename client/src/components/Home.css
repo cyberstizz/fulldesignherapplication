@@ -241,9 +241,9 @@ li{
     
     .homeVideo{
         object-fit: fit-content;
-        width: 72%;
+        width: 62%;
         height: 69vh;
-        margin-left: 14%;
+        margin-left: 18%;
         padding: 0;
         border: solid 1px black;
         border-bottom: solid 1px black;
