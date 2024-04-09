@@ -241,7 +241,7 @@ li{
     
     .homeVideo{
         background-image: url('../mainPicture.jpg');
-        background-size: 100% 100%;
+        background-size: cover;
         background-position: center;
         width: 100vw;
         height: 65vh;
