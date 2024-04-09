@@ -113,8 +113,8 @@ function Home() {
   Your browser does not support the video tag.projects/designherCustomKreations/designhercustomkreations/public/VID_158480824_122841_103.mp4
 </video> */}
 
-<img  className="homeVideo" src='../mainPicture' width="100%" height="100%" alt='picture of styled blue converse' />
-
+<div className="homeVideo">
+</div> 
 
 <section className='slideShowSection'>
   <h1 className='slideShowText'>As seen on </h1>

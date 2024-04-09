@@ -240,10 +240,11 @@ li{
     }
     
     .homeVideo{
-        object-fit: fit-content;
-        width: 57%;
-        height: 64vh;
-        margin-left: 20%;
+        background-image: url('../mainPicture.jpg');
+        background-size: cover;
+        background-position: center;
+        width: 100vw;
+        height: 65vh;
         padding: 0;
         border: solid 1px black;
         border-bottom: solid 1px black;
