@@ -26,8 +26,9 @@ a {
 
 .homeVideo{
     background-image: url('../mainPicture.jpg');
-    background-size: 100% 90%;
+    background-size: 100% 80%;
     background-position: center;
+    background-repeat: no-repeat;
     width: 100%;
     height: 35vh;
     margin: 0;
