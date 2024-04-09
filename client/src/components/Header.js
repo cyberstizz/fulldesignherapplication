@@ -104,7 +104,7 @@ const Header = () => {
       )}     
      
      
-      <div className='mainLogo' onClick={handleLogoClick}> sign in</div>
+      {/* <div className='mainLogo' onClick={handleLogoClick}> sign in</div> */}
 
       <div className='headerRightSide'>
       <form onSubmit={handleSearch} className='searchForm'>
