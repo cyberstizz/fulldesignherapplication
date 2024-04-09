@@ -108,10 +108,12 @@ function Home() {
 </form>
 </header> */}
 
-<video className="homeVideo" width="100%" height="50%" loop="true" autoPlay muted>
+{/* <video className="homeVideo" width="100%" height="50%" loop="true" autoPlay muted>
   <source src="/output_video.mp4" type="video/mp4"/>
   Your browser does not support the video tag.projects/designherCustomKreations/designhercustomkreations/public/VID_158480824_122841_103.mp4
-</video>
+</video> */}
+
+<img  className="homeVideo" src='../mainPicture' width="100%" height="100%" alt='picture of styled blue converse' />
 
 
 <section className='slideShowSection'>
