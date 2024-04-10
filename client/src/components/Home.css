@@ -240,6 +240,7 @@ li{
     body{
         background-image: url('../redBackgroundGradient.webp');
         background-repeat: repeat-x;
+        background-size: cover;
     }
     
     .homeVideo{
