@@ -88,7 +88,7 @@ const Search = () => {
     <React.Fragment>
       <Header />
     <div>
-      <h1>Search Results</h1>
+      <h1 className="searchHeader">Search Results</h1>
       {results.length > 0 ? (
         <div className='submenuBody'>
         {results.map(item => (
@@ -101,9 +101,9 @@ const Search = () => {
   </div>
   )
        : (
-        <div style={{display: 'flex', justifyContent: 'center'}}>
-          <p style={{color: 'black'}}>There are no items that match your search.</p>
-          <Link to="/"><span style={{color: 'black', display: 'flex', justifySelf: 'center'}}>Go Back</span></Link>
+        <div className="noItemsFound">
+          <p className="noItemsFound">There are no items that match your search.</p>
+          <Link to="/"><span style={{fontWeight: "bold",fontFamily: "fantasy",fontSize: "50px",color: 'blue', display: 'flex', justifyContent: 'center', alignContent: "center", marginTop: "5vh"}}>Go Home</span></Link>
         </div>
       )}
     </div>

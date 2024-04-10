@@ -1,0 +1,19 @@
+.noItemsFound{
+    display: flex;
+    flex-direction: column;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 40px;
+    justify-content: center;
+    align-content: center;
+    margin: 0 auto;
+}
+
+.searchHeader{
+    display: flex;
+    font-size: 55px;
+    color: white;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+}
