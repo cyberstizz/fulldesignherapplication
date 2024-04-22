@@ -28,7 +28,8 @@
 .fullBottomSection{
     display: flex;
     flex-direction: column;
-    background: linear-gradient(to right, #FF0000, #CC0000, #990000, #660000);
+    // background: linear-gradient(to right, #FF0000, #CC0000, #990000, #660000);
+    background-color: white;
     height: 54vh;
     width: 100%;
     position: relative;
@@ -78,6 +79,7 @@
     overflow: hidden;
     white-space: pre-wrap;
     overflow: hidden;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .price{
@@ -92,7 +94,7 @@
 
 .ratingsHeader{
     font-size: 40px;
-    color: white;
+    color: black;
     font-family: 'Times New Roman', Times, serif;
 }
 
@@ -101,7 +103,7 @@
 }
 
 .writeAReview{
-    color: white;
+    color: black;
     font-family: 'Times New Roman', Times, serif;
     overflow: hidden;
 }
