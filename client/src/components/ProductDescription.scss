@@ -224,16 +224,19 @@
         position: relative;
         z-index: 1;
         height: 55vh;
-        width: 55vw;
-        margin-left: 22vw;
+        width: 40vw;
+        margin-left: 28vw;
         overflow: hidden;
-        object-fit: fill;
+        background-size: contain;
+        background-position: center;
+
     }
     
     .fullBottomSection{
         display: flex;
         flex-direction: column;
-        background: linear-gradient(to right, #FF0000, #CC0000, #990000, #660000);
+        // background: linear-gradient(to right, #FF0000, #CC0000, #990000, #660000);
+        background-color: white;
         height: 80vh;
         width: 100%;
         position: relative;
@@ -297,7 +300,7 @@
     
     .ratingsHeader{
         font-size: 40px;
-        color: white;
+        color: black;
         margin-left: 10vw;
         font-family: 'Times New Roman', Times, serif;
     }
@@ -307,7 +310,7 @@
     }
     
     .writeAReview{
-        color: white;
+        color: black;
         font-family: 'Times New Roman', Times, serif;
         overflow: hidden;
         margin-left: 10vw;
