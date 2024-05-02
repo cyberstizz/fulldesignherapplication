@@ -12,6 +12,8 @@ const CustomStripeModal = ({ isOpen, onClose, totalPrice, productName }) => {
   const elements = useElements();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
 
   const properLettering = (word) => {
     //this function will parse a string and remove
