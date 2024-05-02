@@ -4,7 +4,7 @@ import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import { useDispatch } from 'react-redux';
 import { clearCart } from '../app/features/cart/cartSlice'; // Adjust path as necessary
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useState } from 'react-router-dom';
 
 
 const CustomStripeModal = ({ isOpen, onClose, totalPrice, productName }) => {
