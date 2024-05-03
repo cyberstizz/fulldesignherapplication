@@ -1,7 +1,7 @@
 // AddedToCartModal.js
 import React from 'react';
 import './AddedToCartModal.scss';
-
+//the added to cart component
 const AddedToCartModal = ({ isOpen, onClose, onGoToCart, productName }) => {
   if (!isOpen) return null;
 
