@@ -14,6 +14,8 @@ const CustomStripeModal = ({ isOpen, onClose, totalPrice, productName }) => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
+  const [customersEmail, setCustomersEmail] = useState('');
+
 
   const properLettering = (word) => {
     //this function will parse a string and remove
@@ -60,6 +62,7 @@ const handleSubmit = async (event) => {
       const requestData = {
           product: { name: "Your Cart", price: totalPrice },
           name,
+          customersEmail,
           address
       };
 
@@ -109,6 +112,7 @@ const handleSubmit = async (event) => {
         <h1 style={{fontSize: "35px", color: "white", justifySelf: "center"}}>buy {properLettering(productName)} with secure checkout</h1>
         <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
         <input type="text" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)} />
+        <input type="text" placeholder="CustomersEmail" value={customersEmail} onChange={(e) => setCustomersEmail(e.target.value)} />
         <CardElement className="StripeElement" />
         <button onClick={handleSubmit}>Pay ${totalPrice.toFixed(2)}</button>
       </div>

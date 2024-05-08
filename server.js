@@ -692,7 +692,7 @@ app.post('/payments', async (req, res) => {
 
   try {
     // Extract product, name, address, and customerId (if present)
-    const { product, name, address, customerId } = requestData;
+    const { product, name, address, customerId, customersEmail } = requestData;
 
     // Create a PaymentIntent without immediately confirming it
     const paymentIntent = await stripe.paymentIntents.create({
@@ -714,6 +714,14 @@ app.post('/payments', async (req, res) => {
     console.log('Order created:', order);
 
     res.json({ success: true, clientSecret: paymentIntent.client_secret });
+
+    //send emails after purchase is made
+    await sendEmail(`${customersEmail}`, 'Order confirmation', `Thank you for your order! your item will arrive soon`);
+    await sendEmail(`diannabeaty65@gmail.com`, 'you just got a new purchase!!',  `someone just made a purchase on the designher. there name is: ${name}. and there email is: ${customersEmail} the product purchased is ${product}`)  
+    await sendEmail(`charles.lamb.dev@gmail.com`, 'somebody bought something on designher', `so if you are reading this it means that everything worked out and people are happy with the services`);
+
+
+
   } catch (error) {
     console.error('Payment Error:', error);
     res.json({ success: false, error: error.message });
