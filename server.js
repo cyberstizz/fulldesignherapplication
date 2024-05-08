@@ -692,7 +692,7 @@ app.post('/payments', async (req, res) => {
 
   try {
     // Extract product, name, address, and customerId (if present)
-    const { producName, price, name, address, customersEmail, customerId, } = requestData;
+    const { productName, price, name, address, customersEmail, customerId, } = requestData;
 
     // Create a PaymentIntent without immediately confirming it
     const paymentIntent = await stripe.paymentIntents.create({
