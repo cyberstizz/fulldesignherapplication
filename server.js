@@ -686,11 +686,14 @@ app.get('/order/{$order_number}', (req, res) => {
 })
 
 
-//payment route integrated with stripe
+// Payment route integrated with Stripe
 app.post('/payments', async (req, res) => {
-  const { product } = req.body;
-  
+  const { requestData } = req.body;  // Extract the requestData object
+
   try {
+    // Extract product, name, address, and customerId (if present)
+    const { product, name, address, customerId } = requestData;
+
     // Create a PaymentIntent without immediately confirming it
     const paymentIntent = await stripe.paymentIntents.create({
       amount: product.price * 100, // Assuming price is in dollars, convert to cents
@@ -700,12 +703,23 @@ app.post('/payments', async (req, res) => {
 
     console.log('Payment Intent created:', paymentIntent);
 
+    // Insert order into the database after payment confirmation
+    let order;
+    if (customerId) { // Check if customerId exists
+      order = await pool.query('INSERT INTO orders (order_number, customer_id, name, address) VALUES ($1, $2, $3, $4) RETURNING *', [uuidv4(), customerId, name, address]);
+    } else {
+      order = await pool.query('INSERT INTO orders (order_number, name, address) VALUES ($1, $2, $3) RETURNING *', [uuidv4(), name, address]);
+    }
+
+    console.log('Order created:', order);
+
     res.json({ success: true, clientSecret: paymentIntent.client_secret });
   } catch (error) {
     console.error('Payment Error:', error);
     res.json({ success: false, error: error.message });
   }
 });
+
 
 
  //create route
