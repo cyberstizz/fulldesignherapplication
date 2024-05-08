@@ -18,7 +18,7 @@ const CustomStripeModal = ({ isOpen, onClose, totalPrice, productName }) => {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [customersEmail, setCustomersEmail] = useState('');
-  const [customersId, setCustomersId] = useState('');
+  const [customerId, setCustomerId] = useState('');
 
 
 
@@ -79,6 +79,11 @@ const handleSubmit = async (event) => {
 
   const cardElement = elements.getElement(CardElement);
 
+  if(user){
+    setCustomerId(user.user_id)
+  } else{
+    setCustomerId(null)
+  }
   // No need to create a token here; instead, create a PaymentIntent on the server and confirm it here
 
   try {
@@ -88,8 +93,6 @@ const handleSubmit = async (event) => {
           name,
           customersEmail,
           address,
-          ...(user && { customerId: user._id }) 
-
       };
 
       // Add customerId if the user is signed in
