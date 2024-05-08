@@ -693,6 +693,9 @@ app.post('/payments', async (req, res) => {
   console.log('this is the full requestData object that comes from the client on the frontend')
   console.log(requestData)
 
+  console.log('now this is the req.body which should provide more information')
+  console.log(req.body);
+
   try {
     // Extract product, name, address, and customerId (if present)
     const { productName, price, name, address, customersEmail, customerId, } = requestData;
