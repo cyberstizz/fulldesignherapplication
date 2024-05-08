@@ -141,7 +141,7 @@ const handleSubmit = async (event) => {
         <h1 style={{fontSize: "35px", color: "white", justifySelf: "center"}}>buy {properLettering(productName)} with secure checkout</h1>
         <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
         <input type="text" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)} />
-        <input type="text" placeholder="CustomersEmail" value={customersEmail} onChange={(e) => setCustomersEmail(e.target.value)} />
+        <input type="text" placeholder="Email" value={customersEmail} onChange={(e) => setCustomersEmail(e.target.value)} />
         <CardElement className="StripeElement" />
         <button onClick={handleSubmit}>Pay ${totalPrice.toFixed(2)}</button>
       </div>
