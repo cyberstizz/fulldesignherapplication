@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux';
 import { clearCart } from '../app/features/cart/cartSlice'; // Adjust path as necessary
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+
 
 
 const CustomStripeModal = ({ isOpen, onClose, totalPrice, productName }) => {
@@ -16,13 +18,16 @@ const CustomStripeModal = ({ isOpen, onClose, totalPrice, productName }) => {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [customersEmail, setCustomersEmail] = useState('');
+  const [customersId, setCustomersId] = useState('');
+
+
 
 
 
   useEffect(() => {
     const checkUserAuthentication = async () => {
       try {
-        const response = await Axios.get('/user');
+        const response = await axios.get('/user');
         if (response.status === 200) {
           setUser(response.data.user);
         } else {
