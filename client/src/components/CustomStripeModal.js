@@ -85,11 +85,12 @@ const handleSubmit = async (event) => {
     setCustomerId(null)
   }
   // No need to create a token here; instead, create a PaymentIntent on the server and confirm it here
-
+  console.log('this is the product name. i need to see if it is available ....')
+  console.log(productName);
   try {
       // Call your server endpoint to create a PaymentIntent
       const requestData = {
-          productName, 
+          productName: "cart", 
           price: totalPrice ,
           name,
           customersEmail,
