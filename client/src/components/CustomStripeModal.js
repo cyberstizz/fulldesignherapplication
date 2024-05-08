@@ -101,6 +101,7 @@ const handleSubmit = async (event) => {
       }
 
       //just a test to see where the problem might lie
+      console.log('this is th request data as it currently stands')
       console.log(requestData);
 
       const { data } = await axios.post('/payments', requestData);
