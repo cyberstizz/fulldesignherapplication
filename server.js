@@ -690,6 +690,9 @@ app.get('/order/{$order_number}', (req, res) => {
 app.post('/payments', async (req, res) => {
   const { requestData } = req.body;  // Extract the requestData object
 
+  console.log('this is the full requestData object that comes from the client on the frontend')
+  console.log(requestData)
+
   try {
     // Extract product, name, address, and customerId (if present)
     const { productName, price, name, address, customersEmail, customerId, } = requestData;
