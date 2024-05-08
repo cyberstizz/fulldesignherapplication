@@ -89,7 +89,8 @@ const handleSubmit = async (event) => {
   try {
       // Call your server endpoint to create a PaymentIntent
       const requestData = {
-          product: { name: "Your Cart", price: totalPrice },
+          producName: "Cart", 
+          price: totalPrice ,
           name,
           customersEmail,
           address,
@@ -101,7 +102,7 @@ const handleSubmit = async (event) => {
       }
 
       //just a test to see where the problem might lie
-      console.log('this is th request data as it currently stands')
+      console.log('this is the request data as it currently stands')
       console.log(requestData);
 
       const { data } = await axios.post('/payments', requestData);
