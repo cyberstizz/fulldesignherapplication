@@ -12,10 +12,29 @@ const CustomStripeModal = ({ isOpen, onClose, totalPrice, productName }) => {
   const elements = useElements();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [user, setUser] = useState(null);
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [customersEmail, setCustomersEmail] = useState('');
 
+
+
+  useEffect(() => {
+    const checkUserAuthentication = async () => {
+      try {
+        const response = await Axios.get('/user');
+        if (response.status === 200) {
+          setUser(response.data.user);
+        } else {
+          setUser(null);
+        }
+      } catch (error) {
+        console.error('Error checking user authentication:', error.message);
+      }
+    };
+
+    checkUserAuthentication();
+  }, []);
 
   const properLettering = (word) => {
     //this function will parse a string and remove
@@ -63,7 +82,9 @@ const handleSubmit = async (event) => {
           product: { name: "Your Cart", price: totalPrice },
           name,
           customersEmail,
-          address
+          address,
+          ...(user && { customerId: user._id }) 
+
       };
 
       // Add customerId if the user is signed in
