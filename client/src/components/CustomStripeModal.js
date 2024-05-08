@@ -100,6 +100,9 @@ const handleSubmit = async (event) => {
           requestData.customerId = customerId;
       }
 
+      //just a test to see where the problem might lie
+      console.log(requestData);
+
       const { data } = await axios.post('/payments', requestData);
 
       if (data.success && data.clientSecret) {
