@@ -688,17 +688,11 @@ app.get('/order/{$order_number}', (req, res) => {
 
 // Payment route integrated with Stripe
 app.post('/payments', async (req, res) => {
-  const { requestData } = req.body;  // Extract the requestData object
+  const { productName, price, name, address, customersEmail, customerId, } = req.body;
 
-  console.log('this is the full requestData object that comes from the client on the frontend')
-  console.log(requestData)
-
-  console.log('now this is the req.body which should provide more information')
-  console.log(req.body);
-
+ 
   try {
     // Extract product, name, address, and customerId (if present)
-    const { productName, price, name, address, customersEmail, customerId, } = requestData;
 
     // Create a PaymentIntent without immediately confirming it
     const paymentIntent = await stripe.paymentIntents.create({
