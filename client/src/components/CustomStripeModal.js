@@ -81,7 +81,6 @@ const handleSubmit = async (event) => {
 
           if (result.error) {
               console.error('Payment confirmation error:', result.error);
-              // Handle errors here (e.g., showing an error message to the customer)
           } else {
               if (result.paymentIntent.status === 'succeeded') {
                   console.log("Payment successful:", result.paymentIntent);
