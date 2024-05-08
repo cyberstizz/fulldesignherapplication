@@ -90,7 +90,7 @@ const handleSubmit = async (event) => {
   try {
       // Call your server endpoint to create a PaymentIntent
       const requestData = {
-          productName: "cart", 
+          productName, 
           price: totalPrice ,
           name,
           customersEmail,
