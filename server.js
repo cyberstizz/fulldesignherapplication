@@ -709,7 +709,7 @@ app.post('/payments', async (req, res) => {
     if (customerId) { // Check if customerId exists
       order = await pool.query('INSERT INTO orders (order_number, customer_id, order_date) VALUES ($1, $2, CURRENT_DATE) RETURNING *', [uuidv4(), customerId]);
     } else {
-      order = await pool.query('INSERT INTO orders (order_number, order_date) VALUES ($1) RETURNING *', [uuidv4()]);
+      order = await pool.query('INSERT INTO orders (order_number, order_date) VALUES ($1, CURRENT_DATE) RETURNING *', [uuidv4()]);
     }
 
     console.log('Order created:', order);
