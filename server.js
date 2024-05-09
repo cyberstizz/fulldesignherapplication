@@ -699,16 +699,7 @@ app.post('/payments', async (req, res) => {
       amount: price * 100, // Assuming price is in dollars, convert to cents
       currency: 'usd',
       payment_method_types: ['card'],
-      // Add customer details
-  customer: {
-    name: name,
-    email: customersEmail,
-  },
-  metadata: {
-    // Optional: Add additional details about the order here
-    product: productName,
-    price: price,
-  },
+
     });
 
     console.log('Payment Intent created:', paymentIntent);
