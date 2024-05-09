@@ -699,6 +699,16 @@ app.post('/payments', async (req, res) => {
       amount: price * 100, // Assuming price is in dollars, convert to cents
       currency: 'usd',
       payment_method_types: ['card'],
+      // Add customer details
+  customer: {
+    name: name,
+    email: customersEmail,
+  },
+  metadata: {
+    // Optional: Add additional details about the order here
+    product: productName,
+    price: price,
+  },
     });
 
     console.log('Payment Intent created:', paymentIntent);
@@ -706,9 +716,9 @@ app.post('/payments', async (req, res) => {
     // Insert order into the database after payment confirmation
     let order;
     if (customerId) { // Check if customerId exists
-      order = await pool.query('INSERT INTO orders (order_number, customer_id, name, address) VALUES ($1, $2, $3, $4) RETURNING *', [uuidv4(), customerId, name, address]);
+      order = await pool.query('INSERT INTO orders (order_number, customer_id, name, address, order_date) VALUES ($1, $2, CURRENT_DATE) RETURNING *', [uuidv4(), customerId]);
     } else {
-      order = await pool.query('INSERT INTO orders (order_number, name, address) VALUES ($1, $2, $3) RETURNING *', [uuidv4(), name, address]);
+      order = await pool.query('INSERT INTO orders (order_number, order_date) VALUES ($1, $2) RETURNING *', [uuidv4()]);
     }
 
     console.log('Order created:', order);
