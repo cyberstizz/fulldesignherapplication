@@ -30,14 +30,17 @@ const CustomStripeModal = ({ isOpen, onClose, totalPrice, productName, productTy
         const response = await axios.get('/user');
         if (response.status === 200) {
           setUser(response.data.user);
+          // Set the customerId here after user details are fetched
+          setCustomerId(response.data.user ? response.data.user.user_id : null);
         } else {
           setUser(null);
+          setCustomerId(null); // Ensure customerId is set to null if user is not authenticated
         }
       } catch (error) {
         console.error('Error checking user authentication:', error.message);
       }
     };
-
+  
     checkUserAuthentication();
   }, []);
 
