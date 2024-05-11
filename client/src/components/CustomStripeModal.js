@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 
 
 
-const CustomStripeModal = ({ isOpen, onClose, totalPrice, productName }) => {
+const CustomStripeModal = ({ isOpen, onClose, totalPrice, productName, productType }) => {
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
@@ -85,8 +85,9 @@ const handleSubmit = async (event) => {
     setCustomerId(null)
   }
   // No need to create a token here; instead, create a PaymentIntent on the server and confirm it here
-  console.log('this is the product name. i need to see if it is available ....')
+  console.log('this is the product name and hopefully product type. i need to see if it is available ....')
   console.log(productName);
+  console.log(productType)
   try {
       // Call your server endpoint to create a PaymentIntent
       const requestData = {
@@ -95,6 +96,7 @@ const handleSubmit = async (event) => {
           name,
           address,
           customersEmail,
+          productType: productType
       };
 
       // Add customerId if the user is signed in

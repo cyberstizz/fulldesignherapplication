@@ -188,6 +188,7 @@ const ProductDescription = () => {
                  onClose={() => setIsCustomStripeModalOpen(false)}
                  totalPrice={Number(product_price)}
                  productName={name}
+                 productType={product_type}
                 />
                     <AddToCartModal
                     isOpen={isAddToCartModalOpen}
