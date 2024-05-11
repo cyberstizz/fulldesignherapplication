@@ -686,11 +686,9 @@ app.get('/order/{$order_number}', (req, res) => {
 })
 
 
-// Payment route integrated with Stripe
 app.post('/payments', async (req, res) => {
-  const { productName, price, name, address, customersEmail, customerId, } = req.body;
+  const { productName, price, name, address, customersEmail, customerId } = req.body;
 
- 
   try {
     // Extract product, name, address, and customerId (if present)
 
@@ -705,29 +703,33 @@ app.post('/payments', async (req, res) => {
     console.log('Payment Intent created:', paymentIntent);
 
     // Insert order into the database after payment confirmation
+    const orderNumber = uuidv4();
     let order;
-    if (customerId) { // Check if customerId exists
-      order = await pool.query('INSERT INTO orders (order_number, customer_id, order_date) VALUES ($1, $2, CURRENT_DATE) RETURNING *', [uuidv4(), customerId]);
+    if (customerId) {
+      order = await pool.query('INSERT INTO orders (order_number, customer_id, order_date) VALUES ($1, $2, CURRENT_DATE) RETURNING *', [orderNumber, customerId]);
     } else {
-      order = await pool.query('INSERT INTO orders (order_number, order_date) VALUES ($1, CURRENT_DATE) RETURNING *', [uuidv4()]);
+      order = await pool.query('INSERT INTO orders (order_number, order_date) VALUES ($1, CURRENT_DATE) RETURNING *', [orderNumber]);
     }
 
     console.log('Order created:', order);
 
+    // Insert order items into order_items table
+    const product = await pool.query('SELECT product_id FROM products WHERE name = $1', [productName]);
+    await pool.query('INSERT INTO order_items (order_id, product_id) VALUES ($1, $2)', [orderNumber, product.rows[0].product_id]);
+
     res.json({ success: true, clientSecret: paymentIntent.client_secret });
 
     //send emails after purchase is made
-    await sendEmail(`${customersEmail}`, 'Order confirmation', `Thank you for your order! your item will arrive soon`);
-    await sendEmail(`diannabeaty65@gmail.com`, 'you just got a new purchase!!',  `someone just made a purchase on the designher. there name is: ${name}. and there email is: ${customersEmail} the product purchased is ${product}`)  
-    await sendEmail(`charles.lamb.dev@gmail.com`, 'somebody bought something on designher', `so if you are reading this it means that everything worked out and people are happy with the services`);
-
-
+    await sendEmail(`${customersEmail}`, 'Order confirmation', `Thank you for your order! Your item will arrive soon`);
+    await sendEmail(`diannabeaty65@gmail.com`, 'You just got a new purchase!!', `Someone just made a purchase on the designher. Their name is: ${name}. and their email is: ${customersEmail}. The product purchased is ${productName}`);
+    await sendEmail(`charles.lamb.dev@gmail.com`, 'Somebody bought something on designher', `So if you are reading this, it means that everything worked out and people are happy with the services`);
 
   } catch (error) {
     console.error('Payment Error:', error);
     res.json({ success: false, error: error.message });
   }
 });
+
 
 
 
