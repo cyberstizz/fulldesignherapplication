@@ -67,12 +67,7 @@ CREATE TABLE orders (
 -- Create the order_items table
 CREATE TABLE order_items (
     order_id UUID REFERENCES orders(order_number),
-    product_id UUID REFERENCES (
-        SELECT product_id FROM crocs 
-        UNION SELECT product_id FROM jackets 
-        UNION SELECT product_id FROM sneakers 
-        UNION SELECT product_id FROM boots
-    )
+    product_id UUID REFERENCES products(product_id)
 );
 
 CREATE TABLE reviews (
@@ -85,6 +80,27 @@ CREATE TABLE reviews (
     rating DECIMAL(2, 1) CHECK (rating >= 1 AND rating <= 5),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
+
+CREATE TABLE products (
+    product_id UUID PRIMARY KEY
+);
+
+-- Insert product IDs from crocs
+INSERT INTO products (product_id)
+SELECT product_id FROM crocs;
+
+-- Insert product IDs from jackets
+INSERT INTO products (product_id)
+SELECT product_id FROM jackets;
+
+-- Insert product IDs from sneakers
+INSERT INTO products (product_id)
+SELECT product_id FROM sneakers;
+
+-- Insert product IDs from boots
+INSERT INTO products (product_id)
+SELECT product_id FROM boots;
+
 
 ----------------------------------------------------
 
