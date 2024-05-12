@@ -24,23 +24,7 @@ const ProfilePage = () => {
 
 
   useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const ordersRes = await axios.get(`${apiUrl}/users/${user}/orders`);
-        setOrders(ordersRes.data.orders);
-      } catch (error) {
-        console.error('Error fetching orders:', error);
-      }
-    };
 
-    const fetchReviews = async () => {
-      try {
-        const reviewsRes = await axios.get(`${apiUrl}/users/${user}/reviews`);
-        setReviews(reviewsRes.data.reviews);
-      } catch (error) {
-        console.error('Error fetching reviews:', error);
-      }
-    };
 
     const checkUserAuthentication = async () => {
         try {
@@ -58,6 +42,26 @@ const ProfilePage = () => {
       
     checkUserAuthentication();
   }, []);
+
+
+  //the two functions to get reviews and orders
+  const fetchOrders = async () => {
+    try {
+      const ordersRes = await axios.get(`${apiUrl}/users/${user}/orders`);
+      setOrders(ordersRes.data.orders);
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+    }
+  };
+
+  const fetchReviews = async () => {
+    try {
+      const reviewsRes = await axios.get(`${apiUrl}/users/${user}/reviews`);
+      setReviews(reviewsRes.data.reviews);
+    } catch (error) {
+      console.error('Error fetching reviews:', error);
+    }
+  };
 
   const handleDeleteAccount = async () => {
     try {
