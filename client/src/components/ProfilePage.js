@@ -34,6 +34,8 @@ const ProfilePage = () => {
           } else {
             setUser(null);
           }
+
+          console.log(user)
         } catch (error) {
           console.error('Error checking user authentication:', error.message);
         }
