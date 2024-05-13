@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './ProfilePage.scss';
 import Dropdown from './Dropdown';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom'; 
 import axios from 'axios';
 
 const ProfilePage = () => {
+  const { userId } = useParams();
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -49,7 +50,7 @@ const ProfilePage = () => {
   //the two functions to get reviews and orders
   const fetchOrders = async () => {
     try {
-      const ordersRes = await axios.get(`${apiUrl}/users/${user}/orders`);
+      const ordersRes = await axios.get(`${apiUrl}/users/${userId}/orders`);
       setOrders(ordersRes.data.orders);
     } catch (error) {
       console.error('Error fetching orders:', error);
@@ -58,7 +59,7 @@ const ProfilePage = () => {
 
   const fetchReviews = async () => {
     try {
-      const reviewsRes = await axios.get(`${apiUrl}/users/${user}/reviews`);
+      const reviewsRes = await axios.get(`${apiUrl}/users/${userId}/reviews`);
       setReviews(reviewsRes.data.reviews);
     } catch (error) {
       console.error('Error fetching reviews:', error);
