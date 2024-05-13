@@ -44,7 +44,7 @@ const ProfilePage = () => {
   
       
     checkUserAuthentication();
-  }, []);
+  }, [user]);
 
 
   //the two functions to get reviews and orders
