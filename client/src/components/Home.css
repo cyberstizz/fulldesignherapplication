@@ -192,15 +192,15 @@ li{
 }
 
 .aboutHeader{
-    color: #958e8e;
-    font-size: 40px;
+    color: #ca2828;
+    font-size: 50px;
     letter-spacing: 1px;
     margin-left: 35%;
     font-family: 'Edu QLD Beginner', sans-serif;
 }
 
 .aboutSection{
-    height: 900vh;
+    height: 930vh;
     width: 100vw;
     background: linear-gradient(to right, #000000 0%, #121212 25%, #1f1e1e 50%, #121212 75%, #000000 100%);
     text-align: justify; 
@@ -225,7 +225,7 @@ li{
 
 
 .aboutParagraph{
-    color: rgb(243, 49, 49);
+    color: white;
     font-size: 50px; /* Adjust font size as needed for readability */
     line-height: 1.2; /* Set appropriate line height for better readability */
     margin-bottom: 20px; 
@@ -452,7 +452,7 @@ li{
 
 
 .aboutParagraph{
-    color: rgb(243, 49, 49);
+    color: white;
     font-size: 50px; /* Adjust font size as needed for readability */
     line-height: 1.2; /* Set appropriate line height for better readability */
     margin-bottom: 20px; 
