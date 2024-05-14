@@ -1,30 +1,27 @@
 import React, { useState } from 'react';
-import './Dropdown.scss';
+import './Dropdown.scss'; // Import your CSS for Dropdown
 
-const Dropdown = ({ title, items, emptyMessage }) => {
+const Dropdown = ({ title, items, emptyMessage, onClick }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+  const handleItemClick = () => {
+    setIsOpen(false); // Close the dropdown when an item is clicked
+    onClick(); // Trigger the fetch function passed through props
   };
 
   return (
     <div className="dropdown">
-      <button onClick={toggleDropdown} className="dropdown-button">
-        {title}
-      </button>
+      <button onClick={() => setIsOpen(!isOpen)}>{title}</button>
       {isOpen && (
         <div className="dropdown-content">
           {items.length > 0 ? (
             items.map((item, index) => (
-              <div key={index} className="dropdown-item">
-                <p>Order Number: {item.orderNumber}</p>
-                <p>Order Date: {item.orderDate}</p>
-                <p>Products: {item.products.join(', ')}</p>
+              <div key={index} onClick={handleItemClick}>
+                {item}
               </div>
             ))
           ) : (
-            <p>{emptyMessage}</p>
+            <div>{emptyMessage}</div>
           )}
         </div>
       )}
