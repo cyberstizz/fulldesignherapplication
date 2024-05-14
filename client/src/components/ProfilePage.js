@@ -12,15 +12,30 @@ const ProfilePage = () => {
   const [user, setUser] = useState(null);
 
   const baseUrl = window.location.origin;
-  const apiUrl = process.env.NODE_ENV === 'production'
-    ? `${baseUrl}`
-    : 'http://localhost:3001';
+  const apiUrl = process.env.NODE_ENV === 'production' ? `${baseUrl}` : 'http://localhost:3001';
 
   useEffect(() => {
-    if (userId) {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get(`${apiUrl}/users/${userId}`);
+        if (response.status === 200) {
+          setUser(response.data.user);
+        } else {
+          setUser(null);
+        }
+      } catch (error) {
+        console.error('Error fetching user:', error.message);
+      }
+    };
+
+    fetchUser();
+  }, [userId]);
+
+  useEffect(() => {
+    if (user) {
       const fetchOrders = async () => {
         try {
-          const ordersRes = await axios.get(`${apiUrl}/users/${userId}/orders`);
+          const ordersRes = await axios.get(`${apiUrl}/users/${user.user_id}/orders`);
           setOrders(ordersRes.data.orders);
         } catch (error) {
           console.error('Error fetching orders:', error);
@@ -29,7 +44,7 @@ const ProfilePage = () => {
 
       const fetchReviews = async () => {
         try {
-          const reviewsRes = await axios.get(`${apiUrl}/users/${userId}/reviews`);
+          const reviewsRes = await axios.get(`${apiUrl}/users/${user.user_id}/reviews`);
           setReviews(reviewsRes.data.reviews);
         } catch (error) {
           console.error('Error fetching reviews:', error);
@@ -39,7 +54,7 @@ const ProfilePage = () => {
       fetchOrders();
       fetchReviews();
     }
-  }, [userId]);
+  }, [user, apiUrl]);
 
   const handleDeleteAccount = async () => {
     try {
@@ -55,23 +70,17 @@ const ProfilePage = () => {
       <h1 style={{ color: 'red' }}>{user ? user.username : 'Loading...'}</h1>
       <Dropdown 
         title="Your Orders" 
-        items={orders.map(order => ({
-          orderNumber: order.order_number,
-          orderDate: order.order_date,
-          products: order.product_ids // Ensure this is an array of product IDs
-        }))} 
+        items={orders} 
         emptyMessage="You have no orders" 
+        type="orders" // Added type prop to differentiate between orders and reviews
       />
-      <Dropdown title="Your Reviews" items={reviews.map(review => ({
-          id: review.review_id,
-          product: review.product_id,
-          type: review.product_type,
-          headline: review.headline,
-          review: review.review,
-          rating: review.rating
-        }))} 
+      <Dropdown 
+        title="Your Reviews" 
+        items={reviews} 
         emptyMessage="You have no reviews" 
-      />      <button onClick={handleDeleteAccount} style={{ display: "flex", justifySelf: "center", alignSelf: "center", justifyContent: "center", marginBottom: "5vh", width: "40vw" }}>Delete Account</button>
+        type="reviews" // Added type prop to differentiate between orders and reviews
+      />
+      <button onClick={handleDeleteAccount} style={{ display: "flex", justifySelf: "center", alignSelf: "center", justifyContent: "center", marginBottom: "5vh", width: "40vw" }}>Delete Account</button>
       <button onClick={() => navigate(-1)} style={{ display: "flex", justifySelf: "center", alignSelf: "center", justifyContent: "center", width: "40vw" }}>Back</button>
     </div>
   );
