@@ -320,6 +320,9 @@ if (!req.isAuthenticated() || req.user.user_id !== parseInt(req.params.userId)) 
     const ordersResult = await pool.query(ordersQuery, [userId]);
     const orders = ordersResult.rows;
 
+    console.log('Fetched Orders:', orders); // Add this line
+
+
     res.json({ orders });
   } catch (error) {
     console.error('Error fetching user orders:', error);

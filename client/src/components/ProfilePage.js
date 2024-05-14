@@ -15,23 +15,6 @@ const ProfilePage = () => {
   const apiUrl = process.env.NODE_ENV === 'production' ? `${baseUrl}` : 'http://localhost:3001';
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get(`${apiUrl}/users/${userId}`);
-        if (response.status === 200) {
-          setUser(response.data.user);
-        } else {
-          setUser(null);
-        }
-      } catch (error) {
-        console.error('Error fetching user:', error.message);
-      }
-    };
-
-    fetchUser();
-  }, [userId]);
-
-  useEffect(() => {
     if (user) {
       const fetchOrders = async () => {
         try {
