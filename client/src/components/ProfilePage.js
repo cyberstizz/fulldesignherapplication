@@ -17,29 +17,10 @@ const ProfilePage = () => {
     : 'http://localhost:3001';
 
   useEffect(() => {
-    if(user){
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get(`${apiUrl}/users/${userId}`);
-        if (response.status === 200) {
-          setUser(response.data.user);
-        } else {
-          setUser(null);
-        }
-      } catch (error) {
-        console.error('Error fetching user:', error.message);
-      }
-    };
-
-    fetchUser();
-  }
-  }, [userId]);
-
-  useEffect(() => {
     if (userId) {
       const fetchOrders = async () => {
         try {
-          const ordersRes = await axios.get(`${apiUrl}/users/${user.user_id}/orders`);
+          const ordersRes = await axios.get(`${apiUrl}/users/${userId}/orders`);
           setOrders(ordersRes.data.orders);
         } catch (error) {
           console.error('Error fetching orders:', error);
@@ -48,7 +29,7 @@ const ProfilePage = () => {
 
       const fetchReviews = async () => {
         try {
-          const reviewsRes = await axios.get(`${apiUrl}/users/${user.user_id}/reviews`);
+          const reviewsRes = await axios.get(`${apiUrl}/users/${userId}/reviews`);
           setReviews(reviewsRes.data.reviews);
         } catch (error) {
           console.error('Error fetching reviews:', error);
