@@ -17,10 +17,10 @@ const ProfilePage = () => {
     : 'http://localhost:3001';
 
   useEffect(() => {
-    console.log(userId.user_id)
+    if(user){
     const fetchUser = async () => {
       try {
-        const response = await axios.get(`${apiUrl}/users/${userId.user_id}`);
+        const response = await axios.get(`${apiUrl}/users/${userId}`);
         if (response.status === 200) {
           setUser(response.data.user);
         } else {
@@ -32,10 +32,11 @@ const ProfilePage = () => {
     };
 
     fetchUser();
-  }, [userId, apiUrl]);
+  }
+  }, [userId]);
 
   useEffect(() => {
-    if (user) {
+    if (userId) {
       const fetchOrders = async () => {
         try {
           const ordersRes = await axios.get(`${apiUrl}/users/${user.user_id}/orders`);
@@ -57,7 +58,7 @@ const ProfilePage = () => {
       fetchOrders();
       fetchReviews();
     }
-  }, [user, apiUrl]);
+  }, [userId]);
 
   const handleDeleteAccount = async () => {
     try {
