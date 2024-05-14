@@ -53,7 +53,11 @@ const ProfilePage = () => {
   return (
     <div className="profile-page">
       <h1 style={{ color: 'red' }}>{user ? user.username : 'Loading...'}</h1>
-      <Dropdown title="Your Orders" items={orders} emptyMessage="You have no orders" />
+      <Dropdown title="Your Orders" items={orders.map(order => ({
+        id: order.order_number,
+        date: order.order_date,
+        products: order.product_ids
+      }))} emptyMessage="You have no orders" />
       <Dropdown title="Your Reviews" items={reviews} emptyMessage="You have no reviews" />
       <button onClick={handleDeleteAccount} style={{ display: "flex", justifySelf: "center", alignSelf: "center", justifyContent: "center", marginBottom: "5vh", width: "40vw" }}>Delete Account</button>
       <button onClick={() => navigate(-1)} style={{ display: "flex", justifySelf: "center", alignSelf: "center", justifyContent: "center", width: "40vw" }}>Back</button>
