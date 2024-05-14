@@ -14,6 +14,27 @@ const ProfilePage = () => {
   const baseUrl = window.location.origin;
   const apiUrl = process.env.NODE_ENV === 'production' ? `${baseUrl}` : 'http://localhost:3001';
 
+
+  useEffect(() => {
+    const checkUserAuthentication = async () => {
+      try {
+        const response = await Axios.get('/user');
+        if (response.status === 200) {
+          setUser(response.data.user);
+        } else {
+          setUser(null);
+        }
+      } catch (error) {
+        console.error('Error checking user authentication:', error.message);
+      }
+    };
+
+    checkUserAuthentication();
+  }, []);
+
+
+
+
   useEffect(() => {
     console.log('userId:', userId);
     console.log('user:', user);
