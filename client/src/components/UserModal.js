@@ -4,6 +4,7 @@ import './UserModal.scss'; // Make sure the path matches your file structure
 
 const UserModal = ({ isOpen, onClose, onLogout, onProfile, userId }) => {
   if (!isOpen) return null;
+  console.log(userId)
 
   return (
     <div className="userModal-overlay" onClick={onClose}>
