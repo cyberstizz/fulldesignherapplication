@@ -18,7 +18,7 @@ const ProfilePage = () => {
   useEffect(() => {
     const checkUserAuthentication = async () => {
       try {
-        const response = await Axios.get('/user');
+        const response = await axios.get('/user');
         if (response.status === 200) {
           setUser(response.data.user);
         } else {
