@@ -19,7 +19,7 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(`${apiUrl}/users/${userId}`);
+        const response = await axios.get(`${apiUrl}/users/${user.user_id}`);
         if (response.status === 200) {
           setUser(response.data.user);
         } else {
