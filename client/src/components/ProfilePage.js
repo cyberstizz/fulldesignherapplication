@@ -15,6 +15,9 @@ const ProfilePage = () => {
   const apiUrl = process.env.NODE_ENV === 'production' ? `${baseUrl}` : 'http://localhost:3001';
 
   useEffect(() => {
+    console.log('userId:', userId);
+    console.log('user:', user);
+
     if (user) {
       const fetchOrders = async () => {
         try {
