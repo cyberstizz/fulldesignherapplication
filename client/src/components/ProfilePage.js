@@ -74,7 +74,7 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-page">
-      <h1 style={{ color: 'red' }}>{user ? user.username : 'Loading...'}</h1>
+      <h1 style={{ color: 'white' }}>{user ? user.username : 'Loading...'}</h1>
       <Dropdown 
         title="Your Orders" 
         items={orders} 
