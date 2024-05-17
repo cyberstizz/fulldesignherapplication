@@ -87,7 +87,7 @@ const ProfilePage = () => {
               </div>
             </>
           ),
-        }))} 
+        })) || []}  // Ensure items is an array
         emptyMessage="You have no orders" 
         type="orders"
       />
@@ -101,7 +101,7 @@ const ProfilePage = () => {
               <div>{review.review}</div>
             </div>
           ),
-        }))}
+        })) || []}  // Ensure items is an array
         emptyMessage="You have no reviews" 
         type="reviews"
       />
