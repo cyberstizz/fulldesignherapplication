@@ -14,7 +14,31 @@ const ProfilePage = () => {
   const baseUrl = window.location.origin;
   const apiUrl = process.env.NODE_ENV === 'production' ? `${baseUrl}` : 'http://localhost:3001';
 
+
   useEffect(() => {
+    const checkUserAuthentication = async () => {
+      try {
+        const response = await axios.get('/user');
+        if (response.status === 200) {
+          setUser(response.data.user);
+        } else {
+          setUser(null);
+        }
+      } catch (error) {
+        console.error('Error checking user authentication:', error.message);
+      }
+    };
+
+    checkUserAuthentication();
+  }, []);
+
+
+
+
+  useEffect(() => {
+    console.log('userId:', userId);
+    console.log('user:', user);
+
     if (user) {
       const fetchOrders = async () => {
         try {
@@ -50,7 +74,7 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-page">
-      <h1 style={{ color: 'red' }}>{user ? user.username : 'Loading...'}</h1>
+      <h1 style={{ color: 'white' }}>{user ? user.username : 'Loading...'}</h1>
       <Dropdown 
         title="Your Orders" 
         items={orders} 
