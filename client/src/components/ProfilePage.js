@@ -14,7 +14,6 @@ const ProfilePage = () => {
   const baseUrl = window.location.origin;
   const apiUrl = process.env.NODE_ENV === 'production' ? `${baseUrl}` : 'http://localhost:3001';
 
-
   useEffect(() => {
     const checkUserAuthentication = async () => {
       try {
@@ -31,9 +30,6 @@ const ProfilePage = () => {
 
     checkUserAuthentication();
   }, []);
-
-
-
 
   useEffect(() => {
     console.log('userId:', userId);
@@ -77,15 +73,40 @@ const ProfilePage = () => {
       <h1 style={{ color: 'white' }}>{user ? user.username : 'Loading...'}</h1>
       <Dropdown 
         title="Your Orders" 
-        items={orders} 
+        items={orders.map(order => ({
+          title: `Order Number: ${order.order_number}`,
+          content: (
+            <>
+              <div>Order Date: {new Date(order.order_date).toLocaleDateString()}</div>
+              <div>
+                Products:
+                <ul>
+                  {order.products.map(product => (
+                    <li key={product.product_id}>
+                      <strong>{product.product_name}</strong>: {product.product_description} (${product.product_price})
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </>
+          ),
+        }))} 
         emptyMessage="You have no orders" 
-        type="orders" // Added type prop to differentiate between orders and reviews
+        type="orders"
       />
       <Dropdown 
         title="Your Reviews" 
-        items={reviews} 
+        items={reviews.map(review => ({
+          title: `Review: ${review.headline}`,
+          content: (
+            <div>
+              <div>Rating: {review.rating}</div>
+              <div>{review.review}</div>
+            </div>
+          ),
+        }))}
         emptyMessage="You have no reviews" 
-        type="reviews" // Added type prop to differentiate between orders and reviews
+        type="reviews"
       />
       <button onClick={handleDeleteAccount} style={{ display: "flex", justifySelf: "center", alignSelf: "center", justifyContent: "center", marginBottom: "5vh", width: "40vw" }}>Delete Account</button>
       <button onClick={() => navigate(-1)} style={{ display: "flex", justifySelf: "center", alignSelf: "center", justifyContent: "center", width: "40vw" }}>Back</button>
