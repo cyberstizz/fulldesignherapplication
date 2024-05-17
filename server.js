@@ -300,76 +300,75 @@ app.get('/reviews/:productType/:productId', async (req, res) => {
 
 //grab all orders for a specific user
 app.get('/users/:userId/orders', async (req, res) => {
-  if (!req.isAuthenticated() || req.user.user_id !== parseInt(req.params.userId)) {
-    return res.status(403).send('Unauthorized');
-  }
-  try {
-    const { userId } = req.params;
+  const { userId } = req.params;
 
+  try {
     const ordersQuery = `
-      SELECT 
-        o.order_number, 
-        o.order_date, 
-        json_agg(
-          json_build_object(
-            'product_id', oi.product_id, 
-            'product_name', 
-            COALESCE(c.name, j.name, s.name, b.name), 
-            'product_price', 
-            COALESCE(c.product_price, j.product_price, s.product_price, b.product_price)
-          )
-        ) as products
+      SELECT o.order_number, o.order_date, oi.product_id, oi.product_type,
+             COALESCE(c.name, s.name, b.name, j.name) AS product_name,
+             COALESCE(c.product_price, s.product_price, b.product_price, j.product_price) AS product_price
       FROM orders o
       JOIN order_items oi ON o.order_number = oi.order_id
-      LEFT JOIN crocs c ON oi.product_id = c.product_id
-      LEFT JOIN jackets j ON oi.product_id = j.product_id
-      LEFT JOIN sneakers s ON oi.product_id = s.product_id
-      LEFT JOIN boots b ON oi.product_id = b.product_id
-      WHERE o.customer_id = $1
-      GROUP BY o.order_number, o.order_date
-      ORDER BY o.order_date DESC;
+      LEFT JOIN crocs c ON oi.product_id = c.product_id AND oi.product_type = 'crocs'
+      LEFT JOIN sneakers s ON oi.product_id = s.product_id AND oi.product_type = 'sneakers'
+      LEFT JOIN boots b ON oi.product_id = b.product_id AND oi.product_type = 'boots'
+      LEFT JOIN jackets j ON oi.product_id = j.product_id AND oi.product_type = 'jackets'
+      WHERE o.customer_id = $1;
     `;
-    const ordersResult = await pool.query(ordersQuery, [userId]);
-    const orders = ordersResult.rows;
 
-    console.log('Fetched Orders:', orders);
+    const { rows: orders } = await pool.query(ordersQuery, [userId]);
 
-    res.json({ orders });
+    const groupedOrders = orders.reduce((acc, order) => {
+      const { order_number, order_date, product_id, product_type, product_name, product_price } = order;
+      const orderIndex = acc.findIndex(o => o.order_number === order_number);
+
+      const product = {
+        product_id,
+        product_type,
+        product_name,
+        product_price,
+      };
+
+      if (orderIndex >= 0) {
+        acc[orderIndex].products.push(product);
+      } else {
+        acc.push({
+          order_number,
+          order_date,
+          products: [product],
+        });
+      }
+
+      return acc;
+    }, []);
+
+    res.json({ orders: groupedOrders });
   } catch (error) {
     console.error('Error fetching user orders:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).send('Internal Server Error');
   }
 });
 
-
-//grab all reviews for a specific user
 app.get('/users/:userId/reviews', async (req, res) => {
-  
-   // Ensure user is authenticated
-   if (!req.isAuthenticated() || req.user.user_id !== parseInt(req.params.userId)) {
-    return res.status(403).send('Unauthorized');
-  } 
-
+  const { userId } = req.params;
 
   try {
-
-    const { userId } = req.params;
-
-
-    //fetch all reviews
     const reviewsQuery = `
-      SELECT review_id, product_id, product_type, headline, review, rating
-      FROM reviews
-      WHERE user_id = $1
-      ORDER BY review_id DESC;
+      SELECT r.review_id, r.product_id, r.product_type, r.headline, r.review, r.rating,
+             COALESCE(c.name, s.name, b.name, j.name) AS product_name
+      FROM reviews r
+      LEFT JOIN crocs c ON r.product_id = c.product_id AND r.product_type = 'crocs'
+      LEFT JOIN sneakers s ON r.product_id = s.product_id AND r.product_type = 'sneakers'
+      LEFT JOIN boots b ON r.product_id = b.product_id AND r.product_type = 'boots'
+      LEFT JOIN jackets j ON r.product_id = j.product_id AND r.product_type = 'jackets'
+      WHERE r.user_id = $1;
     `;
-    const reviewsResult = await pool.query(reviewsQuery, [userId]);
-    const reviews = reviewsResult.rows;
 
+    const { rows: reviews } = await pool.query(reviewsQuery, [userId]);
     res.json({ reviews });
   } catch (error) {
     console.error('Error fetching user reviews:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).send('Internal Server Error');
   }
 });
 
