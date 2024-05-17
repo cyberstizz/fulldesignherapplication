@@ -299,34 +299,42 @@ app.get('/reviews/:productType/:productId', async (req, res) => {
 });
 
 //grab all orders for a specific user
+
 app.get('/users/:userId/orders', async (req, res) => {
   const { userId } = req.params;
 
   try {
     const ordersQuery = `
-      SELECT o.order_number, o.order_date, oi.product_id, oi.product_type,
+      SELECT o.order_number, o.order_date,
+             oi.product_id,
              COALESCE(c.name, s.name, b.name, j.name) AS product_name,
-             COALESCE(c.product_price, s.product_price, b.product_price, j.product_price) AS product_price
+             COALESCE(c.product_price, s.product_price, b.product_price, j.product_price) AS product_price,
+             CASE
+               WHEN c.product_id IS NOT NULL THEN 'crocs'
+               WHEN s.product_id IS NOT NULL THEN 'sneakers'
+               WHEN b.product_id IS NOT NULL THEN 'boots'
+               WHEN j.product_id IS NOT NULL THEN 'jackets'
+             END AS product_type
       FROM orders o
       JOIN order_items oi ON o.order_number = oi.order_id
-      LEFT JOIN crocs c ON oi.product_id = c.product_id AND oi.product_type = 'crocs'
-      LEFT JOIN sneakers s ON oi.product_id = s.product_id AND oi.product_type = 'sneakers'
-      LEFT JOIN boots b ON oi.product_id = b.product_id AND oi.product_type = 'boots'
-      LEFT JOIN jackets j ON oi.product_id = j.product_id AND oi.product_type = 'jackets'
+      LEFT JOIN crocs c ON oi.product_id = c.product_id
+      LEFT JOIN sneakers s ON oi.product_id = s.product_id
+      LEFT JOIN boots b ON oi.product_id = b.product_id
+      LEFT JOIN jackets j ON oi.product_id = j.product_id
       WHERE o.customer_id = $1;
     `;
 
     const { rows: orders } = await pool.query(ordersQuery, [userId]);
 
     const groupedOrders = orders.reduce((acc, order) => {
-      const { order_number, order_date, product_id, product_type, product_name, product_price } = order;
+      const { order_number, order_date, product_id, product_name, product_price, product_type } = order;
       const orderIndex = acc.findIndex(o => o.order_number === order_number);
 
       const product = {
         product_id,
-        product_type,
         product_name,
         product_price,
+        product_type
       };
 
       if (orderIndex >= 0) {
@@ -335,7 +343,7 @@ app.get('/users/:userId/orders', async (req, res) => {
         acc.push({
           order_number,
           order_date,
-          products: [product],
+          products: [product]
         });
       }
 
