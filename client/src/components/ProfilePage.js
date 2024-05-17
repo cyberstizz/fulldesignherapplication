@@ -15,10 +15,11 @@ const ProfilePage = () => {
   const apiUrl = process.env.NODE_ENV === 'production' ? `${baseUrl}` : 'http://localhost:3001';
 
 
+  
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const userRes = await axios.get(`${apiUrl}/users/${userId}`);
+        const userRes = await axios.get(`${apiUrl}/user`);
         console.log('userRes:', userRes.data.user); // Log the response
         setUser(userRes.data.user);
       } catch (error) {
@@ -27,13 +28,13 @@ const ProfilePage = () => {
     };
 
     fetchUser();
-  }, [userId, apiUrl]);
+  }, [apiUrl]);
 
   useEffect(() => {
     if (user) {
       const fetchOrders = async () => {
         try {
-          const ordersRes = await axios.get(`${apiUrl}/users/${userId}/orders`);
+          const ordersRes = await axios.get(`${apiUrl}/users/${user.user_id}/orders`);
           console.log('ordersRes:', ordersRes.data.orders); // Log the response
           setOrders(ordersRes.data.orders);
         } catch (error) {
@@ -43,7 +44,7 @@ const ProfilePage = () => {
 
       const fetchReviews = async () => {
         try {
-          const reviewsRes = await axios.get(`${apiUrl}/users/${userId}/reviews`);
+          const reviewsRes = await axios.get(`${apiUrl}/users/${user.user_id}/reviews`);
           console.log('reviewsRes:', reviewsRes.data.reviews); // Log the response
           setReviews(reviewsRes.data.reviews);
         } catch (error) {
@@ -54,7 +55,7 @@ const ProfilePage = () => {
       fetchOrders();
       fetchReviews();
     }
-  }, [user, userId, apiUrl]);
+  }, [user, apiUrl]);
 
   const handleDeleteAccount = async () => {
     try {

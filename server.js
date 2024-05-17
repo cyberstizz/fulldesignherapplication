@@ -326,7 +326,7 @@ if (!req.isAuthenticated() || req.user.user_id !== parseInt(req.params.userId)) 
       GROUP BY o.order_number, o.order_date
       ORDER BY o.order_date DESC;
     `;
-    const ordersResult = await pool.query(ordersQuery, [userId]);
+        const ordersResult = await pool.query(ordersQuery, [userId]);
     const orders = ordersResult.rows;
 
     console.log('Fetched Orders:', orders); // Add this line
