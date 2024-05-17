@@ -313,17 +313,18 @@ app.get('/users/:userId/orders', async (req, res) => {
         json_agg(
           json_build_object(
             'product_id', oi.product_id, 
-            'product_type', oi.product_type,
-            'product_name', COALESCE(c.name, j.name, s.name, b.name), 
-            'product_price', COALESCE(c.product_price, j.product_price, s.product_price, b.product_price)
+            'product_name', 
+            COALESCE(c.name, j.name, s.name, b.name), 
+            'product_price', 
+            COALESCE(c.product_price, j.product_price, s.product_price, b.product_price)
           )
         ) as products
       FROM orders o
       JOIN order_items oi ON o.order_number = oi.order_id
-      LEFT JOIN crocs c ON oi.product_id = c.product_id AND oi.product_type = 'crocs'
-      LEFT JOIN jackets j ON oi.product_id = j.product_id AND oi.product_type = 'jackets'
-      LEFT JOIN sneakers s ON oi.product_id = s.product_id AND oi.product_type = 'sneakers'
-      LEFT JOIN boots b ON oi.product_id = b.product_id AND oi.product_type = 'boots'
+      LEFT JOIN crocs c ON oi.product_id = c.product_id
+      LEFT JOIN jackets j ON oi.product_id = j.product_id
+      LEFT JOIN sneakers s ON oi.product_id = s.product_id
+      LEFT JOIN boots b ON oi.product_id = b.product_id
       WHERE o.customer_id = $1
       GROUP BY o.order_number, o.order_date
       ORDER BY o.order_date DESC;
