@@ -16,33 +16,25 @@ const ProfilePage = () => {
 
 
   useEffect(() => {
-    const checkUserAuthentication = async () => {
+    const fetchUser = async () => {
       try {
-        const response = await axios.get('/user');
-        if (response.status === 200) {
-          setUser(response.data.user);
-        } else {
-          setUser(null);
-        }
+        const userRes = await axios.get(`${apiUrl}/users/${userId}`);
+        console.log('userRes:', userRes.data.user); // Log the response
+        setUser(userRes.data.user);
       } catch (error) {
-        console.error('Error checking user authentication:', error.message);
+        console.error('Error fetching user:', error);
       }
     };
 
-    checkUserAuthentication();
-  }, []);
-
-
-
+    fetchUser();
+  }, [userId, apiUrl]);
 
   useEffect(() => {
-    console.log('userId:', userId);
-    console.log('user:', user);
-
     if (user) {
       const fetchOrders = async () => {
         try {
           const ordersRes = await axios.get(`${apiUrl}/users/${userId}/orders`);
+          console.log('ordersRes:', ordersRes.data.orders); // Log the response
           setOrders(ordersRes.data.orders);
         } catch (error) {
           console.error('Error fetching orders:', error);
@@ -52,6 +44,7 @@ const ProfilePage = () => {
       const fetchReviews = async () => {
         try {
           const reviewsRes = await axios.get(`${apiUrl}/users/${userId}/reviews`);
+          console.log('reviewsRes:', reviewsRes.data.reviews); // Log the response
           setReviews(reviewsRes.data.reviews);
         } catch (error) {
           console.error('Error fetching reviews:', error);
@@ -61,7 +54,7 @@ const ProfilePage = () => {
       fetchOrders();
       fetchReviews();
     }
-  }, [user, apiUrl]);
+  }, [user, userId, apiUrl]);
 
   const handleDeleteAccount = async () => {
     try {
