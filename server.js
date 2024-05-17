@@ -310,23 +310,14 @@ if (!req.isAuthenticated() || req.user.user_id !== parseInt(req.params.userId)) 
 
     // Fetch orders made by the user
     const ordersQuery = `
-      SELECT 
-        o.order_number, 
-        o.order_date, 
-        json_agg(json_build_object(
-          'product_id', p.product_id, 
-          'product_name', p.product_name, 
-          'product_description', p.product_description, 
-          'product_price', p.product_price
-        )) as products
+      SELECT o.order_number, o.order_date, array_agg(i.product_id) as product_ids
       FROM orders o
       JOIN order_items i ON o.order_number = i.order_id
-      JOIN products p ON i.product_id = p.product_id
       WHERE o.customer_id = $1
       GROUP BY o.order_number, o.order_date
       ORDER BY o.order_date DESC;
     `;
-        const ordersResult = await pool.query(ordersQuery, [userId]);
+    const ordersResult = await pool.query(ordersQuery, [userId]);
     const orders = ordersResult.rows;
 
     console.log('Fetched Orders:', orders); // Add this line
@@ -808,4 +799,3 @@ app.post('/:productType', upload.single('image'), async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
-

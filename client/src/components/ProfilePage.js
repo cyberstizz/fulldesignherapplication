@@ -14,28 +14,11 @@ const ProfilePage = () => {
   const baseUrl = window.location.origin;
   const apiUrl = process.env.NODE_ENV === 'production' ? `${baseUrl}` : 'http://localhost:3001';
 
-
-  
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const userRes = await axios.get(`${apiUrl}/user`);
-        console.log('userRes:', userRes.data.user); // Log the response
-        setUser(userRes.data.user);
-      } catch (error) {
-        console.error('Error fetching user:', error);
-      }
-    };
-
-    fetchUser();
-  }, [apiUrl]);
-
   useEffect(() => {
     if (user) {
       const fetchOrders = async () => {
         try {
-          const ordersRes = await axios.get(`${apiUrl}/users/${user.user_id}/orders`);
-          console.log('ordersRes:', ordersRes.data.orders); // Log the response
+          const ordersRes = await axios.get(`${apiUrl}/users/${userId}/orders`);
           setOrders(ordersRes.data.orders);
         } catch (error) {
           console.error('Error fetching orders:', error);
@@ -44,8 +27,7 @@ const ProfilePage = () => {
 
       const fetchReviews = async () => {
         try {
-          const reviewsRes = await axios.get(`${apiUrl}/users/${user.user_id}/reviews`);
-          console.log('reviewsRes:', reviewsRes.data.reviews); // Log the response
+          const reviewsRes = await axios.get(`${apiUrl}/users/${userId}/reviews`);
           setReviews(reviewsRes.data.reviews);
         } catch (error) {
           console.error('Error fetching reviews:', error);
@@ -68,7 +50,7 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-page">
-      <h1 style={{ color: 'white' }}>{user ? user.username : 'Loading...'}</h1>
+      <h1 style={{ color: 'red' }}>{user ? user.username : 'Loading...'}</h1>
       <Dropdown 
         title="Your Orders" 
         items={orders} 
