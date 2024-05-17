@@ -32,9 +32,6 @@ const ProfilePage = () => {
   }, []);
 
   useEffect(() => {
-    console.log('userId:', userId);
-    console.log('user:', user);
-
     if (user) {
       const fetchOrders = async () => {
         try {
@@ -83,7 +80,7 @@ const ProfilePage = () => {
                 <ul>
                   {order.products.map(product => (
                     <li key={product.product_id}>
-                      <strong>{product.product_name}</strong>: {product.product_description} (${product.product_price})
+                      <strong>{product.product_name}</strong>: ${product.product_price}
                     </li>
                   ))}
                 </ul>

@@ -300,30 +300,30 @@ app.get('/reviews/:productType/:productId', async (req, res) => {
 
 //grab all orders for a specific user
 app.get('/users/:userId/orders', async (req, res) => {
-// Ensure user is authenticated
-if (!req.isAuthenticated() || req.user.user_id !== parseInt(req.params.userId)) {
-  return res.status(403).send('Unauthorized');
-}
+  if (!req.isAuthenticated() || req.user.user_id !== parseInt(req.params.userId)) {
+    return res.status(403).send('Unauthorized');
+  }
   try {
-
     const { userId } = req.params;
 
-    // Fetch orders made by the user
     const ordersQuery = `
       SELECT 
         o.order_number, 
         o.order_date, 
         json_agg(
           json_build_object(
-            'product_id', p.product_id, 
-            'product_name', p.product_name, 
-            'product_description', p.product_description, 
-            'product_price', p.product_price
+            'product_id', oi.product_id, 
+            'product_type', oi.product_type,
+            'product_name', COALESCE(c.name, j.name, s.name, b.name), 
+            'product_price', COALESCE(c.product_price, j.product_price, s.product_price, b.product_price)
           )
         ) as products
       FROM orders o
-      JOIN order_items i ON o.order_number = i.order_id
-      JOIN products p ON i.product_id = p.product_id
+      JOIN order_items oi ON o.order_number = oi.order_id
+      LEFT JOIN crocs c ON oi.product_id = c.product_id AND oi.product_type = 'crocs'
+      LEFT JOIN jackets j ON oi.product_id = j.product_id AND oi.product_type = 'jackets'
+      LEFT JOIN sneakers s ON oi.product_id = s.product_id AND oi.product_type = 'sneakers'
+      LEFT JOIN boots b ON oi.product_id = b.product_id AND oi.product_type = 'boots'
       WHERE o.customer_id = $1
       GROUP BY o.order_number, o.order_date
       ORDER BY o.order_date DESC;
@@ -331,8 +331,7 @@ if (!req.isAuthenticated() || req.user.user_id !== parseInt(req.params.userId)) 
     const ordersResult = await pool.query(ordersQuery, [userId]);
     const orders = ordersResult.rows;
 
-    console.log('Fetched Orders:', orders); // Add this line
-
+    console.log('Fetched Orders:', orders);
 
     res.json({ orders });
   } catch (error) {
