@@ -11,6 +11,7 @@ import AddToCartModal from './AddToCartModal';
 import AddedToCartModal from './AddedToCartModal';
 import CustomStripeModal from './CustomStripeModal';
 import ReviewModal from './ReviewModal';
+import axios from 'axios';
 
 
 
