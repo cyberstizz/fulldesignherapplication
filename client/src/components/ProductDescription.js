@@ -25,6 +25,7 @@ const ProductDescription = () => {
         const [isAddedToCartModalOpen, setIsAddedToCartModalOpen] = useState(false);
         const [isCustomStripeModalOpen, setIsCustomStripeModalOpen] = useState(false);
         const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+        const [averageRating, setAverageRating] = useState(null);
 
 
 
@@ -109,6 +110,20 @@ const ProductDescription = () => {
         //after getting out of the array join the array
         //into a string, and return the string
     }
+
+
+    useEffect(() => {
+        const fetchAverageRating = async () => {
+            try {
+                const response = await axios.get(`${apiUrl}/average-rating/${productId}`);
+                setAverageRating(response.data.averageRating);
+            } catch (error) {
+                console.error('Error fetching average rating:', error);
+            }
+        };
+
+        fetchAverageRating();
+    }, [productId]);
 
 
     useEffect(() => {
@@ -219,7 +234,13 @@ const ProductDescription = () => {
 
                         <div className='ratingsSection'>
                             <Link to={`/reviews/${product_type}/${product_id}`}><h1 className='ratingsHeader'>Ratings</h1></Link>
-                            <div className='ratingsStars'></div>
+                            <div className='ratingsStars'>{averageRating !== null ? (
+                                    <div>
+                                        <h3>Average Rating: {averageRating.toFixed(1)}</h3>
+                                    </div>
+                                ) : (
+                                    <div>No ratings yet</div>
+                                )}</div>
                             <div className='writeAReview' onClick={() => setIsReviewModalOpen(true)}>Write a review</div>
                         </div>
 

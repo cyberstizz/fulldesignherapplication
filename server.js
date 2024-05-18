@@ -411,6 +411,29 @@ app.post('/reviews', async (req, res) => {
   }
 });
 
+app.get('/average-rating/:productId', async (req, res) => {
+  const { productId } = req.params;
+
+  try {
+      const result = await pool.query(
+          `SELECT AVG(rating) as average_rating 
+           FROM reviews 
+           WHERE product_id = $1 
+           GROUP BY product_id`, 
+          [productId]
+      );
+
+      if (result.rows.length === 0) {
+          return res.status(404).json({ message: 'No ratings found for this product' });
+      }
+
+      res.json({ averageRating: result.rows[0].average_rating });
+  } catch (err) {
+      console.error('Error fetching average rating:', err);
+      res.status(500).json({ message: 'Server error' });
+  }
+});
+
 
 
 app.get('/search', async (req, res) => {
