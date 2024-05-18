@@ -68,18 +68,20 @@
     min-height: 40%;
     overflow: hidden;
     white-space: pre-wrap;
+    border: solid 2px green;
 }
 
 .name{
     font-size: 40px;
     max-width: 100%;
-    max-height: 57%;
+    height: 20vh;
     color: black;
     margin-left: 2%;
     overflow: hidden;
     white-space: pre-wrap;
     overflow: hidden;
     font-family: 'Times New Roman', Times, serif;
+    border: solid 2px orange;
 }
 
 .price{
@@ -90,6 +92,8 @@
     margin-top: -8%;
     width: 50%;
     overflow: visible;
+    border: solid 2px green;
+
 }
 
 .ratingsHeader{
