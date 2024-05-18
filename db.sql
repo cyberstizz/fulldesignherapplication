@@ -81,6 +81,7 @@ CREATE TABLE reviews (
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
+
 CREATE TABLE products (
     product_id UUID PRIMARY KEY
 );
