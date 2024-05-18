@@ -4,7 +4,7 @@ import Dropdown from './Dropdown';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const ProfilePage = () => {
+const ProfilePageTest = () => {
   const { userId } = useParams();
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
@@ -67,52 +67,45 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-page">
-      <h1 className="profileUsername">{user ? user.username : 'Loading...'}</h1>
+      <h1  className="profileUsername">{user ? user.username : 'Loading...'}</h1>
       <Dropdown 
         title="Your Orders" 
-        items={orders.map(order => ({
-          title: `Order Number: ${order.order_number}`,
+        items={[{
+          title: `Order Number:  84c8c675-f321-42f2-ba60-e4eec55914a8
+          `,
           content: (
             <>
-              <div className='orderDate'>Order Date: {new Date(order.order_date).toLocaleDateString()}</div>
+              <div className='orderDate'>Order Date: 5/11/2024</div>
               <div>
-                <span className="orderAndreviewItems"  style={{color: "black"}}>Product</span> <br/>                <ul>
-                  {order.products.map(product => (
-                    <li key={product.product_id}>
-                      <span className="orderAndreviewItems" style={{color: 'orange'}}><strong className="orderAndreviewItems">{product.product_name}</strong>: </span> <span className="orderAndreviewItems" style={{color: 'green'}}>${product.product_price}</span>
+                <span className="orderAndreviewItems"  style={{color: "black"}}>Product</span> <br/>
+                <ul>
+                  
+                    <li>
+                    <span className="orderAndreviewItems" style={{color: 'orange'}}><strong className="orderAndreviewItems">Blueberry</strong>:</span> <span className="orderAndreviewItems" style={{color: 'green'}}>$250.00</span>
                     </li>
-                  ))}
                 </ul>
               </div>
             </>
           ),
-        })) || []}  // Ensure items is an array
+        }]}  // Ensure items is an array
         emptyMessage="You have no orders" 
         type="orders"
       />
       <Dropdown 
         title="Your Reviews" 
-        items={reviews.map(review => ({
-          title: (
-          <span className="orderAndreviewItems">
-            <span style={{color: "black", fontSize: "30px"}}>Review</span>
-            <br />
-            {review.headline}
-           </span>
-            ),
+        items={[{
+          title: (<span className="orderAndreviewItems"><span style={{color: "black", fontSize: "30px"}}>Review </span><br /> These boots are hot and come with a hat</span>),
           content: (
             <div>
-              <div className="orderAndreviewItems" style={{color: "orange"}}>Rating: {review.rating}</div>
-              <div className="orderAndreviewItems">{review.review}</div>
+              <div className="orderAndreviewItems" style={{color: "orange"}}>Rating: {'5.0'}</div>
+              <div className="orderAndreviewItems">just buy the boots and your FEET will be covered forever</div>
             </div>
-          ),
-        })) || []}  // Ensure items is an array
+          )
+        }]}  // Ensure items is an array
         emptyMessage="You have no reviews" 
         type="reviews"
       />
-
-      
-      <button onClick={() => navigate(-1)} style={{ 
+     <button onClick={() => navigate(-1)} style={{ 
         display: "flex",
         justifySelf: "center", 
         alignSelf: "center", 
@@ -137,4 +130,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default ProfilePageTest;
