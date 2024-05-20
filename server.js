@@ -427,8 +427,10 @@ app.get('/average-rating/:productId', async (req, res) => {
           return res.status(404).json({ message: 'No ratings found for this product' });
       }
 
-      res.json({ averageRating: result.rows[0].average_rating });
-  } catch (err) {
+      const averageRating = result.rows[0].average_rating;
+
+      res.json({ averageRating: parseFloat(averageRating) }); // Ensure it's a number
+    } catch (err) {
       console.error('Error fetching average rating:', err);
       res.status(500).json({ message: 'Server error' });
   }
