@@ -7,7 +7,7 @@
 }
 
 body {
-  cursor: url('/crocCurser.png'), auto;
+  cursor: url('../public/crocCurser.png'), auto;
 }
 
 
