@@ -239,7 +239,7 @@ li{
         background-image: url('../redBackgroundGradient.webp');
         background-repeat: repeat-x;
         background-size: cover;
-        cursor: url('./crocCurser.png'), auto;
+        cursor: url('../crocCurser.png'), auto;
     }
     
     .homeVideo{
@@ -467,7 +467,7 @@ li{
   @media (min-width: 1024px) {
     /* Desktop styles */
     body {
-        cursor: url('./crocCurser.png'), auto;
+        cursor: url('../crocCurser.png'), auto;
       }
   }
   
