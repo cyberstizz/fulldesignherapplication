@@ -2,7 +2,7 @@
 
 
 html, body {
-  cursor: url('./crocCurser_32x32.png') 0 0, auto !important;
+  cursor: url('./crocCurser_resized.png') 0 0, auto !important;
 }
 
 *{
