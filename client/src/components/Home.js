@@ -1,4 +1,3 @@
-import './App.css';
 import './Home.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
