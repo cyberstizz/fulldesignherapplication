@@ -20,9 +20,7 @@ a {
     outline: none; /* or background-color: transparent; or any other style */
   }
 
-  body {
-    cursor: url('../crocCurser.png'), auto;
-  }
+ 
 
 .homeVideo{
     background-image: url('../mainPicture.jpg');
