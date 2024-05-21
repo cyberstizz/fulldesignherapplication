@@ -1,14 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Rubik+Doodle+Triangles&display=swap');
 
 
+body {
+  cursor: url('./crocCurser.png'), auto;
+}
+
 *{
   font-family: 'Rubik Doodle Triangles', sans-serif;
   font-size: 30;
 }
 
-body {
-  cursor: url('./crocCurser.png'), auto;
-}
+
 
 
 .App {
