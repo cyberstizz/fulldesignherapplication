@@ -78,28 +78,15 @@ This software uses the following open source packages:
 
 
 ### how to use it
-Gutties can only be used as a demo now but it still works similar to how it
-did before. it is an online store similar to the likes of Amazon, when you 
-first enter the website the first thing that you see are a list of producst
-from which you can browse or search for other products within the marketplace.
-to view an item individually just click on it. and to save to your cart or make 
-a purchase, just go to the items page and click on the appropriate action.
+If you are into stylish design, especially the type that you find in New York City you are in the correct place. you can actually go to the website right now an make an order for a croc, jacket, sneakers or some boots, just log on and shop!
 
 
 ### Biggest challenges
-my biggest challenge with gutties outlet was learning about why state manaagement
-is important. sure it is common knowledge to the seasoned developer, however when
-you come from a front end background and start with smaller projects you can tend
-to misunderstand why state management is so important.
-
-in this case I tried to manage a cart before understanding Redux on a deeper level,
-and this project taught me why you need a state management library to keep state 
-consistent across components, and especially if you have a cart.
-
-further, this project introduced me to e commerce within a web application as I had
-no idea how it worked. For this application I used the Stripe api for purchases on
-a users account, and all purchases went to the business account of Gutties Outlet.
-
+my biggest challenge with DesignHer was successfully deploying it to AWS.
+I was used to simple deploys that allowed for attaching a a repo and the 
+rest of the work was done for you, however in this case i had to manage a
+full deployment in ways that i never expected. however overall it was a
+very informative experience.
 
 
 ### Code Review
@@ -109,8 +96,8 @@ as mentioned earlier Redux is used as the state management tool and stripe is us
 as the merchant.
 
 ### final thought
-gutties outlet was a very educational project and I will never forget the
-valuable lessons I learned while building it.
+DesignHer was a fun application where i learned a lot about cloud deploys
+and how to scale a system, which is the start of somethign great in the future.
 
 
 ### for more projects by CyberStizz visit: [Charleslambjr.com](https://www.charleslambjr.com/)
