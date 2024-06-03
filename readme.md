@@ -16,7 +16,7 @@ are typically fulfilled in 2 weeks depending on your location.
   <a href="#packages">Packages</a>   
 </p>
 <p align="center" >
-<a href="https://www.charleslambjr.com/">Try it out here</a> 
+<a href="http://www.designhercustomkreation.com/">Try it out here</a> 
 </p>
 
 ## Features
@@ -26,7 +26,7 @@ are typically fulfilled in 2 weeks depending on your location.
 # Install dependencies
 $ npm i
 # run the app
-$ npm run dev
+$ npm run build
 ```
 
 ## Files
@@ -41,7 +41,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com), [Node
 
 ```bash
 # Clone this repository
-$ git clone git@github.com:cyberstizz/theGuttiesOutlet.git
+$ git clone git@github.com:cyberstizz/fulldesignherapplication.git
 
 # Install dependencies
 $ npm i
