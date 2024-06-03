@@ -6,7 +6,7 @@ are typically fulfilled in 2 weeks depending on your location.
 
 <p align="center">
   <br>
-  <img src="./client/public/guttiesScreenshot.png" alt="wb" width="400">
+  <img src="./client/src/designherscreenshot.png" alt="wb" width="400">
   <br>
 </p>
 <p align="center" >
