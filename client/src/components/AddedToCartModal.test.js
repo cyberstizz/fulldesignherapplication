@@ -3,6 +3,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import AddedToCartModal from './AddedToCartModal';
 import '../localStorageMock';
+console.log('localStorageMock loaded');
+
 
 describe('AddedToCartModal', () => {
   const mockOnClose = jest.fn();
