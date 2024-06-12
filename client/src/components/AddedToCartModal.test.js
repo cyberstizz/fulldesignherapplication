@@ -1,10 +1,8 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import AddedToCartModal from './AddedToCartModal';
 import '../localStorageMock';
-console.log('localStorageMock loaded');
-
 
 describe('AddedToCartModal', () => {
   const mockOnClose = jest.fn();
@@ -41,4 +39,5 @@ describe('AddedToCartModal', () => {
     fireEvent.click(screen.getByText('Go to cart'));
     expect(mockOnGoToCart).toHaveBeenCalledTimes(1);
   });
+
 });

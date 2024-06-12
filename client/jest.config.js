@@ -1,10 +1,15 @@
 module.exports = {
-    testEnvironment: 'jsdom',
     setupFilesAfterEnv: ['<rootDir>/src/setupTests.js'],
-    transform: {
-      '^.+\\.[t|j]sx?$': 'babel-jest',
+    testEnvironment: 'jsdom',
+    moduleNameMapper: {
+      '\\.(css|scss)$': 'identity-obj-proxy'
     },
-    verbose: true,
-    testURL: "http://localhost/",
+    transform: {
+      '^.+\\.(js|jsx)$': 'babel-jest'
+    },
+    testEnvironmentOptions: {
+      url: "http://localhost"
+    },
+    verbose: true
   };
   
