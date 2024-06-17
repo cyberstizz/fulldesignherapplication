@@ -1,6 +1,6 @@
 // src/components/Jackets.test.js
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Axios from 'axios';
 import Jackets from './Jackets';
