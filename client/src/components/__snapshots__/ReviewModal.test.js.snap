@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReviewModal matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="reviewModal-overlay"
+  >
+    <div
+      class="reviewModal"
+    >
+      <form>
+        <div
+          class="input-group"
+        >
+          <label
+            for="headline"
+          >
+            Headline
+          </label>
+          <input
+            id="headline"
+            required=""
+            value=""
+          />
+        </div>
+        <div
+          class="input-group"
+        >
+          <label>
+            Rating
+          </label>
+          <div
+            class="rating"
+          >
+            <input
+              name="rating"
+              type="radio"
+              value="1"
+            />
+            <input
+              name="rating"
+              type="radio"
+              value="2"
+            />
+            <input
+              name="rating"
+              type="radio"
+              value="3"
+            />
+            <input
+              name="rating"
+              type="radio"
+              value="4"
+            />
+            <input
+              name="rating"
+              type="radio"
+              value="5"
+            />
+          </div>
+        </div>
+        <div
+          class="input-group"
+        >
+          <label
+            for="review"
+          >
+            Review
+          </label>
+          <textarea
+            id="review"
+            required=""
+          />
+        </div>
+        <button
+          type="submit"
+        >
+          Submit Review
+        </button>
+      </form>
+    </div>
+  </div>
+</DocumentFragment>
+`;
