@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReviewsComponent matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="reviewsComponent"
+  >
+    <h2>
+      Average Rating: 4
+    </h2>
+    <div
+      class="reviewComponent"
+    >
+      <h3
+        class="headline"
+      >
+        Great product!
+      </h3>
+      <div
+        class="rating"
+      >
+        Rating: 5
+      </div>
+      <p
+        class="review"
+      >
+        I love this product. Highly recommend!
+      </p>
+      <p
+        class="userName"
+      >
+        - User1
+      </p>
+    </div>
+    <div
+      class="reviewComponent"
+    >
+      <h3
+        class="headline"
+      >
+        Not bad
+      </h3>
+      <div
+        class="rating"
+      >
+        Rating: 3
+      </div>
+      <p
+        class="review"
+      >
+        It is okay, could be better.
+      </p>
+      <p
+        class="userName"
+      >
+        - User2
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
