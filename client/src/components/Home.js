@@ -120,15 +120,15 @@ function Home() {
 <section className='slideShowSection'>
   <h1 className='slideShowText'>As seen on </h1>
 
-  <a className='customIcon' href="https://m.facebook.com/DesignHerInc" target="_blank" rel="noopener noreferrer" style={iconStyle}>
+  <a className='customIcon' href="https://m.facebook.com/DesignHerInc" target="_blank" rel="noopener noreferrer"   aria-label="Facebook" style={iconStyle} >
         <FontAwesomeIcon icon={faFacebookSquare} style={{ fontSize: '100px' }} />
       </a>
 
-      <a className='customIcon' href="https://www.instagram.com/designher_incllc?utm_source=qr&igshid=YjE5NDMyY2FhOQ%3D%3D&img_index=1" target="_blank" rel="noopener noreferrer" style={iconStyle}>
+      <a className='customIcon' href="https://www.instagram.com/designher_incllc?utm_source=qr&igshid=YjE5NDMyY2FhOQ%3D%3D&img_index=1" target="_blank" rel="noopener noreferrer"   aria-label="Instagram" style={iconStyle}>
         <FontAwesomeIcon icon={faInstagram} style={{ fontSize: '100px' }} />
       </a>
 
-      <a className='customIcon' href="https://www.tiktok.com/@designher_inc" target="_blank" rel="noopener noreferrer" style={iconStyle}>
+      <a className='customIcon' href="https://www.tiktok.com/@designher_inc" target="_blank" rel="noopener noreferrer"   aria-label="TikTok" style={iconStyle}>
       <FontAwesomeIcon icon={faTiktok} style={{ fontSize: '100px' }} />
       </a>
 
