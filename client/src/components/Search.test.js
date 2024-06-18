@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
-import Search from '../Search';
-import Header from '../Header';
+import Search from './Search';
+import Header from './Header';
 import SubMenuComponent from '../SubmenuComponent';
 import { useLocation } from 'react-router';
 

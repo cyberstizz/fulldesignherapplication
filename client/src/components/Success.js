@@ -1,4 +1,3 @@
-// SuccessPage.js
 import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import './Success.scss'; // Assuming you have a corresponding SCSS file for styling

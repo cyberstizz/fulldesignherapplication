@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Axios from 'axios';
-import Sneakers from '../Sneakers';
+import Sneakers from './Sneakers';
 
 jest.mock('axios');
 
