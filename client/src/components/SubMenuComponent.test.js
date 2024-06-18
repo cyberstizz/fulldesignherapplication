@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import SubMenuComponent from '../SubMenuComponent';
+import SubMenuComponent from './SubMenuComponent';
 
 describe('SubMenuComponent', () => {
   const mockProps = {

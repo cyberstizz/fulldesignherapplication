@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
 import Search from './Search';
 import Header from './Header';
-import SubMenuComponent from '../SubmenuComponent';
+import SubMenuComponent from './SubmenuComponent';
 import { useLocation } from 'react-router';
 
 jest.mock('axios');
@@ -12,8 +12,8 @@ jest.mock('react-router', () => ({
   ...jest.requireActual('react-router'),
   useLocation: jest.fn(),
 }));
-jest.mock('../Header', () => () => <div>Header</div>);
-jest.mock('../SubmenuComponent', () => ({ onImageLoad, name, path, product_price }) => (
+jest.mock('./Header', () => () => <div>Header</div>);
+jest.mock('./SubmenuComponent', () => ({ onImageLoad, name, path, product_price }) => (
   <div>
     <img src={path} onLoad={onImageLoad} alt={name} />
     <div>{name}</div>

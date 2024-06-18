@@ -1,8 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import WelcomeModal from './WelcomeModal';
 import { createMemoryHistory } from 'history';
+import WelcomeModal from './WelcomeModal';
 import { Router as RouterWithHistory } from 'react-router';
 
 describe('WelcomeModal', () => {
@@ -11,7 +10,7 @@ describe('WelcomeModal', () => {
   const setup = (isOpen) => {
     const history = createMemoryHistory();
     render(
-      <RouterWithHistory location={history.location} navigator={history}>
+      <RouterWithHistory history={history}>
         <WelcomeModal isOpen={isOpen} onClose={onCloseMock} />
       </RouterWithHistory>
     );
@@ -41,11 +40,7 @@ describe('WelcomeModal', () => {
 
   test('calls onClose and refreshes page when OK button is clicked', () => {
     const history = createMemoryHistory();
-    render(
-      <RouterWithHistory location={history.location} navigator={history}>
-        <WelcomeModal isOpen={true} onClose={onCloseMock} />
-      </RouterWithHistory>
-    );
+    setup(true);
 
     fireEvent.click(screen.getByText('OK'));
     expect(onCloseMock).toHaveBeenCalledTimes(1);
