@@ -95,7 +95,11 @@ describe('ProductDescription Component', () => {
       </Router>
     );
 
-    await waitFor(() => expect(screen.getByText('Test Jacket')).toBeInTheDocument());
+    await waitFor(() => expect(screen.queryByText('Loading...')).not.toBeInTheDocument());
+    await waitFor(() => {
+      const testJacket = screen.getByText((content, element) => element.textContent === 'Test Jacket');
+      expect(testJacket).toBeInTheDocument();
+    });
     expect(screen.getByText('$100')).toBeInTheDocument();
     expect(screen.getByText('Test description')).toBeInTheDocument();
     expect(screen.getByText('Average Rating: 4.5')).toBeInTheDocument();
@@ -120,7 +124,11 @@ describe('ProductDescription Component', () => {
       </Router>
     );
 
-    await waitFor(() => expect(screen.getByText('Test Jacket')).toBeInTheDocument());
+    await waitFor(() => expect(screen.queryByText('Loading...')).not.toBeInTheDocument());
+    await waitFor(() => {
+      const testJacket = screen.getByText((content, element) => element.textContent === 'Test Jacket');
+      expect(testJacket).toBeInTheDocument();
+    });
 
     fireEvent.click(screen.getByText('Add to cart'));
     fireEvent.click(screen.getByText('Add'));
@@ -148,7 +156,11 @@ describe('ProductDescription Component', () => {
       </Router>
     );
 
-    await waitFor(() => expect(screen.getByText('Test Jacket')).toBeInTheDocument());
+    await waitFor(() => expect(screen.queryByText('Loading...')).not.toBeInTheDocument());
+    await waitFor(() => {
+      const testJacket = screen.getByText((content, element) => element.textContent === 'Test Jacket');
+      expect(testJacket).toBeInTheDocument();
+    });
 
     fireEvent.click(screen.getByText('Buy now'));
     expect(screen.getByTestId('custom-stripe-modal')).toBeInTheDocument();
@@ -173,7 +185,11 @@ describe('ProductDescription Component', () => {
       </Router>
     );
 
-    await waitFor(() => expect(screen.getByText('Test Jacket')).toBeInTheDocument());
+    await waitFor(() => expect(screen.queryByText('Loading...')).not.toBeInTheDocument());
+    await waitFor(() => {
+      const testJacket = screen.getByText((content, element) => element.textContent === 'Test Jacket');
+      expect(testJacket).toBeInTheDocument();
+    });
 
     fireEvent.click(screen.getByText('Write a review'));
     expect(screen.getByTestId('review-modal')).toBeInTheDocument();
@@ -198,7 +214,11 @@ describe('ProductDescription Component', () => {
       </Router>
     );
 
-    await waitFor(() => expect(screen.getByText('Test Jacket')).toBeInTheDocument());
+    await waitFor(() => expect(screen.queryByText('Loading...')).not.toBeInTheDocument());
+    await waitFor(() => {
+      const testJacket = screen.getByText((content, element) => element.textContent === 'Test Jacket');
+      expect(testJacket).toBeInTheDocument();
+    });
 
     fireEvent.click(screen.getByRole('button', { name: 'fa-arrow-left' }));
     expect(mockNavigate).toHaveBeenCalledWith(-1);
