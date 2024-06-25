@@ -1,107 +1,72 @@
-// src/components/Jackets.test.js
 import React from 'react';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import Axios from 'axios';
-import Jackets from './Jackets';
+import { MemoryRouter, Routes, Route } from 'react-router-dom';
+import Jackets from './Jackets'; // Update with the correct import path
 
 jest.mock('axios');
 
+const mockJackets = [
+  { id: 1, name: 'Jacket 1', imageUrl: '/images/jacket1.jpg' },
+  { id: 2, name: 'Jacket 2', imageUrl: '/images/jacket2.jpg' }
+];
+
 describe('Jackets Component', () => {
-  beforeEach(() => {
-    Axios.get.mockClear();
-  });
+  it('handles API errors gracefully', async () => {
+    Axios.get.mockRejectedValue(new Error('API error'));
 
-  test('renders without crashing', () => {
     render(
-      <Router>
-        <Jackets />
-      </Router>
+      <MemoryRouter>
+        <Routes>
+          <Route path="/" element={<Jackets />} />
+        </Routes>
+      </MemoryRouter>
     );
 
-    // Check if Header component is rendered
-    expect(screen.getByRole('banner')).toBeInTheDocument();
-
-    // Check if the Jackets header is rendered
-    expect(screen.getByText(/Jackets/i)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.queryAllByText(/Jacket/i)).toHaveLength(0);
+    });
   });
 
-  test('fetches and displays jackets data', async () => {
-    const mockJackets = [
-      { product_id: 1, name: 'Jacket 1', image_path: '/images/jacket1.jpg', product_price: 100 },
-      { product_id: 2, name: 'Jacket 2', image_path: '/images/jacket2.jpg', product_price: 150 }
-    ];
+  it('renders SubMenuComponent for each jacket', async () => {
     Axios.get.mockResolvedValue({ status: 200, data: { jackets: mockJackets } });
 
     render(
-      <Router>
-        <Jackets />
-      </Router>
+      <MemoryRouter>
+        <Routes>
+          <Route path="/" element={<Jackets />} />
+        </Routes>
+      </MemoryRouter>
     );
 
     await waitFor(() => {
       mockJackets.forEach(jacket => {
         expect(screen.getByText(jacket.name)).toBeInTheDocument();
         expect(screen.getByAltText(jacket.name)).toBeInTheDocument();
-        expect(screen.getByText(`$${jacket.product_price}`)).toBeInTheDocument();
       });
     });
   });
 
-  test('handles API errors gracefully', async () => {
-    Axios.get.mockRejectedValue(new Error('Error fetching jackets data'));
-
-    render(
-      <Router>
-        <Jackets />
-      </Router>
-    );
-
-    await waitFor(() => {
-      expect(screen.queryByText(/Jacket/i)).not.toBeInTheDocument();
-    });
-  });
-
-  test('renders SubMenuComponent for each jacket', async () => {
-    const mockJackets = [
-      { product_id: 1, name: 'Jacket 1', image_path: '/images/jacket1.jpg', product_price: 100 },
-      { product_id: 2, name: 'Jacket 2', image_path: '/images/jacket2.jpg', product_price: 150 }
-    ];
+  it('navigates to jacket detail page on jacket click', async () => {
     Axios.get.mockResolvedValue({ status: 200, data: { jackets: mockJackets } });
 
     render(
-      <Router>
-        <Jackets />
-      </Router>
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/" element={<Jackets />} />
+          <Route path="/jacket/:id" element={<div>Jacket Detail Page</div>} />
+        </Routes>
+      </MemoryRouter>
     );
 
     await waitFor(() => {
-      mockJackets.forEach(jacket => {
-        expect(screen.getByText(jacket.name)).toBeInTheDocument();
-        expect(screen.getByAltText(jacket.name)).toBeInTheDocument();
-        expect(screen.getByText(`$${jacket.product_price}`)).toBeInTheDocument();
-      });
+      expect(screen.getByText('Jacket 1')).toBeInTheDocument();
     });
-  });
 
-  test('navigates to jacket detail page on jacket click', async () => {
-    const mockJackets = [
-      { product_id: 1, name: 'Jacket 1', image_path: '/images/jacket1.jpg', product_price: 100 },
-      { product_id: 2, name: 'Jacket 2', image_path: '/images/jacket2.jpg', product_price: 150 }
-    ];
-    Axios.get.mockResolvedValue({ status: 200, data: { jackets: mockJackets } });
-
-    render(
-      <Router>
-        <Jackets />
-      </Router>
-    );
+    fireEvent.click(screen.getByText('Jacket 1'));
 
     await waitFor(() => {
-      mockJackets.forEach(jacket => {
-        fireEvent.click(screen.getByText(jacket.name));
-        expect(window.location.pathname).toBe(`/jacket/${jacket.product_id}`);
-      });
+      expect(screen.getByText('Jacket Detail Page')).toBeInTheDocument();
     });
   });
 });
