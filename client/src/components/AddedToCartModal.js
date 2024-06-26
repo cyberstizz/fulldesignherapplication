@@ -1,4 +1,3 @@
-// AddedToCartModal.js
 import React from 'react'; // Importing React to use JSX and React functionalities
 import './AddedToCartModal.scss'; // Importing the stylesheet for the component
 
