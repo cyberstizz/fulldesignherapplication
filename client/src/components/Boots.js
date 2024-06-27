@@ -14,45 +14,43 @@ const Boots = () => {
         ? `${baseUrl}`
         : 'http://localhost:3001';
 
+    // Fetch boot data when the component mounts
     useEffect(() => {
         const fetchData = async () => {
             try {
+                // Make a GET request to fetch boot data
                 const response = await Axios.get(`${apiUrl}/boot/allBoots`);
-                console.log(response.data.boots);
-                setAllBoots(response.data.boots);
+                console.log(response.data.boots); // Log the response data for debugging
+                setAllBoots(response.data.boots); // Update the state with fetched data
             } catch (error) {
-                console.error("Error fetching boots data: ", error);
+                console.error("Error fetching boots data: ", error); // Log any error that occurs
             }
         };
 
-        fetchData();
-    }, [apiUrl]);
+        fetchData(); // Call the fetchData function
+    }, [apiUrl]); // Dependency array for useEffect
 
+    // Placeholder function for handling image load events
     const handleImageLoaded = () => {
         // Placeholder for any image load handling logic
     };
 
+    // Function to remove underscores from a string and replace with spaces
     const properLettering = (word) => {
-        // this function will parse a string and remove
-        // any _ characters
-
-        // create a new variable that will be returned
-        // this variable will be an array
+        // Create a new array to store the processed characters
         let newString = [];
 
+        // Loop through each character in the string
         for (let i = 0; i < word.length; i++) {
-            // loop through the string, and for every element
-            // check to see if it is an underscore and if it is
-            // push a blank space into the array '', if it is not
+            // If the character is not an underscore, add it to the array
             if (word[i] !== '_') {
-                // push the letter into the array
                 newString.push(word[i]);
             } else {
+                // If the character is an underscore, add a space to the array
                 newString.push(' ');
             }
         }
-        // after getting out of the array join the array
-        // into a string, and return the string
+        // Join the array into a string and return it
         return newString.join('');
     };
 
@@ -66,13 +64,14 @@ const Boots = () => {
                 <br/>
                 <h1 className='categoryHeader'>Boots</h1>
                 <div className='submenuBody'>
+                    {/* Map over allBoots array and render a SubMenuComponent for each boot */}
                     {allBoots.map(boot => (
                         <Link key={boot.product_id} to={`/boot/${boot.product_id}`}>
                             <SubMenuComponent
-                                onImageLoad={handleImageLoaded}
-                                name={properLettering(boot.name)}
-                                path={boot.image_path}
-                                product_price={boot.product_price}
+                                onImageLoad={handleImageLoaded} // Pass the image load handler
+                                name={properLettering(boot.name)} // Pass the processed name
+                                path={boot.image_path} // Pass the image path
+                                product_price={boot.product_price} // Pass the product price
                             />
                         </Link>
                     ))}
