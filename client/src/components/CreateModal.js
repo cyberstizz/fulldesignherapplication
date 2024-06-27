@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import Axios from 'axios';
-import './CreateModal.scss'
+import React, { useState } from 'react'; // Import React library and useState hook
+import './CreateModal.scss'; // Import the stylesheet for this component
 
 const CreateModal = ({ isOpen, onClose, onCreate }) => {
+  // State to manage the new product details
   const [newProduct, setNewProduct] = useState({
     name: '',
     image: null,
@@ -11,6 +11,7 @@ const CreateModal = ({ isOpen, onClose, onCreate }) => {
     price: '',
   });
 
+  // Function to handle changes in the image input
   const handleImageChange = (e) => {
     const file = e.target.files[0];
 
@@ -22,6 +23,7 @@ const CreateModal = ({ isOpen, onClose, onCreate }) => {
     }
   };
 
+  // Function to handle changes in the text inputs
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewProduct((prevProduct) => ({
@@ -30,8 +32,9 @@ const CreateModal = ({ isOpen, onClose, onCreate }) => {
     }));
   };
 
+  // Function to handle the creation of a new product
   const handleCreate = async () => {
-        onCreate(newProduct)
+    onCreate(newProduct); // Call the onCreate function passed as a prop with the new product details
   };
 
   return (
@@ -107,4 +110,4 @@ const CreateModal = ({ isOpen, onClose, onCreate }) => {
   );
 };
 
-export default CreateModal;
+export default CreateModal; // Export the CreateModal component as the default export
