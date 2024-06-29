@@ -1,96 +1,73 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Crocs.scss';
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import SubMenuComponent from './SubmenuComponent';
 import Header from './Header';
 
-
-
-
 const Crocs = () => {
-    // const [imagesLoaded, setImagesLoaded] = useState(false);
-    // const [loadedImagesCount, setLoadedImagesCount] = useState(0);
+    // State to hold the list of all Crocs products
     const [allCrocs, setAllCrocs] = useState([]);
 
+    // Determine the API URL based on the environment
     const baseUrl = window.location.origin;
-
     const apiUrl = process.env.NODE_ENV === 'production'
-    ? `${baseUrl}`
-    : 'http://localhost:3001';
+        ? `${baseUrl}`
+        : 'http://localhost:3001';
 
+    // Fetch all Crocs data from the API when the component mounts
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await Axios.get(`${apiUrl}/croc/allCrocs`);
-                console.log(response.data.crocs)
+                console.log(response.data.crocs);
                 setAllCrocs(response.data.crocs);
             } catch (error) {
                 console.error("Error fetching crocs data: ", error);
             }
         };
-  
+
         fetchData();
-    }, []);
+    }, [apiUrl]);
 
-
-
+    // Function to format product names by replacing underscores with spaces
     const properLettering = (word) => {
-        //this function will parse a string and remove
-        //any _ characters
-
-        //create a new variable that will be returned
-        //this variable will be an array
         let newString = [];
 
-
-        for(let i = 0; i < word.length; i++){
-
-        
-        //loop through the string, and for every element
-        //check to see if it is an underscore and if it is
-        //push a blank space into the array '', if it is not
-        if(word[i] !== '_'){
-        //push the letter into the array
-            newString.push(word[i]);
-        } else{
-            newString.push(' ');
-        }
+        for (let i = 0; i < word.length; i++) {
+            if (word[i] !== '_') {
+                newString.push(word[i]);
+            } else {
+                newString.push(' ');
+            }
         }
         return newString.join('');
-        //after getting out of the array join the array
-        //into a string, and return the string
-    }
+    };
 
+    // Placeholder function for image load events
     const handleImageLoaded = () => {
-        // setLoadedImagesCount(prevCount => prevCount + 1);
-};
+        // This function can be used to track image load status
+    };
 
-// useEffect(() => {
-//   if (loadedImagesCount === allCrocs.length) {
-//     setImagesLoaded(true);
-//   }
-// }, [loadedImagesCount]);
-
-    return(
+    return (
         <React.Fragment>
-            {/* {!imagesLoaded && <Loader />} */}
-
+            {/* Render header component */}
             <Header />
             <div className='fullCategoryBody'>
-            <h1 className='categoryHeader'>Crocs</h1>
-            <div className='submenuBody'>
-                  {allCrocs.map(croc => (
-                    <Link key={croc.product_id} to={`/croc/${croc.product_id}`}>
-                        <SubMenuComponent onImageLoad={handleImageLoaded} name={properLettering(croc.name)} path={croc.image_path} product_price={croc.product_price} />
-                    </Link>
-                ))}
-           
-            
+                <h1 className='categoryHeader'>Crocs</h1>
+                <div className='submenuBody'>
+                    {allCrocs.map(croc => (
+                        <Link key={croc.product_id} to={`/croc/${croc.product_id}`}>
+                            <SubMenuComponent
+                                onImageLoad={handleImageLoaded}
+                                name={properLettering(croc.name)}
+                                path={croc.image_path}
+                                product_price={croc.product_price}
+                            />
+                        </Link>
+                    ))}
+                </div>
             </div>
-            </div>
-           
         </React.Fragment>
     );
 }
