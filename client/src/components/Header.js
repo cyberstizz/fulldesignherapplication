@@ -1,34 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Header.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 import LoginModal from './LoginModal';
 import SignUp from './SignUp';
-import { useEffect } from 'react';
 import Axios from 'axios';
 import UserModal from './UserModal';
 import WelcomeModal from './WelcomeModal';
-import WelcomeUserModal from  './WelcomeUserModal';
+import WelcomeUserModal from './WelcomeUserModal';
 
 const Header = () => {
+  // State variables for managing modals and user data
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
   const [user, setUser] = useState(null);
   const [isWelcomeModalOpen, setWelcomeModalOpen] = useState(false);
   const [isWelcomeUserModalOpen, setWelcomeUserModalOpen] = useState(false);
   const [isUserModalOpen, setUserModalOpen] = useState(false);
-  const [hasAccess, setHasAccess] = useState(false);
   const [query, setQuery] = useState('');
-
-  const handleOpenWelcomeModal = () => setWelcomeModalOpen(true);
-  const handleOpenWelcomeUserModal = () => setWelcomeUserModalOpen(true);
-  const handleOpenUserModal = () => setUserModalOpen(true);
-
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Check user authentication on component mount
     const checkUserAuthentication = async () => {
       try {
         const response = await Axios.get('/user');
@@ -45,46 +40,42 @@ const Header = () => {
     checkUserAuthentication();
   }, []);
 
+  // Function to close all modals
   const handleCloseModal = () => {
     setWelcomeModalOpen(false);
     setWelcomeUserModalOpen(false);
     setUserModalOpen(false);
   };
 
-
+  // Function to handle user logout
   const handleLogout = async () => {
     try {
-      // Call the logout endpoint
-      await Axios.get('/logout');
+      await Axios.get('/logout'); // Call the logout endpoint
       console.log('Logged out successfully');
-  
       handleCloseModal();
-      navigate(0, { replace: true, state: { key: Date.now() } }); // navigate(0) is a way to refresh the page
-  
+      navigate(0, { replace: true, state: { key: Date.now() } }); // Refresh the page
     } catch (error) {
       console.error('Error during logout:', error.message);
     }
-  }
-
-  const handleOpenWelcome = () => {
-    //this function simply calls the hook that will open or close the welcome modal
-    setWelcomeModalOpen(true); // Directly open the Welcome Modal
-  }
-
-
-  //function responsible for checking a users search
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    // Navigate to the search page and pass the query as state
-    navigate('/search', { state: { query } });
   };
 
+  // Function to open the welcome modal
+  const handleOpenWelcome = () => {
+    setWelcomeModalOpen(true);
+  };
 
+  // Function to handle user search
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    navigate('/search', { state: { query } }); // Navigate to the search page with query
+  };
+
+  // Function to navigate to the home page on logo click
   const handleLogoClick = () => {
     navigate('/');
   };
 
-
+  // Function to toggle login and signup modals
   const handleModalToggle = (modalType) => {
     setIsLoginModalOpen(modalType === 'login');
     setIsSignupModalOpen(modalType === 'signup');
@@ -92,30 +83,45 @@ const Header = () => {
 
   return (
     <header className="mainHeader">
-      <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} handleModalToggle={handleModalToggle} handleOpen={handleOpenWelcome} />
-      <SignUp isOpen={isSignupModalOpen} onClose={() => setIsSignupModalOpen(false)} onOpenLoginModal={() => handleModalToggle('login')} afterSignup={handleOpenWelcomeUserModal} />
+      {/* Modal components for login, signup, and user actions */}
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        handleModalToggle={handleModalToggle}
+        handleOpen={handleOpenWelcome}
+      />
+      <SignUp
+        isOpen={isSignupModalOpen}
+        onClose={() => setIsSignupModalOpen(false)}
+        onOpenLoginModal={() => handleModalToggle('login')}
+        afterSignup={handleOpenWelcomeUserModal}
+      />
       <WelcomeModal isOpen={isWelcomeModalOpen} onClose={handleCloseModal} />
       <WelcomeUserModal isOpen={isWelcomeUserModalOpen} onClose={handleCloseModal} user={user} />
       <UserModal isOpen={isUserModalOpen} onClose={handleCloseModal} onLogout={handleLogout} userId={user} />
+
       {user ? (
-        <div className="userWelcome" onClick={handleOpenUserModal}> {user.username}</div>
+        // Display username if user is logged in
+        <div className="userWelcome" onClick={handleOpenUserModal}>{user.username}</div>
       ) : (
+        // Display lock icon for login if no user is logged in
         <FontAwesomeIcon className="lockIcon" icon={faLock} onClick={() => handleModalToggle('login')} />
-      )}     
-     
-     
+      )}
+
+      {/* Logo and navigation links */}
       <div className='mainLogo' onClick={handleLogoClick}></div>
 
       <div className='headerRightSide'>
-      <form onSubmit={handleSearch} className='searchForm'>
-      <input 
-        type="text" 
-        value={query} 
-        onChange={(e) => setQuery(e.target.value)} 
-        placeholder="Search" 
-        className='searchBar'
-        />
+        <form onSubmit={handleSearch} className='searchForm'>
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search"
+            className='searchBar'
+          />
         </form>
+
         <div className='navigationBar'>
           <Link to="/jackets"><div className='firstNavItem'>Jackets</div></Link>
           <Link to="/crocs"><div className='navItem'>Crocs</div></Link>
@@ -129,6 +135,5 @@ const Header = () => {
     </header>
   );
 };
-
 
 export default Header;
