@@ -3,53 +3,50 @@ import './LoginModal.scss';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-
 const LoginModal = ({ isOpen, onClose, handleModalToggle, handleOpen }) => {
+  // State to manage user access
   const [hasAccess, setHasAccess] = useState(false);
 
-
+  // Base URL based on environment
   const baseUrl = window.location.origin;
-
   const apiUrl = process.env.NODE_ENV === 'production'
-  ? `${baseUrl}`
-  : 'http://localhost:3001';
+    ? `${baseUrl}`
+    : 'http://localhost:3001';
 
-
+  // State to manage input values
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  // Hook to programmatically navigate
   const navigate = useNavigate();
 
-
+  // Function to handle login form submission
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    // Retrieve environment variables
     const theUsername = process.env.REACT_APP_USERNAME;
     const thePassword = process.env.REACT_APP_PASSWORD;
 
-    if(username === theUsername && password === thePassword){
-
+    // Check if the provided credentials match the environment variables
+    if (username === theUsername && password === thePassword) {
       navigate('/control');
       return;
     }
 
     try {
-      const response = await Axios.post(`${apiUrl}/login`, {
-        username, 
-        password 
-      });
+      // Send login request to the server
+      const response = await Axios.post(`${apiUrl}/login`, { username, password });
+
       // Check the response status and handle accordingly
       if (response.status === 200) {
-        // Successful login, you can redirect or perform other actions
         console.log('Login successful!');
-
         console.log('Username:', username);
         console.log('Password:', password);
-        //open the welcome modal
-        handleOpen();
 
+        // Open the welcome modal
+        handleOpen();
       } else {
-        // Handle login failure, display error message or take appropriate action
         console.error('Login failed:', response.data.message);
       }
     } catch (error) {
@@ -58,10 +55,9 @@ const LoginModal = ({ isOpen, onClose, handleModalToggle, handleOpen }) => {
 
     // Close the modal
     onClose();
-
-
   };
 
+  // Render the modal only if it's open
   return isOpen && (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
