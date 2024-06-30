@@ -3,7 +3,7 @@ import './SignOut.scss';
 
 
 
-
+//this is another component that is not in use
 
 const  SignOut = () => {
   return (

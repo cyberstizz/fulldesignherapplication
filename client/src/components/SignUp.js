@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import './SignUp.scss';
 import Axios from 'axios';
 
-
-const SignUp = ({ isOpen, onClose,  afterSignup }) => {
-
+const SignUp = ({ isOpen, onClose, afterSignup }) => {
+  // Define the base URL based on the current environment
   const baseUrl = window.location.origin;
 
   const apiUrl = process.env.NODE_ENV === 'production'
-  ? `${baseUrl}`
-  : 'http://localhost:3001';
+    ? `${baseUrl}`
+    : 'http://localhost:3001';
 
-
+  // State variables for form fields
   const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -21,6 +20,7 @@ const SignUp = ({ isOpen, onClose,  afterSignup }) => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
+      // Send a POST request to register a new user
       const response = await Axios.post(`${apiUrl}/register`, {
         username: username.toLowerCase(), // Convert username to lowercase
         email_address: email,
@@ -28,29 +28,24 @@ const SignUp = ({ isOpen, onClose,  afterSignup }) => {
         first_name: firstName,
         last_name: lastName,
       });
-  
+
       // Check the response status and handle accordingly
       if (response.status === 201) {
-        // Successful registration, you can redirect or perform other actions
         console.log('Registration successful!');
-         // Open welcome user modal
-         afterSignup();
-
+        // Trigger the afterSignup function on success
+        afterSignup();
       } else {
-        // Handle registration failure, display error message or take appropriate action
         console.error('Registration failed:', response.data.message);
       }
     } catch (error) {
       console.error('Error during registration:', error.message);
     }
-  
+
     // Close the modal
     onClose();
-  
-   
   };
-  
 
+  // Render the sign-up form modal
   return isOpen && (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
