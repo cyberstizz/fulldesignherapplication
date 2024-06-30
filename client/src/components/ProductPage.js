@@ -4,7 +4,8 @@ import './ProductPage.scss';
 
 
 
-
+//this component is not in use as of yet and may be deleted later in 
+//it is determined to not be needed
 const  ProductPage = () => {
   return (
     <React.Fragment>
