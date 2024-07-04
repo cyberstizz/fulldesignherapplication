@@ -13,13 +13,13 @@ describe('Boots Component', () => {
       {
         product_id: 1,
         name: 'Boot 1',
-        image_path: 'path/to/image1.jpg',
+        image_path: './backgroundTwoDiamonds.webp',
         product_price: 100,
       },
       {
         product_id: 2,
         name: 'Boot 2',
-        image_path: 'path/to/image2.jpg',
+        image_path: './backgroundTwoDiamonds.webp',
         product_price: 150,
       },
     ],
@@ -30,7 +30,12 @@ describe('Boots Component', () => {
   });
 
   test('renders Boots component with correct data', async () => {
-    render(<Boots />);
+    render(
+      <MemoryRouter>
+        <Boots />
+      </MemoryRouter>
+    );
+
     await waitFor(() => {
       expect(screen.getByText('Boots')).toBeInTheDocument();
       expect(screen.getByText('Boot 1')).toBeInTheDocument();
@@ -39,10 +44,13 @@ describe('Boots Component', () => {
   });
 
   test('calls Axios to fetch boots data', async () => {
-    render(<MemoryRouter> 
+    render(
+      <MemoryRouter>
         <Boots />
       </MemoryRouter>
-    );    await waitFor(() => {
+    );
+
+    await waitFor(() => {
       expect(Axios.get).toHaveBeenCalledWith(expect.stringContaining('/boot/allBoots'));
     });
   });
