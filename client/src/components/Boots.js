@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'; // Consolidated React import
 import './Boots.scss'; // Import the stylesheet for this component
 import { Link } from 'react-router-dom'; // Import Link component for navigation
 import Axios from 'axios'; // Import Axios for making HTTP requests
-import SubMenuComponent from './SubMenuComponent'; // Import SubMenuComponent
+import SubMenuComponent from './SubmenuComponent'; // Import SubMenuComponent
 import Header from './Header'; // Import Header component
 
 const Boots = () => {
